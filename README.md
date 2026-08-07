@@ -15,6 +15,46 @@ The manuscript never contains presentation logic, and the renderer never contain
 
 ---
 
+### *** IMPORTANT ***
+## Code Formatting
+
+Project XTC Publisher uses **Ruff** to format all Python source code.
+
+The project deliberately uses a **3-space indentation** rather than the more traditional 4 spaces. This is an intentional stylistic choice. It provides a slightly more compact layout while remaining highly readable.
+
+The indentation width is configured in `pyproject.toml`:
+
+```toml
+[tool.ruff]
+indent-width = 3
+line-length = 160
+target-version = "py314"
+```
+
+If you prefer a different indentation width, simply change the `indent-width` setting and re-run Ruff.
+
+For example, to return to the more conventional 4-space indentation:
+
+```toml
+indent-width = 4
+```
+
+or, for those who prefer the compactness of 2 spaces:
+
+```toml
+indent-width = 2
+```
+
+After changing the setting, reformat the project:
+
+```bash
+ruff format .
+```
+
+The codebase is intentionally written so that formatting is entirely the responsibility of Ruff rather than individual developers.
+
+---
+
 ## Current Status
 
 The project is in active development.
