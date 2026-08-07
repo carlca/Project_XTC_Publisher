@@ -1,0 +1,175 @@
+meta:
+  name: "Project XTC Default"
+  version: "0.1"
+
+page:
+  size: "A4"
+  margins_mm:
+    top: 20
+    right: 22
+    bottom: 22
+    left: 22
+  page_numbers:
+    enabled: true
+    position: "bottom-centre"
+    first_page: false
+
+fonts:
+  preferred:
+    - "DejaVu Sans"
+    - "Liberation Sans"
+    - "Helvetica"
+  monospace:
+    - "DejaVu Sans Mono"
+    - "Liberation Mono"
+    - "Courier"
+
+colours:
+  text: "#000000"
+  subtitle: "#666666"
+  heading: "#777777"
+  muted: "#888888"
+  rule: "#D0D0D0"
+  paper: "#FFFFFF"
+
+typography:
+  book_title:
+    font_size_pt: 27
+    leading_pt: 31
+    weight: "bold"
+    alignment: "centre"
+    colour: "#000000"
+    space_after_pt: 4
+
+  book_subtitle:
+    font_size_pt: 15
+    leading_pt: 18
+    alignment: "centre"
+    colour: "#666666"
+    space_after_pt: 22
+
+  chapter_title:
+    font_size_pt: 20
+    leading_pt: 24
+    weight: "bold"
+    alignment: "centre"
+    colour: "#000000"
+    space_after_pt: 10
+    keep_with_next: true
+
+  section_heading:
+    font_size_pt: 17
+    leading_pt: 20
+    weight: "bold"
+    colour: "#777777"
+    space_before_pt: 12
+    space_after_pt: 6
+    keep_with_next: true
+    minimum_following_lines: 2
+
+  subsection_heading:
+    font_size_pt: 13
+    leading_pt: 16
+    weight: "bold"
+    colour: "#777777"
+    keep_with_next: true
+    minimum_following_lines: 2
+
+  body:
+    font_size_pt: 11.5
+    leading_pt: 16
+    colour: "#000000"
+    paragraph_after_pt: 8
+    widow_lines: 2
+    orphan_lines: 2
+
+  caption:
+    font_size_pt: 9.5
+    leading_pt: 12
+    alignment: "centre"
+    colour: "#666666"
+
+hardware_labels:
+  weight: "bold"
+  preserve_case: true
+  preserve_punctuation: true
+
+directives:
+  field-note:
+    label: "Field Note"
+    background: "#F3F3F3"
+    border_colour: "#B8B8B8"
+    border_width_pt: 0.8
+    padding_pt: 9
+    keep_together: true
+
+  reality-check:
+    label: "Reality Check"
+    background: "#FFF8E6"
+    border_colour: "#C9A227"
+    border_width_pt: 0.8
+    padding_pt: 9
+    keep_together: true
+
+  exercise:
+    label: "Exercise"
+    background: "#EEF5FB"
+    border_colour: "#7A9DB8"
+    border_width_pt: 0.8
+    padding_pt: 9
+    keep_together: true
+
+  tip:
+    label: "Tip"
+    background: "#F1F7F1"
+    border_colour: "#7F9F7F"
+    border_width_pt: 0.8
+    padding_pt: 9
+    keep_together: true
+
+  warning:
+    label: "Warning"
+    background: "#FFF0F0"
+    border_colour: "#B26A6A"
+    border_width_pt: 0.8
+    padding_pt: 9
+    keep_together: true
+
+media:
+  diagrams:
+    max_width_percent: 90
+    alignment: "centre"
+    keep_with_caption: true
+  screenshots:
+    max_width_percent: 95
+    alignment: "centre"
+    keep_with_caption: true
+
+tables:
+  header_background: "#EEEEEE"
+  border_colour: "#BFBFBF"
+  border_width_pt: 0.5
+  cell_padding_pt: 5
+  repeat_header: true
+
+lists:
+  bullet_indent_pt: 16
+  text_indent_pt: 26
+  item_spacing_pt: 3
+  keep_short_lists_together: true
+
+pagination:
+  keep_heading_with_next: true
+  minimum_lines_after_heading: 2
+  keep_directives_together: true
+  keep_caption_with_media: true
+  avoid_single_line_paragraph_at_page_top: true
+  avoid_single_line_paragraph_at_page_bottom: true
+
+output:
+  pdf:
+    compress: true
+    metadata:
+      title: "Project XTC: X-Touch Companion"
+      subject: "Behringer X-Touch, Bitwig Studio and DrivenByMoss"
+      author: "Project XTC"
