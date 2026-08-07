@@ -19,12 +19,7 @@ class BulletList:
    items: list[str]
 
 
-# @dataclass(slots=True)
-# class NumberedList:
-#    items: list[str]
-
-
-@dataclass
+@dataclass(slots=True)
 class NumberedList:
    items: list[str]
    start: int = 1
@@ -59,7 +54,17 @@ class Table:
    rows: list[list[str]]
 
 
-Element: TypeAlias = Paragraph | Heading | BulletList | NumberedList | BlockQuote | CodeBlock | Directive | Image | Table
+Element: TypeAlias = (
+   Paragraph
+   | Heading
+   | BulletList
+   | NumberedList
+   | BlockQuote
+   | CodeBlock
+   | Directive
+   | Image
+   | Table
+)
 
 
 @dataclass(slots=True)
