@@ -19,9 +19,15 @@ class BulletList:
    items: list[str]
 
 
-@dataclass(slots=True)
+# @dataclass(slots=True)
+# class NumberedList:
+#    items: list[str]
+
+
+@dataclass
 class NumberedList:
    items: list[str]
+   start: int = 1
 
 
 @dataclass(slots=True)

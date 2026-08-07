@@ -139,8 +139,8 @@ class PDFRenderer:
                case BulletList(items):
                   story.append(RLParagraph("<br/>".join(f"• {html.escape(x)}" for x in items), self.styles["body"]))
                   story.append(Spacer(1, 8))
-               case NumberedList(items):
-                  story.append(RLParagraph("<br/>".join(f"{n}. {html.escape(x)}" for n, x in enumerate(items, 1)), self.styles["body"]))
+               case NumberedList(items, start):
+                  story.append(RLParagraph("<br/>".join(f"{n}. {html.escape(x)}" for n, x in enumerate(items, start)), self.styles["body"]))
                   story.append(Spacer(1, 8))
                case BlockQuote(text):
                   story.append(RLParagraph(f"<i>{self._markup(text)}</i>", self.styles["body"]))
