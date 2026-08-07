@@ -1,0 +1,11 @@
+Part II – Using the Controller
+
+5. Modes
+6. The SELECT Button
+7. Displays and Feedback
+8. V-Pots (Rotary Encoders)
+9. Motor Faders
+10. Transport Controls
+11. Device Mode
+12. Browser Mode
+13. Towards a Mouse-Free Workflow

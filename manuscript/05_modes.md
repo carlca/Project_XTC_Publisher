@@ -55,7 +55,7 @@ DrivenByMoss makes extensive use of the X-Touch's mode system.
 
 The most frequently used modes include:
 
-- Track
+- TRACK
 - SEND
 - PAN/SURROUND
 - PLUG-IN
@@ -69,9 +69,9 @@ The important point is that these are **not different layouts of the controller*
 
 Throughout the remainder of this book we shall examine each of these modes in detail.
 
-## Track Mode
+## TRACK Mode
 
-Track mode is the mode most users spend the majority of their time in.
+TRACK mode is the mode most users spend the majority of their time in.
 
 The controller focuses on the Bitwig tracks themselves.
 
@@ -84,9 +84,9 @@ Typical operations include:
 - recording
 - automation
 
-Think of Track mode as the controller's "home".
+Think of TRACK mode as the controller's "home".
 
-Whenever you become unsure where you are, returning to Track mode is often a sensible starting point.
+Whenever you become unsure where you are, returning to TRACK mode is often a sensible starting point.
 
 ## SEND Mode
 
