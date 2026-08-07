@@ -1,0 +1,19 @@
+[project]
+name = "project-xtc-publisher"
+version = "0.1.0"
+description = "Publishing engine for Project XTC"
+requires-python = ">=3.14"
+
+dependencies = [
+   "reportlab",
+   "PyYAML",
+   "markdown-it-py",
+]
+
+[tool.ruff]
+indent-width = 3
+line-length = 160
+target-version = "py314"
+
+[tool.ruff.format]
+docstring-code-format = true

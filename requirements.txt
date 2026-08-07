@@ -1,0 +1,9 @@
+charset-normalizer==3.4.9
+markdown-it-py==4.2.0
+mdurl==0.1.2
+packaging==26.3
+pillow==12.3.0
+PyYAML==6.0.3
+reportlab==5.0.0
+setuptools==83.0.0
+wheel==0.47.0
