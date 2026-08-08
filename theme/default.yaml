@@ -1,16 +1,21 @@
 meta:
    name: "Project XTC Default"
    version: "0.1"
+
 page:
    size: A4
    margins_mm: { top: 20, right: 22, bottom: 22, left: 22 }
+
 fonts:
    preferred: ["DejaVu Sans", "Liberation Sans", "Helvetica"]
+   monospace: ["DejaVu Sans Mono", "Liberation Mono", "Courier"]
+
 colours:
    text: "#000000"
    subtitle: "#666666"
    heading: "#777777"
    rule: "#D0D0D0"
+
 typography:
    book_title:
       {
@@ -20,6 +25,7 @@ typography:
          colour: "#000000",
          space_after_pt: 12,
       }
+
    book_subtitle:
       {
          font_size_pt: 15,
@@ -28,6 +34,7 @@ typography:
          colour: "#666666",
          space_after_pt: 22,
       }
+
    chapter_title:
       {
          font_size_pt: 20,
@@ -36,6 +43,7 @@ typography:
          colour: "#000000",
          space_after_pt: 12,
       }
+
    section_heading:
       {
          font_size_pt: 17,
@@ -45,6 +53,7 @@ typography:
          space_after_pt: 6,
          keep_with_next: true,
       }
+
    subsection_heading:
       {
          font_size_pt: 13,
@@ -54,6 +63,7 @@ typography:
          space_after_pt: 4,
          keep_with_next: true,
       }
+
    body:
       {
          font_size_pt: 11.5,
@@ -61,8 +71,15 @@ typography:
          colour: "#000000",
          paragraph_after_pt: 8,
       }
+
    caption:
-      { font_size_pt: 9.5, leading_pt: 12, alignment: left, colour: "#666666" }
+      {
+         font_size_pt: 9.5,
+         leading_pt: 12,
+         alignment: left,
+         colour: "#666666",
+      }
+
 directives:
    field-note:
       {
@@ -71,6 +88,7 @@ directives:
          border_colour: "#B8B8B8",
          padding_pt: 9,
       }
+
    reality-check:
       {
          label: "Reality Check",
@@ -78,6 +96,7 @@ directives:
          border_colour: "#C9A227",
          padding_pt: 9,
       }
+
    exercise:
       {
          label: "Exercise",
@@ -85,6 +104,7 @@ directives:
          border_colour: "#7A9DB8",
          padding_pt: 9,
       }
+
    tip:
       {
          label: "Tip",
@@ -92,6 +112,7 @@ directives:
          border_colour: "#7F9F7F",
          padding_pt: 9,
       }
+
    warning:
       {
          label: "Warning",
@@ -99,9 +120,11 @@ directives:
          border_colour: "#B26A6A",
          padding_pt: 9,
       }
+
 pagination:
    keep_heading_with_next: true
    minimum_lines_after_heading: 2
+
 output:
    pdf:
       metadata:
