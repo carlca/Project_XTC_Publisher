@@ -6,6 +6,7 @@ from typing import TypeAlias
 @dataclass(slots=True)
 class Paragraph:
    text: str
+   text2: str
 
 
 @dataclass(slots=True)
