@@ -60,18 +60,7 @@ class Table:
    rows: list[list[str]]
 
 
-Element: TypeAlias = (
-   Paragraph
-   | Heading
-   | BulletList
-   | NumberedList
-   | BlockQuote
-   | CodeBlock
-   | Directive
-   | Diagram
-   | Image
-   | Table
-)
+Element: TypeAlias = Paragraph | Heading | BulletList | NumberedList | BlockQuote | CodeBlock | Directive | Diagram | Image | Table
 
 
 @dataclass(slots=True)

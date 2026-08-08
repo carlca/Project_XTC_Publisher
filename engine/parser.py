@@ -21,15 +21,12 @@ from .model import (
    Table,
 )
 
-
 _FRONT = re.compile(
    r"\A---\s*\n(.*?)\n---\s*\n",
    re.S,
 )
 
-_DIRECTIVE = re.compile(
-   r"^:::\s*([a-z0-9-]+)(?:\s+([a-z0-9-]+))?\s*$"
-)
+_DIRECTIVE = re.compile(r"^:::\s*([a-z0-9-]+)(?:\s+([a-z0-9-]+))?\s*$")
 
 
 def _extract_front_matter(
@@ -40,14 +37,10 @@ def _extract_front_matter(
    if not match:
       return {}, text
 
-   data = yaml.safe_load(
-      match.group(1)
-   ) or {}
+   data = yaml.safe_load(match.group(1)) or {}
 
    if not isinstance(data, dict):
-      raise ValueError(
-         "YAML front matter must be a mapping"
-      )
+      raise ValueError("YAML front matter must be a mapping")
 
    return data, text[match.end() :]
 
@@ -57,9 +50,7 @@ def _parse_diagram(
    content: list[str],
 ) -> Diagram:
    if not name:
-      raise ValueError(
-         "Diagram directive requires a name"
-      )
+      raise ValueError("Diagram directive requires a name")
 
    caption = ""
 
@@ -70,30 +61,19 @@ def _parse_diagram(
          continue
 
       if stripped.startswith("caption:"):
-         value = stripped[
-            len("caption:") :
-         ].strip()
+         value = stripped[len("caption:") :].strip()
 
          if value:
             try:
                parsed = yaml.safe_load(value)
             except yaml.YAMLError as exc:
-               raise ValueError(
-                  f"Invalid diagram caption: {value}"
-               ) from exc
+               raise ValueError(f"Invalid diagram caption: {value}") from exc
 
-            caption = (
-               str(parsed)
-               if parsed is not None
-               else ""
-            )
+            caption = str(parsed) if parsed is not None else ""
 
          continue
 
-      raise ValueError(
-         f"Unknown content in diagram "
-         f"{name!r}: {stripped!r}"
-      )
+      raise ValueError(f"Unknown content in diagram {name!r}: {stripped!r}")
 
    return Diagram(
       name=name,
@@ -120,9 +100,7 @@ def _extract_directives(
    count = 0
 
    while index < len(lines):
-      match = _DIRECTIVE.match(
-         lines[index].strip()
-      )
+      match = _DIRECTIVE.match(lines[index].strip())
 
       if not match:
          output.append(lines[index])
@@ -136,17 +114,12 @@ def _extract_directives(
 
       content: list[str] = []
 
-      while (
-         index < len(lines)
-         and lines[index].strip() != ":::"
-      ):
+      while index < len(lines) and lines[index].strip() != ":::":
          content.append(lines[index])
          index += 1
 
       if index == len(lines):
-         raise ValueError(
-            f"Unclosed directive: {kind}"
-         )
+         raise ValueError(f"Unclosed directive: {kind}")
 
       key = f"XTC_DIRECTIVE_{count}"
       count += 1
@@ -159,10 +132,7 @@ def _extract_directives(
 
       else:
          if argument is not None:
-            raise ValueError(
-               f"Directive {kind!r} "
-               f"does not accept an argument"
-            )
+            raise ValueError(f"Directive {kind!r} does not accept an argument")
 
          directives[key] = Directive(
             kind,
@@ -208,9 +178,7 @@ def _parse_table(
             current_row = []
 
          case "inline" if current_row is not None:
-            current_row.append(
-               token.content.strip()
-            )
+            current_row.append(token.content.strip())
 
          case "tr_close" if current_row is not None:
             if in_header and not headers:
@@ -222,9 +190,7 @@ def _parse_table(
 
          case "table_close":
             if not headers:
-               raise ValueError(
-                  "Markdown table has no header row"
-               )
+               raise ValueError("Markdown table has no header row")
 
             return (
                Table(
@@ -236,25 +202,17 @@ def _parse_table(
 
       index += 1
 
-   raise ValueError(
-      "Unclosed Markdown table"
-   )
+   raise ValueError("Unclosed Markdown table")
 
 
 def parse_markdown(
    path: Path,
 ) -> Document:
-   raw = path.read_text(
-      encoding="utf-8"
-   )
+   raw = path.read_text(encoding="utf-8")
 
-   metadata, body = _extract_front_matter(
-      raw
-   )
+   metadata, body = _extract_front_matter(raw)
 
-   body, directives = _extract_directives(
-      body
-   )
+   body, directives = _extract_directives(body)
 
    markdown = MarkdownIt(
       "commonmark",
@@ -271,9 +229,7 @@ def parse_markdown(
 
       match token.type:
          case "heading_open":
-            level = int(
-               token.tag[1]
-            )
+            level = int(token.tag[1])
 
             elements.append(
                Heading(
@@ -285,9 +241,7 @@ def parse_markdown(
             index += 3
 
          case "paragraph_open":
-            text = tokens[
-               index + 1
-            ].content.strip()
+            text = tokens[index + 1].content.strip()
 
             elements.append(
                directives.get(
@@ -298,14 +252,8 @@ def parse_markdown(
 
             index += 3
 
-         case (
-            "bullet_list_open"
-            | "ordered_list_open"
-         ):
-            ordered = (
-               token.type
-               == "ordered_list_open"
-            )
+         case "bullet_list_open" | "ordered_list_open":
+            ordered = token.type == "ordered_list_open"
 
             start = (
                int(
@@ -322,21 +270,12 @@ def parse_markdown(
 
             index += 1
 
-            while (
-               index < len(tokens)
-               and tokens[index].type
-               not in (
-                  "bullet_list_close",
-                  "ordered_list_close",
-               )
+            while index < len(tokens) and tokens[index].type not in (
+               "bullet_list_close",
+               "ordered_list_close",
             ):
-               if (
-                  tokens[index].type
-                  == "inline"
-               ):
-                  items.append(
-                     tokens[index].content
-                  )
+               if tokens[index].type == "inline":
+                  items.append(tokens[index].content)
 
                index += 1
 
@@ -356,26 +295,13 @@ def parse_markdown(
 
             index += 1
 
-            while (
-               index < len(tokens)
-               and tokens[index].type
-               != "blockquote_close"
-            ):
-               if (
-                  tokens[index].type
-                  == "inline"
-               ):
-                  parts.append(
-                     tokens[index].content
-                  )
+            while index < len(tokens) and tokens[index].type != "blockquote_close":
+               if tokens[index].type == "inline":
+                  parts.append(tokens[index].content)
 
                index += 1
 
-            elements.append(
-               BlockQuote(
-                  "\n".join(parts)
-               )
-            )
+            elements.append(BlockQuote("\n".join(parts)))
 
             index += 1
 
