@@ -43,6 +43,12 @@ class Directive:
 
 
 @dataclass(slots=True)
+class Diagram:
+   name: str
+   caption: str = ""
+
+
+@dataclass(slots=True)
 class Image:
    path: Path
    alt: str
@@ -62,6 +68,7 @@ Element: TypeAlias = (
    | BlockQuote
    | CodeBlock
    | Directive
+   | Diagram
    | Image
    | Table
 )

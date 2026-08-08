@@ -5,9 +5,15 @@ import re
 from pathlib import Path
 
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_LEFT
+from reportlab.lib.enums import (
+   TA_CENTER,
+   TA_LEFT,
+)
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import (
+   ParagraphStyle,
+   getSampleStyleSheet,
+)
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -20,12 +26,16 @@ from reportlab.platypus import (
    Table as RLTable,
    TableStyle,
 )
-from reportlab.platypus import Paragraph as RLParagraph
+from reportlab.platypus import (
+   Paragraph as RLParagraph,
+)
 
+from .diagrams import render_diagram
 from .model import (
    BlockQuote,
    BulletList,
    CodeBlock,
+   Diagram,
    Directive,
    Document,
    Heading,
@@ -37,36 +47,60 @@ from .model import (
 
 
 class PDFRenderer:
-   def __init__(self, theme: dict):
+   def __init__(
+      self,
+      theme: dict,
+   ):
       self.theme = theme
 
-      self.font = self._find_and_register_font(
-         preferred=self.theme["fonts"]["preferred"],
-         filenames={
-            "DejaVu Sans": "DejaVuSans.ttf",
-            "Liberation Sans": "LiberationSans-Regular.ttf",
-         },
-         fallback="Helvetica",
+      self.font = (
+         self._find_and_register_font(
+            preferred=self.theme[
+               "fonts"
+            ]["preferred"],
+            filenames={
+               "DejaVu Sans": (
+                  "DejaVuSans.ttf"
+               ),
+               "Liberation Sans": (
+                  "LiberationSans-Regular.ttf"
+               ),
+            },
+            fallback="Helvetica",
+         )
       )
 
-      self.mono_font = self._find_and_register_font(
-         preferred=self.theme["fonts"].get(
-            "monospace",
-            [
-               "DejaVu Sans Mono",
-               "Liberation Mono",
-               "Courier",
-            ],
-         ),
-         filenames={
-            "DejaVu Sans Mono": "DejaVuSansMono.ttf",
-            "Liberation Mono": "LiberationMono-Regular.ttf",
-         },
-         fallback="Courier",
+      self.mono_font = (
+         self._find_and_register_font(
+            preferred=self.theme[
+               "fonts"
+            ].get(
+               "monospace",
+               [
+                  "DejaVu Sans Mono",
+                  "Liberation Mono",
+                  "Courier",
+               ],
+            ),
+            filenames={
+               "DejaVu Sans Mono": (
+                  "DejaVuSansMono.ttf"
+               ),
+               "Liberation Mono": (
+                  "LiberationMono-Regular.ttf"
+               ),
+            },
+            fallback="Courier",
+         )
       )
 
-      print(f"Body font: {self.font}")
-      print(f"Mono font: {self.mono_font}")
+      print(
+         f"Body font: {self.font}"
+      )
+
+      print(
+         f"Mono font: {self.mono_font}"
+      )
 
       self.styles = self._styles()
 
@@ -75,22 +109,32 @@ class PDFRenderer:
       home = Path.home()
 
       return [
-         # macOS — fonts installed for the current user
+         # macOS — current user
          home / "Library" / "Fonts",
 
-         # macOS — fonts available to all users
+         # macOS — all users
          Path("/Library/Fonts"),
 
-         # macOS — system fonts
+         # macOS — system
          Path("/System/Library/Fonts"),
 
-         # Homebrew font locations
-         Path("/opt/homebrew/share/fonts"),
-         Path("/usr/local/share/fonts"),
+         # Homebrew
+         Path(
+            "/opt/homebrew/share/fonts"
+         ),
+         Path(
+            "/usr/local/share/fonts"
+         ),
 
-         # Common Linux locations
-         Path("/usr/share/fonts/truetype/dejavu"),
-         Path("/usr/share/fonts/truetype/liberation2"),
+         # Linux
+         Path(
+            "/usr/share/fonts/"
+            "truetype/dejavu"
+         ),
+         Path(
+            "/usr/share/fonts/"
+            "truetype/liberation2"
+         ),
          Path("/usr/share/fonts"),
       ]
 
@@ -109,12 +153,17 @@ class PDFRenderer:
          if filename is None:
             continue
 
-         for directory in self._font_directories():
+         for directory in (
+            self._font_directories()
+         ):
             path = directory / filename
 
             if path.is_file():
                pdfmetrics.registerFont(
-                  TTFont(name, str(path))
+                  TTFont(
+                     name,
+                     str(path),
+                  )
                )
 
                print(
@@ -123,31 +172,39 @@ class PDFRenderer:
 
                return name
 
-            # Some Linux installations place fonts more deeply
-            # inside /usr/share/fonts.
             if (
-               directory == Path("/usr/share/fonts")
+               directory
+               == Path(
+                  "/usr/share/fonts"
+               )
                and directory.is_dir()
             ):
                matches = list(
-                  directory.rglob(filename)
+                  directory.rglob(
+                     filename
+                  )
                )
 
                if matches:
                   path = matches[0]
 
                   pdfmetrics.registerFont(
-                     TTFont(name, str(path))
+                     TTFont(
+                        name,
+                        str(path),
+                     )
                   )
 
                   print(
-                     f"Found {name}: {path}"
+                     f"Found {name}: "
+                     f"{path}"
                   )
 
                   return name
 
       print(
-         f"Warning: no suitable TrueType font found; "
+         "Warning: no suitable "
+         "TrueType font found; "
          f"falling back to {fallback}"
       )
 
@@ -158,23 +215,37 @@ class PDFRenderer:
       name,
       key,
       parent="BodyText",
-      bold=False,
    ):
-      cfg = self.theme["typography"][key]
-      base = getSampleStyleSheet()[parent]
+      cfg = self.theme[
+         "typography"
+      ][key]
+
+      base = getSampleStyleSheet()[
+         parent
+      ]
 
       return ParagraphStyle(
          name,
          parent=base,
          fontName=self.font,
-         fontSize=cfg["font_size_pt"],
-         leading=cfg["leading_pt"],
+         fontSize=cfg[
+            "font_size_pt"
+         ],
+         leading=cfg[
+            "leading_pt"
+         ],
          textColor=colors.HexColor(
-            cfg.get("colour", "#000000")
+            cfg.get(
+               "colour",
+               "#000000",
+            )
          ),
          alignment=(
             TA_CENTER
-            if cfg.get("alignment") == "centre"
+            if cfg.get(
+               "alignment"
+            )
+            == "centre"
             else TA_LEFT
          ),
          spaceBefore=cfg.get(
@@ -229,7 +300,9 @@ class PDFRenderer:
       }
 
    @staticmethod
-   def _markup(text: str) -> str:
+   def _markup(
+      text: str,
+   ) -> str:
       escaped = html.escape(text)
 
       escaped = re.sub(
@@ -253,18 +326,20 @@ class PDFRenderer:
 
    def _directive(
       self,
-      d: Directive,
+      directive: Directive,
    ):
       cfg = self.theme.get(
          "directives",
          {},
       ).get(
-         d.kind,
+         directive.kind,
          {
-            "label": d.kind.replace(
-               "-",
-               " ",
-            ).title(),
+            "label": (
+               directive.kind.replace(
+                  "-",
+                  " ",
+               ).title()
+            ),
             "background": "#F3F3F3",
             "border_colour": "#AAAAAA",
             "padding_pt": 9,
@@ -273,8 +348,10 @@ class PDFRenderer:
 
       content = RLParagraph(
          (
-            f"<b>{html.escape(cfg['label'])}</b>"
-            f"<br/>{self._markup(d.text)}"
+            f"<b>"
+            f"{html.escape(cfg['label'])}"
+            f"</b><br/>"
+            f"{self._markup(directive.text)}"
          ),
          self.styles["body"],
       )
@@ -301,7 +378,9 @@ class PDFRenderer:
                   (-1, -1),
                   0.8,
                   colors.HexColor(
-                     cfg["border_colour"]
+                     cfg[
+                        "border_colour"
+                     ]
                   ),
                ),
                (
@@ -339,25 +418,70 @@ class PDFRenderer:
          ]
       )
 
+   def _diagram(
+      self,
+      diagram: Diagram,
+   ):
+      drawing = render_diagram(
+         diagram.name
+      )
+
+      content = [
+         drawing,
+      ]
+
+      if diagram.caption:
+         content.extend(
+            [
+               Spacer(1, 5),
+               RLParagraph(
+                  self._markup(
+                     diagram.caption
+                  ),
+                  self.styles[
+                     "caption"
+                  ],
+               ),
+            ]
+         )
+
+      content.append(
+         Spacer(1, 10)
+      )
+
+      return KeepTogether(content)
+
    def render(
       self,
       documents: list[Document],
       output: Path,
    ) -> None:
-      margins = self.theme["page"]["margins_mm"]
+      margins = self.theme[
+         "page"
+      ]["margins_mm"]
 
       doc = SimpleDocTemplate(
          str(output),
          pagesize=A4,
-         leftMargin=margins["left"] * mm,
-         rightMargin=margins["right"] * mm,
-         topMargin=margins["top"] * mm,
-         bottomMargin=margins["bottom"] * mm,
+         leftMargin=(
+            margins["left"] * mm
+         ),
+         rightMargin=(
+            margins["right"] * mm
+         ),
+         topMargin=(
+            margins["top"] * mm
+         ),
+         bottomMargin=(
+            margins["bottom"] * mm
+         ),
       )
 
       story = []
 
-      for idx, document in enumerate(documents):
+      for idx, document in enumerate(
+         documents
+      ):
          if idx:
             story.append(
                PageBreak()
@@ -372,14 +496,19 @@ class PDFRenderer:
             ),
             RLParagraph(
                (
-                  "<b>X-Touch Companion</b><br/>"
+                  "<b>"
+                  "X-Touch Companion"
+                  "</b><br/>"
                   "<font size='11'>"
-                  "The Unofficial Guide to the "
-                  "Behringer X-Touch, Bitwig Studio "
+                  "The Unofficial Guide "
+                  "to the Behringer "
+                  "X-Touch, Bitwig Studio "
                   "and DrivenByMoss"
                   "</font>"
                ),
-               self.styles["subtitle"],
+               self.styles[
+                  "subtitle"
+               ],
             ),
          ]
 
@@ -392,10 +521,13 @@ class PDFRenderer:
             ),
          )
 
-         chapter = meta.get("chapter")
+         chapter = meta.get(
+            "chapter"
+         )
 
          label = (
-            f"Chapter {chapter} - {title}"
+            f"Chapter {chapter} - "
+            f"{title}"
             if chapter
             else str(title)
          )
@@ -403,29 +535,51 @@ class PDFRenderer:
          story.append(
             RLParagraph(
                html.escape(label),
-               self.styles["chapter"],
+               self.styles[
+                  "chapter"
+               ],
             )
          )
 
-         for element in document.elements:
+         for element in (
+            document.elements
+         ):
             match element:
                case Paragraph(text):
-                  story += [
-                     RLParagraph(
-                        self._markup(text),
-                        self.styles["body"],
-                     ),
-                     Spacer(1, 8),
-                  ]
+                  story.extend(
+                     [
+                        RLParagraph(
+                           self._markup(
+                              text
+                           ),
+                           self.styles[
+                              "body"
+                           ],
+                        ),
+                        Spacer(
+                           1,
+                           8,
+                        ),
+                     ]
+                  )
 
-               case Heading(level, text):
+               case Heading(
+                  level,
+                  text,
+               ):
                   story.append(
                      RLParagraph(
-                        html.escape(text),
+                        html.escape(
+                           text
+                        ),
                         (
-                           self.styles["h2"]
+                           self.styles[
+                              "h2"
+                           ]
                            if level == 2
-                           else self.styles["h3"]
+                           else self.styles[
+                              "h3"
+                           ]
                         ),
                      )
                   )
@@ -434,98 +588,100 @@ class PDFRenderer:
                   story.append(
                      RLParagraph(
                         "<br/>".join(
-                           f"• {self._markup(x)}"
+                           (
+                              "• "
+                              f"{self._markup(x)}"
+                           )
                            for x in items
                         ),
-                        self.styles["body"],
+                        self.styles[
+                           "body"
+                        ],
                      )
                   )
 
                   story.append(
-                     Spacer(1, 8)
+                     Spacer(
+                        1,
+                        8,
+                     )
                   )
 
-               case NumberedList(items, start):
+               case NumberedList(
+                  items,
+                  start,
+               ):
                   story.append(
                      RLParagraph(
                         "<br/>".join(
-                           f"{n}. {self._markup(x)}"
-                           for n, x in enumerate(
-                              items,
-                              start,
+                           (
+                              f"{n}. "
+                              f"{self._markup(x)}"
+                           )
+                           for n, x in (
+                              enumerate(
+                                 items,
+                                 start,
+                              )
                            )
                         ),
-                        self.styles["body"],
+                        self.styles[
+                           "body"
+                        ],
                      )
                   )
 
                   story.append(
-                     Spacer(1, 8)
+                     Spacer(
+                        1,
+                        8,
+                     )
                   )
-
-               # case BulletList(items):
-               #    story.append(
-               #       RLParagraph(
-               #          "<br/>".join(
-               #             f"• {html.escape(x)}"
-               #             for x in items
-               #          ),
-               #          self.styles["body"],
-               #       )
-               #    )
-
-               #    story.append(
-               #       Spacer(1, 8)
-               #    )
-
-               # case NumberedList(items, start):
-               #    story.append(
-               #       RLParagraph(
-               #          "<br/>".join(
-               #             f"{n}. {html.escape(x)}"
-               #             for n, x in enumerate(
-               #                items,
-               #                start,
-               #             )
-               #          ),
-               #          self.styles["body"],
-               #       )
-               #    )
-
-               #    story.append(
-               #       Spacer(1, 8)
-               #    )
 
                case BlockQuote(text):
                   story.append(
                      RLParagraph(
                         (
-                           f"<i>"
+                           "<i>"
                            f"{self._markup(text)}"
-                           f"</i>"
+                           "</i>"
                         ),
-                        self.styles["body"],
+                        self.styles[
+                           "body"
+                        ],
                      )
                   )
 
                   story.append(
-                     Spacer(1, 8)
+                     Spacer(
+                        1,
+                        8,
+                     )
                   )
 
-               case CodeBlock(text, language):
+               case CodeBlock(
+                  text,
+                  language,
+               ):
                   story.append(
                      Preformatted(
                         text,
                         ParagraphStyle(
                            "Code",
-                           parent=self.styles[
-                              "body"
-                           ],
-                           fontName=self.mono_font,
+                           parent=(
+                              self.styles[
+                                 "body"
+                              ]
+                           ),
+                           fontName=(
+                              self.mono_font
+                           ),
                            fontSize=9.5,
                            leading=12,
-                           backColor=colors.HexColor(
-                              "#F5F5F5"
+                           backColor=(
+                              colors.HexColor(
+                                 "#F5F5F5"
+                              )
                            ),
                            borderPadding=6,
                         ),
@@ -533,15 +689,30 @@ class PDFRenderer:
                   )
 
                   story.append(
-                     Spacer(1, 8)
+                     Spacer(
+                        1,
+                        8,
+                     )
                   )
 
                case Directive():
                   story.append(
-                     self._directive(element)
+                     self._directive(
+                        element
+                     )
                   )
 
-               case Table(headers, rows):
+               case Diagram():
+                  story.append(
+                     self._diagram(
+                        element
+                     )
+                  )
+
+               case Table(
+                  headers,
+                  rows,
+               ):
                   cfg = self.theme.get(
                      "tables",
                      {},
@@ -551,19 +722,25 @@ class PDFRenderer:
                      [
                         RLParagraph(
                            (
-                              f"<b>"
+                              "<b>"
                               f"{self._markup(cell)}"
-                              f"</b>"
+                              "</b>"
                            ),
-                           self.styles["body"],
+                           self.styles[
+                              "body"
+                           ],
                         )
                         for cell in headers
                      ],
                      *[
                         [
                            RLParagraph(
-                              self._markup(cell),
-                              self.styles["body"],
+                              self._markup(
+                                 cell
+                              ),
+                              self.styles[
+                                 "body"
+                              ],
                            )
                            for cell in row
                         ]
@@ -572,12 +749,17 @@ class PDFRenderer:
                   ]
 
                   column_widths = [
-                     doc.width / len(headers)
+                     (
+                        doc.width
+                        / len(headers)
+                     )
                   ] * len(headers)
 
                   table = RLTable(
                      data,
-                     colWidths=column_widths,
+                     colWidths=(
+                        column_widths
+                     ),
                      repeatRows=1,
                   )
 
@@ -659,11 +841,17 @@ class PDFRenderer:
                   story.extend(
                      (
                         table,
-                        Spacer(1, 8),
+                        Spacer(
+                           1,
+                           8,
+                        ),
                      )
                   )
 
-               case Image(path, alt):
+               case Image(
+                  path,
+                  alt,
+               ):
                   pass
 
                case _:
