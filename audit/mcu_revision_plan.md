@@ -2804,3 +2804,612 @@ Only then should:
 - Chapter 13 be renumbered;
 - new manuscript files be created;
 - existing chapters begin their targeted revisions.
+
+
+# Part 3 Continued — Structure Review and Final Recommendation
+
+## Purpose
+
+The proposed revised Contents and Feature Assignment Matrix have now been reviewed as a complete learning sequence.
+
+The purpose of this review is to identify structural weaknesses **before any manuscript files are renamed or rewritten**.
+
+The review considers:
+
+1. whether any chapters are overloaded;
+2. whether any new chapters should be merged;
+3. whether any chapters should be split;
+4. whether the Part boundaries are natural;
+5. whether the Mouse-Free / Mouse-Lite chapter remains the correct culmination of the teaching sequence;
+6. whether configuration and reference material are positioned appropriately.
+
+---
+
+# 31. Overall Finding
+
+The proposed expanded structure is fundamentally sound.
+
+The audit does **not** require a wholesale redesign of Project XTC.
+
+The existing conceptual progression remains strong:
+
+```text
+Hardware
+   ↓
+Mental Model
+   ↓
+Banks and Modes
+   ↓
+Focus and Feedback
+   ↓
+Physical Control
+   ↓
+Advanced Control
+   ↓
+Integrated Workflow
+```
+
+However, the structure review identifies two changes that improve the learning sequence considerably.
+
+---
+
+# 32. Change 1 — Move Modifiers Earlier
+
+The provisional structure placed:
+
+> **Modifiers and Advanced Controls**
+
+after Browser Mode.
+
+That creates a pedagogical problem.
+
+The revised versions of the earlier chapters will already introduce commands such as:
+
+- SHIFT + V-Pot;
+- OPTION + PLAY;
+- CONTROL + Jog Wheel;
+- ALT + Jog Wheel;
+- OPTION + BANK;
+- OPTION + DEVICE;
+- SHIFT + BROWSER.
+
+A reader would therefore encounter modifier-based operation repeatedly **before reaching the chapter intended to explain modifiers**.
+
+That is backwards.
+
+## Recommendation
+
+Move the modifier chapter to the beginning of the practical-control section.
+
+The new sequence becomes:
+
+```text
+Understand the controller
+        ↓
+Learn the modifier vocabulary
+        ↓
+Use V-Pots
+        ↓
+Use motor faders
+        ↓
+Use transport
+        ↓
+Use devices
+        ↓
+Use Browser
+```
+
+This allows later chapters to assume that the reader already understands what SHIFT, OPTION, CONTROL and ALT are doing conceptually.
+
+## Revised title
+
+Rather than:
+
+> **Modifiers and Advanced Controls**
+
+use:
+
+> **Modifiers: SHIFT, OPTION, CONTROL and ALT**
+
+This gives the chapter a precise purpose.
+
+Commands such as SAVE, UNDO, REDO, ENTER and CANCEL do not need to be forced into the modifier chapter merely because they are advanced controls.
+
+They can be taught in the workflow contexts where they become useful.
+
+---
+
+# 33. Change 2 — Move EQ Mode into Device Mode
+
+The provisional structure paired:
+
+> **Master and EQ Modes**
+
+The only strong relationship between those subjects is that both are specialised modes.
+
+Conceptually they perform very different jobs.
+
+EQ Mode, however, has a strong relationship with Device Mode:
+
+- it controls a device;
+- it exposes device parameters;
+- its navigation resembles Device Mode;
+- it targets Bitwig's EQ+;
+- it can automatically insert EQ+ when necessary.
+
+## Recommendation
+
+Expand the revised Device Mode chapter to include a later section:
+
+> **Specialised Device Control: EQ Mode**
+
+That section should explain:
+
+- the EQ button;
+- EQ+;
+- parameter navigation;
+- similarity to normal Device Mode;
+- automatic EQ+ insertion;
+- the warning that entering EQ Mode may modify the project.
+
+This keeps related concepts together.
+
+---
+
+# 34. Master Mode Becomes a Clearer Chapter
+
+Removing EQ Mode leaves a more coherent subject:
+
+> **Master Mode and Project Control**
+
+This chapter can concentrate on:
+
+- entering Master Edit Mode;
+- Master volume;
+- Master panorama;
+- audio-engine controls;
+- previous project;
+- next project.
+
+It may be relatively short.
+
+That is acceptable.
+
+A chapter should be as long as its subject requires rather than being padded merely to resemble neighbouring chapters.
+
+---
+
+# 35. Review — Mixer Edit Modes
+
+The proposed **Mixer Edit Modes** chapter remains justified.
+
+It contains a coherent family:
+
+```text
+TRACK        Track parameters
+TRACK ×2     Track volumes
+PAN          Panorama
+SEND         Send levels
+```
+
+It also provides the natural teaching home for:
+
+- ARM;
+- MUTE;
+- SOLO;
+- direct Send selection;
+- Send cycling;
+- fine adjustment;
+- Send enable/disable.
+
+## Decision
+
+**Keep as a separate chapter.**
+
+---
+
+# 36. Review — Markers and Advanced Navigation
+
+Marker functionality forms a complete workflow:
+
+```text
+Create
+   ↓
+Display
+   ↓
+Enter Marker Mode
+   ↓
+Select
+   ↓
+Navigate
+```
+
+It also has enough interaction with transport to justify teaching it separately rather than enlarging Chapter 10.
+
+## Decision
+
+**Keep as a separate chapter.**
+
+---
+
+# 37. Review — Automation
+
+Automation is a substantial topic and builds directly on the motor-fader chapter.
+
+The existing manuscript already anticipates later automation coverage.
+
+The combination of:
+
+- READ/OFF;
+- WRITE;
+- TOUCH;
+- LATCH;
+- TRIM;
+- overrides;
+- motor-fader touch behaviour;
+
+is easily sufficient for a dedicated chapter.
+
+## Decision
+
+**Keep as a separate chapter.**
+
+---
+
+# 38. Review — Groups, Layers and Drum Pads
+
+These initially appear to be several subjects, but they share a common concept:
+
+> **Navigating hierarchy below the normal eight-channel view.**
+
+The progression:
+
+```text
+Project
+   ↓
+Group
+   ↓
+Track
+   ↓
+Instrument
+   ↓
+Layer / Drum Pad
+```
+
+makes the chapter coherent.
+
+## Decision
+
+**Keep together.**
+
+If drafting later reveals that Layers/Drum Pads dominate the chapter, a split can still be considered.
+
+---
+
+# 39. Review — Advanced Recording and Overdub
+
+The feature-assignment stage confirmed that this is not merely a collection of shortcuts.
+
+It contains a coherent workflow involving:
+
+- Arranger versus Launcher;
+- RECORD;
+- overdub;
+- clip creation;
+- New Clip Length;
+- OPTION + RECORD;
+- OVR;
+- Clip Based Looper links.
+
+## Decision
+
+**Keep as a separate chapter.**
+
+---
+
+# 40. Review — Mouse-Free / Mouse-Lite Workflow
+
+Moving the existing Mouse-Free / Mouse-Lite chapter later remains strongly justified.
+
+After the advanced chapters, it can synthesise:
+
+- mixer operation;
+- transport;
+- markers;
+- devices;
+- Browser;
+- automation;
+- recording;
+- hierarchy;
+- Bitwig workspace control.
+
+The chapter therefore becomes a genuine culmination rather than a premature conclusion.
+
+## Decision
+
+**Move the existing chapter and retain it as the end of the teaching journey.**
+
+Its final idea remains appropriate:
+
+> **You simply make music.**
+
+---
+
+# 41. Review — Configuration Placement
+
+Detailed configuration could theoretically appear near the beginning of the book.
+
+However, many preferences are difficult to understand before the reader knows what they affect.
+
+For example:
+
+- fader-touch selection;
+- hierarchical navigation;
+- Browser filter visibility;
+- encoder sensitivity;
+- Arranger/Launcher record behaviour.
+
+## Recommendation
+
+Keep only the **minimum known-good setup** near the beginning of the book.
+
+Examples:
+
+- X-Touch in MC mode;
+- correct MIDI ports;
+- DrivenByMoss X-Touch configuration;
+- required firmware assumptions.
+
+Keep detailed preference discussion in:
+
+> **Configuring DrivenByMoss for the X-Touch**
+
+near the end.
+
+## Decision
+
+**Detailed configuration remains in the final Part.**
+
+---
+
+# 42. Review — Customisation and Expansion
+
+F-buttons, footswitches, Clip Based Looper and Extenders all concern ways of taking the standard configuration beyond its normal form.
+
+They therefore make a coherent final teaching/reference chapter.
+
+## Decision
+
+**Keep together provisionally.**
+
+If Extender material grows substantially, it may later become an appendix.
+
+---
+
+# 43. Review — Quick Reference
+
+Quick Reference is not a teaching chapter.
+
+Its purpose is lookup.
+
+## Decision
+
+Do **not** number it as a normal chapter.
+
+Place it after the numbered chapters.
+
+Eventually provide:
+
+- reference by physical control;
+- reference by task.
+
+---
+
+# 44. Review — Part Boundaries
+
+The five-Part structure remains useful.
+
+## Part I — Understanding the X-Touch
+
+Concepts and mental model.
+
+## Part II — Working with the X-Touch
+
+Modifier vocabulary and everyday physical operation.
+
+## Part III — Going Deeper
+
+Advanced DrivenByMoss functionality.
+
+## Part IV — Building the Workflow
+
+The Mouse-Free / Mouse-Lite synthesis.
+
+## Part V — Configuration and Reference
+
+Detailed configuration, customisation and expansion.
+
+Although Part IV contains only one major chapter, that is acceptable because it has a distinct purpose:
+
+> **Bring everything together.**
+
+It functions almost as the practical conclusion of the teaching portion of the book.
+
+---
+
+# 45. Final Recommended Contents
+
+## Part I — Understanding the X-Touch
+
+1. Meet the X-Touch
+2. A Tour of the Hardware
+3. The Mental Model
+4. Banks and Channels
+5. Modes
+6. The SELECT Button
+7. Displays and Feedback
+
+---
+
+## Part II — Working with the X-Touch
+
+8. Modifiers: SHIFT, OPTION, CONTROL and ALT
+9. V-Pots (Rotary Encoders)
+10. Motor Faders
+11. Transport Controls
+12. Device Mode
+13. Browser Mode
+
+---
+
+## Part III — Going Deeper
+
+14. Mixer Edit Modes
+15. Markers and Advanced Navigation
+16. Automation
+17. Groups, Layers and Drum Pads
+18. Master Mode and Project Control
+19. Advanced Recording and Overdub
+
+---
+
+## Part IV — Building the Workflow
+
+20. Towards a Mouse-Free (or Mouse-Lite) Workflow
+
+---
+
+## Part V — Configuration and Reference
+
+21. Configuring DrivenByMoss for the X-Touch
+22. Customisation and Expansion
+
+---
+
+## Reference
+
+Quick Reference
+
+Possible later appendices:
+
+- X-Touch Extender
+- Version and Verification Notes
+
+---
+
+# 46. Consequences for Existing Chapters
+
+The existing Chapters 1–7 keep their current numbers.
+
+The insertion of the new Modifiers chapter at Chapter 8 means the current practical chapters move by one position:
+
+```text
+Current 08 V-Pots          → New 09
+Current 09 Motor Faders    → New 10
+Current 10 Transport       → New 11
+Current 11 Device Mode     → New 12
+Current 12 Browser Mode    → New 13
+```
+
+The current:
+
+```text
+13 Towards a Mouse-Free (or Mouse-Lite) Workflow
+```
+
+moves to:
+
+```text
+20 Towards a Mouse-Free (or Mouse-Lite) Workflow
+```
+
+New chapters occupy:
+
+```text
+08 Modifiers
+14 Mixer Edit Modes
+15 Markers and Advanced Navigation
+16 Automation
+17 Groups, Layers and Drum Pads
+18 Master Mode and Project Control
+19 Advanced Recording and Overdub
+21 Configuring DrivenByMoss for the X-Touch
+22 Customisation and Expansion
+```
+
+---
+
+# 47. Existing Chapter Revision Levels
+
+## Minimal revision
+
+- Chapter 1
+- Chapter 2
+- Chapter 3
+
+## Targeted revision
+
+- Chapter 4
+- Chapter 5
+- Chapter 6
+- Chapter 7
+- Chapter 9 — current Chapter 8
+- Chapter 10 — current Chapter 9
+
+## Substantial revision
+
+- Chapter 11 — current Chapter 10
+- Chapter 12 — current Chapter 11
+- Chapter 13 — current Chapter 12
+- Chapter 20 — current Chapter 13
+
+This classification can later guide the revision order.
+
+---
+
+# 48. Structural Review Outcome
+
+The revised book structure is now considered **editorially coherent**.
+
+The review has resolved the main structural questions:
+
+- Modifiers move earlier.
+- EQ Mode moves into Device Mode.
+- Master Mode receives a clearer identity.
+- Advanced Recording remains a chapter.
+- Groups/Layers/Drum Pads remain together.
+- Mouse-Lite remains the teaching culmination.
+- Detailed configuration remains near the end.
+- Quick Reference remains unnumbered.
+
+No further structural redesign is required before updating the Contents.
+
+---
+
+# 49. Part 3 Status
+
+**Part 3 — Revision Planning: COMPLETE**
+
+The audit pipeline has now produced:
+
+```text
+mcu_feature_inventory.md
+        ↓
+mcu_coverage_audit.md
+        ↓
+revision_plan.md
+        ↓
+Final Recommended Contents
+```
+
+The next stage is no longer audit work.
+
+It is the beginning of **manuscript restructuring**.
+
+The first manuscript change should be:
+
+> **Update `00_contents.md` to reflect the approved 22-chapter structure.**
+
+No chapter prose should be revised yet.
+
+After the Contents has been updated successfully, the manuscript files and YAML chapter numbers can be renumbered in a separate, controlled step.
