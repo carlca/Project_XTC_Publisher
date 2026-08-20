@@ -1,298 +1,275 @@
-# Project XTC — DrivenByMoss MCU Coverage Audit
+# Project XTC — MCU Coverage Audit
 
-> **Purpose:** Compare the current Project XTC manuscript against the DrivenByMoss Mackie MCU feature set.
->
-> **Source manuscript:** Project XTC Chapters 1–13
->
-> **Reference:** DrivenByMoss `Mackie/Mackie-MCU.md`
->
-> Status:
->
-> * **✓ Covered adequately**
-> * **△ Covered, but needs expansion or greater precision**
-> * **✗ Missing**
-> * **N/A Outside the intended X-Touch scope**
+## Part 2: Existing Manuscript vs DrivenByMoss MCU Functionality
 
----
+### Audit key
 
-# 1. Initial Assessment
+- **✓ Covered** — adequately explained in the existing manuscript
+- **△ Partial** — concept is present, but important DrivenByMoss functionality is missing
+- **✗ Missing** — functionality is not presently taught
+- **N/A** — not relevant to the standard Behringer X-Touch or outside the intended scope
 
-The existing Project XTC manuscript is strongest at explaining the **conceptual operation** of the X-Touch:
+The purpose of this audit is **not** to turn Project XTC into a transcription of the DrivenByMoss reference manual.
 
-* banks and channels
-* modes and context
-* SELECT and focus
-* displays and feedback
-* V-Pots
-* motor faders
-* basic transport
-* Device Mode
-* Browser Mode
-* development of a Mouse-Free / Mouse-Lite workflow
-
-The principal weakness is not incorrect material, but **incomplete coverage of the deeper DrivenByMoss command set**.
-
-In particular, modifier combinations involving:
-
-* SHIFT
-* OPTION
-* CONTROL
-* ALT
-
-are currently under-represented.
-
-The audit should therefore preserve the explanatory structure of Chapters 1–13 while adding the advanced functionality without turning the book into a button-reference manual.
+The aim is to identify everything the X-Touch can usefully do, then decide how that functionality can be taught in a logical and approachable order.
 
 ---
 
-# 2. Transport — Chapter 10
+# A. SELECT and Track Focus
 
-## Basic transport
+## Basic selection
 
-| Feature                          | Status | Current location | Action                                       |
-| -------------------------------- | ------ | ---------------- | -------------------------------------------- |
-| PLAY — start playback            | ✓      | Chapter 10       | None                                         |
-| STOP — stop playback             | ✓      | Chapter 10       | Expand exact repeated/double-click behaviour |
-| RECORD — start recording         | ✓      | Chapter 10       | Expand modifier functions                    |
-| REWIND — move play cursor left   | ✓      | Chapter 10       | Add marker modifier                          |
-| FORWARD — move play cursor right | ✓      | Chapter 10       | Add marker modifier                          |
-| Jog Wheel — move play cursor     | ✓      | Chapter 10       | Add modifier functions                       |
+| Function | Coverage | Notes |
+|---|---|---|
+| SELECT 1–8 selects a track | ✓ | Central subject of Chapter 6 |
+| Selection establishes controller focus | ✓ | Explained extensively |
+| Device Mode follows selected track | ✓ | Explained |
+| Browser Mode follows selected track | ✓ | Explained |
+| Scribble strips respond to selection | ✓ | Explained |
 
-The fundamental transport model is already explained very well. The missing material should be added **after** the reader understands those basic controls, rather than inserted into their introductory descriptions.
+Chapter 6 is particularly strong conceptually. Its central idea — thinking of SELECT as establishing **focus** rather than merely highlighting a track — should remain intact.
 
-## PLAY modifiers
+## Advanced SELECT functions
 
-| Feature                                  | Status | Proposed action   |
-| ---------------------------------------- | ------ | ----------------- |
-| Double-click PLAY — cursor to song start | ✗      | Add to Chapter 10 |
-| SHIFT + PLAY — toggle repeat             | ✗      | Add to Chapter 10 |
-| OPTION + PLAY — toggle Punch In          | ✗      | Add to Chapter 10 |
-| OPTION + SHIFT + PLAY — toggle Punch Out | ✗      | Add to Chapter 10 |
+| Function | Coverage | Action |
+|---|---|---|
+| SHIFT + SELECT — multi-select tracks | ✗ | Add to advanced material |
+| OPTION + SELECT — stop playing clip | ✗ | Add |
+| CONTROL + SELECT — open/close group | ✗ | Add |
+| ALT + SELECT — set new clip length | ✗ | Add |
+| SEND + SELECT 1–8 — directly select Send 1–8 | ✗ | Add with Send Mode |
+| SELECT selected group — enter group in hierarchical navigation | ✗ | Add |
+| Long SELECT — leave group/folder | ✗ | Add |
+| SELECT selected instrument track — enter Layer/Drum Pad Mode | ✗ | Add with Layer Mode |
 
-**Editorial recommendation:** Introduce these together under a section such as **Beyond Basic Playback**.
+### Editorial decision
 
-The existing PLAY explanation should remain simple. The modifier commands can then be introduced as a second layer.
+Do **not** put all of this into Chapter 6.
 
-## STOP modifiers / repeated presses
+Chapter 6 succeeds precisely because it teaches one powerful idea:
 
-| Feature                                | Status | Proposed action |
-| -------------------------------------- | ------ | --------------- |
-| STOP — stop playback                   | ✓      | Already taught  |
-| STOP again — cursor to song start      | ✗      | Add             |
-| Double-click STOP — cursor to song end | ✗      | Add             |
+> **SELECT establishes focus.**
 
-This is a good example of functionality that should be taught as a small workflow rather than merely listed.
-
-## RECORD modifiers
-
-| Feature                                                | Status | Proposed action |
-| ------------------------------------------------------ | ------ | --------------- |
-| RECORD — start/stop recording                          | ✓      | Already taught  |
-| SHIFT + RECORD — Launcher overdub                      | ✗      | Add             |
-| OPTION + RECORD — create clip, play and enable overdub | ✗      | Add             |
-
-**Editorial note:** OPTION + RECORD is significant enough to deserve an explanation and practical example rather than a one-line reference entry.
-
-## Marker navigation from Transport
-
-| Feature                           | Status | Proposed action |
-| --------------------------------- | ------ | --------------- |
-| OPTION + REWIND — previous marker | ✗      | Add             |
-| OPTION + FORWARD — next marker    | ✗      | Add             |
-
-These should be cross-linked conceptually with Marker Mode rather than taught as unrelated REWIND/FAST FORWARD tricks.
+The modifier functions should appear later, once the reader understands the modifier system and the modes to which they apply.
 
 ---
 
-# 3. Jog Wheel — Chapter 10
+# B. V-Pots
 
-The existing chapter explains the Jog Wheel clearly as a means of navigating the timeline, but DrivenByMoss gives it substantially more functionality.
+## Basic operation
 
-| Feature                                                  | Status | Proposed action                                                                 |
-| -------------------------------------------------------- | ------ | ------------------------------------------------------------------------------- |
-| Jog Wheel — move play cursor                             | ✓      | Already covered                                                                 |
-| SHIFT + Jog Wheel — fine positioning                     | △      | Chapter discusses precise positioning, but modifier should be stated explicitly |
-| OPTION + Jog Wheel — tempo                               | ✗      | Add                                                                             |
-| OPTION + SHIFT + Jog Wheel — fine tempo                  | ✗      | Add                                                                             |
-| CONTROL + Jog Wheel — loop start                         | ✗      | Add                                                                             |
-| CONTROL + SHIFT + Jog Wheel — fine loop-start adjustment | ✗      | Add                                                                             |
-| ALT + Jog Wheel — loop length                            | ✗      | Add                                                                             |
-| ALT + SHIFT + Jog Wheel — fine loop-length adjustment    | ✗      | Add                                                                             |
+| Function | Coverage | Notes |
+|---|---|---|
+| V-Pots are endless encoders | ✓ | Chapter 8 |
+| V-Pots are pushable | ✓ | Chapter 8 |
+| LED rings provide value feedback | ✓ | Chapter 8 |
+| Function changes with current mode | ✓ | Major theme of Chapter 8 |
+| PAN control | ✓ | Covered |
+| SEND control | ✓ | Covered conceptually |
+| Device parameter control | ✓ | Covered |
+| Browser navigation | ✓ | Covered conceptually |
 
-**Editorial recommendation:** This deserves a compact visual table after the reader has mastered basic Jog Wheel navigation.
+Chapter 8 gives an excellent mental model for the V-Pots.
 
-The underlying pattern is elegant:
+However, its description of **pressing** a V-Pot is deliberately generic. DrivenByMoss gives us several concrete behaviours which should now be added.
+
+## V-Pot press modifiers
+
+| Function | Coverage | Action |
+|---|---|---|
+| Press — reset parameter to default | ✗ | Add |
+| SHIFT + Press — centre value | ✗ | Add |
+| CONTROL + Press — minimum | ✗ | Add |
+| ALT + Press — maximum | ✗ | Add |
+| OPTION + Press on Send — toggle Send on/off | ✗ | Add |
+
+### Natural teaching pattern
+
+These commands have a very memorable structure:
 
 ```text
-No modifier       → Position
-OPTION            → Tempo
-CONTROL           → Loop Start
-ALT                → Loop Length
-
-+ SHIFT            → Fine adjustment
+PRESS              Default
+SHIFT + PRESS      Centre
+CONTROL + PRESS    Minimum
+ALT + PRESS        Maximum
+OPTION + PRESS     Context-specific
 ```
 
-Teaching the pattern is much easier than asking the reader to memorise eight unrelated commands.
+That is considerably easier to learn than five unrelated commands.
+
+**Status of Chapter 8 overall: △**
+
+The conceptual material is strong; the operational layer needs expansion.
 
 ---
 
-# 4. Marker Functions
+# C. Motor Faders
 
-Marker functionality is one of the clearest omissions from the present manuscript.
+## Core functionality
 
-| Feature                                          | Status | Proposed location          |
-| ------------------------------------------------ | ------ | -------------------------- |
-| MARKER — enter Marker Mode                       | ✗      | New Marker section/chapter |
-| SHIFT + MARKER — toggle marker display           | ✗      | Same                       |
-| OPTION + MARKER — create marker at play position | ✗      | Same                       |
-| OPTION + REWIND — previous marker                | ✗      | Same + Chapter 10          |
-| OPTION + FORWARD — next marker                   | ✗      | Same + Chapter 10          |
-| V-Pot press in Marker Mode — play from marker    | ✗      | Same                       |
+| Function | Coverage | Notes |
+|---|---|---|
+| Eight channel motor faders | ✓ | Chapter 9 |
+| Separate Master fader | ✓ | Covered |
+| Faders send changes to Bitwig | ✓ | Covered |
+| Bitwig sends values back to faders | ✓ | Covered extensively |
+| Bank changes reposition faders | ✓ | Covered |
+| Touch sensitivity | ✓ | Covered |
+| Automation playback moves faders | ✓ | Covered |
+| Writing automation physically | ✓ | Covered conceptually |
 
-**Recommendation:** Do not bury Marker Mode inside Chapter 10.
+Chapter 9 is already one of the more complete chapters.
 
-It forms a coherent workflow of its own:
+## Missing operational functions
+
+| Function | Coverage | Action |
+|---|---|---|
+| Fader touch selects its track | △ | Touch is discussed, but this specific DrivenByMoss behaviour needs documenting |
+| Master-fader touch selects Master track | ✗ | Add |
+| Master-fader touch enters Master Edit Mode | ✗ | Add with Master Mode |
+| SHIFT + Master Fader — metronome volume | ✗ | Add |
+| FLIP — use faders like editing knobs | ✗ | Add |
+| SHIFT + FLIP — toggle regular/effect tracks | ✗ | Add |
+| LOCK — lock faders | N/A / verify | Source notes that LOCK is not an MCU control |
+
+There is also an important **preference dependency**: DrivenByMoss provides *Select Channel on Fader Touch* and *Activate Volume Mode on Fader Touch*. These should eventually be explained as configuration choices rather than unconditional hardware behaviour.
+
+**Status of Chapter 9 overall: △**
+
+---
+
+# D. Transport
+
+This is one of the largest areas requiring expansion.
+
+## PLAY
+
+| Function | Coverage | Action |
+|---|---|---|
+| PLAY — start/stop playback | ✓ | Covered |
+| Double-click PLAY — play cursor to start | ✗ | Add |
+| SHIFT + PLAY — toggle repeat | ✗ | Add |
+| OPTION + PLAY — Punch In | ✗ | Add |
+| OPTION + SHIFT + PLAY — Punch Out | ✗ | Add |
+
+## STOP
+
+| Function | Coverage | Action |
+|---|---|---|
+| STOP — stop playback | ✓ | Covered |
+| STOP again — cursor to song start | ✗ | Add |
+| Double-click STOP — cursor to song end | ✗ | Add |
+
+## RECORD
+
+| Function | Coverage | Action |
+|---|---|---|
+| RECORD — start/stop recording | ✓ | Covered |
+| SHIFT + RECORD — Launcher overdub | ✗ | Add |
+| OPTION + RECORD — create clip, play and overdub | ✗ | Add |
+
+The `OPTION + RECORD` command deserves more than a reference-table entry because it implements an entire clip-recording workflow with one operation.
+
+## REWIND / FORWARD
+
+| Function | Coverage | Action |
+|---|---|---|
+| REWIND — cursor backwards | ✓ | Covered |
+| FORWARD — cursor forwards | ✓ | Covered |
+| OPTION + REWIND — previous marker | ✗ | Add |
+| OPTION + FORWARD — next marker | ✗ | Add |
+
+## Jog Wheel
+
+| Function | Coverage | Action |
+|---|---|---|
+| Jog — play position | ✓ | Covered |
+| SHIFT + Jog — fine position | △ | Make explicit |
+| OPTION + Jog — tempo | ✗ | Add |
+| OPTION + SHIFT + Jog — fine tempo | ✗ | Add |
+| CONTROL + Jog — loop start | ✗ | Add |
+| CONTROL + SHIFT + Jog — fine loop start | ✗ | Add |
+| ALT + Jog — loop length | ✗ | Add |
+| ALT + SHIFT + Jog — fine loop length | ✗ | Add |
+
+Again there is an excellent pattern:
 
 ```text
-Create Marker
-     │
-     ▼
-See Markers
-     │
-     ▼
-Navigate Markers
-     │
-     ▼
-Start Playback
+                NORMAL          + SHIFT
+Jog             Position        Fine position
+OPTION + Jog    Tempo           Fine tempo
+CONTROL + Jog   Loop start      Fine loop start
+ALT + Jog       Loop length     Fine loop length
 ```
 
-A dedicated **Markers and Navigation** section would make the OPTION + MARKER function that prompted this audit much easier to understand.
+This is exactly the sort of thing Project XTC can make considerably easier to understand than a flat command list.
+
+## Other transport-area controls
+
+| Function | Coverage |
+|---|---|
+| SCRUB — cycle editing modes | ✗ |
+| Arrow buttons — keyboard cursor keys | ✗ |
+| ZOOM + arrows — Arranger zoom/track height | ✗ |
+| NUDGE — Tap Tempo | ✗ |
+| REPEAT — toggle repeat | △ |
+
+**Status of Chapter 10 overall: △**
+
+Its basic explanation is good. Its advanced command coverage is currently sparse.
 
 ---
 
-# 5. V-Pots — Chapter 8
+# E. Marker Workflow
 
-Chapter 8 already does an excellent job of explaining what V-Pots *are*: endless rotary encoders, push switches and LED rings whose meanings change according to context.
+This is the feature that originally triggered the audit.
 
-However, the exact DrivenByMoss push operations are largely absent.
+| Function | Coverage |
+|---|---|
+| MARKER — enter Marker Mode | ✗ |
+| SHIFT + MARKER — show/hide markers | ✗ |
+| OPTION + MARKER — insert marker at play position | ✗ |
+| OPTION + REWIND — previous marker | ✗ |
+| OPTION + FORWARD — next marker | ✗ |
+| V-Pot press in Marker Mode — play from marker | ✗ |
 
-| Feature                                  | Status | Proposed action                          |
-| ---------------------------------------- | ------ | ---------------------------------------- |
-| Turn V-Pot — change current parameter    | ✓      | Covered                                  |
-| Press V-Pot — context-sensitive action   | △      | Explained conceptually but not precisely |
-| Press V-Pot — reset parameter to default | ✗      | Add                                      |
-| SHIFT + press — centre value             | ✗      | Add                                      |
-| CONTROL + press — minimum                | ✗      | Add                                      |
-| ALT + press — maximum                    | ✗      | Add                                      |
-| OPTION + press on Send — toggle Send     | ✗      | Add                                      |
+**Status: ✗ Entire workflow missing**
 
-This is an ideal place to replace some of the present deliberate vagueness with concrete functionality now that we have an authoritative reference.
+This should not merely become six extra bullets in Chapter 10.
 
-A useful memory model would be:
+There is a coherent workflow here:
 
 ```text
-PRESS             → Default
-SHIFT + PRESS     → Centre
-CONTROL + PRESS   → Minimum
-ALT + PRESS       → Maximum
-OPTION + PRESS    → Context-specific
-                     (e.g. Send on/off)
+             OPTION + MARKER
+                    │
+                    ▼
+              Create Marker
+                    │
+                    ▼
+               MARKER Mode
+                    │
+                    ▼
+          Markers on V-Pots
+              ╱           ╲
+             ╱             ╲
+      OPTION + <<       OPTION + >>
+      Previous            Next
+             ╲             ╱
+              ╲           ╱
+               Navigate
 ```
 
----
+### Editorial recommendation
 
-# 6. Motor Faders — Chapter 9
+Create a proper **Markers and Navigation** section, potentially within a later advanced-workflow chapter.
 
-The basic motor-fader behaviour is **✓ covered adequately**.
-
-The chapter correctly establishes:
-
-* eight channel faders plus master fader
-* physical movement changing Bitwig
-* Bitwig changes moving the physical faders
-* bank changes recalling new positions
-* bidirectional feedback
-
-Areas requiring expansion:
-
-| Feature                                                | Status | Proposed action                       |
-| ------------------------------------------------------ | ------ | ------------------------------------- |
-| Track faders control banked track volume               | ✓      | Covered                               |
-| Fader touch can select track                           | △      | Verify exact wording and expand       |
-| Master fader controls master volume                    | ✓      | Covered                               |
-| Touch Master Fader selects Master track                | △      | Expand                                |
-| Touch Master Fader enters Master Edit Mode             | ✗      | Add when Master Mode is introduced    |
-| SHIFT + Master Fader — metronome volume                | ✗      | Add                                   |
-| FLIP — use faders like knobs                           | ✗      | Add                                   |
-| SHIFT + FLIP — Instrument/Audio/Hybrid ↔ Effect tracks | ✗      | Add                                   |
-| LOCK — lock faders                                     | ✗      | Add if applicable to X-Touch workflow |
-
-The most important discovery here is **Master Edit Mode**. Touching the master fader is not merely a volume operation; it opens another layer of controller functionality.
-
-That deserves treatment beyond Chapter 9's introductory explanation.
+This is exactly the sort of useful functionality that a new X-Touch owner could otherwise use the controller for years without discovering.
 
 ---
 
-# 7. SELECT — Chapter 6
+# F. Device Mode
 
-The current SELECT chapter establishes the essential concept extremely well:
-
-> selection establishes focus.
-
-That material should remain.
-
-However, DrivenByMoss layers many advanced commands onto SELECT.
-
-| Feature                                                        | Status | Proposed action |
-| -------------------------------------------------------------- | ------ | --------------- |
-| SELECT — select track                                          | ✓      | Covered         |
-| SHIFT + SELECT — multi-select                                  | ✗      | Add             |
-| OPTION + SELECT — stop playing clip                            | ✗      | Add             |
-| CONTROL + SELECT — open/close group                            | ✗      | Add             |
-| ALT + SELECT — set new clip length                             | ✗      | Add             |
-| SEND + SELECT — choose Send 1–8                                | ✗      | Add             |
-| SELECT selected group — enter group in hierarchical navigation | ✗      | Add later       |
-| Long SELECT — leave group/folder                               | ✗      | Add later       |
-| SELECT selected instrument track — enter Layer/Drum Pad Mode   | ✗      | Add later       |
-
-**Editorial recommendation:** Do not put all of these into the introductory SELECT chapter.
-
-Chapter 6 should continue teaching:
-
-> **SELECT = focus**
-
-The modifier and hierarchical functions belong in later advanced material, with cross-references back to Chapter 6.
-
----
-
-# 8. Banks and Channels — Chapter 4
-
-The core banking model is already covered:
-
-| Feature                                            | Status |
-| -------------------------------------------------- | ------ |
-| BANK changes the visible/banked group of tracks    | ✓      |
-| CHANNEL moves through tracks in smaller increments | ✓      |
-| Eight physical strips represent a moving window    | ✓      |
-
-Advanced functions are missing:
-
-| Feature                                               | Status | Proposed action                                                                  |
-| ----------------------------------------------------- | ------ | -------------------------------------------------------------------------------- |
-| OPTION + BANK — move selected device left/right       | ✗      | Device/advanced section                                                          |
-| OPTION + CHANNEL — move selected track left/right     | ✗      | Advanced navigation                                                              |
-| BANK in Device Mode — previous/next device            | △      | Device Mode discusses device navigation conceptually; exact controls need adding |
-| CHANNEL in Device Mode — previous/next parameter page | △      | Same                                                                             |
-
-This is a particularly good example of why the existing mental-model chapters should not simply be expanded into reference manuals.
-
-BANK and CHANNEL mean one thing in normal track navigation and another in Device Mode. The book should teach those differences **when the relevant context is introduced**.
-
----
-
-# 9. Device Mode — Chapter 11
-
-Chapter 11 already provides a strong conceptual explanation of:
+Chapter 11 provides an excellent conceptual hierarchy:
 
 ```text
 Track
@@ -304,175 +281,366 @@ Parameter Page
 Parameter
 ```
 
-It also explains eight-parameter pages and navigating device chains.
+The missing material is mainly about **how to navigate that hierarchy efficiently from the hardware**.
 
-Coverage becomes weaker when we compare the text with the exact MCU operations.
+| Function | Coverage | Action |
+|---|---|---|
+| DEVICE enters Device Mode | ✓ | Covered |
+| V-Pots control eight parameters | ✓ | Covered |
+| BANK ←/→ — previous/next device | △ | Make explicit |
+| CHANNEL ←/→ — previous/next parameter page | △ | Make explicit |
+| Hold CONTROL — display devices | ✗ | Add |
+| CONTROL + V-Pot press — select device | ✗ | Add |
+| Hold OPTION — display parameter pages | ✗ | Add |
+| OPTION + V-Pot press — select page | ✗ | Add |
+| OPTION + DEVICE — pin cursor device | ✗ | Add |
+| DEVICE pressed again — Project/Track Parameter Mode | ✗ | Add |
 
-| Feature                                          | Status | Proposed action      |
-| ------------------------------------------------ | ------ | -------------------- |
-| DEVICE — enter Device Mode                       | ✓      | Covered conceptually |
-| V-Pots 1–8 — current device parameters           | ✓      | Covered              |
-| BANK ←/→ — previous/next device                  | △      | Make explicit        |
-| CHANNEL ←/→ — previous/next parameter page       | △      | Make explicit        |
-| CONTROL held — display devices on selected track | ✗      | Add                  |
-| CONTROL + V-Pot press — select displayed device  | ✗      | Add                  |
-| OPTION held — display parameter pages            | ✗      | Add                  |
-| OPTION + V-Pot press — select parameter page     | ✗      | Add                  |
-| OPTION + DEVICE — pin cursor device              | ✗      | Add                  |
-| DEVICE again — Project/Track Parameter Mode      | ✗      | Add                  |
+### Editorial recommendation
 
-This is one of the chapters that will benefit most from the audit.
+This material belongs **inside Chapter 11**, because it strengthens rather than distracts from the existing hierarchy.
 
-The existing explanation gives us the **mental model**; the missing DrivenByMoss commands give us the **efficient physical workflow**.
+The reader already understands *what* a device and parameter page are. We can now teach the shortcuts that make navigating them fast.
 
----
-
-# 10. Browser Mode — Chapter 12
-
-Chapter 12 is conceptually thorough but deliberately non-specific about several controls.
-
-DrivenByMoss lets us make it much more practical.
-
-| Feature                                | Status | Proposed action                                              |
-| -------------------------------------- | ------ | ------------------------------------------------------------ |
-| BROWSER — open Browser                 | ✓      | Covered                                                      |
-| Track Control knobs — navigate columns | △      | Navigation explained generally; identify controls explicitly |
-| Press V-Pot — enter filter/results     | △      | Add exact behaviour                                          |
-| Press again — confirm                  | △      | Add                                                          |
-| Jog Wheel — scroll results             | △      | Add explicitly                                               |
-| BROWSER / ENTER — confirm and close    | △      | Add                                                          |
-| CANCEL / SHIFT + BROWSER — discard     | △      | Add                                                          |
-| UP/DOWN — previous/next Browser tab    | ✗      | Add                                                          |
-| LEFT — insert before current device    | ✗      | Add                                                          |
-| RIGHT — insert after current device    | ✗      | Add                                                          |
-| ZOOM — replace current device          | ✗      | Add                                                          |
-| SHIFT + BROWSER — insert before        | ✗      | Add entry workflow                                           |
-| OPTION + BROWSER — insert after        | ✗      | Add entry workflow                                           |
-
-The present Browser chapter explains *why* and *how to think about* Browser Mode very effectively.
-
-The audit suggests that its revision should now add a **concrete control map**.
+**Status of Chapter 11 overall: △ approaching ✓ after revision**
 
 ---
 
-# 11. Major Areas Apparently Missing Entirely
+# G. Browser Mode
 
-The first audit pass has already identified several substantial areas that are not simply minor omissions from existing chapters.
+Chapter 12 is another strong conceptual chapter, but the reference documentation gives us much more precise hardware behaviour.
 
-## Automation
+| Function | Coverage | Action |
+|---|---|---|
+| BROWSER/USER — enter Browser | ✓ | Covered |
+| Track Control knobs — navigate columns | △ | Make explicit |
+| V-Pot press — enter filter/results | △ | Make explicit |
+| Second press — confirm | ✗ | Add |
+| Jog Wheel — scroll results | △ | Make explicit |
+| BROWSER or ENTER — confirm and close | △ | Add exact behaviour |
+| CANCEL — discard | △ | Add exact behaviour |
+| SHIFT + BROWSER — discard while browsing | ✗ | Add |
+| UP — previous Browser tab | ✗ | Add |
+| DOWN — next Browser tab | ✗ | Add |
+| LEFT — insert before device | ✗ | Add |
+| RIGHT — insert after device | ✗ | Add |
+| ZOOM — replace selected device | ✗ | Add |
 
-**✗ Major gap**
+There are also commands for **entering** the Browser with an insertion intention:
 
-DrivenByMoss provides:
+| Function | Coverage |
+|---|---|
+| BROWSER — browse presets | ✓/△ |
+| SHIFT + BROWSER — insert device before current device | ✗ |
+| OPTION + BROWSER — insert device after current device | ✗ |
 
-* READ/OFF
-* OPTION + READ/OFF
-* WRITE
-* TRIM
-* TOUCH
-* LATCH
+Notice that `SHIFT + BROWSER` is context-sensitive: outside Browser Mode it initiates insertion before the current device; while browsing it can discard the selection.
 
-This is enough functionality to justify dedicated teaching rather than a footnote.
+That is worth explaining rather than merely listing.
 
-**Candidate new chapter:** **Automation from the X-Touch**
-
----
-
-## Layer / Drum Pad Modes
-
-**✗ Major gap**
-
-DrivenByMoss supports entering instrument layers/drum pads and controlling:
-
-* Volume
-* Pan
-* Sends
-* Mute
-* Solo
-
-This deserves consideration as advanced Device/Instrument material.
+**Status of Chapter 12 overall: △**
 
 ---
 
-## Master Edit Mode
+# H. Assignment / Mixer Edit Modes
 
-**✗ Major gap**
+This is a substantial gap.
 
-Touching the Master Fader provides access to:
-
-* master volume
-* master panorama
-* audio-engine control
-* previous project
-* next project
-
-This is sufficiently unusual that readers are unlikely to discover it accidentally.
-
----
-
-## Marker Mode
-
-**✗ Major gap**
-
-This is the omission that triggered the audit and should definitely be added.
-
----
-
-## EQ Mode
-
-**✗ Major gap**
-
-DrivenByMoss provides a dedicated EQ edit mode and, in Bitwig, can automatically add EQ+ when required.
-
-This probably belongs adjacent to Device Mode rather than as an isolated chapter.
-
----
-
-## Track / Volume / Panorama / Send Edit Modes
-
-**△ Partially represented conceptually, insufficiently documented operationally**
-
-The book already discusses pan, sends, V-Pots and tracks, but does not yet systematically explain the DrivenByMoss edit modes:
-
-* Track (`tr`)
-* Volume (`Vl`)
-* Panorama (`Pn`)
-* Send 1–8 (`S1`–`S8`)
-
-These may warrant a unified **Mixer Edit Modes** chapter.
-
----
-
-# 12. Emerging Editorial Structure
-
-It is too early to renumber or rewrite the manuscript, but the audit is already suggesting a useful distinction:
+DrivenByMoss defines a family of explicit modes:
 
 ```text
-PART I
-Understanding the X-Touch
-        ↓
-Existing conceptual chapters
-
-PART II
-Working with the X-Touch
-        ↓
-Existing practical chapters,
-expanded with exact controls
-
-PART III
-Advanced Control
-        ↓
-Modifiers
-Automation
-Markers
-Mixer Edit Modes
-Layers / Drum Pads
-Master Mode
-Advanced Device functions
+TRACK       Track Edit Mode
+TRACK ×2    Volume Edit Mode
+PAN         Panorama Edit Mode
+SEND        Send Edit Mode
+DEVICE      Device Edit Mode
+EQ          Equalizer Edit Mode
+INSTRUMENT  Instrument Device Edit Mode
 ```
 
-This is preferable to turning Chapters 1–13 into enormous encyclopaedic chapters.
+The existing book explains modes conceptually, and individual chapters discuss pan, sends and devices, but does not yet systematically teach this family as a whole.
 
-The existing book's strength is that it **teaches ideas before commands**.
+## Track Edit Mode
 
-The feature audit should preserve that strength while ensuring that the advanced commands are no longer allowed to escape.
+**✗ Operational coverage missing**
+
+The eight V-Pots control:
+
+1. Volume
+2. Panorama
+3. Crossfader
+4. Send 1
+5. Send 2
+6. Send 3
+7. Send 4
+8. Send 5
+
+SHIFT provides fine adjustment.
+
+A preference can remove Crossfader and expose Send 6 instead.
+
+## Volume Edit Mode
+
+**✗ Missing**
+
+`TRACK` pressed twice assigns the eight V-Pots to the volumes of the eight channels.
+
+## Panorama Edit Mode
+
+**△ Concept covered, mode operation incomplete**
+
+`PAN` assigns the eight V-Pots to channel panorama.
+
+## Send Modes 1–8
+
+**△ Concept covered, operation incomplete**
+
+- SEND enters Send Mode.
+- Repeated SEND presses cycle Send 1–8.
+- SHIFT + SEND cycles backwards.
+- SEND + SELECT 1–8 directly selects a send.
+- V-Pots control that send across the eight channels.
+
+### Editorial recommendation
+
+This warrants a new **Mixer Edit Modes** chapter.
+
+Trying to distribute these facts between the existing V-Pot, Modes and SELECT chapters would obscure the very elegant relationship between them.
+
+---
+
+# I. Automation
+
+**Status: ✗ Major missing area**
+
+DrivenByMoss exposes:
+
+| Control | Function |
+|---|---|
+| READ/OFF | Disable Arranger automation recording |
+| OPTION + READ/OFF | Reset automation overrides |
+| WRITE | Write mode |
+| TRIM | Maps to Read because Bitwig has no Trim mode |
+| TOUCH | Touch mode |
+| LATCH | Latch mode |
+
+Chapter 9 already prepares the reader beautifully for this by explaining touch-sensitive motor faders and automation physically.
+
+That gives us a natural progression:
+
+```text
+Chapter 9
+Motor Faders
+     │
+     ▼
+Why touch sensitivity matters
+     │
+     ▼
+Advanced chapter
+Automation from the X-Touch
+```
+
+### Editorial recommendation
+
+**Dedicated chapter.**
+
+This is too important to become an appendix table.
+
+---
+
+# J. Layer / Drum Pad Modes
+
+**Status: ✗ Missing**
+
+For a selected track containing an instrument with layers or drum pads:
+
+- press SELECT again to enter the layer/drum-pad hierarchy;
+- use Mode buttons to choose editing modes;
+- control Volume, Pan, Sends, Mute and Solo;
+- long-press SELECT to leave.
+
+### Editorial recommendation
+
+Probably advanced material following Device Mode rather than an addition to Chapter 6.
+
+It demonstrates the same hierarchical idea already established by the book:
+
+```text
+Track
+  ↓
+Instrument
+  ↓
+Layer / Drum Pad
+  ↓
+Volume / Pan / Sends / etc.
+```
+
+---
+
+# K. Master Edit Mode
+
+**Status: ✗ Missing**
+
+Touching the Master Fader enters Master Edit Mode.
+
+The V-Pots then expose:
+
+| V-Pot | Function |
+|---|---|
+| 1 | Master volume; press to reset |
+| 2 | Master panorama; press to reset |
+| 3–5 | Audio-engine on/off controls |
+| 7 | Previous project |
+| 8 | Next project |
+
+This is a particularly good candidate for Project XTC because it is **highly discoverable once documented and almost invisible if it isn't**.
+
+A user could own an X-Touch for years without guessing that touching the master fader exposes project-switching commands on V-Pots 7 and 8.
+
+---
+
+# L. Equalizer Mode
+
+**Status: ✗ Missing**
+
+EQ Mode behaves similarly to Device Mode but targets the track equalizer.
+
+For Bitwig the reference specifies **EQ+**.
+
+An especially useful feature is:
+
+> If the selected track has no equalizer when EQ Mode is activated, DrivenByMoss automatically adds one.
+
+That deserves prominent treatment because pressing EQ can therefore **modify the project**, rather than merely changing the controller's view.
+
+---
+
+# M. Automation, Utility and Global Buttons
+
+A further group of physical controls is barely represented at present.
+
+| Function | Coverage |
+|---|---|
+| UNDO | ✗ |
+| SHIFT + UNDO — Redo | ✗ |
+| SAVE | ✗ |
+| Note Editor pane | ✗ |
+| Automation Editor pane | ✗ |
+| Toggle plug-in window | ✗ |
+| Toggle layouts | ✗ |
+| Toggle device expanded state | ✗ |
+| Toggle Mixer pane | ✗ |
+| Metronome | ✗ |
+| SHIFT + Metronome — ticks | ✗ |
+| SOLO — clear all solos | ✗ |
+| SHIFT + SOLO — clear all mutes | ✗ |
+| OVR — Arranger overdub | ✗ |
+| SHIFT + OVR — Launcher overdub | ✗ |
+| DROP — duplicate selected track | ✗ |
+
+These are especially relevant to Chapter 13's goal of moving towards a **Mouse-Free (or Mouse-Lite) Workflow**.
+
+Rather than scattering them randomly through earlier chapters, many could form a section built around:
+
+> **Things you no longer need to reach for the mouse to do.**
+
+---
+
+# N. DrivenByMoss Preferences
+
+**Status: largely ✗**
+
+The reference contains numerous preferences affecting X-Touch behaviour:
+
+- X-Touch hardware profile
+- display configuration and colours
+- VU meters
+- fader behaviour
+- track-bank composition
+- flat vs hierarchical track navigation
+- startup mode
+- fader-touch selection
+- temporary Volume Mode on fader touch
+- knob sensitivity
+- encoder slowdown
+- Browser filter visibility
+- Stop/Pause behaviour
+- Record/Automation Arranger-vs-Launcher behaviour
+- assignable F-buttons
+- footswitch assignments
+
+These should **not** all be woven into the normal chapters.
+
+### Editorial recommendation
+
+Create a dedicated **Configuring DrivenByMoss for the X-Touch** chapter or appendix.
+
+That would also give us somewhere authoritative to record which settings Project XTC assumes when describing behaviour elsewhere.
+
+---
+
+# Part 2 — Interim Finding
+
+The audit does **not** suggest that Chapters 1–13 need wholesale rewriting.
+
+Quite the opposite.
+
+Their main strength is that they establish the mental model:
+
+```text
+Hardware
+   ↓
+Mode
+   ↓
+Focus
+   ↓
+Feedback
+   ↓
+Action
+```
+
+The DrivenByMoss reference supplies the deeper operational layer that belongs **on top of that foundation**.
+
+The emerging editorial strategy should therefore be:
+
+1. **Preserve Chapters 1–13 as the learning foundation.**
+2. **Make targeted additions where advanced behaviour naturally belongs.**
+3. **Create new chapters for coherent advanced subjects.**
+4. **Use tables and quick-reference material only after the behaviour has been explained.**
+5. **Keep the DrivenByMoss inventory as the completeness checklist so no command disappears during restructuring.**
+
+## Strong candidates for new chapters
+
+The audit currently suggests:
+
+- **Mixer Edit Modes**
+- **Markers and Advanced Navigation**
+- **Automation**
+- **Layers and Drum Pads**
+- **Master and EQ Modes**
+- **Modifiers and Advanced Shortcuts**
+- **Configuring DrivenByMoss**
+
+The exact titles and order should wait until the remainder of the audit has been classified.
+
+---
+
+# Next Part of the Audit
+
+The next pass should finish the remaining areas:
+
+- display and layout controls
+- ARM / MUTE / SOLO behaviour
+- track banking and physical track/device movement
+- utilities
+- metronome and overdub
+- assignable F-buttons
+- footswitches
+- extender functionality
+- hardware preferences
+- track-navigation preferences
+- transport preferences
+- workflow preferences
+- Browser preferences
+
+After those have been classified, the audit will be complete enough to design the **revised table of contents** before we alter any manuscript chapters.
