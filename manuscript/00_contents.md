@@ -1,4 +1,7 @@
-# Contents
+---
+title: Contents
+status: draft
+---
 
 ## Part I — Understanding the X-Touch
 
