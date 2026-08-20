@@ -925,3 +925,945 @@ It should be a **feature-assignment matrix**:
 Once that matrix contains no unassigned features, we can confidently produce the revised `00_contents.md`.
 
 Only then should we start editing Chapters 1–13 or writing the new chapters.
+
+
+# Part 3 Continued — Feature Assignment Matrix
+
+## Purpose
+
+This matrix assigns the incomplete and missing functionality identified in `mcu_coverage_audit.md` to a definite destination in the revised Project XTC structure.
+
+Every item should end in one of four states:
+
+- **Existing chapter revision**
+- **New teaching chapter**
+- **Configuration / reference material**
+- **Deliberately out of scope**
+
+Some features appear in more than one chapter because they are relevant in more than one context. In those cases, one chapter is designated the **primary teaching location** and the other receives only a reminder or cross-reference.
+
+The objective is that no meaningful X-Touch/DrivenByMoss feature remains merely marked **Missing**.
+
+---
+
+# 1. Chapter 4 — Banks and Channels
+
+## Primary additions
+
+| Feature | Destination | Treatment |
+|---|---|---|
+| OPTION + BANK LEFT/RIGHT — move selected device | Chapter 4 + Chapter 11 | Brief introduction here; full explanation in Device Mode |
+| OPTION + CHANNEL LEFT/RIGHT — move selected track | Chapter 4 | Explain as physical project reordering |
+| BANK behaviour changes in Device Mode | Chapter 4 + Chapter 11 | Cross-reference only here |
+| CHANNEL behaviour changes in Device Mode | Chapter 4 + Chapter 11 | Cross-reference only here |
+| FX/Master tracks optionally included in track bank | Chapter 21 | Configuration note referenced from Chapter 4 |
+| Flat versus hierarchical banking | Chapter 17 | Mention only that alternate navigation models exist |
+
+## Editorial purpose
+
+Chapter 4 remains principally about:
+
+> **The eight-channel physical window onto a larger project.**
+
+Advanced variations should not obscure that model.
+
+---
+
+# 2. Chapter 5 — Modes
+
+## Primary additions
+
+| Feature | Destination | Treatment |
+|---|---|---|
+| Track Edit Mode | Chapter 5 → Chapter 14 | Introduce name only |
+| Volume Edit Mode | Chapter 5 → Chapter 14 | Introduce name only |
+| Panorama Edit Mode | Chapter 5 → Chapter 14 | Introduce name only |
+| Send Edit Modes | Chapter 5 → Chapter 14 | Introduce name only |
+| Device Edit Mode | Chapter 5 → Chapter 11 | Existing coverage |
+| EQ Mode | Chapter 5 → Chapter 18 | Introduce name |
+| Instrument Mode | Chapter 5 / Chapter 17 | Clarify relationship to instruments/layers |
+| Browser Mode | Chapter 5 → Chapter 12 | Existing coverage |
+| Marker Mode | Chapter 5 → Chapter 15 | Introduce name |
+| Master Edit Mode | Chapter 5 → Chapter 18 | Introduce name |
+| Project/Track Parameter Mode | Chapter 5 → Chapter 11 | Mention as Device-related mode |
+
+## Editorial purpose
+
+Chapter 5 becomes the **map of the mode system**, not the place where all modes are exhaustively documented.
+
+---
+
+# 3. Chapter 6 — SELECT
+
+## Primary additions
+
+| Feature | Primary destination | Secondary reference |
+|---|---|---|
+| SHIFT + SELECT — multi-select | Chapter 13 | Chapter 6 teaser |
+| OPTION + SELECT — stop playing clip | Chapter 19 | Chapter 6 teaser |
+| CONTROL + SELECT — open/close group | Chapter 17 | Chapter 6 teaser |
+| ALT + SELECT — new clip length | Chapter 19 | Chapter 6 teaser |
+| SEND + SELECT — directly choose Send 1–8 | Chapter 14 | Chapter 6 teaser |
+| Repeated SELECT enters group | Chapter 17 | Chapter 6 |
+| Long SELECT leaves group | Chapter 17 | Chapter 6 |
+| Repeated SELECT enters Layers/Drum Pad Mode | Chapter 17 | Chapter 6 |
+
+## Editorial purpose
+
+Preserve:
+
+> **SELECT establishes focus.**
+
+Do not turn Chapter 6 into a modifier-reference chapter.
+
+---
+
+# 4. Chapter 7 — Displays and Feedback
+
+## Primary additions
+
+| Feature | Destination |
+|---|---|
+| DISPLAY MODE — toggle track names | Chapter 7 |
+| TEMPO/TICKS display toggle | Chapter 7 |
+| GLOBAL VIEW / EDIT — toggle VU meters | Chapter 7 |
+| Display time versus beats/measures | Chapter 7 + Chapter 21 |
+| Tempo versus ticks preference | Chapter 7 + Chapter 21 |
+| X-Touch display colours | Chapter 21 |
+| VU meter configuration | Chapter 21 |
+| Main/segment/assignment display preferences | Chapter 21 |
+| Always-send-VU preference | Chapter 21 |
+
+## Editorial distinction
+
+Chapter 7 explains **what feedback means**.
+
+Chapter 21 explains **how that feedback is configured**.
+
+---
+
+# 5. Chapter 8 — V-Pots
+
+## Primary additions
+
+| Feature | Destination |
+|---|---|
+| V-Pot press — reset to default | Chapter 8 |
+| SHIFT + press — centre | Chapter 8 |
+| CONTROL + press — minimum | Chapter 8 |
+| ALT + press — maximum | Chapter 8 |
+| OPTION + press — context-sensitive | Chapter 8 |
+| OPTION + press on Send — toggle Send | Chapter 14, referenced from Chapter 8 |
+| Knob sensitivity default | Chapter 21 |
+| Slow sensitivity | Chapter 21 |
+| Encoder slowdown | Chapter 21 |
+
+## Pattern to teach
+
+```text
+PRESS              Default
+SHIFT + PRESS      Centre
+CONTROL + PRESS    Minimum
+ALT + PRESS        Maximum
+OPTION + PRESS     Context-dependent
+```
+
+---
+
+# 6. Chapter 9 — Motor Faders
+
+## Primary additions
+
+| Feature | Destination |
+|---|---|
+| Select channel on fader touch | Chapter 9 + Chapter 21 |
+| Activate Volume Mode on fader touch | Chapter 9 + Chapter 21 |
+| Master-fader touch selects Master track | Chapter 9 |
+| Master-fader touch enters Master Edit Mode | Chapter 18 |
+| SHIFT + Master Fader — metronome volume | Chapter 19 |
+| FLIP — use faders like knobs | Chapter 13 / Chapter 14 |
+| SHIFT + FLIP — regular tracks vs Effect tracks | Chapter 13 |
+| Motor-fader preference | Chapter 21 |
+
+## Explicit cross-reference
+
+Chapter 9's existing discussion of automation should point forward to **Chapter 16 — Automation**.
+
+---
+
+# 7. Chapter 10 — Transport Controls
+
+## PLAY family
+
+| Feature | Destination |
+|---|---|
+| Double PLAY — cursor to song start | Chapter 10 |
+| SHIFT + PLAY — Repeat | Chapter 10 |
+| OPTION + PLAY — Punch In | Chapter 10 |
+| OPTION + SHIFT + PLAY — Punch Out | Chapter 10 |
+
+## STOP family
+
+| Feature | Destination |
+|---|---|
+| STOP again — cursor to start | Chapter 10 |
+| Double STOP — cursor to end | Chapter 10 |
+| Configurable Stop behaviour | Chapter 21 |
+
+## RECORD family
+
+| Feature | Primary destination |
+|---|---|
+| SHIFT + RECORD — Launcher overdub | Chapter 19 |
+| OPTION + RECORD — create clip/play/overdub | Chapter 19 |
+| Record behaviour preference | Chapter 21 |
+
+Chapter 10 should mention these and point forward rather than fully teaching Launcher workflows.
+
+## REWIND/FORWARD
+
+| Feature | Destination |
+|---|---|
+| OPTION + REWIND — previous marker | Chapter 15, introduced in Chapter 10 |
+| OPTION + FORWARD — next marker | Chapter 15, introduced in Chapter 10 |
+
+## Jog Wheel
+
+| Feature | Destination |
+|---|---|
+| SHIFT + Jog — fine position | Chapter 10 |
+| OPTION + Jog — tempo | Chapter 10 |
+| OPTION + SHIFT + Jog — fine tempo | Chapter 10 |
+| CONTROL + Jog — loop start | Chapter 10 |
+| CONTROL + SHIFT + Jog — fine loop start | Chapter 10 |
+| ALT + Jog — loop length | Chapter 10 |
+| ALT + SHIFT + Jog — fine loop length | Chapter 10 |
+
+## Other navigation controls
+
+| Feature | Destination |
+|---|---|
+| Arrow buttons behave as keyboard arrows | Chapter 10 |
+| ZOOM + horizontal arrows | Chapter 10 |
+| ZOOM + vertical arrows / track height | Chapter 10 |
+| Optional vertical Zoom parameter-mode behaviour | Chapter 21 |
+| SCRUB cycles editing modes | Chapter 10 |
+| NUDGE performs Tap Tempo | Chapter 10 |
+| REPEAT button | Chapter 10 |
+
+---
+
+# 8. Chapter 11 — Device Mode
+
+## Primary additions
+
+| Feature | Destination |
+|---|---|
+| BANK LEFT/RIGHT — previous/next device | Chapter 11 |
+| CHANNEL LEFT/RIGHT — parameter pages | Chapter 11 |
+| Hold CONTROL — expose devices | Chapter 11 |
+| CONTROL + V-Pot press — choose device | Chapter 11 |
+| Hold OPTION — expose parameter pages | Chapter 11 |
+| OPTION + V-Pot press — choose page | Chapter 11 |
+| OPTION + DEVICE — pin cursor device | Chapter 11 |
+| DEVICE again — Project/Track Parameter Mode | Chapter 11 |
+| Project/Track parameter control | Chapter 11 |
+| OPTION + BANK moves device outside Device Mode | Chapter 11 + Chapter 4 |
+
+## Diagram candidate
+
+Revise the device hierarchy diagram to map:
+
+```text
+BANK               Device
+CHANNEL             Parameter Page
+V-Pots              Parameters
+```
+
+---
+
+# 9. Chapter 12 — Browser Mode
+
+## Primary additions
+
+| Feature | Destination |
+|---|---|
+| Track-control knobs navigate columns | Chapter 12 |
+| V-Pot press enters filter/results | Chapter 12 |
+| V-Pot press confirms | Chapter 12 |
+| Jog Wheel scrolls results | Chapter 12 |
+| BROWSER/ENTER confirms and closes | Chapter 12 |
+| CANCEL discards | Chapter 12 |
+| SHIFT + BROWSER while browsing discards | Chapter 12 |
+| UP/DOWN — Browser tabs | Chapter 12 |
+| LEFT — insert before | Chapter 12 |
+| RIGHT — insert after | Chapter 12 |
+| ZOOM — replace device | Chapter 12 |
+| SHIFT + BROWSER from normal operation — insert before | Chapter 12 |
+| OPTION + BROWSER — insert after | Chapter 12 |
+| Hide unwanted Browser filter columns | Chapter 21, practical note in Chapter 12 |
+
+---
+
+# 10. Chapter 13 — Modifiers and Advanced Controls
+
+## Primary ownership
+
+This chapter owns the **modifier vocabulary**, not every modifier combination.
+
+| Feature | Destination |
+|---|---|
+| SHIFT concept | Chapter 13 |
+| OPTION concept | Chapter 13 |
+| CONTROL concept | Chapter 13 |
+| ALT concept | Chapter 13 |
+| UNDO | Chapter 13 / Chapter 20 |
+| SHIFT + UNDO — Redo | Chapter 13 / Chapter 20 |
+| SAVE | Chapter 13 / Chapter 20 |
+| FLIP | Chapter 13 |
+| SHIFT + FLIP | Chapter 13 |
+| CANCEL outside Browser — Escape | Chapter 13 |
+| ENTER outside Browser — Enter | Chapter 13 |
+
+## Modifier examples
+
+Use examples already taught elsewhere rather than duplicating complete command sets.
+
+The chapter should explain that modifier meanings are **patterns and tendencies**, not guarantees.
+
+---
+
+# 11. Chapter 14 — Mixer Edit Modes
+
+## Track Edit Mode
+
+Owns:
+
+- TRACK enters Track Edit Mode;
+- TRACK again enters Volume Edit Mode;
+- PAN twice alternative where documented;
+- track-parameter V-Pot assignments;
+- fine adjustment with SHIFT;
+- Crossfader/Sends preference variation.
+
+## Volume Mode
+
+Owns:
+
+- eight V-Pots controlling channel volumes;
+- SHIFT fine control.
+
+## Panorama Mode
+
+Owns:
+
+- PAN;
+- eight panorama controls;
+- SHIFT fine control.
+
+## Send Modes
+
+Owns:
+
+- SEND;
+- repeated SEND cycles Send 1–8;
+- SHIFT + SEND cycles backwards;
+- SEND + SELECT 1–8 direct selection;
+- V-Pots control send across eight tracks;
+- SHIFT fine control;
+- OPTION + V-Pot press toggles Send.
+
+## Related channel-strip controls
+
+Briefly cross-reference:
+
+- ARM;
+- MUTE;
+- SOLO;
+- faders;
+- SELECT.
+
+These remain general channel-strip functions rather than Edit Mode functions.
+
+---
+
+# 12. Chapter 15 — Markers and Advanced Navigation
+
+## Primary ownership
+
+| Feature | Destination |
+|---|---|
+| MARKER — enter Marker Mode | Chapter 15 |
+| SHIFT + MARKER — show/hide markers | Chapter 15 |
+| OPTION + MARKER — create marker | Chapter 15 |
+| OPTION + REWIND — previous marker | Chapter 15 |
+| OPTION + FORWARD — next marker | Chapter 15 |
+| V-Pot press on marker — play from marker | Chapter 15 |
+
+This chapter closes the gap that originally triggered the full audit.
+
+---
+
+# 13. Chapter 16 — Automation
+
+## Primary ownership
+
+| Feature | Destination |
+|---|---|
+| READ/OFF | Chapter 16 |
+| OPTION + READ/OFF — reset overrides | Chapter 16 |
+| WRITE | Chapter 16 |
+| TRIM maps to Read | Chapter 16 |
+| TOUCH | Chapter 16 |
+| LATCH | Chapter 16 |
+| Motor-fader touch behaviour during automation | Chapter 16 |
+| Automation playback feedback | Chapter 16, building on Chapter 9 |
+| Flip Arranger/Clip automation preference | Chapter 21 |
+
+## Important teaching requirement
+
+Explain the behaviour of each automation mode in terms of:
+
+> **touch → move → release**
+
+rather than merely defining button labels.
+
+---
+
+# 14. Chapter 17 — Groups, Layers and Drum Pads
+
+## Group navigation
+
+Owns:
+
+- flat navigation;
+- hierarchical navigation;
+- SELECT group;
+- SELECT again to enter;
+- long SELECT to leave;
+- CONTROL + SELECT group expansion;
+- flat-mode expanded-state behaviour.
+
+## Layers / Drum Pads
+
+Owns:
+
+- enter Layers Mode by repeated SELECT;
+- leave Layers Mode by long SELECT;
+- Volume;
+- Panorama;
+- Sends;
+- Mute;
+- Solo.
+
+## Configuration
+
+Choice of flat/hierarchical navigation is configured in Chapter 21.
+
+---
+
+# 15. Chapter 18 — Master and EQ Modes
+
+## Master Edit Mode
+
+Owns:
+
+| Control | Function |
+|---|---|
+| Master-fader touch | Enter Master Mode |
+| V-Pot 1 | Master volume |
+| V-Pot 1 press | Reset master volume |
+| V-Pot 2 | Master panorama |
+| V-Pot 2 press | Reset panorama |
+| V-Pots 3–5 press | Audio-engine controls |
+| V-Pot 7 press | Previous project |
+| V-Pot 8 press | Next project |
+
+## EQ Mode
+
+Owns:
+
+- EQ button;
+- EQ+ association;
+- Device-Mode-like parameter navigation;
+- automatic EQ+ insertion when no EQ exists.
+
+## Required warning
+
+> Entering EQ Mode may modify the Bitwig project by inserting EQ+.
+
+---
+
+# 16. Chapter 19 — Advanced Recording and Overdub
+
+## Record/overdub ownership
+
+| Feature | Destination |
+|---|---|
+| SHIFT + RECORD — Launcher overdub | Chapter 19 |
+| OPTION + RECORD — create clip/play/overdub | Chapter 19 |
+| OVR — Arranger overdub | Chapter 19 |
+| SHIFT + OVR — Launcher overdub | Chapter 19 |
+| Arranger vs Launcher distinction | Chapter 19 |
+| New Clip Length | Chapter 19 |
+| ALT + SELECT — choose new clip length | Chapter 19 |
+| SHIFT + Track SELECT — choose new clip length | Chapter 19 |
+| Clip Based Looper | Chapter 22, introduced here |
+| Footswitch overdub workflow | Chapter 22, referenced here |
+| Flip Arranger/Clip Record preference | Chapter 21 |
+
+## Status
+
+This chapter remains provisional, but the matrix confirms that it has enough coherent material to justify its existence.
+
+---
+
+# 17. Chapter 20 — Towards a Mouse-Free (or Mouse-Lite) Workflow
+
+The existing Chapter 13 moves here and becomes a synthesis chapter.
+
+## New material to incorporate
+
+| Function | Destination |
+|---|---|
+| Note Editor pane toggle | Chapter 20 |
+| Automation Editor pane toggle | Chapter 20 |
+| Mixer pane toggle | Chapter 20 |
+| Plug-in window toggle | Chapter 20 |
+| SHIFT + Toggle Device — layouts | Chapter 20 |
+| OPTION + Toggle Device — expanded state | Chapter 20 |
+| AUX — Arrange layout | Chapter 20 |
+| BUSSES — Mix layout | Chapter 20 |
+| OUTPUTS — Edit layout | Chapter 20 |
+| UNDO/REDO | Chapter 20, initially taught in Chapter 13 |
+| SAVE | Chapter 20, initially taught in Chapter 13 |
+| Marker navigation | Chapter 20, taught in Chapter 15 |
+| Device/Browser workflows | Chapter 20 |
+| Project switching | Chapter 20, taught in Chapter 18 |
+| Metronome operations | Chapter 20 / Chapter 19 |
+| Custom buttons | Chapter 22 |
+| Footswitch workflows | Chapter 22 |
+
+## Purpose
+
+This chapter should demonstrate **complete workflows**, not introduce unfamiliar commands.
+
+---
+
+# 18. Chapter 21 — Configuring DrivenByMoss for the X-Touch
+
+## Baseline configuration
+
+Owns:
+
+- recommended firmware level;
+- MC operating mode;
+- DrivenByMoss X-Touch profile;
+- X-Touch display colours.
+
+## Display preferences
+
+Owns:
+
+- main display;
+- segment display;
+- assignment display;
+- track-name display;
+- time vs beats/measures;
+- tempo vs ticks;
+- VU configuration.
+
+## Fader preferences
+
+Owns:
+
+- motor-fader setting;
+- use faders like knobs;
+- select channel on fader touch;
+- activate Volume Mode on touch.
+
+## Navigation preferences
+
+Owns:
+
+- flat versus hierarchical track navigation;
+- include FX/Master tracks;
+- exclude deactivated items;
+- startup mode.
+
+## Transport preferences
+
+Owns:
+
+- Stop behaviour;
+- Pause/PLAY-stop behaviour;
+- Arranger/Launcher Record/Automation flip.
+
+## Encoder preferences
+
+Owns:
+
+- default sensitivity;
+- slow sensitivity;
+- encoder slowdown.
+
+## Browser preferences
+
+Owns:
+
+- hidden Browser filter columns.
+
+## Other
+
+- New Clip Length default;
+- Zoom behaviour;
+- Quantize amount.
+
+---
+
+# 19. Chapter 22 — Customisation and Expansion
+
+## Function buttons
+
+Owns:
+
+- assignable F-buttons;
+- arbitrary Action assignment;
+- discrepancy between F1–F8 general documentation and F1–F5 preference listing must be verified before final publication.
+
+## Footswitches
+
+Owns:
+
+- Footswitch 1 / USER A;
+- Footswitch 2 / USER B;
+- custom assignments;
+- Clip Based Looper.
+
+## Extenders
+
+Owns:
+
+- Main;
+- Extender;
+- MCU Extender;
+- multiple devices;
+- restart requirement after configuration changes;
+- master/transport role of Main unit.
+
+## Optional material
+
+- FX-track pinning with multiple controllers.
+
+---
+
+# 20. Chapter 23 — Quick Reference
+
+Every practical command taught in Chapters 1–22 should eventually appear here.
+
+## Two indexes
+
+### By physical control
+
+Examples:
+
+```text
+PLAY
+SHIFT + PLAY
+OPTION + PLAY
+
+MARKER
+SHIFT + MARKER
+OPTION + MARKER
+```
+
+### By task
+
+Examples:
+
+```text
+Playback
+Recording
+Markers
+Automation
+Devices
+Browser
+Mixing
+Groups
+Configuration
+```
+
+The reference must be **generated from the finished teaching structure**, not used to design it.
+
+---
+
+# 21. General Channel-Strip Controls
+
+Several functions do not justify separate chapters but need a clear teaching home.
+
+## ARM
+
+| Feature | Destination |
+|---|---|
+| ARM individual track | Chapter 14 |
+| SHIFT + ARM across bank | Chapter 14 |
+
+## MUTE
+
+| Feature | Destination |
+|---|---|
+| MUTE individual track/layer | Chapter 14 |
+| OPTION + MUTE — clear all mutes | Chapter 14 |
+| SHIFT + MUTE — monitor | Chapter 14 |
+
+## SOLO
+
+| Feature | Destination |
+|---|---|
+| SOLO individual track/layer | Chapter 14 |
+| OPTION + SOLO — clear solos | Chapter 14 |
+| SHIFT + SOLO — auto-monitor | Chapter 14 |
+| Global SOLO — clear all solos | Chapter 13 / Chapter 20 |
+| SHIFT + global SOLO — clear all mutes | Chapter 13 / Chapter 20 |
+
+Care must be taken to distinguish channel-strip buttons from global MCU commands.
+
+---
+
+# 22. Metronome
+
+## Primary destination
+
+Chapter 19 or Chapter 20, with basic use also appearing in Chapter 10 where appropriate.
+
+Owns:
+
+- CLICK / Metronome;
+- SHIFT + Metronome — ticks;
+- SHIFT + Master Fader — metronome volume.
+
+The three controls should be explained together as one workflow.
+
+---
+
+# 23. Project Operations
+
+| Feature | Primary destination |
+|---|---|
+| SAVE | Chapter 13 / Chapter 20 |
+| UNDO | Chapter 13 / Chapter 20 |
+| REDO | Chapter 13 / Chapter 20 |
+| DROP — duplicate selected track | Chapter 13 / Chapter 20 |
+| Previous/next project | Chapter 18 / Chapter 20 |
+
+---
+
+# 24. Functions Assigned to Configuration / Reference Only
+
+The following need documenting but do not require major tutorial treatment:
+
+- Quantize Amount;
+- low-level display protocol choices not relevant to X-Touch;
+- always-send-VU option;
+- multi-controller FX pinning;
+- Extender restart requirement;
+- detailed generic MCU display settings not used by the X-Touch profile.
+
+These belong in Chapter 21, Chapter 22 or Chapter 23.
+
+---
+
+# 25. Deliberately Out of Scope
+
+The following should remain represented in the audit but need not become normal Project XTC teaching material unless the scope later expands.
+
+## Other hardware-specific behaviour
+
+- X-Touch One-specific functionality;
+- Asparion-specific settings;
+- iCON-specific settings;
+- single-fader-controller options unrelated to the X-Touch;
+- non-X-Touch display implementations.
+
+## LOCK
+
+The source notes that LOCK is not present on the standard MCU.
+
+Unless testing shows a relevant X-Touch mapping, it should be marked:
+
+**N/A — no normal X-Touch teaching requirement.**
+
+## Deep MCU protocol implementation
+
+Project XTC is a user's companion, not an MCU protocol-development specification.
+
+Raw MIDI implementation details remain outside scope unless they directly help diagnose a practical X-Touch problem.
+
+---
+
+# 26. Items Requiring Verification Before Publication
+
+The audit has identified a small number of points that should be tested rather than simply copied from the reference.
+
+## F-button count
+
+The general functionality documentation refers to F1–F8.
+
+The preferences documentation specifically lists F1–F5.
+
+**Action:** verify against the current DrivenByMoss configuration UI.
+
+## Modifier labels
+
+The physical X-Touch button legends and DrivenByMoss terminology should be checked so that OPTION, CONTROL and ALT are named exactly as readers see them.
+
+## EQ automatic insertion
+
+Verify that current DrivenByMoss/Bitwig behaviour still inserts EQ+ automatically when entering EQ Mode on a track without an equalizer.
+
+## Master Mode audio-engine controls
+
+Verify the exact current behaviour of V-Pots 3–5.
+
+## Track navigation preferences
+
+Verify the current UI names for Flat and Hierarchical navigation.
+
+## Fader-touch behaviour
+
+Verify defaults for:
+
+- Select Channel on Fader Touch;
+- Activate Volume Mode on Fader Touch.
+
+These are preferences and should never be described as unconditional unless the Project XTC baseline explicitly enables them.
+
+---
+
+# 27. Duplication Rules
+
+Some functionality naturally appears in more than one chapter.
+
+To prevent repetition, use the following rule:
+
+> **Teach once, remind elsewhere.**
+
+Examples:
+
+### OPTION + REWIND
+
+- **Teach:** Chapter 15 — Markers
+- **Mention:** Chapter 10 — Transport
+
+### SHIFT + Master Fader
+
+- **Teach:** Metronome workflow
+- **Mention:** Chapter 9 — Motor Faders
+
+### OPTION + BANK
+
+- **Teach:** Chapter 11 — Device Mode
+- **Mention:** Chapter 4 — Banking
+
+### Browser filters
+
+- **Teach configuration:** Chapter 21
+- **Practical recommendation:** Chapter 12
+
+### Fader-touch selection
+
+- **Explain effect:** Chapter 9
+- **Explain configuration:** Chapter 21
+
+This approach preserves completeness without making the book repetitive.
+
+---
+
+# 28. Feature Assignment Outcome
+
+All major △ and ✗ items identified by Part 2 now have a destination.
+
+The revised structure accounts for:
+
+- banking variants;
+- modifier behaviour;
+- SELECT modifiers;
+- display controls;
+- V-Pot press functions;
+- fader-touch options;
+- advanced transport;
+- Jog Wheel modifiers;
+- Marker Mode;
+- Device navigation;
+- Browser controls;
+- mixer edit modes;
+- channel ARM/MUTE/SOLO controls;
+- Automation modes;
+- group navigation;
+- Layers and Drum Pads;
+- Master Mode;
+- EQ Mode;
+- advanced recording;
+- Arranger/Launcher overdub;
+- New Clip Length;
+- Bitwig pane/layout control;
+- metronome functions;
+- Save/Undo/Redo;
+- F-buttons;
+- footswitches;
+- Clip Based Looper;
+- Extenders;
+- DrivenByMoss hardware/workflow/transport/Browser preferences.
+
+No substantial X-Touch-relevant feature identified by the coverage audit remains without a proposed home.
+
+---
+
+# 29. Part 3 Completeness Check
+
+The editorial pipeline is now:
+
+```text
+DrivenByMoss MCU Reference
+            │
+            ▼
+mcu_feature_inventory.md
+            │
+            ▼
+mcu_coverage_audit.md
+            │
+            ▼
+revision_plan.md
+            │
+            ├── Existing chapter revisions
+            ├── New teaching chapters
+            ├── Configuration/reference
+            └── Explicit exclusions
+            │
+            ▼
+Revised Contents
+            │
+            ▼
+Manuscript Revision
+```
+
+The feature-assignment stage is therefore **complete**.
+
+---
+
+# 30. Next Part 3 Task
+
+The next task is to turn this architecture into the **proposed revised Contents page**.
+
+That should include:
+
+1. final Part names;
+2. final chapter titles;
+3. provisional chapter numbers;
+4. identification of existing versus new chapters;
+5. movement of the current Mouse-Free / Mouse-Lite chapter;
+6. the proposed Configuration and Quick Reference material.
+
+Before renaming any manuscript files, the revised Contents should be reviewed as a whole.
+
+Only after the Contents structure is agreed should chapter renumbering and manuscript revision begin.
