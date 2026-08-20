@@ -1,5 +1,5 @@
 ---
-chapter: 8
+chapter: 9
 title: V-Pots (Rotary Encoders)
 revision: "1.0"
 status: draft

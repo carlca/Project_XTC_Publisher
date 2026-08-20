@@ -1,5 +1,5 @@
 ---
-chapter: 12
+chapter: 13
 title: Browser Mode
 revision: "1.0"
 status: draft

@@ -1,5 +1,5 @@
 ---
-chapter: 11
+chapter: 12
 title: Device Mode
 revision: "1.0"
 status: draft
