@@ -1,649 +1,1460 @@
 ---
 chapter: 20
-title: Towards a Mouse-Free (or Mouse-Lite) Workflow
-revision: "1.0"
+title: "Towards a Mouse-Free (or Mouse-Lite) Workflow"
 status: draft
 ---
 
-If you have made it this far, you may have noticed something.
+# Towards a Mouse-Free (or Mouse-Lite) Workflow
 
-The mouse is spending rather more time sitting quietly on the desk.
+We now know that the X-Touch can do rather a lot.
 
-That is no accident.
+It can:
 
-The purpose of the X-Touch is not necessarily to eliminate the mouse completely. Bitwig is a sophisticated graphical application, and there are many tasks for which a mouse remains an excellent tool.
+- navigate tracks and banks;
+- select and control devices;
+- browse for devices and presets;
+- control volume, panorama and Sends;
+- navigate markers;
+- enter Groups;
+- work with layers and drum pads;
+- control automation;
+- record and overdub;
+- operate at Master and project level.
 
-But there is a considerable difference between **using the mouse because it is the best tool for the job** and using it simply because reaching for it has become a habit.
+It would therefore be tempting to turn all of this into a challenge:
 
-This chapter is about breaking that habit.
+> **Can we use Bitwig without touching the mouse at all?**
 
-Not Mouse-Free at all costs.
+Perhaps.
 
-**Mouse-Lite.**
+But that is not really the most useful question.
 
-## From Controls to Workflows
+A better one is:
 
-Throughout this book we have examined individual parts of the X-Touch.
+> **When is the X-Touch a better way of expressing what I want to do?**
 
-We have looked at:
+That leads us away from the idea of a strictly mouse-free workflow and towards something more practical:
 
-- banks and channels
-- modes
-- SELECT
-- displays and feedback
-- V-Pots
-- motor faders
-- transport controls
-- Device Mode
-- Browser Mode
+**a Mouse-Lite workflow.**
 
-Learning those features individually was necessary.
+---
 
-But nobody sits down to make music and thinks:
+## The Mouse Is Not the Enemy
 
-> **"I think I'll operate some V-Pots now."**
+There are things a mouse does extremely well.
 
-You think:
+If you need to:
 
-> **"The bass is too loud."**
+- draw a detailed automation curve;
+- edit individual MIDI notes;
+- make a precise graphical selection;
+- rearrange complicated regions;
+- configure an unfamiliar device;
+- perform detailed housekeeping;
 
-Or:
+Bitwig's graphical interface may be exactly the right tool.
 
-> **"That synth needs more filter movement."**
+There is no prize for refusing to use it.
 
-Or:
-
-> **"I need a delay on this track."**
-
-The real goal is therefore not to learn the controls.
-
-It is to combine them into **workflows**.
-
-## The Controller Should Disappear
-
-At first, using the X-Touch requires conscious thought.
-
-You ask yourself:
-
-- Which button do I press?
-- Which mode do I need?
-- What does this encoder do?
-- Which bank contains that track?
-
-That is completely normal.
-
-With practice, those questions begin to disappear.
-
-You hear that the bass is too loud and your hand moves to the appropriate fader.
-
-You want to adjust an instrument and instinctively select the track and enter Device Mode.
-
-You want to stop playback and your hand finds STOP without looking.
-
-The controller has not become simpler.
-
-**You have stopped thinking about the controller.**
-
-That is the goal.
-
-::: field-note
-
-A well-learned control surface eventually becomes rather like a musical instrument.
-
-You stop thinking about the mechanism and start thinking about the result.
-
-:::
-
-## Workflow 1 — Balancing a Mix
-
-Consider one of the most common tasks in any DAW:
-
-> **Balancing track levels.**
-
-With a mouse, you might locate each channel in Bitwig's mixer and adjust its virtual fader individually.
-
-With the X-Touch, the process becomes physical.
-
-Start playback.
-
-Listen.
-
-Place your fingers on several faders.
-
-Bring one instrument down.
-
-Raise another slightly.
-
-Perhaps reduce the vocal while increasing the drums.
-
-You are no longer adjusting a sequence of individual graphical objects.
-
-You are balancing several sounds together.
-
-If the project contains more than eight tracks, change banks.
-
-The scribble strips update.
-
-The motor faders move to the levels of the newly visible tracks.
-
-Continue mixing.
-
-The workflow becomes:
+The problem arises when reaching for the mouse becomes automatic.
 
 ```text
-PLAY
-  │
-  ▼
-Listen
-  │
-  ▼
-Adjust Faders
-  │
-  ▼
-Change Bank
-  │
-  ▼
-Listen Again
+Want to change something
+        │
+        ▼
+Reach for mouse
+        │
+        ▼
+Find pointer
+        │
+        ▼
+Find object
+        │
+        ▼
+Click
 ```
 
-Notice how little attention this requires from the computer screen.
+Sometimes that is appropriate.
 
-Your attention is primarily on the music.
+Sometimes the X-Touch already has the answer beneath your fingers.
 
-## Workflow 2 — Adjusting a Device
+---
 
-Now imagine hearing a synthesizer whose filter needs adjustment.
+## From Commands to Intentions
 
-The sequence is already familiar:
+At the beginning of this guide, we learned individual operations.
+
+```text
+Move fader
+Press SELECT
+Turn V-Pot
+Press PLAY
+```
+
+Then we learned modes and modifiers.
+
+Now we can stop thinking primarily in terms of commands.
+
+Instead, start with the intention:
+
+> **What am I trying to accomplish?**
+
+For example:
+
+```text
+"The vocal is too loud."
+```
+
+That intention may translate directly into:
+
+```text
+Find vocal channel
+       ↓
+Move fader
+```
+
+Or:
+
+```text
+"The delay needs more feedback."
+```
+
+may become:
+
+```text
+Select delay track/device
+       ↓
+Device Mode
+       ↓
+Find parameter
+       ↓
+Turn V-Pot
+```
+
+The controller becomes useful when the physical operation follows naturally from the musical thought.
+
+---
+
+## The Shortest Useful Path
+
+A Mouse-Lite workflow is not necessarily the workflow with the fewest button presses.
+
+It is the workflow with the least unnecessary interruption.
+
+Compare:
+
+```text
+Hear problem
+    ↓
+Look at screen
+    ↓
+Find pointer
+    ↓
+Find track
+    ↓
+Find parameter
+    ↓
+Adjust
+```
+
+with:
+
+```text
+Hear problem
+    ↓
+Touch control
+    ↓
+Adjust
+```
+
+The second route may allow your attention to remain on the sound.
+
+That is the real advantage.
+
+---
+
+## Learn Locations, Not Lists
+
+One reason hardware becomes fast is that the body learns where things are.
+
+After enough use, you do not think:
+
+> The PLAY button is located at this coordinate on the controller.
+
+Your hand simply goes there.
+
+The same can become true of:
+
+- MUTE;
+- SOLO;
+- SELECT;
+- ARM;
+- SEND;
+- DEVICE;
+- BANK;
+- CHANNEL;
+- modifiers;
+- transport controls.
+
+This is different from using a graphical interface, where controls may move, disappear, scroll out of view or belong to another window.
+
+Physical controls have geography.
+
+That geography can become muscle memory.
+
+---
+
+## Keep Your Eyes on the Feedback
+
+Mouse-Lite does not mean screen-blind.
+
+The X-Touch itself provides displays, LEDs, motor positions and V-Pot rings.
+
+Bitwig provides additional feedback on the computer.
+
+Use both.
+
+The important change is that looking does not always have to be followed by pointing.
+
+A useful pattern is:
+
+```text
+Look
+  ↓
+Understand context
+  ↓
+Operate physically
+  ↓
+Listen
+```
+
+rather than:
+
+```text
+Look
+  ↓
+Find pointer
+  ↓
+Point
+  ↓
+Click
+  ↓
+Look again
+```
+
+---
+
+## Build Workflows from Small Habits
+
+Trying to become "mouse-free" overnight would be frustrating.
+
+Instead, identify operations that you perform repeatedly.
+
+Perhaps:
+
+```text
+Play / Stop
+
+Track selection
+
+Volume
+
+Pan
+
+Mute / Solo
+
+Banking
+```
+
+Use the X-Touch for those until they become automatic.
+
+Then add:
+
+```text
+Sends
+
+Device Mode
+
+Markers
+
+Automation
+
+Browser
+```
+
+Eventually, several small habits connect into complete workflows.
+
+---
+
+# Workflow 1 — Navigating a Project
+
+Suppose you want to listen to the chorus.
+
+A screen-oriented workflow might involve finding the chorus visually and clicking the timeline.
+
+But if the project has useful markers:
+
+```text
+OPTION + FORWARD
+       ↓
+Next Marker
+       ↓
+OPTION + FORWARD
+       ↓
+Chorus
+       ↓
+PLAY
+```
+
+You are navigating the **structure of the music**, not pixels on a timeline.
+
+That distinction becomes increasingly valuable as projects grow.
+
+---
+
+## Add Markers While You Work
+
+If you repeatedly visit a position, give it a marker.
+
+For example:
+
+```text
+Intro
+Verse
+Chorus
+Breakdown
+Outro
+```
+
+or more task-specific landmarks:
+
+```text
+Vocal problem
+Bass edit
+Big transition
+Mix check
+```
+
+The project gradually acquires a map that the X-Touch can navigate.
+
+The mouse is not being eliminated.
+
+The need to search visually is being reduced.
+
+---
+
+# Workflow 2 — Moving from the Mix into Detail
+
+Suppose you are balancing the top-level project:
+
+```text
+Drums   Bass   Guitars   Keys   Vocals   FX
+```
+
+Something is wrong with the snare.
+
+Instead of opening the Group on screen:
+
+```text
+SELECT Drums
+      ↓
+ENTER
+      ↓
+Kick   Snare   Hats   Toms   Percussion
+      ↓
+Adjust Snare
+      ↓
+CANCEL
+      ↓
+Drums   Bass   Guitars   Keys   Vocals   FX
+```
+
+The X-Touch has effectively changed magnification.
+
+You moved:
+
+```text
+Project
+   ↓
+Group
+   ↓
+Child Track
+```
+
+made the adjustment, and came back out.
+
+This is hierarchical navigation becoming a workflow rather than an abstract feature.
+
+---
+
+# Workflow 3 — Working with a Device
+
+Suppose a synth needs adjustment.
+
+The process might be:
 
 ```text
 SELECT Track
-     │
-     ▼
-Device Mode
-     │
-     ▼
+      ↓
+DEVICE
+      ↓
 Choose Device
-     │
-     ▼
+      ↓
 Choose Parameter Page
-     │
-     ▼
-Adjust V-Pot
-     │
-     ▼
-Listen
+      ↓
+Turn V-Pot
 ```
 
-Earlier in the book, each of these steps was a separate concept.
+If the parameter would be more naturally performed with a fader, FLIP may give you another physical approach.
 
-Now they form one operation.
+The important thing is that the X-Touch can move from:
 
-You are no longer thinking:
+```text
+Track
+```
 
-> **"I am using SELECT, followed by Device Mode, followed by a V-Pot."**
+to:
 
-You are thinking:
+```text
+Device
+```
 
-> **"I'm adjusting the synth."**
+to:
 
-That change in thinking is important.
+```text
+Parameter
+```
 
-## Workflow 3 — Adding an Effect
+without requiring every stage to be performed graphically.
 
-Suppose the vocal needs some delay.
+---
 
-Again, begin with focus.
+## Browser When You Need Something New
 
-Select the vocal track.
+Sometimes the required device is not already there.
 
-Open the Browser.
-
-Locate an appropriate delay.
-
-Choose it.
-
-Move into Device Mode and adjust its parameters.
+That is where Browser Mode enters the workflow.
 
 Conceptually:
 
 ```text
-SELECT
-   │
-   ▼
-Browse
-   │
-   ▼
-Choose
-   │
-   ▼
-Device Mode
-   │
-   ▼
-Adjust
-   │
-   ▼
+Need something
+     ↓
+Browser Mode
+     ↓
+Navigate choices
+     ↓
+Select
+     ↓
+Return to work
+```
+
+Again, the goal is not to prove that the Bitwig Browser can be avoided.
+
+It is to prevent the creative process from unnecessarily turning into a mouse-navigation exercise.
+
+---
+
+# Workflow 4 — Recording a Performance
+
+A recording workflow can connect many of the controls we have already learned.
+
+```text
+Navigate to position
+       ↓
+SELECT Track
+       ↓
+ARM
+       ↓
+Set metronome if needed
+       ↓
+RECORD
+       ↓
+Perform
+       ↓
+STOP
+       ↓
 Listen
 ```
 
-What once required several trips between different areas of the Bitwig interface can increasingly be treated as a single workflow.
+If the take is wrong:
 
-::: field-note
+```text
+UNDO
+  ↓
+Try again
+```
 
-The important measure of success is not how many mouse clicks you have eliminated.
+If it is nearly right, another pass or overdub may be more appropriate.
 
-It is how often you can remain focused on the musical task without interrupting yourself to operate the computer.
+The controller begins to support the **cycle of recording**, rather than merely the moment when RECORD is pressed.
 
-:::
+---
 
-## Workflow 4 — Recording and Reviewing
+# Workflow 5 — Performing Automation
 
-Transport controls become particularly useful during recording.
+Suppose a track needs a level ride.
 
-Imagine recording a part.
+Rather than drawing the automation first:
 
-You prepare the appropriate track and position the transport.
+```text
+Choose automation mode
+       ↓
+PLAY
+       ↓
+Listen
+       ↓
+Touch fader
+       ↓
+Perform movement
+       ↓
+Release
+       ↓
+Listen again
+```
 
-Then:
+The automation is created as a musical gesture.
 
-1. Press RECORD.
-2. Perform the part.
-3. Press STOP.
-4. Navigate back to the beginning.
-5. Press PLAY.
-6. Listen.
-7. Repeat if necessary.
+If it needs correction, perform another pass.
 
-This may sound almost trivial.
+This is one of the clearest examples of the X-Touch offering something fundamentally different from a mouse.
 
-That is precisely the point.
+A mouse edits a line extremely well.
 
-The mechanics of operating the DAW begin to disappear.
+A fader performs a movement extremely well.
 
-You remain focused on performing and listening.
+Use each where it makes sense.
 
-## Workflow 5 — Writing Automation
+---
 
-The motor faders provide another particularly tactile workflow.
+# Workflow 6 — The X-Touch as a Dub Mixing Desk
 
-Suppose a track needs to rise gradually during a section.
+Now for an example that brings many of these ideas together.
 
-Rather than drawing the change with the mouse, you can perform it.
+A traditional dub mix is not simply a set of static mixer settings.
 
-Prepare the appropriate automation state.
+The **mix itself becomes a performance**.
 
-Start playback.
+Faders move.
 
-Touch the fader.
+Channels disappear and return.
 
-Move it as the music plays.
+Sounds are thrown into delays.
 
-The gesture becomes automation.
+Reverbs bloom and vanish.
 
-When you play the project again, the motor fader can reproduce that movement.
+Effects become rhythmic events.
 
-This is an excellent example of the difference between editing music and **performing a mix**.
+That makes dub an unusually good demonstration of what a physical control surface can offer.
 
-The result may ultimately be the same automation data.
+---
 
-The experience of creating it is very different.
+## Set Up the Project
 
-## Keep Your Eyes Where They Matter
+Imagine a simplified arrangement containing:
 
-One unexpected benefit of a control surface is that it can change how you use the computer display.
+```text
+Drums
+Bass
+Skank
+Organ
+Percussion
+Vocal
+FX 1
+FX 2
+```
 
-Without the X-Touch, the screen must often perform two jobs:
+And suppose the project has two Sends:
 
-1. Show you useful information.
-2. Provide the controls needed to manipulate that information.
+```text
+Send 1 → Reverb
 
-The X-Touch separates those roles.
+Send 2 → Delay
+```
 
-The screen can show:
+The exact effects do not matter.
 
-- the arrangement
-- waveforms
-- device interfaces
-- automation
-- meters
-- other visual information
+The important point is that the tracks can be fed into them independently.
 
-while your hands operate:
+---
 
-- faders
-- V-Pots
-- SELECT buttons
-- transport controls
-- navigation
+## Start with the Faders
 
-The screen becomes more useful because you no longer need to keep pointing at everything you want to change.
+In the normal mixer view, the eight motor faders give us:
 
-## Listen More, Look Less
+```text
+Drums   Bass   Skank   Organ   Perc   Vocal   FX 1   FX 2
+  │       │      │       │      │      │       │      │
+  ▼       ▼      ▼       ▼      ▼      ▼       ▼      ▼
+█████   █████  █████   █████  █████  █████   █████  █████
+```
 
-Music production software is extraordinarily visual.
+Now the mix is physical.
 
-That can sometimes encourage us to make decisions with our eyes.
+You can ride several elements at once.
 
-A waveform looks too small.
+You can bring the organ forward.
 
-A meter looks too low.
+Pull the vocal back.
 
-A knob appears to be in the wrong position.
+Drop the percussion.
 
-But ultimately we are making sound.
+Return the drums.
 
-Physical controls make it easier to perform some operations without staring at their graphical equivalents.
+These are not eight separate editing operations.
 
-Move a fader while listening.
+They can be part of one continuous performance.
 
-Turn an encoder while listening.
+---
 
-Balance two tracks while listening.
+## Mutes Become Musical Controls
 
-Choose a sound and then judge it by listening.
+MUTE does not have to be merely corrective.
 
-::: field-note
-
-The X-Touch cannot tell you whether something sounds good.
-
-Fortunately, you already own the equipment required for that job.
-
-Your ears.
-
-:::
-
-## When the Mouse Is Better
-
-There is no prize for avoiding the mouse.
-
-Some tasks are inherently graphical.
-
-Detailed editing of audio events, arranging clips, drawing complex automation and interacting with visual plug-in interfaces may be quicker and clearer with a mouse or trackpad.
-
-Use it.
-
-A Mouse-Lite workflow is not a set of rules.
-
-It is a change in instinct.
-
-Instead of automatically asking:
-
-> **"Where do I click?"**
-
-ask:
-
-> **"What is the easiest way to do this?"**
-
-Sometimes the answer will be the X-Touch.
-
-Sometimes it will be the mouse.
-
-Sometimes it may be the computer keyboard.
-
-The best workflow uses all of them appropriately.
-
-::: reality-check
-
-If performing an operation from the X-Touch takes considerably longer than doing it with the mouse, use the mouse.
-
-Mouse-Lite should make working with Bitwig easier, not turn mouse avoidance into a competitive sport.
-
-:::
-
-## Build Muscle Memory Gradually
-
-Do not attempt to stop using the mouse overnight.
-
-That usually produces frustration rather than fluency.
-
-Instead, choose a few operations that you perform frequently.
+In a dub mix it can become rhythmic.
 
 For example:
 
-- PLAY and STOP
-- track selection
-- volume changes
-- pan
-- bank navigation
-
-Use the X-Touch for those consistently.
-
-Once they become automatic, add another workflow.
-
-Perhaps:
-
-- send adjustment
-- Device Mode
-- parameter control
-
-Then add Browser Mode.
-
-Over time, the number of occasions on which you instinctively reach for the mouse begins to shrink.
-
-Not because you are deliberately avoiding it.
-
-Because your hands already know a better way.
-
-## When You Get Lost
-
-Even experienced users occasionally find themselves wondering what the controller is doing.
-
-When that happens, return to the mental model we have developed throughout this book.
-
-Ask:
-
-1. **Which track is selected?**
-2. **Which bank am I viewing?**
-3. **Which mode am I in?**
-4. **What are the scribble strips showing?**
-5. **What do the LEDs tell me?**
-6. **What does this control represent right now?**
-
-Do not start pressing buttons randomly.
-
-The X-Touch is usually already telling you the answer.
-
-> **Observe before you adjust.**
-
-That principle has appeared repeatedly throughout this book for a reason.
-
-## The X-Touch Is Not Bitwig
-
-There is one final distinction worth making.
-
-The X-Touch does not replace Bitwig.
-
-Nor should it.
-
-Bitwig remains the environment in which the project exists.
-
-The X-Touch provides another way of interacting with that environment.
-
-Some things are better represented visually.
-
-Some things are better controlled physically.
-
-The power comes from combining the two.
-
 ```text
-            Eyes
-              │
-              ▼
-           Bitwig
-              ▲
-              │
-          Feedback
-              │
-              ▼
-           X-Touch
-              ▲
-              │
-              ▼
-            Hands
-
-              +
-
-            Ears
+Full Mix
+   ↓
+Mute Drums
+   ↓
+Bass + Skank + Vocal
+   ↓
+Return Drums
+   ↓
+Mute Vocal
+   ↓
+Instrumental passage
 ```
 
-The computer provides the visual workspace.
+The mixer becomes part of the arrangement.
 
-The X-Touch provides the tactile workspace.
+You are deciding in real time what the listener hears.
 
-Your ears decide what matters.
+---
 
-## From Interface to Instrument
+## Move to the Reverb Send
 
-When we began, the X-Touch could easily have appeared to be an intimidating collection of:
+Press SEND to expose the first Send.
 
-- buttons
-- displays
-- knobs
-- faders
-- LEDs
+Suppose Send 1 is the reverb.
 
-We now know that this is not the most useful way to understand it.
+Now the V-Pots provide something like:
 
-The X-Touch is a context-sensitive surface.
+```text
+             REVERB
 
-Banks determine which channels are visible.
+Drums   Bass   Skank   Organ   Perc   Vocal   FX 1   FX 2
+  │       │      │       │      │      │       │      │
+  ▼       ▼      ▼       ▼      ▼      ▼       ▼      ▼
+ Send    Send   Send    Send   Send   Send    Send   Send
+```
 
-Modes determine what the controls mean.
+The controller is no longer primarily asking:
 
-SELECT determines focus.
+> **How loud is each track?**
 
-The displays tell you what is happening.
+It is asking:
 
-V-Pots adapt to the current task.
+> **How much of each track should enter the reverb?**
 
-Motor faders physically reflect Bitwig's state.
+That is a completely different view of the same mix.
 
-Transport controls allow the session to move beneath your hands.
+---
 
-Device Mode lets you reach inside the project.
+## Perform the Reverb
 
-Browser Mode lets you add to it.
+Perhaps the vocal reaches the end of a phrase.
 
-None of these ideas is particularly complicated by itself.
+Turn its Send up.
 
-Together, they transform the controller from a collection of controls into a coherent working environment.
+Let the phrase bloom into the reverb.
 
-## Towards Mouse-Free — or Mouse-Lite
+Then bring the Send back down.
 
-You may eventually discover that entire stretches of a session take place without touching the mouse.
+Or send a snare hit heavily into the reverb while leaving the kick comparatively dry.
 
-You start playback.
+The effect is not merely configured.
 
-You select tracks.
+It is **played**.
 
-You balance the mix.
+---
 
-You adjust sends.
+## Move to the Delay
 
-You navigate devices.
+Press SEND again to reach the delay Send.
 
-You change parameters.
+Now the same eight V-Pots answer:
 
-You stop.
+> **How much of each track should enter the delay?**
 
-You rewind.
+This is where things become particularly entertaining.
 
-You listen again.
+A vocal phrase ends:
 
-And then, eventually, you need to perform a detailed graphical edit.
+```text
+"...into the night"
+          │
+          ▼
+Raise Vocal Send
+          │
+          ▼
+"...night... night... night..."
+```
 
-So you reach for the mouse.
+Then pull the Send back.
 
-That is not a failure to achieve a Mouse-Free workflow.
+The delay throw becomes a performance gesture.
 
-That **is** a successful Mouse-Lite workflow.
+---
 
-The goal was never to remove a useful tool from your desk.
+## Send the Unexpected Things
 
-The goal was to add another one.
+Dub mixing becomes interesting when effects are not treated merely as polite ambience.
 
-## Where You Go From Here
+Try sending:
 
-There is much more that can be explored.
+```text
+Snare       → Delay
 
-DrivenByMoss provides capabilities beyond the foundations covered in this book, and both Bitwig and the X-Touch reward experimentation.
+Organ stab  → Delay
 
-But you now have something more useful than a memorised list of commands.
+Percussion  → Reverb
 
-You have a mental model.
+Vocal word  → Delay
+```
 
-When you encounter an unfamiliar feature, ask:
+then pulling the Send away again.
 
-- What is selected?
-- What is the current mode?
-- What are the controls representing?
-- What feedback is the X-Touch providing?
+The effect becomes an event.
 
-Once you can answer those questions, unfamiliar operations become much easier to understand.
+And because the X-Touch exposes several Send levels simultaneously, you can react to the music rather than repeatedly opening individual track controls.
 
-The aim of this book has never been to teach you every button combination.
+---
 
-It has been to help you reach the point where you no longer need someone to explain every button combination.
+## Faders + Mutes + Sends
 
-::: exercise
+Now combine the operations.
 
-For the final exercise, open a Bitwig project you know well.
+For example:
 
-Spend fifteen or twenty minutes working normally, but pay attention whenever you reach for the mouse.
+```text
+Drop Organ fader
+       ↓
+Mute Vocal
+       ↓
+Throw Snare into Delay
+       ↓
+Bring Organ back
+       ↓
+Increase Percussion Reverb
+       ↓
+Return Vocal
+       ↓
+Drop Drums
+       ↓
+Bass continues alone
+       ↓
+Drums return
+```
 
-Do not forbid yourself from using it.
+At this point you are no longer merely "operating Bitwig".
 
-Instead, pause briefly and ask:
+You are **performing the mix**.
 
-> **"Could I do this more naturally from the X-Touch?"**
+---
 
-If the answer is yes, try it.
+## Use the Surface Like an Instrument
 
-If the answer is no, use the mouse and continue.
+This is the important change of perspective.
 
-During the session, try to perform as many of these tasks as practical from the controller:
+A conventional editing mindset says:
 
-1. Navigate the project.
-2. Start and stop playback.
-3. Select tracks.
-4. Change banks.
-5. Balance track levels.
-6. Adjust pan or sends.
-7. Navigate to a device.
-8. Adjust device parameters.
-9. Browse for something new.
-10. Return to the mixer and continue working.
+```text
+Set this value.
 
-Do not count mouse clicks.
+Now set that value.
 
-Do not measure how long you remain "mouse-free".
+Now change another value.
+```
 
-Listen to the music and notice whether operating the computer is interrupting your concentration less often.
+A performance mindset says:
 
-That is the real test.
+```text
+Listen.
 
-The best control surface is not the one with the most features.
+Move.
 
-It is the one that lets you forget that you are operating a control surface.
+React.
 
-:::
+Anticipate.
 
-## One Last Thought
+Return.
+```
 
-The X-Touch is covered with controls.
+The X-Touch is particularly good at the second kind of interaction because several controls are physically available at once.
 
-Learning it can therefore appear to be an exercise in remembering what all those controls do.
+You have two hands.
 
-It isn't.
+Use them.
 
-The real skill is learning to understand **context, focus and feedback**.
+---
 
-Once those ideas become familiar, the buttons stop looking like a collection of things to memorise.
+## Capture the Dub Performance with Automation
 
-They become tools.
+There is another possibility.
 
-And when the tools become familiar enough, something even better happens.
+The performance does not have to disappear when playback stops.
 
-You stop thinking about them.
+Enable the appropriate automation-writing mode and Bitwig can capture the movements.
 
-You simply make music.
+Conceptually:
+
+```text
+PLAY
+  ↓
+Perform Mix
+  │
+  ├── Fader rides
+  ├── Send movements
+  └── other automated parameters
+  ↓
+STOP
+  ↓
+Bitwig remembers
+```
+
+Now play the section again.
+
+The motor faders reproduce the movements you performed.
+
+The live mix has become automation.
+
+---
+
+## Perform First, Edit Later
+
+The first pass does not need to be perfect.
+
+That is important.
+
+Try:
+
+```text
+Perform
+   ↓
+Listen
+   ↓
+Keep what works
+   ↓
+Correct what doesn't
+```
+
+If one fader move is late, correct it.
+
+If one Send stays open too long, fix it.
+
+If a particular transition works brilliantly, leave it alone.
+
+The control surface and graphical editor complement one another.
+
+The surface captures the gesture.
+
+The GUI can provide surgical correction afterwards.
+
+That is Mouse-Lite working at its best.
+
+---
+
+## A Dub Pass Might Look Like This
+
+Imagine an eight-bar passage.
+
+### Bars 1–2
+
+Full rhythm section.
+
+Vocal present.
+
+Moderate reverb.
+
+### Bar 3
+
+Mute vocal after the final word.
+
+Throw that word into the delay.
+
+### Bar 4
+
+Drop drums.
+
+Leave bass and delay repeats.
+
+### Bar 5
+
+Return drums.
+
+Bring organ up.
+
+### Bar 6
+
+Push percussion into reverb.
+
+### Bar 7
+
+Drop organ and percussion.
+
+Return vocal.
+
+### Bar 8
+
+Delay the final vocal phrase and pull several faders down into the transition.
+
+None of this requires a complicated theoretical model.
+
+It requires listening and reacting.
+
+The X-Touch provides the physical controls.
+
+---
+
+## Why Dub Demonstrates the Point So Well
+
+The lesson is not really about dub.
+
+The same principles apply to:
+
+- electronic music;
+- ambient;
+- techno;
+- live remixing;
+- soundtrack work;
+- conventional mixing.
+
+Dub simply makes the idea unusually obvious.
+
+The mixer is not merely a place where levels are set.
+
+It can be a **performance environment**.
+
+And a physical control surface makes that idea tangible.
+
+---
+
+# Workflow 7 — From Broad Mix to Tiny Detail
+
+Now imagine something happens during that mix.
+
+A percussion sound is too loud.
+
+The broad view is:
+
+```text
+Drums   Bass   Skank   Organ   Percussion   Vocal
+```
+
+But the percussion track contains a Drum Machine.
+
+Navigate deeper:
+
+```text
+SELECT Percussion
+       ↓
+ENTER / appropriate Pad context
+       ↓
+Shaker   Conga   Rim   Bell   Tambourine   ...
+```
+
+Adjust the offending pad.
+
+Then return.
+
+This demonstrates something important.
+
+A Mouse-Lite workflow does not mean remaining at one level of abstraction.
+
+The X-Touch can move from:
+
+```text
+whole project
+```
+
+to:
+
+```text
+track
+```
+
+to:
+
+```text
+device
+```
+
+to:
+
+```text
+pad or layer
+```
+
+and back again.
+
+---
+
+# Workflow 8 — Moving Between Songs or Projects
+
+At the other extreme, suppose you have finished working on the current project.
+
+Touch the Master fader to enter the Master context.
+
+Use the project-navigation controls to move to another project.
+
+The same surface that moments ago was adjusting one drum pad can now operate at the level of:
+
+```text
+the entire project
+```
+
+That change in scale is one of the most remarkable aspects of the DrivenByMoss mapping.
+
+---
+
+## Think in Layers of Attention
+
+A useful way to summarise the whole controller is by thinking about the level at which your attention currently sits.
+
+```text
+PROJECT
+   │
+   ▼
+GROUP
+   │
+   ▼
+TRACK
+   │
+   ▼
+DEVICE
+   │
+   ▼
+PARAMETER
+```
+
+or:
+
+```text
+TRACK
+   │
+   ▼
+INSTRUMENT
+   │
+   ▼
+LAYER / PAD
+```
+
+The X-Touch can move its focus through these levels.
+
+The question becomes:
+
+> **Where is my attention right now?**
+
+Then put the controller there too.
+
+---
+
+## The Surface as a Moving Window
+
+We began this guide with eight channel strips.
+
+They looked fixed.
+
+Now we know better.
+
+Those eight strips can be a window onto:
+
+```text
+Tracks
+
+Group contents
+
+Layers
+
+Drum pads
+
+Sends
+
+Parameters
+```
+
+The V-Pots can represent:
+
+```text
+Pan
+
+Sends
+
+Device parameters
+
+Track parameters
+
+Project controls
+```
+
+The faders can represent:
+
+```text
+Track volume
+
+Other parameters through FLIP
+
+Automation performances
+```
+
+The physical surface stays put.
+
+Its meaning moves.
+
+---
+
+## Modes Are Views, Not Obstacles
+
+When first encountering a controller like the X-Touch, modes can seem like a complication.
+
+Why can't every control simply do one thing?
+
+Because then we would need an enormous controller.
+
+Instead, think:
+
+> **A mode gives me the view appropriate to the job I am doing.**
+
+If you want to mix:
+
+```text
+Mixer view
+```
+
+If you want to edit a device:
+
+```text
+Device view
+```
+
+If you want to browse:
+
+```text
+Browser view
+```
+
+If you want to navigate markers:
+
+```text
+Marker view
+```
+
+Modes are not hiding functionality from you.
+
+They are organising it.
+
+---
+
+## Modifiers Are Temporary Questions
+
+Likewise, modifiers become easier to remember when treated as questions.
+
+Instead of thinking:
+
+```text
+I must memorise OPTION + this,
+SHIFT + that,
+CONTROL + something else...
+```
+
+think:
+
+> **Is there a related operation available here?**
+
+For example:
+
+```text
+MARKER
+```
+
+works with markers.
+
+Then:
+
+```text
+OPTION + MARKER
+```
+
+provides a related marker operation: create one.
+
+The combination makes sense because it belongs to the task.
+
+---
+
+## Let Repetition Build Muscle Memory
+
+At first, you will still think:
+
+> Which button was that?
+
+That is normal.
+
+Then you will think:
+
+> Ah yes — OPTION + MARKER.
+
+Eventually, your hand may simply do it.
+
+The progression is:
+
+```text
+Remember
+   ↓
+Recognise
+   ↓
+Repeat
+   ↓
+Muscle memory
+```
+
+That is when a hardware controller begins to disappear from conscious attention.
+
+You stop operating the X-Touch.
+
+You simply use it.
+
+---
+
+## Don't Try to Use Everything
+
+DrivenByMoss exposes a remarkable amount of functionality.
+
+That does not mean every function needs to become part of your workflow.
+
+If you never use a particular mode, that is fine.
+
+If you prefer editing MIDI with the mouse, keep doing it.
+
+If you love using the physical faders but prefer the Bitwig Browser on screen, that is also fine.
+
+The goal is not completeness.
+
+The goal is **fluency**.
+
+A small set of operations that you can perform without thinking may be more valuable than fifty shortcuts you can barely remember.
+
+---
+
+## Build Your Own Core Workflow
+
+A useful personal core might be:
+
+```text
+Transport
+
+Track selection
+
+Banking
+
+Volume
+
+Mute / Solo
+
+Sends
+
+Device control
+
+Markers
+```
+
+Someone else might prioritise:
+
+```text
+Transport
+
+Recording
+
+Overdub
+
+Browser
+
+Drum pads
+
+Automation
+```
+
+There is no universally correct set.
+
+The X-Touch should adapt to the work rather than forcing the work to adapt to the controller.
+
+---
+
+## Know When to Reach for the Mouse
+
+This may be the most important Mouse-Lite skill of all.
+
+Do not turn a simple graphical operation into a twenty-button hardware puzzle merely because the controller technically permits it.
+
+If the mouse is clearly faster:
+
+**use the mouse.**
+
+If the X-Touch keeps you closer to the music:
+
+**use the X-Touch.**
+
+If the keyboard shortcut is better than either:
+
+**use the keyboard shortcut.**
+
+The objective is not ideological purity.
+
+It is a smoother path between:
+
+```text
+Intention
+    ↓
+Action
+    ↓
+Result
+```
+
+---
+
+## Mouse-Free as an Experiment
+
+There is still value in occasionally attempting a genuinely mouse-free session.
+
+Not because it is necessarily the best way to work.
+
+Because it reveals habits.
+
+Try working for fifteen minutes without reaching for the mouse.
+
+Every time you feel the urge, ask:
+
+> **Can the X-Touch already do this?**
+
+Sometimes the answer will be no.
+
+Sometimes the answer will be yes, but awkwardly.
+
+And sometimes you will discover:
+
+> **Yes — and actually this is better.**
+
+Those discoveries are how a personal Mouse-Lite workflow develops.
+
+---
+
+## From Control Surface to Musical Surface
+
+At the beginning of Project XTC, the X-Touch could easily be seen as:
+
+> **a box containing faders and buttons that remotely control Bitwig.**
+
+That description is technically true.
+
+But it misses something.
+
+Once the surface becomes familiar, it can participate in the musical process.
+
+You can:
+
+```text
+navigate by song structure;
+
+reach into a Group;
+
+balance a Drum Machine;
+
+shape a device;
+
+perform automation;
+
+record a part;
+
+build a clip;
+
+ride a mix;
+
+throw a vocal into delay.
+```
+
+Those are not merely software commands.
+
+They are actions within a musical workflow.
+
+---
+
+## The Important Idea
+
+A Mouse-Lite workflow does not begin by banning the mouse.
+
+It begins by noticing where the X-Touch offers a more immediate relationship with the music.
+
+The aim is not:
+
+```text
+NO MOUSE
+```
+
+It is:
+
+```text
+Hear intention
+      ↓
+Choose the most natural control
+      ↓
+Act
+      ↓
+Keep listening
+```
+
+Sometimes that control will be the mouse.
+
+Sometimes the keyboard.
+
+Very often, it can be the X-Touch.
+
+And the more familiar the surface becomes, the less often you need to stop and think about the controller itself.
+
+The modes stop feeling like modes.
+
+The modifiers stop feeling like shortcuts.
+
+The eight channel strips stop feeling like only eight channels.
+
+They become a moving window onto the project.
+
+And eventually the question changes from:
+
+> **What can this button do?**
+
+to:
+
+> **What do I want to do?**
+
+That is the point at which the X-Touch stops merely controlling the DAW.
+
+It becomes part of the way you work.
+
+---
+
+# End of Part IV
+
+We have now reached the end of the main workflow section of Project XTC.
+
+The final part turns from **using** the system to **shaping** it.
+
+DrivenByMoss provides configuration choices that determine how the X-Touch behaves, and some of the more advanced functions only make sense once those choices are understood.
+
+Next:
+
+# Part V — Configuration and Reference
+
+**Chapter 21 — Configuring DrivenByMoss for the X-Touch**
