@@ -1867,3 +1867,940 @@ That should include:
 Before renaming any manuscript files, the revised Contents should be reviewed as a whole.
 
 Only after the Contents structure is agreed should chapter renumbering and manuscript revision begin.
+
+
+# Part 3 Continued — Proposed Revised Contents
+
+## Purpose
+
+The feature-assignment matrix has now given every significant DrivenByMoss/X-Touch function a proposed home.
+
+The next step is to turn those assignments into a coherent book structure.
+
+This proposed Contents page is still an **editorial plan**.
+
+No existing manuscript files should be renamed or renumbered until this structure has been reviewed and agreed.
+
+---
+
+# 31. Structural Principles
+
+The revised Contents should satisfy several goals.
+
+## Preserve the existing learning curve
+
+The first twelve chapters already provide a strong progression from:
+
+- hardware;
+- mental model;
+- banks;
+- modes;
+- focus;
+- feedback;
+
+through to:
+
+- V-Pots;
+- motor faders;
+- transport;
+- devices;
+- Browser.
+
+That sequence should remain substantially intact.
+
+## Introduce advanced material only after the foundations
+
+Features such as:
+
+- modifiers;
+- edit modes;
+- markers;
+- automation;
+- hierarchical navigation;
+
+become much easier to understand once the reader already knows the controller's basic mental model.
+
+## Keep workflow separate from reference
+
+A beginner should not have to learn from a command table.
+
+Conversely, an experienced reader should not have to search through tutorial prose merely to remember what `OPTION + MARKER` does.
+
+The finished book therefore needs both:
+
+1. **teaching chapters**;
+2. **reference material**.
+
+## Finish with synthesis
+
+**Towards a Mouse-Free (or Mouse-Lite) Workflow** should remain the destination of the teaching journey.
+
+It should bring together functionality already taught rather than introduce a new collection of unexplained commands.
+
+---
+
+# 32. Proposed Five-Part Structure
+
+The revised book is best organised into five Parts:
+
+```text
+PART I     UNDERSTANDING THE X-TOUCH
+
+PART II    WORKING WITH THE X-TOUCH
+
+PART III   GOING DEEPER
+
+PART IV    BUILDING THE WORKFLOW
+
+PART V     CONFIGURATION AND REFERENCE
+```
+
+This gives each stage a distinct purpose.
+
+---
+
+# Part I — Understanding the X-Touch
+
+## 1. Meet the X-Touch
+
+**Existing chapter**
+
+Purpose:
+
+Introduce the controller, its relationship with Bitwig and DrivenByMoss, and the overall philosophy of the guide.
+
+---
+
+## 2. A Tour of the Hardware
+
+**Existing chapter**
+
+Purpose:
+
+Introduce the physical surface before asking the reader to understand its deeper behaviour.
+
+---
+
+## 3. The Mental Model
+
+**Existing chapter**
+
+Purpose:
+
+Introduce the central principle that physical controls acquire meaning from context.
+
+---
+
+## 4. Banks and Channels
+
+**Existing chapter — targeted revision**
+
+Add later:
+
+- OPTION-modified movement;
+- distinction between moving the controller's view and moving objects in the project;
+- cross-reference to Device Mode.
+
+---
+
+## 5. Modes
+
+**Existing chapter — targeted revision**
+
+Expand into a map of the broader mode system:
+
+- Track;
+- Volume;
+- Panorama;
+- Send;
+- Device;
+- EQ;
+- Instrument;
+- Browser;
+- Marker;
+- Master.
+
+Individual modes are explained later.
+
+---
+
+## 6. The SELECT Button
+
+**Existing chapter — targeted revision**
+
+Preserve:
+
+> **SELECT establishes focus.**
+
+Add only enough material to alert the reader that SELECT acquires additional functions with modifiers and hierarchical navigation.
+
+---
+
+## 7. Displays and Feedback
+
+**Existing chapter — targeted revision**
+
+Add:
+
+- display-mode controls;
+- segment-display behaviour;
+- VU controls;
+- distinction between current state and configured display behaviour.
+
+---
+
+# Part II — Working with the X-Touch
+
+## 8. V-Pots (Rotary Encoders)
+
+**Existing chapter — targeted revision**
+
+Add:
+
+- default;
+- centre;
+- minimum;
+- maximum;
+- context-dependent push operations.
+
+---
+
+## 9. Motor Faders
+
+**Existing chapter — targeted revision**
+
+Add:
+
+- configurable fader-touch behaviour;
+- Master Fader behaviour;
+- FLIP introduction;
+- explicit forward reference to Automation.
+
+---
+
+## 10. Transport Controls
+
+**Existing chapter — substantial revision**
+
+Retain the approachable introduction to:
+
+- PLAY;
+- STOP;
+- RECORD;
+- REWIND;
+- FORWARD;
+- Jog Wheel.
+
+Then add:
+
+- PLAY modifiers;
+- STOP variants;
+- Jog Wheel modifiers;
+- ZOOM;
+- SCRUB;
+- NUDGE;
+- arrow-key navigation;
+- references to Marker and advanced Recording chapters.
+
+---
+
+## 11. Device Mode
+
+**Existing chapter — substantial revision**
+
+Preserve the hierarchy:
+
+```text
+Track
+   ↓
+Device
+   ↓
+Parameter Page
+   ↓
+Parameter
+```
+
+Add the exact hardware navigation:
+
+```text
+BANK        → Device
+CHANNEL     → Parameter Page
+V-Pots      → Parameters
+```
+
+Also add:
+
+- CONTROL device selection;
+- OPTION parameter-page selection;
+- device pinning;
+- Project/Track Parameter Mode.
+
+---
+
+## 12. Browser Mode
+
+**Existing chapter — substantial revision**
+
+Add the precise Browser control map:
+
+- V-Pots;
+- V-Pot presses;
+- Jog Wheel;
+- Browser tabs;
+- insertion position;
+- replacement;
+- confirm;
+- cancel;
+- insert-before/after shortcuts.
+
+---
+
+# Part III — Going Deeper
+
+This Part contains the major functionality discovered during the MCU audit.
+
+The reader is no longer learning what the X-Touch is.
+
+The reader is learning **how much more it can do**.
+
+---
+
+## 13. Modifiers and Advanced Controls
+
+**New chapter**
+
+Purpose:
+
+Introduce:
+
+- SHIFT;
+- OPTION;
+- CONTROL;
+- ALT;
+
+as a vocabulary for extending existing controls.
+
+Also introduce everyday advanced commands such as:
+
+- UNDO;
+- REDO;
+- SAVE;
+- FLIP;
+- ENTER;
+- CANCEL.
+
+Do not attempt to catalogue every modifier combination.
+
+Teach recurring patterns and point to the chapters where individual combinations are used.
+
+---
+
+## 14. Mixer Edit Modes
+
+**New chapter**
+
+Teach as a related family:
+
+- Track Edit Mode;
+- Volume Edit Mode;
+- Panorama Edit Mode;
+- Send Modes 1–8.
+
+Also provide the main home for:
+
+- ARM;
+- MUTE;
+- SOLO;
+- direct Send selection;
+- Send toggle;
+- fine adjustments.
+
+Central idea:
+
+> **The same eight channel controls can expose different mixer dimensions.**
+
+---
+
+## 15. Markers and Advanced Navigation
+
+**New chapter**
+
+Teach the complete marker workflow:
+
+- create a marker;
+- display markers;
+- enter Marker Mode;
+- navigate previous/next;
+- start playback from a marker.
+
+Key commands include:
+
+- OPTION + MARKER;
+- SHIFT + MARKER;
+- OPTION + REWIND;
+- OPTION + FORWARD.
+
+This is the chapter that directly resolves the omission which originally triggered the MCU audit.
+
+---
+
+## 16. Automation
+
+**New chapter**
+
+Teach:
+
+- READ/OFF;
+- WRITE;
+- TOUCH;
+- LATCH;
+- TRIM;
+- reset automation overrides.
+
+Build directly on Chapter 9's explanation of touch-sensitive motor faders.
+
+Automation modes should be explained in terms of:
+
+```text
+Touch
+   ↓
+Move
+   ↓
+Release
+   ↓
+What happens next?
+```
+
+rather than as a table of button names.
+
+---
+
+## 17. Groups, Layers and Drum Pads
+
+**New chapter**
+
+Develop the book's hierarchical mental model.
+
+Teach:
+
+```text
+Project
+   ↓
+Group
+   ↓
+Track
+   ↓
+Instrument
+   ↓
+Layer / Drum Pad
+```
+
+Include:
+
+- flat navigation;
+- hierarchical navigation;
+- entering groups;
+- leaving groups;
+- entering Layer/Drum Pad Mode;
+- Volume;
+- Panorama;
+- Sends;
+- Mute;
+- Solo.
+
+---
+
+## 18. Master and EQ Modes
+
+**New chapter**
+
+### Master Mode
+
+Teach:
+
+- entering Master Edit Mode;
+- Master volume;
+- Master panorama;
+- audio-engine controls;
+- previous/next project.
+
+### EQ Mode
+
+Teach:
+
+- entering EQ Mode;
+- relationship with Device Mode;
+- EQ+;
+- automatic insertion behaviour.
+
+Include a clear warning where entering EQ Mode may modify the Bitwig project.
+
+If drafting reveals that these two subjects do not sit comfortably together, they may later be separated.
+
+---
+
+## 19. Advanced Recording and Overdub
+
+**New chapter**
+
+Bring together:
+
+- Arranger recording;
+- Launcher recording;
+- Arranger overdub;
+- Launcher overdub;
+- OPTION + RECORD;
+- New Clip Length;
+- clip creation;
+- OVR;
+- Clip Based Looper concepts.
+
+The emphasis should be on **recording workflows**, not on memorising shortcut combinations.
+
+---
+
+# Part IV — Building the Workflow
+
+## 20. Towards a Mouse-Free (or Mouse-Lite) Workflow
+
+**Existing Chapter 13 — moved and substantially expanded**
+
+This becomes the synthesis chapter for the entire teaching section.
+
+The existing chapter should retain its central philosophy:
+
+> The aim is not to eliminate the mouse.
+
+> The aim is to stop reaching for it automatically.
+
+The revised chapter can now demonstrate complete workflows involving:
+
+- transport;
+- mixing;
+- devices;
+- Browser;
+- markers;
+- automation;
+- groups;
+- recording;
+- Note Editor;
+- Automation Editor;
+- Mixer pane;
+- Bitwig layouts;
+- plug-in windows;
+- Undo/Redo;
+- Save;
+- project switching.
+
+The chapter should introduce **very little new functionality**.
+
+Its purpose is to show how the capabilities already learned fit together.
+
+The final destination remains:
+
+> **You simply make music.**
+
+---
+
+# Part V — Configuration and Reference
+
+This material supports the teaching chapters without interrupting their flow.
+
+---
+
+## 21. Configuring DrivenByMoss for the X-Touch
+
+**New chapter**
+
+Establish a recommended Project XTC baseline.
+
+Cover:
+
+- X-Touch firmware;
+- MC mode;
+- DrivenByMoss X-Touch profile;
+- display colours;
+- display preferences;
+- VU configuration;
+- fader preferences;
+- fader-touch behaviour;
+- flat/hierarchical track navigation;
+- Startup Mode;
+- Browser filters;
+- encoder sensitivity;
+- transport preferences;
+- New Clip Length;
+- other workflow preferences.
+
+Distinguish clearly between:
+
+### Project XTC recommended baseline
+
+and:
+
+### Personal workflow choices
+
+---
+
+## 22. Customisation and Expansion
+
+**New chapter**
+
+Cover:
+
+- assignable F-buttons;
+- arbitrary actions;
+- Footswitch 1;
+- Footswitch 2;
+- Clip Based Looper;
+- X-Touch Extender;
+- multiple MCU-compatible controllers;
+- optional multi-controller workflows.
+
+Material specific to hardware other than the X-Touch should remain out of scope unless directly relevant to an X-Touch/Extender configuration.
+
+---
+
+# Reference Material
+
+## Quick Reference
+
+**New reference section — not necessarily a numbered teaching chapter**
+
+The final implementation should provide two routes into the same information.
+
+### By physical control
+
+For example:
+
+```text
+PLAY
+SHIFT + PLAY
+OPTION + PLAY
+OPTION + SHIFT + PLAY
+
+MARKER
+SHIFT + MARKER
+OPTION + MARKER
+```
+
+### By task
+
+For example:
+
+```text
+Playback
+Navigation
+Recording
+Mixing
+Markers
+Automation
+Devices
+Browser
+Groups
+Configuration
+```
+
+The Quick Reference should be created **after the teaching chapters are final**, so it reflects the book rather than dictating its structure.
+
+---
+
+# Appendices — Provisional
+
+The following may eventually be better treated as appendices rather than normal chapters.
+
+## Appendix A — X-Touch Extender
+
+Possible material:
+
+- Main;
+- Extender;
+- MCU Extender;
+- restart requirements;
+- multi-unit arrangement;
+- master/transport responsibilities.
+
+Whether this remains in Chapter 22 or becomes an appendix can be decided during drafting.
+
+## Appendix B — Verification and Version Notes
+
+Possible material:
+
+- Bitwig version tested;
+- DrivenByMoss version tested;
+- X-Touch firmware tested;
+- known configuration differences;
+- behaviour requiring version-specific qualification.
+
+This would be particularly useful because DrivenByMoss continues to evolve.
+
+---
+
+# 33. Proposed Reader Journey
+
+The revised structure creates a clear progression.
+
+```text
+PART I
+UNDERSTAND
+"What is this controller doing?"
+
+        ↓
+
+PART II
+OPERATE
+"How do I use the main controls?"
+
+        ↓
+
+PART III
+EXPLORE
+"What else can DrivenByMoss make it do?"
+
+        ↓
+
+PART IV
+INTEGRATE
+"How do I turn all of this into a workflow?"
+
+        ↓
+
+PART V
+CONFIGURE
+"How do I tune it for the way I work?"
+
+        ↓
+
+REFERENCE
+"What was that command again?"
+```
+
+This is deliberately different from the organisation of a conventional reference manual.
+
+Project XTC teaches first and provides lookup material afterwards.
+
+---
+
+# 34. Existing and New Chapter Summary
+
+| Proposed chapter | Status |
+|---|---|
+| 01 Meet the X-Touch | Existing |
+| 02 A Tour of the Hardware | Existing |
+| 03 The Mental Model | Existing |
+| 04 Banks and Channels | Existing — revise |
+| 05 Modes | Existing — revise |
+| 06 The SELECT Button | Existing — revise |
+| 07 Displays and Feedback | Existing — revise |
+| 08 V-Pots (Rotary Encoders) | Existing — revise |
+| 09 Motor Faders | Existing — revise |
+| 10 Transport Controls | Existing — substantial revision |
+| 11 Device Mode | Existing — substantial revision |
+| 12 Browser Mode | Existing — substantial revision |
+| 13 Modifiers and Advanced Controls | New |
+| 14 Mixer Edit Modes | New |
+| 15 Markers and Advanced Navigation | New |
+| 16 Automation | New |
+| 17 Groups, Layers and Drum Pads | New |
+| 18 Master and EQ Modes | New |
+| 19 Advanced Recording and Overdub | New |
+| 20 Towards a Mouse-Free (or Mouse-Lite) Workflow | Existing Chapter 13 — move/revise |
+| 21 Configuring DrivenByMoss for the X-Touch | New |
+| 22 Customisation and Expansion | New |
+| Quick Reference | New reference section |
+
+This produces:
+
+- **12 existing chapters retained in their present positions;**
+- **1 existing chapter moved from 13 to 20;**
+- **9 new teaching/configuration chapters;**
+- **1 new Quick Reference section.**
+
+---
+
+# 35. Proposed Contents as the Reader Would See It
+
+```text
+CONTENTS
+
+
+PART I — UNDERSTANDING THE X-TOUCH
+
+1.  Meet the X-Touch
+2.  A Tour of the Hardware
+3.  The Mental Model
+4.  Banks and Channels
+5.  Modes
+6.  The SELECT Button
+7.  Displays and Feedback
+
+
+PART II — WORKING WITH THE X-TOUCH
+
+8.  V-Pots (Rotary Encoders)
+9.  Motor Faders
+10. Transport Controls
+11. Device Mode
+12. Browser Mode
+
+
+PART III — GOING DEEPER
+
+13. Modifiers and Advanced Controls
+14. Mixer Edit Modes
+15. Markers and Advanced Navigation
+16. Automation
+17. Groups, Layers and Drum Pads
+18. Master and EQ Modes
+19. Advanced Recording and Overdub
+
+
+PART IV — BUILDING THE WORKFLOW
+
+20. Towards a Mouse-Free (or Mouse-Lite) Workflow
+
+
+PART V — CONFIGURATION AND REFERENCE
+
+21. Configuring DrivenByMoss for the X-Touch
+22. Customisation and Expansion
+
+Quick Reference
+```
+
+---
+
+# 36. Filename Implications
+
+If this structure is approved, the existing manuscript filenames 01–12 can remain unchanged.
+
+The current:
+
+```text
+13_towards_a_mouse_free_or_mouse_lite_workflow.md
+```
+
+would eventually become:
+
+```text
+20_towards_a_mouse_free_or_mouse_lite_workflow.md
+```
+
+New files would then occupy:
+
+```text
+13_modifiers_and_advanced_controls.md
+14_mixer_edit_modes.md
+15_markers_and_advanced_navigation.md
+16_automation.md
+17_groups_layers_and_drum_pads.md
+18_master_and_eq_modes.md
+19_advanced_recording_and_overdub.md
+21_configuring_drivenbymoss_for_the_xtouch.md
+22_customisation_and_expansion.md
+```
+
+The Quick Reference filename should be decided only when its implementation is designed.
+
+**Do not perform these renames yet.**
+
+---
+
+# 37. Contents Review Questions
+
+Before this structure is adopted, the following editorial questions should be settled.
+
+## Question 1 — Master and EQ together?
+
+Is **Master and EQ Modes** a coherent chapter, or should they ultimately become two shorter chapters?
+
+Current recommendation:
+
+**Keep them together provisionally.**
+
+Drafting will tell us whether the pairing works.
+
+## Question 2 — Advanced Recording deserves a chapter?
+
+The feature-assignment matrix suggests yes.
+
+It now contains a coherent cluster:
+
+- Arranger versus Launcher;
+- overdub;
+- clip creation;
+- New Clip Length;
+- OPTION + RECORD;
+- Clip Based Looper links.
+
+Current recommendation:
+
+**Keep the chapter.**
+
+## Question 3 — Configuration before or after Mouse-Lite?
+
+A configuration chapter could logically appear near the beginning of the book.
+
+However, detailed preferences make much more sense once the reader understands what they affect.
+
+Current recommendation:
+
+**Keep detailed configuration near the end.**
+
+Only the minimum setup required to get the X-Touch working belongs near the beginning.
+
+## Question 4 — Quick Reference as Chapter 23?
+
+A Quick Reference is structurally different from a teaching chapter.
+
+Current recommendation:
+
+**Do not number it as Chapter 23.**
+
+Treat it as reference material following Chapter 22.
+
+---
+
+# 38. Recommended Structure
+
+Subject to review, the proposed structure is therefore:
+
+```text
+22 numbered chapters
+        +
+Quick Reference
+        +
+possible appendices
+```
+
+The teaching journey ends with Chapter 20.
+
+Chapters 21–22 then explain configuration and expansion.
+
+The Quick Reference sits at the back of the book for lookup.
+
+---
+
+# 39. Part 3 Status
+
+The proposed revised Contents is now complete.
+
+No manuscript has yet been changed.
+
+The next task should be a **structure review**, checking:
+
+1. whether any chapters are overloaded;
+2. whether any two new chapters should be merged;
+3. whether any chapter should be split;
+4. whether the Part boundaries feel natural;
+5. whether Chapter 20 remains the correct culmination of the teaching sequence;
+6. whether configuration/reference material is placed appropriately.
+
+Once that review is complete, the revised Contents can be approved.
+
+Only then should:
+
+- `00_contents.md` be replaced;
+- Chapter 13 be renumbered;
+- new manuscript files be created;
+- existing chapters begin their targeted revisions.
