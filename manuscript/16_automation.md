@@ -63,17 +63,55 @@ That is one of the moments when a control surface stops feeling like a remote co
 
 ## Automation Is About Behaviour
 
-The X-Touch provides buttons for several automation modes:
+The X-Touch provides five buttons in its AUTOMATION section:
 
-- READ/OFF
-- WRITE
-- TOUCH
-- LATCH
-- TRIM
+```text
+READ/OFF   WRITE   TRIM   TOUCH   LATCH
+```
 
-The names can look like a list that needs to be memorised.
+These labels come from the Mackie Control world.
 
-A more useful way to understand them is to ask three questions:
+DrivenByMoss maps them onto the automation modes that Bitwig actually provides.
+
+The verified mapping is:
+
+```text
+READ/OFF
+   → Disable Arranger automation recording
+
+WRITE
+   → Enable Arranger automation recording
+     in Write mode
+
+TRIM
+   → Enable Read mode
+     because Bitwig has no Trim mode
+
+TOUCH
+   → Enable Arranger automation recording
+     in Touch mode
+
+LATCH
+   → Enable Arranger automation recording
+     in Latch mode
+```
+
+There is also:
+
+```text
+OPTION + READ/OFF
+   → Reset automation overrides
+```
+
+The important lesson is already familiar:
+
+> **The words printed on the X-Touch tell us where the controls came from. DrivenByMoss determines what they do in Bitwig.**
+
+---
+
+## Three Useful Questions
+
+The automation modes become easier to understand if we ask three questions:
 
 ```text
 What happens before I touch the control?
@@ -101,9 +139,9 @@ The answer depends on the automation mode.
 
 ## READ/OFF
 
-The **READ/OFF** button controls automation playback.
+Pressing **READ/OFF** disables Arranger automation recording.
 
-In normal automation reading, Bitwig follows automation that has already been recorded.
+This puts us back into the normal situation where existing automation can be read without our movements being written as a new automation pass.
 
 Conceptually:
 
@@ -161,9 +199,11 @@ The controller is showing you what the project is doing.
 
 ## WRITE
 
-**WRITE** is the most direct automation-writing mode.
+Pressing **WRITE** enables Arranger automation recording in Write mode.
 
-When Write is active, movements of an automated parameter are written into the project.
+Write is the most direct of the automation-writing modes.
+
+When Write is active, the current parameter values are written into the automation while the automation pass is running.
 
 Conceptually:
 
@@ -171,32 +211,37 @@ Conceptually:
 WRITE active
      │
      ▼
-Move fader
+Automation recording
      │
      ▼
-New value written
+Current values written
      │
      ▼
-Automation continues to be written
+Move control
+     │
+     ▼
+New values written
 ```
 
 Write is powerful precisely because it is direct.
 
 It also deserves care.
 
-If you leave Write active while playing through a section, you may overwrite automation that you intended to keep.
+If you leave Write active while playing through a section, you can replace automation that you intended to keep.
 
 Think of WRITE as:
 
-> **Keep writing the current control state into the automation.**
+> **Write the current control state into the automation.**
 
-That makes it useful when deliberately replacing an automation passage.
+That makes it useful when deliberately creating or replacing an automation passage.
 
 ---
 
 ## TOUCH
 
-**TOUCH** makes particular sense with the X-Touch because the faders are touch-sensitive.
+Pressing **TOUCH** enables Arranger automation recording in Touch mode.
+
+TOUCH makes particular sense with the X-Touch because the faders are touch-sensitive.
 
 The important event is not merely moving the fader.
 
@@ -266,15 +311,17 @@ and:
 
 > **The user is moving the fader.**
 
-That distinction is fundamental to touch automation.
+That distinction is fundamental to Touch automation.
 
 ---
 
 ## LATCH
 
-**LATCH** begins similarly to Touch.
+Pressing **LATCH** enables Arranger automation recording in Latch mode.
 
-Existing automation can play until you touch and move the control.
+LATCH begins similarly to Touch.
+
+Existing automation can play until you take control of the parameter.
 
 The important difference appears when you release it.
 
@@ -299,7 +346,7 @@ Existing automation
 New value remains latched
 ```
 
-Instead of immediately returning to the previously recorded automation, the new value continues.
+Instead of immediately returning to the previously recorded automation, the new value continues to be written.
 
 That makes Latch useful when you want to establish a new level and keep it there.
 
@@ -358,18 +405,18 @@ Suppose a vocal is slightly too loud for one phrase.
 TOUCH is a natural choice:
 
 ```text
-normal level
-    ↓
+normal automation
+       ↓
 phrase arrives
-    ↓
+       ↓
 touch fader
-    ↓
+       ↓
 pull it down
-    ↓
+       ↓
 phrase ends
-    ↓
+       ↓
 release
-    ↓
+       ↓
 previous automation resumes
 ```
 
@@ -379,13 +426,13 @@ LATCH may make more sense:
 
 ```text
 second chorus
-    ↓
+     ↓
 touch fader
-    ↓
+     ↓
 lower level
-    ↓
+     ↓
 release
-    ↓
+     ↓
 new level continues
 ```
 
@@ -393,45 +440,41 @@ The mode follows the musical intention.
 
 ---
 
-## TRIM
+## What About TRIM?
 
-TRIM is associated with automation adjustment rather than simply replacing the existing automation shape.
-
-The useful concept is **relative change**.
-
-Imagine that you already have a detailed automation performance:
+The X-Touch has a button labelled:
 
 ```text
-       ╱╲
-  ╱───╯  ╲──╮
-─╯          ╰────
+TRIM
 ```
 
-You like its movement, but the whole passage needs to sit a little lower.
+On some automation systems, Trim is a distinct mode for making relative changes to existing automation.
 
-Conceptually, trimming means:
+**Bitwig does not provide a Trim automation mode.**
+
+DrivenByMoss therefore maps the X-Touch's TRIM button to:
 
 ```text
-existing shape
-      +
-relative adjustment
-      =
-same general shape at a new level
+TRIM
+   ↓
+Read mode
 ```
 
-In the current DrivenByMoss MCU mapping, the TRIM control maps to Bitwig's available automation behaviour rather than providing a separate traditional console-style trim system.
+This is important because we should not infer functionality from the word printed on the hardware.
 
-For that reason, it is best to think of the X-Touch's automation buttons as controls over the automation modes Bitwig actually provides, rather than assuming that every label on the MCU surface corresponds to an identically named DAW function.
+Pressing TRIM does **not** give Bitwig a console-style Trim automation mode that Bitwig itself does not possess.
+
+The button exists because it is part of the Mackie Control layout.
+
+DrivenByMoss gives it the closest useful Bitwig behaviour.
 
 ---
 
 ## The Labels Belong to the MCU
 
-This is an important general point.
+TRIM gives us a particularly clear example of a principle that applies throughout the X-Touch.
 
-The X-Touch follows the Mackie Control layout.
-
-Its buttons therefore carry labels such as:
+The hardware carries labels such as:
 
 ```text
 READ/OFF
@@ -441,33 +484,40 @@ TOUCH
 LATCH
 ```
 
-But the controller is being used with **Bitwig through DrivenByMoss**.
+because those controls belong to the Mackie Control design.
 
-The printed label tells us where the control came from.
+But our actual system is:
 
-DrivenByMoss determines what that control does in Bitwig.
+```text
+X-Touch
+   │
+   ▼
+Mackie Control messages
+   │
+   ▼
+DrivenByMoss
+   │
+   ▼
+Bitwig
+```
 
 So:
 
 > **Trust the current DrivenByMoss mapping, not assumptions based solely on the button legend.**
 
-This principle applies elsewhere on the X-Touch too.
+We have encountered the same principle elsewhere with controls such as USER, DROP and the function buttons.
 
 ---
 
 ## Resetting Automation Overrides
 
-DrivenByMoss also provides a way to reset automation overrides.
-
-Use:
+DrivenByMoss provides a particularly useful modified command:
 
 ```text
 OPTION + READ/OFF
 ```
 
-to reset overrides.
-
-This is useful when manual intervention has left parameters overriding their normal automated state.
+This resets automation overrides.
 
 Conceptually:
 
@@ -484,7 +534,34 @@ OPTION + READ/OFF
 Reset override
 ```
 
-It gives you a quick route back to the automation-controlled state.
+This gives you a quick way to clear overridden automation states and return parameters to normal automation control.
+
+---
+
+## Arranger Automation
+
+There is one more important word in the mappings above:
+
+**Arranger.**
+
+The automation buttons normally control **Arranger automation recording**.
+
+That distinction becomes important because Bitwig also has its Launcher environment.
+
+As we saw in Chapter 19, Arranger and Launcher recording states are related but separate concepts.
+
+DrivenByMoss also provides configuration that can change the priority between Arranger and Clip automation behaviour.
+
+We will return to that in Chapter 21.
+
+For now, the normal automation-button model is:
+
+```text
+Automation buttons
+       │
+       ▼
+Arranger automation
+```
 
 ---
 
@@ -596,11 +673,11 @@ Touching it may have meaning depending on the current automation mode.
 
 So before grabbing a moving fader, know which automation mode is active.
 
-In READ, you may simply be inspecting playback.
+With automation recording disabled, you may simply be observing playback.
 
-In TOUCH, touching the fader may deliberately hand control to you.
+In TOUCH, touching the fader can deliberately hand control to you.
 
-In WRITE, your actions may replace automation.
+In WRITE, parameter states may be written continuously.
 
 The same physical gesture can therefore have very different consequences.
 
@@ -619,7 +696,7 @@ The X-Touch may expose those parameters through:
 - faders;
 - V-Pots;
 - Device Mode;
-- mixer edit modes;
+- Mixer Edit Modes;
 - FLIP.
 
 So the same general automation ideas apply beyond channel volume.
@@ -646,7 +723,7 @@ FLIP becomes particularly interesting here.
 
 Suppose a parameter is normally assigned to a V-Pot.
 
-FLIP may allow that parameter to be placed on a fader.
+FLIP can place the relevant control onto a fader in supported contexts.
 
 That gives the parameter:
 
@@ -672,7 +749,7 @@ Then:
 
 1. stop;
 2. return to a point before the movement;
-3. enable the appropriate automation playback;
+3. disable automation recording;
 4. press PLAY;
 5. take your hand away.
 
@@ -720,11 +797,11 @@ Ride the level by ear.
 
 ### 6. Release
 
-In TOUCH, Bitwig can return to the existing automation behaviour.
+In TOUCH, Bitwig returns to the existing automation behaviour.
 
 ### 7. Play the section again
 
-Listen to the result while the motor fader reproduces the automation.
+Disable automation recording if necessary and listen to the result while the motor fader reproduces the automation.
 
 ### 8. Correct it if necessary
 
@@ -792,7 +869,7 @@ That shift in perspective matters.
 
 A fade becomes something you play.
 
-A send ride becomes something you play.
+A Send ride becomes something you play.
 
 A filter movement becomes something you play.
 
@@ -804,7 +881,30 @@ And because the X-Touch can reproduce the resulting movement, the surface remain
 
 The automation buttons determine what happens when control passes between **Bitwig and you**.
 
-The key questions are:
+The verified normal mappings are:
+
+```text
+READ/OFF
+   → Disable Arranger automation recording
+
+WRITE
+   → Write mode
+
+TRIM
+   → Read mode
+     (Bitwig has no Trim mode)
+
+TOUCH
+   → Touch mode
+
+LATCH
+   → Latch mode
+
+OPTION + READ/OFF
+   → Reset automation overrides
+```
+
+For Touch and Latch, the particularly useful question is:
 
 ```text
 Before I touch:
@@ -815,27 +915,6 @@ What is being written?
 
 When I release:
 What happens next?
-```
-
-That makes the main modes easier to distinguish:
-
-```text
-WRITE
-   → write automation directly
-
-TOUCH
-   → take control while touched,
-     then return to automation
-
-LATCH
-   → take control,
-     then retain the new value
-
-READ/OFF
-   → control automation playback state
-
-OPTION + READ/OFF
-   → reset automation overrides
 ```
 
 And the motor fader makes that relationship physical.
@@ -854,7 +933,7 @@ So far, most of our navigation has treated the eight visible channels as a relat
 
 But Bitwig projects can contain structures within structures:
 
-- groups;
+- Groups;
 - instruments;
 - layers;
 - drum pads.
