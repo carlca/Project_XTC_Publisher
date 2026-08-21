@@ -6,1044 +6,1493 @@ status: draft
 
 # Groups, Layers and Drum Pads
 
-So far, we have often treated the Bitwig project as though it were a relatively simple row of tracks:
+So far, we have often treated the eight channel strips as a window onto a simple row of tracks.
+
+Something like:
 
 ```text
-Track 1   Track 2   Track 3   Track 4   Track 5   Track 6   Track 7   Track 8
+Track 1   Track 2   Track 3   Track 4
+Track 5   Track 6   Track 7   Track 8
 ```
 
-The X-Touch gives us eight channel strips, and banking lets that eight-channel window move across a larger project.
+Real Bitwig projects are rarely that simple.
 
-But Bitwig projects are not necessarily flat.
+A track may be a **Group** containing other tracks.
 
-A track can belong to a Group.
+An instrument may contain **Layers**.
 
-An instrument can contain layers.
+A Drum Machine may contain many **Drum Pads**.
 
-A Drum Machine can contain pads.
-
-So the project may look more like this:
+So the project can have structure within structure:
 
 ```text
 Project
-   │
-   ├── Group
-   │     │
-   │     ├── Track
-   │     ├── Track
-   │     └── Track
-   │
-   ├── Instrument Track
-   │     │
-   │     └── Instrument
-   │           │
-   │           ├── Layer
-   │           ├── Layer
-   │           └── Layer
-   │
-   └── Drum Track
-         │
-         └── Drum Machine
-               │
-               ├── Pad
-               ├── Pad
-               ├── Pad
-               └── ...
-```
-
-DrivenByMoss allows the X-Touch to navigate these structures.
-
-That introduces another important idea:
-
-> **The eight channel strips can show a level of a hierarchy.**
-
----
-
-## A Window into the Project
-
-Think back to banking.
-
-If a project contains sixteen tracks, the X-Touch cannot show all sixteen simultaneously.
-
-Instead, it shows a window:
-
-```text
-Project
-
-1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16
-└───────────────┘
-     X-Touch
-```
-
-Bank to the right and the window moves.
-
-Hierarchical navigation adds another possibility.
-
-The window can move not only:
-
-```text
-← sideways →
-```
-
-but also:
-
-```text
-↓ deeper
-↑ outward
-```
-
-into and out of project structures.
-
----
-
-## Flat and Hierarchical Navigation
-
-DrivenByMoss provides two approaches to track navigation:
-
-- **flat navigation**;
-- **hierarchical navigation**.
-
-The distinction affects what happens when the project contains Groups.
-
----
-
-## Flat Navigation
-
-In a flat view, tracks can be presented as part of a single navigable sequence.
-
-Conceptually:
-
-```text
-Group A
-   ├── Bass
-   ├── Guitar
-   └── Keys
-
-Drums
-
-Vocals
-```
-
-may be approached more like:
-
-```text
-Bass   Guitar   Keys   Drums   Vocals
-```
-
-The hierarchy is not the main navigational concern.
-
-This can be convenient when you primarily want to move rapidly across tracks.
-
----
-
-## Hierarchical Navigation
-
-Hierarchical navigation preserves the idea that some tracks exist **inside** other structures.
-
-The same project is understood as:
-
-```text
-Project
-   │
-   ├── Group A
-   │      ├── Bass
-   │      ├── Guitar
-   │      └── Keys
    │
    ├── Drums
+   │     ├── Kick
+   │     ├── Snare
+   │     └── Hats
    │
-   └── Vocals
+   ├── Bass
+   │
+   └── Synth
+         │
+         ├── Layer 1
+         └── Layer 2
 ```
 
-The controller can then enter Group A and expose its contents.
+DrivenByMoss allows the X-Touch to move through these structures.
 
-Conceptually:
+The eight channel strips do not merely move sideways through the project.
 
-```text
-Project level
-
-┌─────────┐  ┌─────────┐  ┌─────────┐
-│ Group A │  │ Drums   │  │ Vocals  │
-└────┬────┘  └─────────┘  └─────────┘
-     │
-     │ enter
-     ▼
-
-Inside Group A
-
-┌─────────┐  ┌─────────┐  ┌─────────┐
-│ Bass    │  │ Guitar  │  │ Keys    │
-└─────────┘  └─────────┘  └─────────┘
-```
-
-The eight physical channel strips have not changed.
-
-What they represent has.
+They can also move **deeper into it**.
 
 ---
 
-## Going Down a Level
+## A Correction to an Easy Assumption
 
-When hierarchical navigation is enabled, selecting and entering a Group lets the X-Touch descend into that Group.
-
-The channel strips can then represent its child tracks.
-
-Think of this as opening a folder:
-
-```text
-Group
-  │
-  │ enter
-  ▼
-Contents of Group
-```
-
-The important conceptual distinction is between:
+It would be natural to imagine hierarchical navigation working like this:
 
 ```text
 SELECT
-   → establish focus
+   ↓
+ENTER
+   ↓
+work inside
+   ↓
+CANCEL
+   ↓
+go back
+```
+
+That is **not** how DrivenByMoss navigates Groups and Layers.
+
+The actual mechanism is built primarily around the channel **SELECT** buttons.
+
+For hierarchical Group navigation:
+
+```text
+SELECT Group
+     ↓
+Group becomes selected
+     ↓
+Press the same SELECT again
+     ↓
+Enter Group
+     ↓
+Long-press any SELECT
+     ↓
+Leave Group
+```
+
+For Layers and Drum Pads:
+
+```text
+SELECT Track
+     ↓
+Track becomes selected
+     ↓
+Press the same SELECT again
+     ↓
+Enter Layers / Drum Pads
+     ↓
+Long-press any SELECT
+     ↓
+Leave Layers / Drum Pads
+```
+
+This repeated-SELECT behaviour is central to understanding the chapter.
+
+---
+
+## Why ENTER and CANCEL Are Not Used Here
+
+The X-Touch does have ENTER and CANCEL buttons.
+
+They simply have different jobs.
+
+When the Browser is active:
+
+```text
+ENTER
+   → confirm Browser selection
+
+CANCEL
+   → discard Browser selection
+```
+
+Outside the Browser they behave like the computer keyboard's Enter and Escape keys.
+
+They are therefore useful controls.
+
+They are just **not the mechanism for entering and leaving Groups or Layers**.
+
+For the structures in this chapter, think:
+
+```text
+SELECT
+   → choose
+
+SELECT again
+   → go inside
+
+Long-press SELECT
+   → come back out
+```
+
+---
+
+# Groups
+
+A Bitwig Group is a track that contains other tracks.
+
+For example:
+
+```text
+Drums
+   │
+   ├── Kick
+   ├── Snare
+   ├── Hats
+   ├── Toms
+   └── Percussion
+```
+
+At the top level of the project, the X-Touch may initially show:
+
+```text
+Drums   Bass   Guitars   Keys   Vocals   FX
+```
+
+The individual drum tracks are not necessarily part of this top-level view.
+
+They live inside the Drums Group.
+
+---
+
+## Hierarchical Track Navigation
+
+DrivenByMoss provides a **Track navigation** preference.
+
+When it is set to:
+
+```text
+Hierarchical
+```
+
+the controller presents the project according to its Group structure.
+
+At the top level, that might look like:
+
+```text
+┌───────┬──────┬─────────┬──────┬────────┬─────┐
+│ Drums │ Bass │ Guitars │ Keys │ Vocals │ FX  │
+└───────┴──────┴─────────┴──────┴────────┴─────┘
+```
+
+The contents of the Drums Group do not have to consume channel strips until you actually enter that Group.
+
+This allows a large project to remain manageable on an eight-channel surface.
+
+---
+
+## Entering a Group
+
+Suppose the Drums Group is on Channel 1.
+
+First press its SELECT button:
+
+```text
+Drums
+  │
+  ▼
+SELECT
+```
+
+The Drums Group becomes the selected track.
+
+Now press the **same SELECT button again**:
+
+```text
+Drums selected
+      │
+      ▼
+SELECT again
+      │
+      ▼
+Enter Drums Group
+```
+
+The eight channel strips now represent tracks inside the Group.
+
+For example:
+
+```text
+Kick   Snare   Hats   Toms   Perc   Room
+```
+
+The physical hardware has not changed.
+
+The **level of the project represented by it has changed**.
+
+---
+
+## Leaving a Group
+
+To leave the current Group:
+
+```text
+Long-press any SELECT button
+```
+
+Conceptually:
+
+```text
+Kick   Snare   Hats   Toms   Perc
+              │
+              ▼
+     long-press SELECT
+              │
+              ▼
+Drums   Bass   Guitars   Keys   Vocals
+```
+
+This takes the controller back up to the parent level.
+
+So the essential hierarchical movement is:
+
+```text
+SELECT
+   ↓
+select object
+
+SELECT again
+   ↓
+enter object
+
+long-press SELECT
+   ↓
+leave object
+```
+
+---
+
+## SELECT Has Acquired a Second Dimension
+
+Earlier in Project XTC, SELECT primarily meant:
+
+> **This one.**
+
+That remains true.
+
+But in a hierarchical project, repeated SELECT can also mean:
+
+> **Show me inside this one.**
+
+So SELECT now has two related roles:
+
+```text
+First press
+   → focus
+
+Second press
+   → descend, where appropriate
 ```
 
 and:
 
 ```text
-ENTER
-   → descend into the focused structure
+Long press
+   → ascend
 ```
 
-This builds naturally on the SELECT-button principle introduced earlier in the guide.
-
-First establish **which object** you mean.
-
-Then decide **what to do with it**.
+This is a compact navigation system built into buttons that already have an obvious relationship with the channel strips.
 
 ---
 
-## Coming Back Out
+## Think of It as Zooming Into the Mixer
 
-If we can descend into a hierarchy, we also need a way back.
+Another useful mental model is **magnification**.
 
-DrivenByMoss provides navigation back towards the parent level.
-
-Conceptually:
-
-```text
-Project
-   │
-   ▼
-Group
-   │
-   ▼
-Track
-```
-
-and then:
-
-```text
-Track
-   │
-   ▲
-Group
-   │
-   ▲
-Project
-```
-
-The important mental model is:
-
-> **You are moving the X-Touch's point of view through the project hierarchy.**
-
-You are not moving the tracks themselves.
-
----
-
-## Hierarchy Is Another Kind of Banking
-
-There is a useful connection with Chapter 4.
-
-Ordinary banking moves the X-Touch's view **across** a collection:
-
-```text
-← BANK                                  BANK →
-```
-
-Hierarchical navigation moves the view **between levels**:
-
-```text
-      Parent
-        ▲
-        │
-        │
-        ▼
-       Child
-```
-
-So we can think of navigation as having two dimensions:
-
-```text
-                Parent
-                  ▲
-                  │
-Previous  ◄──── Current ────► Next
-                  │
-                  ▼
-                 Child
-```
-
-That is a much more powerful model than thinking of the X-Touch as permanently attached to eight particular tracks.
-
----
-
-## Why Hierarchical Navigation Helps
-
-Consider a large project containing:
-
-```text
-Drums
-Bass
-Guitars
-Keyboards
-Vocals
-FX
-```
-
-where several of those are Groups.
-
-At the top level, you may want the X-Touch to behave almost like a stem mixer:
-
-```text
-Drums   Bass   Guitars   Keys   Vocals   FX
-```
-
-That is an excellent high-level view for balancing the song.
-
-But now suppose the snare is too loud.
-
-Instead of abandoning the control surface, you can descend into the Drums Group:
-
-```text
-Drums
-  │
-  ▼
-Kick   Snare   Hats   Toms   Percussion   ...
-```
-
-Make the adjustment.
-
-Then return to the project level:
-
-```text
-Drums   Bass   Guitars   Keys   Vocals   FX
-```
-
-The surface has changed scale.
-
----
-
-## From Mixing Desk to Magnifying Glass
-
-This gives the X-Touch two complementary roles.
-
-At one moment it can behave like a broad mixing desk:
+At first:
 
 ```text
 Drums   Bass   Guitars   Keys   Vocals
 ```
 
-A moment later it can act almost like a magnifying glass:
+Then:
 
 ```text
-Kick   Snare   Hat   Tom 1   Tom 2   Shaker
+SELECT Drums
+SELECT Drums again
 ```
 
-The hardware is identical.
-
-Only the level of detail has changed.
-
-That is one of the advantages of a context-sensitive control surface.
-
----
-
-## Instrument Layers
-
-Hierarchy does not stop at track Groups.
-
-Bitwig instruments can themselves contain multiple layers.
-
-Conceptually:
-
-```text
-Instrument Track
-       │
-       ▼
-   Instrument
-       │
-       ├── Layer 1
-       ├── Layer 2
-       ├── Layer 3
-       └── Layer 4
-```
-
-DrivenByMoss can expose these layers on the X-Touch.
-
-When the appropriate layer view is active, the channel strips cease to represent ordinary project tracks and instead represent the layers within the selected instrument.
-
-Again:
-
-> **The channel strip represents whatever object the current context assigns to it.**
-
----
-
-## Layer Mode
-
-For a layered instrument, the controller can enter a Layer-oriented view.
-
-The eight channel strips can then represent up to eight visible layers:
-
-```text
-Layer 1   Layer 2   Layer 3   Layer 4   Layer 5   Layer 6   Layer 7   Layer 8
-```
-
-If more layers exist, banking provides access to the others.
-
-This should already feel familiar.
-
-We are applying the same eight-channel-window model to a different collection of objects.
-
----
-
-## Mixing Layers
-
-Once layers are exposed on the channel strips, they can be treated in mixer-like ways.
-
-Depending on the current layer mode, the surface provides access to properties including:
-
-- Volume;
-- Panorama;
-- Sends;
-- Mute;
-- Solo.
-
-So a layered sound can be mixed from the X-Touch much as a set of tracks can.
-
-Conceptually:
-
-```text
-                Layered Instrument
-
-             ┌────────┬────────┬────────┐
-             │Layer 1 │Layer 2 │Layer 3 │
-             └───┬────┴───┬────┴───┬────┘
-                 │        │        │
-              Volume   Volume   Volume
-                Pan      Pan      Pan
-               Sends    Sends    Sends
-```
-
-This can be much more immediate than repeatedly opening device panels and adjusting the layers with a mouse.
-
----
-
-## Volume and Panorama
-
-The same perspective we used in Chapter 14 applies here.
-
-We can look at layers by object:
-
-```text
-Layer 1
-   ├── Volume
-   ├── Pan
-   └── Sends
-```
-
-or by dimension:
-
-```text
-Volume
-   ├── Layer 1
-   ├── Layer 2
-   ├── Layer 3
-   └── ...
-```
-
-The X-Touch can reorganise its controls according to the job.
-
-The principles do not change merely because the objects are now layers rather than tracks.
-
----
-
-## Sends from Layers
-
-Layer Sends can be particularly useful for building complex instruments.
-
-Different layers may need different amounts of:
-
-- reverb;
-- delay;
-- modulation;
-- other send effects.
-
-Instead of treating the layered instrument as one indivisible sound, the X-Touch can help expose its internal mix.
-
-Conceptually:
-
-```text
-Layer 1 ────────► Reverb
-Layer 2 ──►      Reverb
-Layer 3 ─────────────► Reverb
-Layer 4 ─────►    Reverb
-```
-
-Once again, we are mixing **inside** something that previously appeared to be a single track.
-
----
-
-## Mute and Solo for Layers
-
-Mute and Solo become particularly useful when investigating a layered sound.
-
-Suppose an instrument contains four layers and something in the combined sound is muddy.
-
-Solo the layers individually.
-
-Or mute one layer and listen to what disappears.
-
-The workflow becomes:
-
-```text
-Listen
-  ↓
-Solo / Mute Layer
-  ↓
-Identify contribution
-  ↓
-Adjust
-  ↓
-Restore full sound
-```
-
-This is another example of the X-Touch helping you work by ear rather than requiring constant visual navigation through Bitwig's device interface.
-
----
-
-## Drum Pads
-
-A Drum Machine introduces another hierarchy.
-
-Conceptually:
-
-```text
-Drum Track
-    │
-    ▼
-Drum Machine
-    │
-    ├── Kick Pad
-    ├── Snare Pad
-    ├── Closed Hat Pad
-    ├── Open Hat Pad
-    ├── Clap Pad
-    ├── Tom Pad
-    └── ...
-```
-
-From the project's top level, this may appear to be one track.
-
-Inside the Drum Machine, however, it contains an entire collection of sounds.
-
-DrivenByMoss can expose those pads through the X-Touch.
-
----
-
-## Drum Pad Mode
-
-In the appropriate Drum Pad view, the channel strips represent individual pads.
-
-For example:
-
-```text
-Ch 1      Ch 2      Ch 3      Ch 4      Ch 5      Ch 6      Ch 7      Ch 8
-
-Kick      Snare     C.Hat     O.Hat     Clap      Tom       Rim       Perc
-```
-
-Now the X-Touch behaves almost like a mixer for the internal elements of the drum kit.
-
-The same physical faders that previously controlled entire tracks may now control individual drum sounds.
-
----
-
-## Mixing a Drum Machine
-
-This can be extremely useful.
-
-Suppose the overall drum track is at the correct level, but the hi-hat is too loud.
-
-At project level:
-
-```text
-Drums
-  │
-  └── one fader
-```
-
-does not solve the problem.
-
-Descend to the Drum Machine's pads and the view becomes:
-
-```text
-Kick   Snare   C.Hat   O.Hat   Clap   Tom   ...
-```
-
-Now the problem is directly accessible.
-
-Turn the hi-hat down.
-
-Then return to the higher-level mix.
-
----
-
-## Drum Pad Volume
-
-In a volume-oriented pad view:
-
-```text
-Fader 1 → Kick
-Fader 2 → Snare
-Fader 3 → Closed Hat
-Fader 4 → Open Hat
-...
-```
-
-The X-Touch becomes a conventional-looking mixer for something that Bitwig represents internally as a device.
-
-This is another reminder that the distinction between:
-
-```text
-Track
-Device
-Layer
-Pad
-```
-
-matters less to the hardware than you might initially expect.
-
-What matters is the **current collection of controllable objects**.
-
----
-
-## Drum Pad Panorama
-
-Pads can also be treated as individual mixer elements for panorama.
-
-That makes operations such as spreading percussion across the stereo field much more tactile.
-
-Instead of repeatedly selecting pads on screen:
-
-```text
-select pad
-   ↓
-adjust pan
-   ↓
-select next pad
-   ↓
-adjust pan
-```
-
-the X-Touch can present several pad panorama controls together.
-
----
-
-## Drum Pad Sends
-
-The same applies to Sends.
-
-Perhaps:
-
-- the snare needs plenty of reverb;
-- the kick needs almost none;
-- the clap needs delay;
-- the percussion needs a little of both.
-
-The pad-oriented Send view allows these internal relationships to be mixed from the surface.
-
-This is exactly the same **mixing by dimension** principle introduced in Chapter 14, now operating one level deeper.
-
----
-
-## Mute and Solo for Drum Pads
-
-Mute and Solo are especially useful with drums.
-
-Want to hear the groove without the kick?
-
-Mute it.
-
-Want to find which percussion pad is producing an unwanted sound?
-
-Solo pads until you identify it.
-
-Want to audition the rhythm without the hats?
-
-Mute them.
-
-The channel-strip buttons make these operations immediate.
-
-Again, the X-Touch is acting not merely as a track mixer, but as a mixer for the **contents of a device**.
-
----
-
-## The Same Eight Strips, Again and Again
-
-At this point, the eight channel strips may have represented:
-
-```text
-Project tracks
-
-Group contents
-
-Instrument layers
-
-Drum pads
-```
-
-This may sound complicated until we notice that the interaction pattern remains remarkably consistent.
-
-The surface repeatedly asks:
-
-> **What eight things are we looking at now?**
-
-Then the familiar controls operate on those things.
-
-Conceptually:
-
-```text
-                 X-Touch
-                    │
-                    ▼
-             Eight channel strips
-                    │
-       ┌────────────┼────────────┐
-       │            │            │
-       ▼            ▼            ▼
-     Tracks       Layers        Pads
-```
-
-Once you understand the window, you do not need to relearn the surface every time the contents change.
-
----
-
-## SELECT Still Means Focus
-
-The SELECT-button principle remains valuable throughout hierarchical navigation.
-
-At whatever level you are working:
-
-> **SELECT establishes focus.**
-
-At project level, SELECT may focus a track or Group.
-
-Inside a Group, it may focus one of its child tracks.
-
-In a layer-oriented context, it may focus a layer.
-
-In a pad-oriented context, it may focus a drum pad.
-
-The object changes.
-
-The principle does not.
-
-That consistency is what makes a complex hierarchy manageable.
-
----
-
-## ENTER Means Go Deeper
-
-A useful companion principle is:
-
-> **ENTER descends into something that has contents.**
-
-Not every selected object has another meaningful level beneath it.
-
-But when it does, ENTER provides a natural conceptual operation:
-
-```text
-SELECT
-   ↓
-"This one"
-
-ENTER
-   ↓
-"Show me inside it"
-```
-
-That pairing is worth remembering.
-
----
-
-## CANCEL Means Back Out
-
-Likewise, navigation needs a way to retreat from the current level.
-
-Think of CANCEL as the complementary idea:
-
-```text
-ENTER
-   → go in
-
-CANCEL
-   → come back out
-```
-
-The precise behaviour still depends on the current context, but this provides a useful mental model for hierarchical navigation.
-
----
-
-## Don't Confuse Navigation with Rearrangement
-
-There is an important distinction here.
-
-When you enter a Group or expose layers, you are changing the controller's **view**.
-
-You are not moving objects in the Bitwig project.
-
-This is similar to the distinction introduced in Chapter 4.
-
-Compare:
-
-```text
-Navigate hierarchy
-      ↓
-Move the X-Touch's view
-```
-
-with:
-
-```text
-Move track
-      ↓
-Change the project structure
-```
-
-Those are fundamentally different operations.
-
-If something unexpected happens, ask yourself:
-
-> **Am I moving the view, or moving the object?**
-
-That question resolves many apparently confusing control-surface operations.
-
----
-
-## A Practical Group Workflow
-
-Suppose the top-level mix contains:
-
-```text
-Drums   Bass   Guitars   Keys   Vocals   FX
-```
-
-and the snare needs adjustment.
-
-### 1. Select Drums
-
-Use the appropriate channel SELECT button.
-
-### 2. Enter the Group
-
-Descend into its contents.
-
-The surface now shows something like:
+and the controller effectively zooms in:
 
 ```text
 Kick   Snare   Hats   Toms   Percussion
 ```
 
-### 3. Adjust Snare
-
-Use the familiar channel controls.
-
-### 4. Return to the parent
-
-Back out of the Group.
-
-The X-Touch returns to:
+Long-press SELECT and it zooms back out:
 
 ```text
-Drums   Bass   Guitars   Keys   Vocals   FX
+Drums   Bass   Guitars   Keys   Vocals
 ```
 
-No mouse was required simply to change the scale at which you were mixing.
+Nothing has moved physically.
+
+The X-Touch has changed the scale at which you are viewing the project.
 
 ---
 
-## A Practical Drum Workflow
+## Nested Groups
 
-Suppose a Drum Machine contains:
+Groups may themselves contain Groups.
 
-```text
-Kick   Snare   Hat   Clap   Rim   Shaker   Conga   Tamb
-```
-
-and you want to shape the internal mix.
-
-You can:
-
-1. enter the appropriate pad view;
-2. balance the pad volumes;
-3. adjust panorama;
-4. work with Sends;
-5. mute or solo individual sounds;
-6. return to the higher-level track view.
-
-The important point is that you have not left the X-Touch's basic interaction model.
-
-You have simply moved deeper into the project.
-
----
-
-## Hierarchy and Mouse-Lite Working
-
-Hierarchical navigation addresses one of the common reasons for reaching for a mouse:
-
-> **I need to get at something inside that thing.**
-
-Without a control-surface hierarchy, the usual response is:
-
-```text
-look at screen
-    ↓
-find Group or device
-    ↓
-expand it
-    ↓
-find child object
-    ↓
-select it
-```
-
-With a navigable hierarchy:
-
-```text
-SELECT
-   ↓
-ENTER
-   ↓
-work
-   ↓
-CANCEL
-```
-
-The exact number of steps depends on the project, but the principle is powerful.
-
-The controller can change its point of view without requiring you to manipulate the visual interface first.
-
----
-
-## A Project Is Not Flat
-
-This is the larger lesson of the chapter.
-
-At the beginning of the guide, it was convenient to imagine:
-
-```text
-Track 1   Track 2   Track 3   Track 4   ...
-```
-
-That model remains useful.
-
-But a real Bitwig project may be closer to:
+Conceptually:
 
 ```text
 Project
    │
-   ├── Group
-   │     ├── Track
-   │     └── Track
-   │
-   ├── Instrument Track
-   │     └── Instrument
-   │           ├── Layer
-   │           └── Layer
-   │
-   └── Drum Track
-         └── Drum Machine
-               ├── Pad
-               ├── Pad
-               └── Pad
+   └── Drums
+         │
+         ├── Acoustic Kit
+         │      ├── Kick
+         │      ├── Snare
+         │      └── Overheads
+         │
+         └── Percussion
+                ├── Shaker
+                └── Tambourine
 ```
 
-DrivenByMoss allows the X-Touch to follow that structure.
+The same principle can be applied repeatedly.
+
+At the top level:
+
+```text
+Drums
+```
+
+Enter Drums:
+
+```text
+Acoustic Kit   Percussion
+```
+
+Enter Acoustic Kit:
+
+```text
+Kick   Snare   Overheads
+```
+
+Then long-press SELECT to move back towards the parent level.
+
+The important point is not how many levels exist.
+
+It is that the navigation rule remains understandable.
 
 ---
 
-## The Important Idea
+## The Eight Strips Are a Window
 
-The eight channel strips are not permanently eight tracks.
+This gives us a more powerful version of the idea introduced in Chapter 4.
 
-They are an **eight-object window**.
-
-Depending on context, those objects may be:
+Originally:
 
 ```text
-Tracks
-Groups
-Child tracks
-Layers
-Drum pads
+Large project
+────────────────────────────────────────
+
+       ┌───────────────────┐
+       │ 8 visible tracks  │
+       └───────────────────┘
 ```
 
-Banking moves the window across objects.
+Banking moved that window sideways.
 
-Hierarchical navigation moves the window between levels.
-
-So our mental model can now expand again:
+Hierarchical navigation adds another direction:
 
 ```text
-                    PROJECT
-
-                      │
-             ┌────────┴────────┐
-             │                 │
-           Group            Instrument
-             │                 │
-       ┌─────┴─────┐      ┌────┴────┐
-       │           │      │         │
-     Track       Track   Layer     Layer
-
-                      Drum Machine
-                           │
-                    ┌──────┼──────┐
-                    │      │      │
-                   Pad    Pad    Pad
+             Project
+                │
+                ▼
+          ┌───────────┐
+          │   Group   │
+          └───────────┘
+                │
+                ▼
+          Child Tracks
 ```
 
-The X-Touch does not need a separate physical surface for every level.
+So the X-Touch can now move:
 
-It changes what its existing surface represents.
+```text
+← sideways through banks →
 
-Once that becomes intuitive, even a deeply structured Bitwig project can remain accessible from the same eight channel strips.
+and
+
+↓ deeper into structure
+↑ back towards the parent
+```
+
+This is how eight physical channel strips can remain useful in a much larger project.
+
+---
+
+# Flat Track Navigation
+
+Hierarchical navigation is not the only option.
+
+DrivenByMoss also provides:
+
+```text
+Track navigation: Flat
+```
+
+In Flat mode, all tracks are presented in one flat track bank rather than using the Group structure as the controller's navigation hierarchy.
+
+That changes what happens when an already-selected Group is selected again.
+
+---
+
+## Repeated SELECT in Flat Mode
+
+With flat navigation:
+
+```text
+SELECT an already-selected Group
+```
+
+does **not** enter the Group as a new controller level.
+
+Instead it toggles the Group's expanded state.
+
+Conceptually:
+
+```text
+Drums ▶
+```
+
+becomes:
+
+```text
+Drums ▼
+   Kick
+   Snare
+   Hats
+```
+
+and vice versa.
+
+This is an important distinction.
+
+The same physical gesture:
+
+```text
+SELECT again
+```
+
+has different Group behaviour depending on the Track navigation preference.
+
+---
+
+## Flat or Hierarchical?
+
+Neither mode is universally correct.
+
+They represent two different ways of thinking about a project.
+
+### Flat
+
+Think:
+
+> **Show me the tracks as one long mixer.**
+
+### Hierarchical
+
+Think:
+
+> **Show me the project structure, and let me enter the part I need.**
+
+For a small project, Flat may be extremely convenient.
+
+For a large project containing many Groups, Hierarchical navigation can make eight channel strips feel much less restrictive.
+
+The choice is made in the DrivenByMoss settings, which we discuss in Chapter 21.
+
+---
+
+# Opening and Closing Groups Without Entering Them
+
+DrivenByMoss provides another useful Group command:
+
+```text
+CONTROL + SELECT
+```
+
+If the selected channel is a Group, this opens or closes the Group folder.
+
+So we should distinguish between two ideas:
+
+```text
+SELECT again
+   → hierarchical navigation into the Group
+     when Hierarchical navigation is configured
+```
+
+and:
+
+```text
+CONTROL + SELECT
+   → open / close the Group folder
+```
+
+They are related, but they are not the same operation.
+
+---
+
+## Navigation Versus Presentation
+
+This distinction is easier to understand if we think in terms of:
+
+```text
+Where am I?
+```
+
+versus:
+
+```text
+How is the Group displayed?
+```
+
+Hierarchical SELECT navigation changes the controller's current level.
+
+CONTROL + SELECT changes the Group's open/closed state.
+
+That gives us two different kinds of Group control without requiring a separate bank of dedicated Group buttons.
+
+---
+
+# Layers
+
+Bitwig instruments can contain Layers.
+
+For example:
+
+```text
+Instrument
+   │
+   ├── Layer 1
+   ├── Layer 2
+   ├── Layer 3
+   └── Layer 4
+```
+
+DrivenByMoss allows the X-Touch channel strips to represent those Layers.
+
+The mechanism is deliberately similar to Group navigation.
+
+---
+
+## Entering Layers Mode
+
+First select the track containing the instrument.
+
+If it is not already selected:
+
+```text
+SELECT Track
+```
+
+Once that track is selected, press its SELECT button again.
+
+If the track contains an instrument with Layers or Drum Pads at the top level, DrivenByMoss enters Layers mode.
+
+Conceptually:
+
+```text
+Synth Track
+    │
+    ▼
+SELECT
+    │
+    ▼
+Track selected
+    │
+    ▼
+SELECT again
+    │
+    ▼
+Layer 1   Layer 2   Layer 3   Layer 4
+```
+
+The channel strips now represent the instrument's internal elements rather than normal project tracks.
+
+---
+
+## Leaving Layers Mode
+
+The exit mechanism is the same principle used for hierarchical Groups:
+
+```text
+Long-press any SELECT button
+```
+
+So:
+
+```text
+Layer 1   Layer 2   Layer 3   Layer 4
+                   │
+                   ▼
+          long-press SELECT
+                   │
+                   ▼
+              Synth Track
+```
+
+This consistency is useful.
+
+Once the repeated-SELECT / long-press-SELECT model becomes familiar, it can be applied to more than one kind of hierarchy.
+
+---
+
+## Layer Mixing
+
+Once Layers mode is active, the Layers can be edited using familiar mixer concepts.
+
+DrivenByMoss supports Layer control for:
+
+```text
+Volume
+
+Pan
+
+Sends
+
+Mute
+
+Solo
+```
+
+So a layered instrument can effectively become a small mixer inside the larger project mixer.
+
+For example:
+
+```text
+Layer A   Layer B   Layer C   Layer D
+   │         │         │         │
+ Volume    Volume    Volume    Volume
+```
+
+You can balance the Layers without needing to treat the instrument as one indivisible sound.
+
+---
+
+## Familiar Modes at a Different Level
+
+The important point is that many of the controls you already know continue to make sense.
+
+The context has changed.
+
+Instead of:
+
+```text
+Track 1   Track 2   Track 3   Track 4
+```
+
+you may now have:
+
+```text
+Layer 1   Layer 2   Layer 3   Layer 4
+```
+
+But concepts such as:
+
+```text
+Volume
+Pan
+Send
+Mute
+Solo
+```
+
+remain familiar.
+
+This is a recurring DrivenByMoss design idea:
+
+> **Learn a small number of interaction patterns, then reuse them at different levels of the project.**
+
+---
+
+# Drum Pads
+
+Drum Pads follow the same general model.
+
+Suppose a Bitwig Drum Machine contains:
+
+```text
+Kick
+Snare
+Closed Hat
+Open Hat
+Clap
+Rim
+Shaker
+Tambourine
+```
+
+The X-Touch can expose these through its channel strips when the containing track is entered in Layers/Drum Pad mode.
+
+---
+
+## Entering Drum Pad Mode
+
+Select the track containing the Drum Machine.
+
+Then press SELECT again:
+
+```text
+Drum Track
+    │
+    ▼
+SELECT
+    │
+    ▼
+Track selected
+    │
+    ▼
+SELECT again
+    │
+    ▼
+Kick   Snare   CHat   OHat   Clap   Rim   Shaker   Tamb
+```
+
+The eight physical channel strips are now a window onto the Drum Machine's pads.
+
+---
+
+## A Drum Machine Becomes a Mixer
+
+This is where the idea becomes particularly useful.
+
+Instead of treating the Drum Machine as one track:
+
+```text
+Drums
+  │
+  ▼
+one volume
+```
+
+you can work with its internal sounds:
+
+```text
+Kick    Snare    Hats    Clap    Perc
+ │        │        │       │       │
+ ▼        ▼        ▼       ▼       ▼
+level    level    level   level   level
+```
+
+That gives the X-Touch access to a level of detail that would otherwise require returning to Bitwig's graphical device interface.
+
+---
+
+## Drum Pad Mute and Solo
+
+Mute and Solo become especially useful here.
+
+Suppose you want to hear only the kick and snare.
+
+You can use the familiar SOLO buttons at the Drum Pad level.
+
+Or perhaps one percussion sound is getting in the way.
+
+Use MUTE on that pad.
+
+The physical controls have not changed.
+
+Their targets have.
+
+This is another example of why the current context matters so much on the X-Touch.
+
+---
+
+## Drum Pad Sends
+
+Sends can also be useful at the Layer or Drum Pad level.
+
+Imagine a Drum Machine where:
+
+```text
+Kick
+   → mostly dry
+
+Snare
+   → some reverb
+
+Clap
+   → more reverb
+
+Percussion
+   → delay
+```
+
+Rather than processing the entire Drum Machine identically, individual elements can participate differently in the mix.
+
+This can be particularly useful in electronic music and dub-style workflows.
+
+---
+
+# The Same Surface at Different Scales
+
+We can now see several possible meanings for one physical channel strip.
+
+At one moment it may represent:
+
+```text
+Track
+```
+
+At another:
+
+```text
+Group child
+```
+
+At another:
+
+```text
+Instrument Layer
+```
+
+At another:
+
+```text
+Drum Pad
+```
+
+Yet the controls remain recognisable:
+
+```text
+V-Pot
+
+ARM
+
+SOLO
+
+MUTE
+
+SELECT
+
+Fader
+```
+
+The X-Touch is not changing physically.
+
+DrivenByMoss is changing the **context** represented by the hardware.
+
+---
+
+## Context Is Everything
+
+This is why the scribble strips and displays matter.
+
+If Channel 3 represents:
+
+```text
+Bass
+```
+
+you need to know that.
+
+If you enter a Group and Channel 3 now represents:
+
+```text
+Hi-Hat
+```
+
+you need to know that too.
+
+If you then enter a layered instrument and Channel 3 represents:
+
+```text
+Noise Layer
+```
+
+the same physical controls have acquired yet another meaning.
+
+The surface is contextual.
+
+The feedback tells you what the current context is.
+
+---
+
+# A Complete Hierarchical Example
+
+Imagine this project:
+
+```text
+Project
+│
+├── Drums
+│   ├── Acoustic Kit
+│   └── Drum Machine
+│
+├── Bass
+│
+├── Synths
+│   ├── Pad
+│   └── Lead
+│
+└── Vocals
+```
+
+Assume Track navigation is set to Hierarchical.
+
+At the top level, the X-Touch might show:
+
+```text
+Drums   Bass   Synths   Vocals
+```
+
+You want the snare inside the Drum Machine.
+
+---
+
+## Step 1 — Select Drums
+
+```text
+SELECT Drums
+```
+
+Drums becomes the selected Group.
+
+---
+
+## Step 2 — Enter Drums
+
+Press the same SELECT again:
+
+```text
+SELECT Drums again
+```
+
+The surface now shows:
+
+```text
+Acoustic Kit   Drum Machine
+```
+
+---
+
+## Step 3 — Select Drum Machine
+
+```text
+SELECT Drum Machine
+```
+
+The Drum Machine track becomes selected.
+
+---
+
+## Step 4 — Enter its Drum Pads
+
+Press the same SELECT again:
+
+```text
+SELECT Drum Machine again
+```
+
+Now the surface might show:
+
+```text
+Kick   Snare   CHat   OHat   Clap   Rim   Perc   Tamb
+```
+
+---
+
+## Step 5 — Adjust the Snare
+
+The Snare is now simply one of the visible channel-strip targets.
+
+Use the appropriate edit mode to adjust:
+
+```text
+Volume
+
+Pan
+
+Send
+
+Mute
+
+Solo
+```
+
+---
+
+## Step 6 — Leave Drum Pad Mode
+
+Long-press any SELECT button.
+
+You return from the Drum Pads to the containing track context.
+
+---
+
+## Step 7 — Leave the Drums Group
+
+Long-press SELECT again as appropriate to return to the parent Group level.
+
+Eventually:
+
+```text
+Drums   Bass   Synths   Vocals
+```
+
+is visible again.
+
+We have moved:
+
+```text
+Project
+   ↓
+Drums Group
+   ↓
+Drum Machine
+   ↓
+Drum Pads
+   ↓
+Snare
+```
+
+and then back out again.
+
+All without needing ENTER or CANCEL for the hierarchy.
+
+---
+
+# SELECT as Navigation
+
+We can now refine the mental model of SELECT that began much earlier in this guide.
+
+At its simplest:
+
+```text
+SELECT
+   → this one
+```
+
+But in a hierarchical context:
+
+```text
+SELECT
+   → focus this object
+
+SELECT again
+   → enter its internal level,
+     where supported
+
+long-press SELECT
+   → leave the current internal level
+```
+
+And with a modifier:
+
+```text
+CONTROL + SELECT
+   → open / close a Group folder
+```
+
+That is a remarkable amount of navigation built around one consistent row of buttons.
+
+---
+
+## Other Useful SELECT Modifiers
+
+DrivenByMoss also provides several other operations on the channel SELECT buttons.
+
+These are worth recognising even though they are not all specifically about hierarchy.
+
+```text
+SHIFT + SELECT
+   → Multi-select tracks,
+     where supported by the DAW
+
+OPTION + SELECT
+   → Stop the playing clip
+     on that track
+
+CONTROL + SELECT
+   → Open / close Group folder
+
+ALT + SELECT
+   → Set New Clip Length
+
+SEND + SELECT
+   → Select Send 1–8
+```
+
+So SELECT is not merely a row of eight identical track-selection switches.
+
+It is one of the most contextually useful parts of the surface.
+
+---
+
+# Hierarchy and Banking Work Together
+
+Entering a Group does not mean that banking ceases to matter.
+
+A Group may contain more than eight child tracks.
+
+For example:
+
+```text
+Drums
+│
+├── Kick
+├── Snare Top
+├── Snare Bottom
+├── Hi-Hat
+├── Tom 1
+├── Tom 2
+├── Overheads
+├── Room
+├── Shaker
+├── Tambourine
+└── Claps
+```
+
+The first bank might expose:
+
+```text
+Kick   SnTop   SnBot   Hat   Tom1   Tom2   OH   Room
+```
+
+Then BANK can move the eight-channel window further through the Group.
+
+So we now have two complementary navigation systems:
+
+```text
+Hierarchy
+   → choose the level
+
+Banking
+   → choose the portion of that level
+```
+
+This is how the X-Touch scales.
+
+---
+
+## A Useful Mental Picture
+
+Imagine the Bitwig project as a building.
+
+Groups are rooms.
+
+Tracks, Layers and Pads are things inside those rooms.
+
+The X-Touch gives you a window.
+
+BANK moves the window sideways:
+
+```text
+←          →
+```
+
+Hierarchical SELECT navigation moves you through the structure:
+
+```text
+↓ enter
+
+↑ leave
+```
+
+The eight physical strips remain the same size.
+
+But the space they can explore becomes much larger.
+
+---
+
+# Why Hierarchical Navigation Matters
+
+Without hierarchy, a controller with eight channel strips can seem limited.
+
+A project may contain:
+
+```text
+40 tracks
+```
+
+or:
+
+```text
+80 tracks
+```
+
+or more.
+
+But a large project is often organised into meaningful structures:
+
+```text
+Drums
+
+Bass
+
+Guitars
+
+Synths
+
+Vocals
+
+FX
+```
+
+Hierarchical navigation lets the controller work with those structures rather than treating the project as one enormous flat list.
+
+At the top level, the project can remain comprehensible.
+
+When detail is needed, you descend into it.
+
+Then you come back out.
+
+---
+
+## The Controller Follows Your Attention
+
+This leads to a useful way of thinking about the X-Touch.
+
+Your attention may move like this:
+
+```text
+Whole Project
+     ↓
+Drums
+     ↓
+Drum Machine
+     ↓
+Snare
+```
+
+The X-Touch can follow that attention.
+
+Then:
+
+```text
+Snare
+  ↑
+Drum Machine
+  ↑
+Drums
+  ↑
+Whole Project
+```
+
+The controller moves back out with you.
+
+That is more useful than thinking merely in terms of button combinations.
+
+The buttons are implementing a change in **attention**.
+
+---
+
+# Hierarchical Versus Flat Is a Workflow Choice
+
+There is no requirement to use hierarchical navigation.
+
+If you prefer:
+
+```text
+one long mixer
+```
+
+choose Flat.
+
+If you prefer:
+
+```text
+top-level structure
+       ↓
+drill into detail
+       ↓
+return
+```
+
+choose Hierarchical.
+
+This is a configuration choice, not a test of whether you are using the X-Touch correctly.
+
+Chapter 21 discusses the DrivenByMoss settings in more detail.
+
+---
+
+# A Mouse-Lite Benefit
+
+Groups, Layers and Drum Pads provide a good example of the Mouse-Lite idea.
+
+Without hardware navigation, a common sequence might be:
+
+```text
+look at screen
+     ↓
+find Group
+     ↓
+open Group
+     ↓
+find track
+     ↓
+open device
+     ↓
+find Drum Machine
+     ↓
+find pad
+     ↓
+adjust control
+```
+
+With a familiar X-Touch workflow:
+
+```text
+SELECT
+   ↓
+SELECT again
+   ↓
+SELECT
+   ↓
+SELECT again
+   ↓
+adjust
+```
+
+That does not mean the graphical route is wrong.
+
+Sometimes it will be clearer or faster.
+
+But the physical route can allow your hands and ears to remain engaged with the mix.
+
+---
+
+## Don't Descend Further Than You Need
+
+Hierarchy is useful, but there is no prize for navigating to the deepest possible level.
+
+If the problem is:
+
+> **The entire drum Group is too loud**
+
+adjust the Group.
+
+Do not enter it.
+
+If the problem is:
+
+> **The snare is too loud**
+
+then descend far enough to reach the snare.
+
+A useful rule is:
+
+> **Work at the highest level that solves the problem.**
+
+This keeps the workflow efficient.
+
+---
+
+# The Important Idea
+
+The X-Touch's eight channel strips are not tied permanently to eight top-level tracks.
+
+They can represent different levels of the Bitwig project.
+
+With hierarchical Track navigation:
+
+```text
+SELECT
+   → select
+
+SELECT again
+   → enter Group
+
+long-press SELECT
+   → leave Group
+```
+
+For a selected track containing top-level Layers or Drum Pads:
+
+```text
+SELECT again
+   → enter Layers / Drum Pads
+
+long-press SELECT
+   → leave Layers / Drum Pads
+```
+
+With Flat Track navigation:
+
+```text
+SELECT an already-selected Group
+   → toggle its expanded state
+```
+
+And independently:
+
+```text
+CONTROL + SELECT
+   → open / close Group folder
+```
+
+Once inside Layers or Drum Pads, familiar mixer concepts continue to apply:
+
+```text
+Volume
+Pan
+Sends
+Mute
+Solo
+```
+
+So the controller can move from:
+
+```text
+Project
+```
+
+to:
+
+```text
+Group
+```
+
+to:
+
+```text
+Track
+```
+
+to:
+
+```text
+Layer / Drum Pad
+```
+
+and back again.
+
+The physical surface stays the same.
+
+**Its meaning changes with your attention.**
 
 ---
 
 ## Coming Next
 
-We have now moved:
+Hierarchy lets us move downward into the details of a project.
 
-- sideways through banks;
-- between mixer dimensions;
-- through markers;
-- into Groups;
-- into layers;
-- into Drum Machine pads.
+But the X-Touch can also move in the opposite direction — upwards to the level of the project itself.
 
-The next chapter moves somewhere different again:
+Touching the Master fader enters a special DrivenByMoss context where the V-Pots no longer represent ordinary track controls.
 
-**upwards, to the project as a whole.**
-
-We will look at the Master channel and the project-level operations that DrivenByMoss places on the X-Touch.
+They can control the Master channel, the audio engine and even project navigation.
 
 Next:
 
