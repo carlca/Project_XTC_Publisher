@@ -1,564 +1,1461 @@
 ---
 chapter: 13
-title: Browser Mode
-revision: "1.0"
+title: "Browser Mode"
 status: draft
 ---
 
-Up to this point, most of our work with the X-Touch has involved controlling things that already exist in the project.
+# Browser Mode
 
-We have selected tracks.
+Device Mode lets us control devices that are already present.
 
-We have adjusted levels.
+Browser Mode answers a different question:
 
-We have navigated devices and changed their parameters.
+> **What if the device, preset or item I want is not there yet?**
 
-But sooner or later we need something new.
+Bitwig's Browser is where new material enters the project.
 
-Perhaps we want to add an instrument.
+Normally, that means reaching for the mouse.
 
-Perhaps we need an audio effect.
+DrivenByMoss gives the X-Touch a hardware route into the Browser.
 
-Perhaps we want to replace a preset or search for a particular sound.
+The surface can be used to:
 
-This is where **Browser Mode** becomes particularly interesting.
+- open the Browser;
+- navigate Browser tabs and columns;
+- scroll results;
+- insert a device before the current device;
+- insert a device after the current device;
+- replace the current device;
+- confirm the selection;
+- cancel the operation.
 
-Instead of reaching immediately for the mouse, we can begin exploring Bitwig's Browser directly from the X-Touch.
+So Browser Mode is not merely another edit mode.
 
-## From Control to Creation
+It is the point where the X-Touch can help **bring something new into the project**.
 
-Device Mode allows us to move down through a hierarchy:
+---
 
-```text
-Track
-   │
-   ▼
-Device
-   │
-   ▼
-Parameter Page
-   │
-   ▼
-Parameter
-```
+# Entering Browser Mode
 
-Browser Mode performs a different job.
+DrivenByMoss maps the X-Touch's USER button to the Browser.
 
-It allows us to choose something that is not yet part of that hierarchy.
-
-Conceptually:
+Press:
 
 ```text
-Selected Track
-      │
-      ▼
-    Browser
-      │
-      ▼
-Search / Navigate
-      │
-      ▼
-Choose an Item
-      │
-      ▼
-Add to Project
-```
-
-This is an important change.
-
-The X-Touch is no longer merely editing the project.
-
-It is helping us build it.
-
-::: diagram browser-workflow
-caption: "Figure 12.1 — Browser Mode extends the workflow from selecting a destination to finding and adding new material."
-:::
-
-## SELECT Still Comes First
-
-Once again, the SELECT button plays a central role.
-
-Before opening the Browser, ask:
-
-> **"Where do I want the new item to go?"**
-
-The selected track establishes the context in which browsing takes place.
-
-This is the same idea introduced in Chapter 6.
-
-Selection is not simply about highlighting something.
-
-It establishes **focus**.
-
-A useful working sequence is therefore:
-
-```text
-SELECT
-   │
-   ▼
-Destination
+USER
    │
    ▼
 Open Browser
-   │
-   ▼
-Choose
 ```
 
-That first step prevents a surprising amount of confusion.
+This starts a normal Browser operation.
 
-::: reality-check
+The X-Touch controls then acquire Browser-specific meanings.
 
-Before browsing for a new device or sound, check the selected track.
+---
 
-Finding exactly what you wanted and then discovering that you were working in the wrong place is considerably less entertaining than it sounds.
+# USER Is Not Just "User"
 
-:::
+The button is physically labelled:
 
-## Opening the Browser
+```text
+USER
+```
 
-With DrivenByMoss, the X-Touch provides access to Bitwig's Browser without requiring you to begin the operation with the mouse.
+because that is part of the Mackie Control layout.
 
-When Browser Mode is entered, the role of the controller changes.
+DrivenByMoss gives it a useful Bitwig-specific role:
 
-Controls that previously represented mixer or device parameters can now become navigation and selection controls.
+```text
+USER
+   → Browser
+```
 
-The scribble strips change accordingly.
+This is another example of a principle we have already encountered:
 
-This should already feel familiar.
+> **The printed MCU label does not necessarily describe the literal Bitwig function.**
+
+The DrivenByMoss mapping is what matters.
+
+---
+
+# Three Ways to Start Browsing
+
+DrivenByMoss documents three Browser-entry commands:
+
+```text
+USER
+   → Start Browser
+```
+
+```text
+SHIFT + USER
+   → Insert new device before
+     the current device
+```
+
+```text
+OPTION + USER
+   → Insert new device after
+     the current device
+```
+
+So the modifier determines the intended insertion point.
+
+---
+
+# Normal Browser Entry
+
+Pressing:
+
+```text
+USER
+```
+
+opens the Browser in its normal context.
+
+Think:
+
+> **I want to browse.**
+
+Once inside, the Browser-specific controls determine what happens next.
+
+---
+
+# SHIFT + USER — Insert Before
+
+Hold SHIFT and press USER:
+
+```text
+SHIFT + USER
+      │
+      ▼
+Insert New Device
+Before Current Device
+```
+
+Suppose a device chain is:
+
+```text
+EQ
+   ↓
+Compressor
+   ↓
+Delay
+```
+
+and Compressor is the current device.
+
+Using:
+
+```text
+SHIFT + USER
+```
+
+starts the Browser with the intention of inserting something before Compressor.
+
+Conceptually:
+
+```text
+Before
+
+EQ
+   ↓
+[Compressor]
+   ↓
+Delay
+```
+
+then:
+
+```text
+SHIFT + USER
+```
+
+and after choosing a new device:
+
+```text
+EQ
+   ↓
+New Device
+   ↓
+[Compressor]
+   ↓
+Delay
+```
+
+---
+
+# OPTION + USER — Insert After
+
+OPTION gives the complementary operation:
+
+```text
+OPTION + USER
+       │
+       ▼
+Insert New Device
+After Current Device
+```
+
+Using the same chain:
+
+```text
+EQ
+   ↓
+[Compressor]
+   ↓
+Delay
+```
+
+OPTION + USER begins a Browser operation that inserts after the current device.
+
+After choosing something:
+
+```text
+EQ
+   ↓
+[Compressor]
+   ↓
+New Device
+   ↓
+Delay
+```
+
+So the pair is easy to understand:
+
+```text
+SHIFT + USER
+   → before
+
+OPTION + USER
+   → after
+```
+
+---
+
+# Why Insertion Position Matters
+
+A device chain is ordered.
+
+Changing the order can change the sound.
+
+For example:
+
+```text
+Distortion
+   ↓
+Delay
+```
+
+does not necessarily sound the same as:
+
+```text
+Delay
+   ↓
+Distortion
+```
+
+So Browser insertion is not simply:
+
+> **Add something.**
+
+It is:
+
+> **Add something at the correct place in the chain.**
+
+DrivenByMoss lets the insertion intention be established before browsing begins.
+
+---
+
+# The Browser Changes the Surface
+
+Once Browser Mode is active, controls that previously manipulated tracks or parameters now navigate the Browser.
+
+Conceptually:
+
+```text
+Normal Context
+      │
+      ▼
+Mixer / Device Controls
+```
+
+then:
+
+```text
+USER
+  ↓
+Browser Context
+      │
+      ▼
+Browser Navigation Controls
+```
 
 The hardware has not changed.
 
-The **context** has.
+The job has.
 
-## Read the Scribble Strips
+---
 
-Browser Mode is another excellent demonstration of why the scribble strips matter.
+# Browser Tabs
 
-When browsing, they may present information relating to the available choices rather than track or device parameters.
+Bitwig's Browser can contain several tabs or categories of browsing context.
 
-The labels on the controller therefore become your guide.
-
-Do not assume that an encoder still performs the function it had a few seconds earlier.
-
-Read first.
-
-Then turn or press.
-
-The principle remains:
-
-> **Observe before you adjust.**
-
-Although in Browser Mode we might reasonably amend that to:
-
-> **Observe before you choose.**
-
-## Navigation Rather Than Parameter Control
-
-In Device Mode, turning a V-Pot normally changes a value.
-
-Browser Mode can give those same controls a different purpose.
-
-Now an encoder may be involved in navigating choices rather than adjusting a continuous parameter.
-
-This distinction is important.
-
-In one context:
+DrivenByMoss maps the vertical arrow buttons to them:
 
 ```text
-Turn V-Pot
-     │
-     ▼
-Change Parameter
+↑
+   → Previous Browser Tab
 ```
-
-In another:
 
 ```text
-Turn V-Pot
-     │
-     ▼
-Navigate Choices
+↓
+   → Next Browser Tab
 ```
 
-The physical action is identical.
+So the up/down arrows move between Browser tabs rather than behaving as ordinary keyboard arrows while this context is active.
 
-Its meaning is determined by the current mode.
+---
 
-This is precisely the mental model we established much earlier in the book.
+# Browser Tabs as a Higher Level
 
-## Narrowing the Search
-
-Bitwig's Browser can contain a huge amount of material.
-
-Depending upon your installation, that may include:
-
-- instruments
-- audio effects
-- note effects
-- presets
-- samples
-- plug-ins
-- other device content
-
-Browsing everything at once would quickly become unwieldy.
-
-The useful approach is to narrow the available choices until the required item becomes easy to locate.
-
-Think of browsing as a funnel:
-
-```text
-Everything
-    │
-    ▼
-Category
-    │
-    ▼
-Filtered Results
-    │
-    ▼
-Selection
-```
-
-Each decision reduces the number of possibilities.
-
-This is much more effective than treating the Browser as one enormous list.
-
-## Browsing Is Contextual
-
-The contents of the Browser depend upon what you are doing.
-
-If you are adding an instrument, the useful choices are different from those involved in adding an audio effect.
-
-If you are choosing a preset, the available material depends upon the device.
-
-If you are looking for a sample, you are dealing with another type of content again.
-
-This means Browser Mode should not be thought of as:
-
-> **"A list of everything Bitwig contains."**
-
-It is better understood as:
-
-> **"A way of choosing something appropriate for the current context."**
-
-That makes the Browser much less intimidating.
-
-## Choosing an Item
-
-Eventually, browsing leads to a choice.
-
-Once the required item has been located, it can be selected and inserted or loaded in the appropriate context.
-
-At this point the Browser has done its job.
-
-The new item becomes part of the project.
-
-Conceptually:
+A useful way to think about Browser navigation is:
 
 ```text
 Browser
    │
-   ▼
-Choose
-   │
-   ▼
-Insert
-   │
-   ▼
-New Device
+   ├── Tab
+   │     │
+   │     └── Columns / Filters
+   │             │
+   │             └── Results
 ```
 
-And something rather satisfying can happen next.
+The vertical arrows operate at the Tab level.
 
-The workflow can move naturally back into Device Mode.
+The V-Pots and Jog Wheel work further down inside the Browser.
 
-## Browser Mode Meets Device Mode
+---
 
-Suppose you want to add a delay to a track.
+# V-Pots Navigate Browser Columns
 
-The workflow might be:
+The eight V-Pots become Browser controls.
 
-1. SELECT the destination track.
-2. Open the Browser.
-3. Navigate to an appropriate delay.
-4. Choose it.
-5. Return to Device Mode.
-6. Adjust its parameters with the V-Pots.
+DrivenByMoss uses them to navigate the Browser columns.
 
-Notice what has happened.
+Conceptually:
 
-You have gone from:
+```text
+Browser Column 1
+      │
+      ▼
+V-Pot 1
 
-> **"I want a delay."**
+Browser Column 2
+      │
+      ▼
+V-Pot 2
 
-to:
+Browser Column 3
+      │
+      ▼
+V-Pot 3
 
-> **"I am adjusting the delay."**
+...
+```
 
-without the mouse necessarily being the centre of the operation.
+Turning a V-Pot moves through the choices available in that column.
 
-This is where the individual chapters of the book begin joining together into complete workflows.
+---
 
-::: field-note
+# Turning Means Choosing from a List
 
-Browser Mode becomes much more powerful when you stop thinking of it as an isolated feature.
+Outside Browser Mode, a V-Pot often changes a continuous value:
 
-It is the bridge between deciding that you need something and then controlling what you have added.
+```text
+0% ─────────────── 100%
+```
 
-:::
+In Browser Mode, it moves through discrete choices:
 
-## Browsing for Instruments
+```text
+Bass
+Keys
+Lead
+Pad
+Percussion
+FX
+```
 
-The same principle applies when building an instrument track.
+So:
 
-Imagine starting with an appropriate empty track.
+```text
+Turn V-Pot
+      │
+      ▼
+Move through Browser choices
+```
+
+The encoder works equally well for both because it has no fixed physical endpoint.
+
+---
+
+# Pressing a V-Pot
+
+Pressing a V-Pot enters or confirms the current filter or result at that Browser level.
+
+Conceptually:
+
+```text
+Turn
+   → choose
+```
+
+then:
+
+```text
+Press
+   → enter / confirm
+```
+
+This makes the V-Pot a two-part Browser control:
+
+```text
+Turn
+   → navigate
+
+Press
+   → select
+```
+
+That is a very natural extension of the rotary-and-push design.
+
+---
+
+# The Jog Wheel Scrolls Results
+
+DrivenByMoss also maps the Jog Wheel to Browser result navigation.
+
+In Browser Mode:
+
+```text
+Jog Wheel
+   → Scroll Browser Results
+```
+
+This is particularly useful once the broad filters have narrowed the Browser to a list of candidate items.
+
+Think:
+
+```text
+V-Pots
+   → narrow the search
+
+Jog Wheel
+   → move through results
+```
+
+The controls divide the Browser into different navigation jobs.
+
+---
+
+# Browser Filtering and Result Selection
+
+Conceptually, the workflow can be:
+
+```text
+Choose Browser Tab
+       ↓
+Use V-Pots to choose filters
+       ↓
+Use Jog Wheel to scroll results
+       ↓
+Choose Result
+       ↓
+ENTER
+```
+
+This allows a large part of the Browser interaction to remain on the X-Touch.
+
+---
+
+# LEFT — Insert Before
+
+Once Browser Mode is active, the left arrow has a device-insertion meaning.
+
+DrivenByMoss documents:
+
+```text
+←
+   → Insert Before Current Device
+```
+
+This allows the insertion intention to be changed from within the Browser.
+
+Conceptually:
+
+```text
+Current Device
+      │
+      ▼
+←
+      │
+      ▼
+Insert Before
+```
+
+---
+
+# RIGHT — Insert After
+
+The right arrow provides the complementary operation:
+
+```text
+→
+   → Insert After Current Device
+```
+
+So inside Browser Mode:
+
+```text
+←
+   → before
+```
+
+```text
+→
+   → after
+```
+
+The spatial relationship makes this particularly easy to remember.
+
+---
+
+# ZOOM — Replace the Current Device
+
+DrivenByMoss assigns another Browser function to the ZOOM button:
+
+```text
+ZOOM
+   → Replace Current Device
+```
+
+This gives us a third insertion strategy.
+
+We can:
+
+```text
+Insert Before
+
+Insert After
+
+Replace
+```
+
+without leaving the Browser workflow.
+
+---
+
+# Three Placement Choices
+
+The Browser therefore offers three device-placement intentions:
+
+```text
+←
+   → Before
+```
+
+```text
+ZOOM
+   → Replace
+```
+
+```text
+→
+   → After
+```
+
+Conceptually:
+
+```text
+        Current Device
+
+Before      Replace      After
+   │           │           │
+   ▼           ▼           ▼
+   ←         ZOOM          →
+```
+
+That is a remarkably compact physical model.
+
+---
+
+# Why Replace Is Different
+
+Insertion preserves the current device and adds another one.
+
+Replacement removes the current device from that position and substitutes the chosen Browser result.
+
+So:
+
+```text
+Insert
+   → add
+```
+
+while:
+
+```text
+Replace
+   → substitute
+```
+
+That is a consequential difference.
+
+Use ZOOM deliberately when browsing.
+
+---
+
+# ENTER — Confirm and Close
+
+Once you have chosen the desired Browser result:
+
+```text
+ENTER
+   → Confirm Selection
+     and Close Browser
+```
+
+This is one of the clearest uses of ENTER on the X-Touch.
+
+The operation means exactly what its label suggests:
+
+> **Yes — use this.**
+
+---
+
+# CANCEL — Discard
+
+If you decide not to use the Browser selection:
+
+```text
+CANCEL
+   → Discard Browser Operation
+```
+
+Think:
+
+> **No — leave things as they were.**
+
+So Browser Mode gives ENTER and CANCEL a very natural pair:
+
+```text
+ENTER
+   → accept
+
+CANCEL
+   → reject
+```
+
+---
+
+# ENTER and CANCEL Finally Have Their Obvious Jobs
+
+Earlier chapters deliberately clarified that ENTER and CANCEL are **not** used for hierarchical Group navigation.
+
+That workflow uses SELECT.
+
+Browser Mode is where ENTER and CANCEL become particularly intuitive:
+
+```text
+Browser Result
+      │
+      ├── ENTER
+      │      ↓
+      │    Keep It
+      │
+      └── CANCEL
+             ↓
+           Discard
+```
+
+This separation of roles is worth learning.
+
+---
+
+# A Basic Browser Workflow
+
+Suppose you want to add a delay after the currently selected device.
+
+A hardware-oriented workflow might be:
+
+```text
+OPTION + USER
+       ↓
+Browser Opens
+       ↓
+Choose Browser Tab
+       ↓
+Use V-Pots
+       ↓
+Narrow to Delay
+       ↓
+Use Jog Wheel
+       ↓
+Choose Result
+       ↓
+ENTER
+       ↓
+Delay Inserted After
+Current Device
+```
+
+The mouse need not be involved.
+
+---
+
+# A Replace Workflow
+
+Suppose a track already contains one delay but you want to audition another.
+
+Start Browser Mode.
+
+Then choose:
+
+```text
+ZOOM
+   → Replace
+```
+
+Navigate the Browser.
+
+Select another delay.
+
+Press:
+
+```text
+ENTER
+```
+
+The current device is replaced by the selected result.
+
+If you change your mind before confirming:
+
+```text
+CANCEL
+```
+
+abandons the operation.
+
+---
+
+# Auditioning Possibilities
+
+Browser Mode can be especially useful when you know broadly what you want but not the exact item.
+
+For example:
+
+> **I want a delay, but I am not sure which one.**
+
+The process becomes:
+
+```text
+Open Browser
+     ↓
+Filter to Delay
+     ↓
+Scroll Results
+     ↓
+Try Candidate
+     ↓
+Choose
+```
+
+The controller handles the navigation while your attention stays on the musical result.
+
+---
+
+# Browser Mode Is About Decisions
+
+Device Mode is mostly about:
+
+```text
+adjusting something that already exists
+```
+
+Browser Mode is about:
+
+```text
+choosing something new
+```
+
+That difference is important.
+
+In Device Mode:
+
+```text
+Turn
+   → change value
+```
+
+In Browser Mode:
+
+```text
+Turn
+   → move through possibilities
+```
+
+The X-Touch changes from an editor into a selector.
+
+---
+
+# The V-Pots Become a Menu
+
+A useful way to think about the Browser is that the V-Pot row becomes a physical menu system.
+
+Normally:
+
+```text
+V-Pot
+   → parameter
+```
+
+In Browser Mode:
+
+```text
+V-Pot
+   → Browser choice
+```
+
+Turn:
+
+```text
+Next / Previous Choice
+```
+
+Press:
+
+```text
+Choose
+```
+
+This is another example of the V-Pots acting as general-purpose contextual controls.
+
+---
+
+# Browse by Category, Not by Screen Position
+
+A mouse-driven Browser workflow often feels spatial:
+
+```text
+Where is the category?
+
+Where is the result?
+
+Where is the scroll bar?
+```
+
+The X-Touch workflow is more conceptual:
+
+```text
+Which category?
+
+Which filter?
+
+Which result?
+```
+
+That can become faster once the Browser structure is familiar.
+
+---
+
+# Browser Mode and the Scribble Strips
+
+The scribble strips become especially important in Browser Mode because the V-Pots are no longer controlling familiar mixer parameters.
+
+They need to tell you:
+
+```text
+which Browser field
+```
+
+and:
+
+```text
+which current choice
+```
+
+each V-Pot represents.
+
+So:
+
+> **Read before you turn.**
+
+This principle is at least as important in Browser Mode as in Device Mode.
+
+---
+
+# Do Not Browse Blindly
+
+If you forget which Browser column a V-Pot currently represents, do not simply turn controls until something useful happens.
+
+Instead:
+
+```text
+Look
+  ↓
+Read Labels
+  ↓
+Understand Current Filter
+  ↓
+Turn
+```
+
+Browser navigation is inherently about making choices.
+
+Good feedback makes those choices deliberate.
+
+---
+
+# Browser Mode Can Change the Project
+
+Browser operations are consequential.
+
+Depending on the chosen operation, you may:
+
+```text
+Insert Device Before
+```
+
+```text
+Insert Device After
+```
+
+or:
+
+```text
+Replace Current Device
+```
+
+These are project edits, not merely navigation.
+
+So before confirming with ENTER, ask:
+
+> **Is this the item I want, and is it going to the right place?**
+
+That is a useful Browser habit.
+
+---
+
+# CANCEL Is Your Safety Net
+
+Because Browser Mode can change the device chain, CANCEL is valuable.
+
+If you become unsure:
+
+```text
+CANCEL
+```
+
+Discard the operation.
+
+Then begin again.
+
+There is no prize for forcing an uncertain Browser choice through to completion.
+
+The controller gives you an explicit way out.
+
+---
+
+# Browser Mode and Device Chains
+
+Suppose the current track contains:
+
+```text
+EQ
+   ↓
+Compressor
+   ↓
+Delay
+```
+
+with Compressor selected.
+
+The Browser can now support three different intentions.
+
+## Before
+
+```text
+SHIFT + USER
+```
+
+or choose the left-arrow insertion behaviour.
+
+Result:
+
+```text
+EQ
+   ↓
+New Device
+   ↓
+Compressor
+   ↓
+Delay
+```
+
+## After
+
+```text
+OPTION + USER
+```
+
+or choose the right-arrow insertion behaviour.
+
+Result:
+
+```text
+EQ
+   ↓
+Compressor
+   ↓
+New Device
+   ↓
+Delay
+```
+
+## Replace
+
+```text
+ZOOM
+```
+
+Result:
+
+```text
+EQ
+   ↓
+New Device
+   ↓
+Delay
+```
+
+This gives the Browser a clear structural relationship with the device chain.
+
+---
+
+# Starting Before or After Can Save a Step
+
+If you already know the desired insertion position, it is efficient to begin with:
+
+```text
+SHIFT + USER
+```
+
+or:
+
+```text
+OPTION + USER
+```
+
+rather than opening the Browser first and changing the insertion mode afterwards.
+
+This follows a useful workflow principle:
+
+> **Establish intention as early as possible.**
+
+The Browser then opens already aimed at the correct kind of operation.
+
+---
+
+# The Arrow Keys Let You Change Your Mind
+
+But perhaps you opened the Browser normally and then realise:
+
+> **Actually, this should go before the compressor.**
+
+Use:
+
+```text
+←
+```
+
+Or:
+
+> **It should go after it.**
+
+Use:
+
+```text
+→
+```
+
+The Browser workflow is flexible.
+
+You do not necessarily need to cancel and start again merely because the insertion point changes.
+
+---
+
+# Replace Is Particularly Useful for Comparison
+
+Suppose you are choosing between several compressors.
+
+The current track contains:
+
+```text
+EQ
+   ↓
+Compressor A
+   ↓
+Saturator
+```
+
+Using Browser Replace, you can substitute:
+
+```text
+Compressor B
+```
+
+at the same position.
+
+This makes comparison more straightforward because the surrounding chain remains structurally similar.
+
+The important idea is:
+
+```text
+same place
+   +
+different device
+```
+
+rather than continually adding new devices to the chain.
+
+---
+
+# Browser Mode and the Mouse-Lite Workflow
+
+The Browser is one of the more ambitious parts of a Mouse-Lite workflow.
+
+For a completely unfamiliar Browser search, the graphical interface may still be faster.
+
+For a familiar task such as:
+
+> **Add a delay after the current device**
+
+the X-Touch route can be very direct:
+
+```text
+OPTION + USER
+       ↓
+Filter
+       ↓
+Choose
+       ↓
+ENTER
+```
+
+The point is not to prove that every Browser operation can be performed without the mouse.
+
+The point is that routine Browser tasks no longer have to begin with it.
+
+---
+
+# When the Mouse Is Better
+
+Bitwig's graphical Browser may still be preferable when:
+
+- exploring unfamiliar categories;
+- reading long names;
+- comparing lots of metadata;
+- dragging items to precise locations;
+- searching visually through a large set of results.
+
+That is fine.
+
+Project XTC's Mouse-Lite principle remains:
+
+> **Use the interface best suited to the task.**
+
+Hardware browsing becomes valuable when it reduces friction, not when it merely proves that hardware browsing is possible.
+
+---
+
+# Browser Mode as a Performance Tool
+
+Browser Mode can also support experimentation.
+
+Suppose playback is running and you decide the selected track needs another effect.
 
 You can:
 
-1. Select the track.
-2. Enter the Browser.
-3. Locate an instrument.
-4. Choose it.
-5. Enter Device Mode.
-6. Begin adjusting its parameters.
-
-The Browser finds the instrument.
-
-Device Mode controls it.
-
-SELECT establishes where the whole operation takes place.
-
-Three apparently separate features become a single workflow.
-
-## Browsing for Presets
-
-Browser Mode is equally useful when searching for sounds rather than devices.
-
-Suppose you already have a synthesizer loaded but want another preset.
-
-Instead of thinking:
-
-> **"I need to operate the Browser."**
-
-think:
-
-> **"I want another sound for this device."**
-
-The Browser is simply the mechanism that helps you find it.
-
-This distinction matters because it keeps your attention on the musical task rather than the software operation.
-
-## Browsing with Your Ears
-
-Browsing sounds presents an interesting opportunity.
-
-Computer-based browsing naturally encourages us to look.
-
-We read names.
-
-We study categories.
-
-We watch lists move up and down the screen.
-
-But ultimately, when choosing a sound, the important question is usually:
-
-> **"Does this sound right?"**
-
-The more navigation you can perform from the controller, the easier it becomes to keep your attention on listening rather than pointing and clicking.
-
-::: field-note
-
-Names and categories help you find sounds.
-
-Your ears decide whether they belong in the music.
-
-:::
-
-## The Screen Still Matters
-
-A Mouse-Lite workflow does not mean pretending the computer display has suddenly become useless.
-
-Bitwig's Browser can present detailed information that simply cannot fit onto the X-Touch's scribble strips.
-
-There will be occasions when looking at the screen is clearly the most efficient way to understand what is available.
-
-That is perfectly fine.
-
-The aim is not:
-
-> **"Never look at Bitwig."**
-
-The aim is:
-
-> **"Do not reach for the mouse automatically."**
-
-If the X-Touch can perform the operation comfortably, use it.
-
-If the graphical Browser is better suited to the task, use that.
-
-The two approaches complement each other.
-
-## Do Not Memorise the Browser
-
-As with Device Mode, there is little value in trying to memorise every possible Browser state.
-
-The available choices will change.
-
-Your installed devices may change.
-
-Your plug-ins may change.
-
-Your presets and samples may change.
-
-The useful skill is not remembering where everything lives.
-
-It is understanding how to navigate what is currently in front of you.
-
-Read the feedback.
-
-Make a choice.
-
-Observe the result.
-
-Continue.
-
-## When You Become Lost
-
-Browser Mode can initially feel more complicated than the mixer because the controls are being used in a less familiar way.
-
-If you become unsure what is happening, return to the questions we have used throughout the book:
-
-- Which track is selected?
-- Which mode am I in?
-- What are the scribble strips showing?
-- What does the current control represent?
-
-Do not press controls randomly in an attempt to escape.
-
-Read the controller first.
-
-The information you need is often already there.
-
-::: reality-check
-
-When a control appears to have stopped doing its usual job, check whether you are still in Browser Mode.
-
-A V-Pot that normally adjusts pan cannot adjust pan while it is busy helping you navigate the Browser.
-
-:::
-
-## Building a Workflow
-
-We can now combine much of what we have learned into a single sequence.
-
-Imagine adding and adjusting a new effect:
+```text
+Open Browser
+     ↓
+Choose Effect
+     ↓
+Insert
+     ↓
+Return to Listening
+```
+
+The creative cycle remains:
 
 ```text
-SELECT Track
-      │
-      ▼
-Open Browser
-      │
-      ▼
-Find Effect
-      │
-      ▼
-Choose Effect
-      │
-      ▼
-Device Mode
-      │
-      ▼
-Choose Parameter Page
-      │
-      ▼
-Adjust with V-Pots
-      │
-      ▼
+Hear
+  ↓
+Choose
+  ↓
 Listen
 ```
 
-This is more than a collection of X-Touch features.
+rather than:
 
-It is a **workflow**.
+```text
+Hear
+  ↓
+Leave musical focus
+  ↓
+Navigate interface
+  ↓
+Return
+```
 
-That distinction is important.
+This is where hardware Browser access can feel particularly useful.
 
-The purpose of learning the controller is not to become good at pressing its buttons.
+---
 
-The purpose is to make the controller disappear into the process of making music.
+# A Practical Browser Exercise
 
-## Another Step Towards Mouse-Lite
+Create a track containing at least one device.
 
-Browser Mode brings us very close to the subject of the final chapter.
+Select that device.
 
-Earlier we used the X-Touch to manipulate a project.
+### 1. Press USER
 
-Now we can also begin adding things to it.
+Observe the Browser open.
 
-That removes another common reason for immediately reaching for the mouse.
+### 2. Use ↑ and ↓
 
-Again, the goal is not mouse avoidance for its own sake.
+Move between Browser tabs.
 
-A mouse remains extremely useful for detailed editing, graphical operations and many other tasks.
+### 3. Turn the V-Pots
 
-But opening a Browser, finding something, selecting it and then adjusting it are operations that can increasingly take place from the control surface.
+Observe the available filters or columns change.
 
-The mouse becomes an option rather than a reflex.
+### 4. Press a V-Pot
 
-## The Bigger Picture
+Enter or select the corresponding Browser choice.
 
-Browser Mode completes an important chain of ideas.
+### 5. Turn the Jog Wheel
 
-**SELECT** establishes where we are working.
+Move through the result list.
 
-**Browser Mode** helps us find something to add.
+### 6. Press CANCEL
 
-**Device Mode** lets us control what we have added.
+Discard the operation.
 
-**V-Pots** provide the physical controls.
+Repeat the exercise until the Browser navigation itself feels comfortable.
 
-**Displays and Feedback** tell us what those controls currently mean.
+---
 
-**Motor Faders and Transport** allow the rest of the session to continue around us.
+# A Practical Insertion Exercise
 
-The individual features of the X-Touch are beginning to disappear.
+Now try three placement operations.
 
-In their place we are developing workflows.
+Start with a simple chain:
 
-And that brings us naturally to the final chapter.
+```text
+Device A
+   ↓
+Device B
+```
 
-::: exercise
+Select Device B.
 
-Open a Bitwig project containing a suitable track.
+### Insert Before
 
-For this exercise, resist the temptation to begin with the mouse.
+Use:
 
-First:
+```text
+SHIFT + USER
+```
 
-1. Select the destination track from the X-Touch.
-2. Enter Browser Mode.
-3. Observe the scribble strips before touching anything else.
-4. Navigate through the available choices.
-5. Choose an instrument, effect or other suitable item.
-6. Confirm that it has been added in the intended location.
+choose a new device, then:
 
-Now move directly into Device Mode.
+```text
+ENTER
+```
 
-7. Identify the newly added device.
-8. Locate a useful parameter.
-9. Adjust it using a V-Pot.
-10. Listen to the result.
+Observe where it appears.
 
-Finally, return to normal mixer operation.
+Undo if required.
 
-The purpose of this exercise is not to prove that every operation can be performed without a mouse.
+### Insert After
 
-It is to experience the complete sequence:
+Use:
 
-**Select → Browse → Choose → Control → Listen**
+```text
+OPTION + USER
+```
 
-When that sequence begins to feel like a single operation rather than five separate features, the X-Touch is becoming part of your workflow.
+choose another device and confirm.
 
-:::
+### Replace
+
+Open Browser Mode and use:
+
+```text
+ZOOM
+```
+
+choose a replacement and confirm.
+
+The aim is to make these three intentions distinct:
+
+```text
+before
+
+after
+
+replace
+```
+
+---
+
+# A Useful Mental Model
+
+Browser Mode can be summarised as:
+
+```text
+                    Browser
+                       │
+            ┌──────────┼──────────┐
+            │          │          │
+         Before     Replace      After
+            │          │          │
+            ▼          ▼          ▼
+       SHIFT+USER     ZOOM     OPTION+USER
+```
+
+Then inside the Browser:
+
+```text
+↑ / ↓
+   → Browser Tabs
+
+V-Pots
+   → Browser Columns / Choices
+
+Jog Wheel
+   → Results
+
+←
+   → Insert Before
+
+→
+   → Insert After
+
+ZOOM
+   → Replace
+
+ENTER
+   → Confirm
+
+CANCEL
+   → Discard
+```
+
+The Browser therefore becomes another temporary control environment.
+
+---
+
+# The Important Idea
+
+Browser Mode gives the X-Touch a hardware route for **choosing and inserting new material**.
+
+The verified entry commands are:
+
+```text
+USER
+   → Start Browser
+
+SHIFT + USER
+   → Insert New Device Before
+     Current Device
+
+OPTION + USER
+   → Insert New Device After
+     Current Device
+```
+
+Inside the Browser:
+
+```text
+↑ / ↓
+   → Previous / Next Browser Tab
+
+V-Pots
+   → Navigate Browser Columns
+
+Jog Wheel
+   → Scroll Results
+
+←
+   → Insert Before
+
+→
+   → Insert After
+
+ZOOM
+   → Replace Current Device
+
+ENTER
+   → Confirm and Close
+
+CANCEL
+   → Discard
+```
+
+The central workflow is:
+
+```text
+Choose Placement
+      ↓
+Browse
+      ↓
+Choose Item
+      ↓
+Confirm
+```
+
+Device Mode answers:
+
+> **How do I control what is already here?**
+
+Browser Mode answers:
+
+> **How do I bring in something new?**
+
+Together, the two modes make the X-Touch far more than a mixer.
+
+They give it a route into the structure and contents of the Bitwig project itself.
+
+---
+
+## Coming Next
+
+We have now completed the main Part II chapters:
+
+- V-Pots;
+- Motor Faders;
+- Transport;
+- Device Mode;
+- Browser Mode.
+
+The next part goes deeper into the less obvious DrivenByMoss functionality.
+
+We begin by reorganising the mixer around particular tasks rather than individual channel strips.
+
+Next:
+
+**Mixer Edit Modes.**
