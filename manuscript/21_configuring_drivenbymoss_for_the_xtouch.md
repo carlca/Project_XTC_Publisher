@@ -6,21 +6,17 @@ status: draft
 
 # Configuring DrivenByMoss for the X-Touch
 
-For most of this guide, we have concentrated on the X-Touch itself.
+For most of this guide, we have concentrated on using the X-Touch.
 
-Press this button.
+Press a button.
 
-Turn this V-Pot.
+Turn a V-Pot.
 
-Move this fader.
+Move a fader.
 
-Enter this mode.
+Select a mode.
 
-But there is another part of the system that we have deliberately kept in the background:
-
-**DrivenByMoss configuration.**
-
-The X-Touch does not communicate with Bitwig in isolation.
+But all of those operations take place inside an environment created by **DrivenByMoss configuration**.
 
 The complete system is:
 
@@ -28,7 +24,7 @@ The complete system is:
 X-Touch
    │
    ▼
-Mackie Control protocol
+Mackie Control Protocol
    │
    ▼
 DrivenByMoss
@@ -37,43 +33,31 @@ DrivenByMoss
 Bitwig Studio
 ```
 
-DrivenByMoss sits between the hardware and the DAW.
+DrivenByMoss does more than translate button presses.
 
-Its configuration therefore determines some important aspects of how the surface behaves.
+Its preferences determine:
+
+- how the hardware is represented;
+- what appears in the track banks;
+- how Groups are navigated;
+- what happens when a fader is touched;
+- which mode appears at startup;
+- how quickly the encoders respond;
+- whether Arranger or Launcher functions have priority;
+- how Browser information is presented;
+- what programmable buttons and footswitches do.
+
+So configuration is not separate from workflow.
+
+It helps **define the workflow**.
 
 ---
 
-## Configuration Is Part of the Instrument
+# Configuration Should Reduce Decisions
 
-It is tempting to think of configuration as something separate from actually making music.
+A good configuration removes unnecessary decisions from the musical moment.
 
-Open Settings.
-
-Choose some options.
-
-Close Settings.
-
-Forget about them.
-
-But configuration can have a direct effect on the musical workflow.
-
-Consider New Clip Length.
-
-If you regularly create four-bar clips, configuring that behaviour in advance removes a decision from the recording process.
-
-Instead of:
-
-```text
-Create clip
-    ↓
-Choose length
-    ↓
-Confirm
-    ↓
-Record
-```
-
-you can move towards:
+For example, if you normally create four-bar clips, setting an appropriate New Clip Length means the recording workflow can become:
 
 ```text
 Create
@@ -81,7 +65,19 @@ Create
 Record
 ```
 
-The configuration has become part of the workflow.
+rather than:
+
+```text
+Create
+   ↓
+Choose Length
+   ↓
+Confirm
+   ↓
+Record
+```
+
+Likewise, if you prefer hierarchical project navigation, configuring that once means you do not need to rethink the controller's navigation model every session.
 
 A useful principle is:
 
@@ -89,213 +85,382 @@ A useful principle is:
 
 ---
 
-## The Configuration Page
+# The Preferences Are Global
 
-DrivenByMoss settings are accessed from Bitwig's controller configuration.
+DrivenByMoss stores these preferences globally rather than separately for each project.
 
-The precise appearance may vary slightly between Bitwig and DrivenByMoss versions, but the basic idea is the same.
+That is important.
 
-The controller entry represents the connection between:
+Changing a controller preference affects the way the X-Touch behaves generally.
+
+It is not merely modifying the current Bitwig project.
+
+So think of the settings as defining:
 
 ```text
-Bitwig
-   ↕
-DrivenByMoss
-   ↕
-X-Touch
+My X-Touch Environment
 ```
 
-This is where the controller's MIDI ports and behaviour are configured.
-
----
-
-## Choose the Correct Controller
-
-The X-Touch should be configured using the appropriate **Mackie MCU** controller implementation supplied by DrivenByMoss.
-
-This matters because the X-Touch can operate in several hardware protocols.
-
-Project XTC assumes that the unit is operating in:
-
-**MC — Mackie Control mode.**
-
-If the X-Touch is operating in another protocol, the behaviour described throughout this guide should not be expected to match.
-
----
-
-## Confirm MC Mode on the X-Touch
-
-The X-Touch's operating mode is selected on the hardware.
-
-For use with this guide, confirm:
+rather than:
 
 ```text
-Mode
-  ↓
+This Song's X-Touch Settings
+```
+
+That makes configuration worth doing deliberately.
+
+---
+
+# Start with the X-Touch Profile
+
+DrivenByMoss provides hardware profiles for supported controllers.
+
+For the Behringer X-Touch, choose the appropriate X-Touch profile.
+
+The profile configures the relevant MCU hardware options for the controller.
+
+One slightly unusual detail is worth knowing:
+
+> **The Profile menu does not remain showing the selected profile afterwards.**
+
+That is intentional.
+
+The profile is a convenient way of setting the hardware options.
+
+It is not itself a persistent mode indicator.
+
+So do not assume that the setup has failed merely because the menu no longer visibly says X-Touch.
+
+---
+
+# X-Touch Hardware Requirements
+
+The DrivenByMoss documentation specifies three important requirements for full X-Touch support.
+
+## Firmware
+
+Use the current X-Touch firmware documented by DrivenByMoss:
+
+```text
+1.22
+```
+
+This is particularly important for display-colour support.
+
+## Operating Mode
+
+The X-Touch must be set to:
+
+```text
 MC
 ```
 
-rather than one of the alternative controller protocols.
+for Mackie Control operation.
 
-Once selected and confirmed, the X-Touch communicates using the Mackie Control protocol expected by DrivenByMoss.
+Conceptually:
 
-This is the foundation on which everything else depends.
+```text
+X-Touch
+   │
+   ▼
+MC Mode
+   │
+   ▼
+DrivenByMoss MCU Extension
+```
+
+If the hardware is in another protocol mode, the behaviour described throughout Project XTC should not be expected to match.
+
+## Display Colours
+
+The X-Touch display-colour option should be enabled.
+
+Selecting the X-Touch hardware profile is the easiest way to configure the appropriate display settings.
 
 ---
 
-## MIDI Ports
+# Get the Foundation Right First
 
-The X-Touch exposes MIDI ports to the computer.
+Before adjusting advanced preferences, make sure the basic control surface works.
 
-On a typical system these may include names such as:
-
-```text
-X-Touch INT
-
-X-Touch EXT
-```
-
-The **INT** connection is the one associated with the main internal X-Touch control surface.
-
-The **EXT** connection exists for expansion-related communication.
-
-For a single X-Touch used as the main controller, make sure the DrivenByMoss controller entry is connected to the appropriate X-Touch MIDI input and output.
-
-The important relationship is:
+A useful order is:
 
 ```text
-X-Touch MIDI OUT
-        │
-        ▼
-DrivenByMoss Input
-
-
-DrivenByMoss Output
-        │
-        ▼
-X-Touch MIDI IN
+X-Touch in MC Mode
+       ↓
+DrivenByMoss Controller Active
+       ↓
+MIDI Communication Working
+       ↓
+Transport Working
+       ↓
+Faders Working
+       ↓
+Feedback Working
+       ↓
+Advanced Preferences
 ```
 
-Communication must work in both directions.
+Do not troubleshoot specialised Layer Mode or Browser behaviour while the fundamental controller connection is uncertain.
 
 ---
 
-## Why Both Directions Matter
+# Two-Way Communication Matters
 
 The X-Touch is not merely sending commands to Bitwig.
 
-Bitwig is also sending information back.
+Bitwig and DrivenByMoss also send information back.
 
 For example:
 
 ```text
-Move fader
+Move Fader
     ↓
-Bitwig parameter changes
+Bitwig Changes
 ```
 
 but also:
 
 ```text
-Bitwig parameter changes
-        ↓
-Motor fader moves
+Bitwig Changes
+      ↓
+Motor Fader Moves
 ```
 
-Likewise, DrivenByMoss sends information for:
+Likewise, the return path supplies:
 
-- displays;
+- scribble-strip information;
+- assignment displays;
 - LEDs;
 - V-Pot rings;
-- motor faders.
+- VU information;
+- motor positions.
 
-So an apparently half-working controller can be a useful diagnostic clue.
+So a working X-Touch needs a conversation:
 
-If Bitwig responds to the X-Touch but the X-Touch does not update correctly, check the return path.
+```text
+X-Touch
+   ⇄
+DrivenByMoss
+   ⇄
+Bitwig
+```
 
-The control surface needs a **conversation**, not a monologue.
+not a one-way stream of commands.
 
 ---
 
-## A Simple Connection Test
+# A Simple Connection Test
 
-After configuring the ports, perform a few basic tests.
+Before changing preferences, try a few basic operations.
 
-### Test 1 — Fader to Bitwig
+## Fader to Bitwig
 
 Move a channel fader.
 
-Does the corresponding Bitwig value move?
+Does the corresponding Bitwig track volume change?
 
-### Test 2 — Bitwig to Fader
+## Bitwig to Fader
 
-Change that value in Bitwig.
+Move the same track volume in Bitwig.
 
-Does the physical fader move?
+Does the physical fader follow?
 
-### Test 3 — Track Selection
+## Track Selection
 
 Press SELECT.
 
-Does Bitwig select the expected track?
+Does the expected track become selected?
 
-### Test 4 — Display Feedback
-
-Does the X-Touch display meaningful track or parameter information?
-
-### Test 5 — Transport
+## Transport
 
 Press PLAY and STOP.
 
-Does Bitwig respond correctly?
+Does Bitwig respond?
 
-If all five work, the basic two-way connection is in good shape.
+## Display Feedback
+
+Do the scribble strips contain meaningful track or parameter information?
+
+If these basics work, the foundation is sound.
 
 ---
 
-## Don't Troubleshoot Advanced Features First
+# Hardware Setup
 
-If Device Mode or Browser Mode appears not to work, it can be tempting to start changing advanced settings.
+DrivenByMoss exposes several Hardware Setup options.
 
-Before doing that, verify the basics.
+The X-Touch profile should normally configure these appropriately, but understanding what they mean is useful.
 
-A useful troubleshooting order is:
+---
+
+## Main Display
+
+This tells DrivenByMoss that the controller has a main MCU-style display.
+
+For hardware consisting of eight separate display sections rather than one uninterrupted display, DrivenByMoss also provides a seven-character display option.
+
+The purpose is simple:
 
 ```text
-Hardware mode
+Bitwig State
      ↓
-MIDI ports
+DrivenByMoss
      ↓
-Basic transport
+Correct Display Format
      ↓
-Track control
-     ↓
-Feedback
-     ↓
-Advanced modes
+Readable X-Touch Feedback
 ```
 
-There is little value debugging an advanced feature while the underlying controller connection is incorrect.
+---
+
+## Segment Display
+
+The X-Touch has a segment display capable of showing transport-related information.
+
+DrivenByMoss can use it for:
+
+```text
+Play Position
+```
+
+and supplementary information such as:
+
+```text
+Tempo
+```
+
+or:
+
+```text
+Ticks
+```
+
+The Segment Display preferences control what information is presented there.
 
 ---
 
-# DrivenByMoss Behaviour Settings
+## Assignment Display
 
-Once the basic connection works, the more interesting configuration begins.
+The assignment display shows the current mode.
 
-DrivenByMoss provides settings that influence how the MCU surface behaves.
+For a highly contextual surface, this is particularly valuable.
 
-Not every user will want the same choices.
+The controller may currently be in:
 
-That is intentional.
+```text
+Panorama Mode
 
-The controller should adapt to the workflow.
+Send Mode
+
+Device Mode
+
+Browser Mode
+
+Marker Mode
+```
+
+and the assignment display helps make that context visible.
 
 ---
 
-## Flat or Hierarchical Track Navigation
+## Motor Faders
 
-Chapter 17 introduced two ways of thinking about project tracks:
+DrivenByMoss includes a hardware option indicating that the controller has motor faders.
+
+For the X-Touch, of course, this should be enabled.
+
+Without correct motor-fader handling, one of the controller's most important feedback mechanisms would be lost.
+
+---
+
+## Display Colours
+
+The X-Touch supports coloured scribble-strip backlighting.
+
+DrivenByMoss has an explicit:
+
+```text
+Display Colors
+```
+
+option for the Behringer X-Touch and X-Touch Extender.
+
+Again, choosing the X-Touch hardware profile is the simplest way to establish the appropriate setup.
+
+---
+
+# VU Meters
+
+DrivenByMoss can send VU information to compatible MCU hardware.
+
+The settings include:
+
+```text
+VU Meters
+```
+
+and:
+
+```text
+Always Send VU Meters
+```
+
+The latter exists for controllers that stop showing a VU value if they do not receive repeated updates when the level is unchanged.
+
+This is mainly a hardware-compatibility setting.
+
+For normal use, the aim is straightforward:
+
+```text
+Audio Level
+    ↓
+DrivenByMoss
+    ↓
+Physical Meter Feedback
+```
+
+---
+
+# Use Faders Like Editing Knobs
+
+DrivenByMoss has a preference named:
+
+```text
+Use faders like editing knobs
+```
+
+This causes the faders to execute the functions normally assigned to the V-Pots.
+
+The documentation specifically notes that this can be useful for recording automation.
+
+This is closely related to the X-Touch's FLIP behaviour.
+
+Conceptually:
+
+```text
+Knob Assignment
+      ↓
+Fader
+```
+
+The attraction is obvious for parameters that benefit from:
+
+- long physical travel;
+- touch sensitivity;
+- motorised feedback.
+
+---
+
+# Track Navigation
+
+One of the most important workflow preferences is:
+
+```text
+Track Navigation
+```
+
+DrivenByMoss provides two approaches:
 
 ```text
 Flat
@@ -307,11 +472,13 @@ and:
 Hierarchical
 ```
 
-The choice affects how Groups are represented and navigated.
+These produce meaningfully different SELECT-button behaviour.
 
-### Flat Navigation
+---
 
-A flatter approach prioritises moving through tracks as a sequence.
+# Flat Track Navigation
+
+In Flat mode, tracks are shown together in a flat track bank.
 
 Conceptually:
 
@@ -324,573 +491,1023 @@ Track 5
 ...
 ```
 
-This can be convenient if you mostly want rapid access to individual tracks regardless of Group structure.
+Groups do not become separate controller-navigation levels in the same way.
 
-### Hierarchical Navigation
+If an already selected Group is selected again:
 
-A hierarchical approach preserves the structure of Groups.
+```text
+SELECT Group again
+        │
+        ▼
+Toggle Expanded State
+```
 
-Conceptually:
+This can be convenient if you prefer thinking of the project as one long mixer.
+
+---
+
+# Hierarchical Track Navigation
+
+In Hierarchical mode, the controller follows the project structure.
+
+For example:
 
 ```text
 Project
    │
    ├── Drums
-   │     ├── Kick
-   │     ├── Snare
-   │     └── Hats
    │
    ├── Bass
+   │
+   ├── Guitars
+   │
+   ├── Keys
    │
    └── Vocals
 ```
 
-This allows the controller's view to move into and out of Groups.
-
-Neither approach is inherently better.
-
-They answer different needs.
-
----
-
-## Choosing the Navigation Style
-
-Ask how you think about large projects.
-
-If your mental model is:
-
-> **Give me a long mixer and let me move along it.**
-
-a flatter approach may feel natural.
-
-If your mental model is:
-
-> **Let me see the broad structure and then drill into what I need.**
-
-hierarchical navigation may be more useful.
-
-The second approach fits particularly well with the workflow developed in Chapters 17 and 20:
+Select a Group:
 
 ```text
-Project
-   ↓
-Group
-   ↓
-Track
-   ↓
-work
-   ↓
-back out
+SELECT Drums
 ```
 
-But the correct choice is the one that matches the way you actually work.
+then select it again:
+
+```text
+SELECT Drums again
+       │
+       ▼
+Enter Group
+```
+
+The X-Touch can now show:
+
+```text
+Kick   Snare   Hats   Toms   Percussion
+```
+
+To leave:
+
+```text
+Long-press any SELECT
+```
+
+This is the navigation model described in Chapters 6 and 17.
 
 ---
 
-## New Clip Length
+# Choosing Flat or Hierarchical
 
-Chapter 19 introduced **New Clip Length**.
+Neither choice is universally better.
 
-This determines the length used when the controller creates a new Launcher clip.
+Ask how you think about a project.
+
+If the natural model is:
+
+> **Give me one long mixer.**
+
+Flat may suit you.
+
+If the natural model is:
+
+> **Show me the broad project structure and let me drill into detail.**
+
+Hierarchical may be preferable.
+
+For large, well-organised projects, hierarchical navigation can make eight channel strips feel considerably less restrictive.
+
+---
+
+# Include FX and Master Tracks in the Track Bank
+
+DrivenByMoss provides:
+
+```text
+Include FX and master tracks in track bank
+```
+
+When enabled, these tracks are included in the normal track bank.
+
+This can be useful on controllers that do not have dedicated access to those tracks.
+
+On an X-Touch, the decision is more about workflow.
+
+You may prefer:
+
+```text
+ordinary audio / instrument tracks
+```
+
+as the main bank,
+
+or you may want:
+
+```text
+FX and Master
+```
+
+included in the same navigation sequence.
+
+The setting changes what the eight-channel window contains.
+
+---
+
+# Pin FX Tracks to the Last Device
+
+For multi-controller systems, DrivenByMoss can:
+
+```text
+Pin FX tracks to last device
+```
+
+This creates a bank of up to eight FX tracks on the right-most controller.
+
+The instrument/audio track bank is reduced accordingly.
+
+For a single X-Touch this option is less central.
+
+With an Extender setup it can be extremely useful.
+
+Conceptually:
+
+```text
+Main Track Surface
+        +
+Dedicated FX Surface
+```
+
+We discuss expansion in Chapter 22.
+
+---
+
+# Exclude Deactivated Items
+
+The Workflow preferences contain:
+
+```text
+Exclude deactivated items
+```
+
+When enabled, deactivated tracks and similar items are not shown on the controller.
+
+This can make the banks cleaner.
 
 For example:
 
 ```text
-1 bar
-
-2 bars
-
-4 bars
-
-8 bars
+Active
+Active
+Deactivated
+Active
+Deactivated
+Active
 ```
 
-The useful setting depends on the music.
+can effectively become:
 
-If you frequently build four-bar patterns, a four-bar default may reduce unnecessary interaction.
+```text
+Active
+Active
+Active
+Active
+```
 
-If you normally work with longer phrases, another value may make more sense.
+on the controller.
 
-This is a good example of configuration serving muscle memory.
+But there is a trade-off.
 
-Once the setting matches your normal workflow, you stop thinking about it.
+If the item is excluded, you also lose the ability to activate it from the surface.
+
+So the choice is:
+
+```text
+Cleaner Navigation
+```
+
+versus:
+
+```text
+Access to Deactivated Items
+```
+
+Choose according to the way you work.
 
 ---
 
-## Configure for the Common Case
+# Startup Mode
 
-A useful general principle is:
-
-> **Set defaults for what you do most often, not for every theoretical possibility.**
-
-Suppose:
+DrivenByMoss lets you choose:
 
 ```text
-70% of new clips → 4 bars
-20%              → 8 bars
-10%              → something else
+Startup Mode
 ```
 
-A four-bar default is probably sensible.
+This determines which parameter mode becomes active when the controller starts.
 
-The fact that some clips require another length does not make the default wrong.
+That sounds like a minor convenience.
 
-A good default reduces work **most of the time**.
+In daily use it can be significant.
+
+Suppose most sessions begin with ordinary mixing.
+
+A useful startup context might be one that immediately gives you the controls you normally expect.
+
+If most sessions begin with another task, choose accordingly.
+
+The principle is:
+
+> **Start where you usually work.**
 
 ---
 
-## V-Pot Behaviour
+# New Clip Length
 
-Rotary encoders can behave differently depending on the type of parameter and the controller configuration.
-
-DrivenByMoss translates the MCU encoder messages into Bitwig parameter changes and returns feedback to the V-Pot rings and displays.
-
-The practical goal is simple:
+DrivenByMoss provides a configurable:
 
 ```text
-Turn
+New Clip Length
+```
+
+This determines the length of clips created by the relevant New/clip-creation workflows.
+
+For example, if you regularly build four-bar loops:
+
+```text
+New Clip Length
+      │
+      ▼
+4 Bars
+```
+
+then commands such as the clip-based recording workflows begin with a useful default.
+
+This connects directly with Chapter 19.
+
+---
+
+# Configure for the Common Case
+
+Suppose your new clips are roughly:
+
+```text
+70%   4 bars
+
+20%   8 bars
+
+10%   something else
+```
+
+A four-bar default makes sense.
+
+It does not have to cover every possibility.
+
+A good default is the one that removes a decision **most often**.
+
+---
+
+# Fader-Touch Behaviour
+
+The current DrivenByMoss preferences expose two particularly useful fader-touch options:
+
+```text
+Select Channel on Fader Touch
+```
+
+and:
+
+```text
+Activate Volume mode on Fader Touch
+```
+
+These deserve careful explanation because they affect the physical feel of the controller.
+
+---
+
+# Select Channel on Fader Touch
+
+When enabled:
+
+```text
+Touch Fader
+     │
+     ▼
+Select Corresponding Channel
+```
+
+This can make mixing very fluid.
+
+You hear something on the Vocal.
+
+Reach for the Vocal fader.
+
+The act of touching it establishes the Vocal as the selected track.
+
+The workflow becomes:
+
+```text
+Touch
   ↓
-Predictable change
+Focus
   ↓
-Useful visual feedback
+Adjust
 ```
 
-If V-Pots seem excessively fast, slow or otherwise unintuitive, check the available DrivenByMoss configuration before assuming that the hardware itself is at fault.
-
----
-
-## Touch Sensitivity and Motor Faders
-
-The X-Touch's touch-sensitive motor faders are central to:
-
-- automation;
-- parameter feedback;
-- FLIP;
-- track volume control.
-
-They depend on correct two-way communication.
-
-A useful diagnostic distinction is:
-
-### Fader sends values but does not move
-
-Check the controller's output path back to the X-Touch.
-
-### Fader moves but touch behaviour is unexpected
-
-Check:
-
-- the current automation mode;
-- the current controller context;
-- relevant DrivenByMoss behaviour.
-
-Do not immediately assume a mechanical fault.
-
-Context matters.
-
----
-
-## Display Configuration
-
-The scribble strips are not decoration.
-
-As Chapter 7 established, they are part of the control system.
-
-They tell you what the physical controls currently represent.
-
-A useful configuration should therefore favour readable, meaningful feedback.
-
-Remember the relationship:
+rather than:
 
 ```text
-Mode changes
-     ↓
-Assignments change
-     ↓
-Displays change
-     ↓
-You know what the controls mean
+SELECT
+   ↓
+Touch
+   ↓
+Adjust
 ```
 
-Without the last step, a deeply contextual control surface becomes much harder to use.
+---
+
+# Why You Might Disable Fader Selection
+
+Touch-to-select is not universally desirable.
+
+You may want to:
+
+```text
+keep Synth selected
+```
+
+while simultaneously:
+
+```text
+adjust Vocal volume
+```
+
+If touching the Vocal fader automatically changes the selection, that may interrupt another controller context.
+
+So DrivenByMoss makes the behaviour configurable.
+
+This corrects an important assumption:
+
+> **Fader touch selecting the track should be treated as configurable behaviour, not an unavoidable property of the X-Touch mapping.**
 
 ---
 
-## Parameter Names and Values
+# Activate Volume Mode on Fader Touch
 
-When Device Mode exposes parameters, the X-Touch has limited display space.
+DrivenByMoss can also temporarily activate Volume Mode when a fader is touched.
 
-DrivenByMoss must compress information that Bitwig may normally display in a much larger graphical interface.
+Conceptually:
 
-So do not expect the scribble strip to reproduce the entire Bitwig parameter description.
+```text
+Current Mode
+     │
+     ▼
+Touch Fader
+     │
+     ▼
+Volume Mode
+     │
+     ▼
+Release Fader
+     │
+     ▼
+Previous Context
+```
 
-The aim is:
+This can be useful if you want fader interaction to return temporarily to an obvious volume-oriented view.
 
-> **enough information to identify the control confidently.**
+Again, it is a workflow preference.
 
-That is another reason familiarity matters.
+Some users will find it reassuring.
 
-A short parameter label that initially looks cryptic may become immediately recognisable after repeated use.
+Others may prefer the controller context to remain unchanged.
 
 ---
 
-# Configuration for Particular Workflows
+# Knob Sensitivity
 
-Rather than asking which settings are "best", it is often more useful to ask:
+DrivenByMoss provides separate settings for:
 
-> **Best for what?**
+```text
+Knob Sensitivity Default
+```
+
+and:
+
+```text
+Knob Sensitivity Slow
+```
+
+Negative values slow the encoder response.
+
+Positive values speed it up.
+
+This lets you tune the relationship between:
+
+```text
+Physical Turn
+```
+
+and:
+
+```text
+Parameter Change
+```
 
 ---
 
-## Configuration for Conventional Mixing
+# Why Sensitivity Matters
 
-If the X-Touch is primarily being used as a mixer, priorities may include:
+Suppose a small V-Pot movement causes a very large parameter change.
 
-- predictable track banking;
+The encoder may feel too fast.
+
+Reduce the sensitivity.
+
+Conversely, if reaching the desired value requires excessive turning, increase it.
+
+The useful question is:
+
+> **Does the physical movement feel proportional to the musical adjustment?**
+
+The correct value is the one that feels predictable.
+
+---
+
+# Default and Slow Sensitivity
+
+The two sensitivity settings correspond to the normal and slower/fine-adjustment behaviour.
+
+This means you can separately tune:
+
+```text
+Normal Adjustment
+```
+
+and:
+
+```text
+Fine Adjustment
+```
+
+Rather than assuming that the factory relationship is ideal for everyone, DrivenByMoss lets the physical response be adapted.
+
+---
+
+# Encoder Knob Slow Down
+
+The preferences also contain:
+
+```text
+Encoder Knob Slow Down
+```
+
+This applies to the main encoder.
+
+Use a higher value if the encoder changes values too quickly.
+
+Again, the purpose is predictability.
+
+A control surface should not feel twitchy.
+
+It should feel like the software is following the physical gesture.
+
+---
+
+# Transport Behaviour
+
+DrivenByMoss exposes configurable behaviour for:
+
+```text
+Behaviour on Stop
+```
+
+and:
+
+```text
+Behaviour on Pause
+```
+
+The first controls what happens when playback is stopped with STOP.
+
+The second controls what happens when playback is stopped using PLAY.
+
+This matters because the Transport chapter showed that STOP and PLAY are not necessarily identical ways of ending playback.
+
+The preferences let that distinction be customised.
+
+---
+
+# Flip Arranger and Clip Record / Automation
+
+This is one of the most important workflow preferences in the entire MCU configuration.
+
+DrivenByMoss calls it:
+
+```text
+Flip arranger and clip record / automation
+```
+
+Normally, the mapping gives the unmodified controls an Arranger-oriented role and SHIFT provides the related Launcher/Clip operation.
+
+Conceptually:
+
+```text
+Normal
+   → Arranger-oriented function
+
+SHIFT
+   → Clip / Launcher-oriented function
+```
+
+With the preference enabled:
+
+```text
+Normal
+   → Clip / Launcher-oriented function
+
+SHIFT
+   → Arranger-oriented function
+```
+
+The relationship is reversed.
+
+---
+
+# Why Flip the Recording Functions?
+
+Imagine two users.
+
+One mainly works in the Arranger.
+
+The other builds music primarily in the Clip Launcher.
+
+For the first user:
+
+```text
+Arranger function
+   → easiest gesture
+```
+
+makes sense.
+
+For the second:
+
+```text
+Launcher function
+   → easiest gesture
+```
+
+makes more sense.
+
+DrivenByMoss therefore lets the normal-versus-SHIFT priority follow the workflow.
+
+---
+
+# Why This Preference Matters to Documentation
+
+This setting can make two correctly configured X-Touch systems appear to behave differently.
+
+One user reports:
+
+> **The normal button does the Arranger operation.**
+
+Another reports:
+
+> **Mine does the Launcher operation.**
+
+Both can be correct.
+
+The difference may simply be:
+
+```text
+Flip arranger and clip record / automation
+```
+
+So throughout Project XTC we describe the **normal mapping** unless a configuration-dependent behaviour is explicitly stated.
+
+---
+
+# Browser Preferences
+
+DrivenByMoss also lets you hide Browser filter columns that you do not use.
+
+This may sound cosmetic.
+
+On the X-Touch it can be quite useful.
+
+Browser Mode has limited physical display space.
+
+If irrelevant filter columns are hidden:
+
+```text
+Fewer Columns
+     ↓
+Less Noise
+     ↓
+Relevant Choices Easier to Find
+```
+
+This is another example of configuration reducing decisions during the actual workflow.
+
+---
+
+# Configure Browser Mode Around Your Search Habits
+
+If you consistently ignore a Browser filter category, there is little benefit in forcing it to occupy controller attention.
+
+A good Browser setup can therefore make the hardware workflow feel substantially more direct.
+
+The principle remains:
+
+> **Remove recurring friction, not theoretical possibilities.**
+
+---
+
+# Display Track Names
+
+DrivenByMoss can configure the first display row to show track names rather than mode labels.
+
+This is another trade-off.
+
+Track names answer:
+
+> **What channels am I looking at?**
+
+Mode labels answer:
+
+> **What controller context am I in?**
+
+Both forms of information are useful.
+
+Choose the display arrangement that makes the surface easiest for you to read.
+
+---
+
+# Use Vertical Zoom to Change Modes
+
+DrivenByMoss also provides:
+
+```text
+Use vertical zoom to change modes
+```
+
+When enabled, the up/down arrows in Zoom Mode can select parameter modes.
+
+This gives the arrow keys another possible controller-level role.
+
+It is a good example of a preference that may be useful to one workflow and unnecessary complication to another.
+
+Do not enable features simply because they exist.
+
+Enable them because they solve a real problem.
+
+---
+
+# The Segment Display
+
+If the hardware has a segment display, DrivenByMoss lets you choose whether the play position is represented as:
+
+```text
+Time
+```
+
+or:
+
+```text
+Beats / Measures
+```
+
+It can also choose whether the final digits display:
+
+```text
+Tempo
+```
+
+or:
+
+```text
+Ticks
+```
+
+For music production, measures and tempo may feel natural.
+
+For another workflow, absolute time may be more useful.
+
+Again, configuration determines what information reaches you most efficiently.
+
+---
+
+# Configure for Mixing
+
+If your X-Touch is used primarily as a mixer, priorities may include:
+
 - clear track names;
-- immediate fader control;
-- panorama access;
+- predictable banking;
+- sensible V-Pot response;
+- immediate volume control;
+- fader-touch selection if useful;
 - Sends;
-- Mute and Solo;
-- automation.
+- reliable VU feedback.
 
-The desired experience is:
+A good mixing configuration should feel like:
 
 ```text
-Select
-   ↓
-Mix
-   ↓
-Bank
-   ↓
-Continue mixing
+Find Channel
+     ↓
+Touch / Select
+     ↓
+Adjust
 ```
 
-Complex hierarchical navigation may be less important if the project structure is relatively simple.
+with very little controller-management overhead.
 
 ---
 
-## Configuration for Large Projects
+# Configure for Large Projects
 
-For projects containing many Groups, hierarchical navigation becomes more attractive.
+For large projects, priorities may change.
 
-For example:
+Hierarchical navigation can become especially useful.
+
+A top-level view such as:
 
 ```text
-Drums
-Bass
-Guitars
-Keys
-Vocals
-FX
+Drums   Bass   Guitars   Keys   Vocals   FX
 ```
 
-can provide a compact top-level view.
+gives the project a manageable structure.
 
 Then:
 
 ```text
 SELECT Drums
       ↓
-ENTER
+SELECT again
       ↓
-Kick
-Snare
-Hats
-Toms
-Percussion
+Kick   Snare   Hats   Toms   Percussion
 ```
 
-gives access to detail only when needed.
+reveals the detail only when it is required.
 
-The configuration is helping the eight channel strips scale to a much larger project.
+For this kind of workflow, the Track Navigation preference has a much greater effect than a subtle knob-sensitivity adjustment.
 
 ---
 
-## Configuration for Launcher-Based Work
+# Configure for Launcher Work
 
-For Launcher-oriented composition, priorities may include:
-
-- New Clip Length;
-- overdub behaviour;
-- clip creation;
-- navigation;
-- Clip Based Looper options.
-
-The goal is to reduce interruptions to the loop-building cycle:
+A Launcher-oriented setup may prioritise:
 
 ```text
+New Clip Length
+```
+
+and:
+
+```text
+Flip arranger and clip record / automation
+```
+
+The desired workflow may be:
+
+```text
+Select Destination
+      ↓
 Create
-   ↓
+      ↓
 Record
-   ↓
-Loop
-   ↓
+      ↓
 Overdub
-   ↓
+      ↓
 Listen
 ```
 
-A well-chosen default clip length can be more valuable here than an advanced option that is rarely touched.
+with Launcher functions available on the simplest physical gestures.
+
+Configuration should support the musical model you actually use.
 
 ---
 
-## Configuration for Device-Heavy Work
+# Configure for Device Work
 
-If much of your work involves instruments and effects, Device Mode becomes especially important.
+A device-heavy workflow may care particularly about:
 
-Priorities include:
+- display readability;
+- knob sensitivity;
+- fine adjustment;
+- fader-as-knob behaviour;
+- startup mode;
+- Browser filter visibility.
 
-- useful parameter feedback;
-- predictable page navigation;
-- easy device selection;
-- effective V-Pot behaviour;
-- FLIP where appropriate.
-
-The desired path is:
+The goal is:
 
 ```text
 Track
-   ↓
+  ↓
 Device
-   ↓
-Parameter Page
-   ↓
+  ↓
+Page
+  ↓
 Parameter
 ```
 
-with as little unnecessary navigation as possible.
+with as little unnecessary physical navigation as possible.
 
 ---
 
-## Configuration for Dub and Performance Mixing
+# Configure for Performance Mixing
 
-Our Chapter 20 example suggests another set of priorities.
+Our Chapter 20 dub example suggests another set of priorities.
 
-For performance-oriented mixing, useful behaviour includes:
+A performance-oriented mixer benefits from:
 
-- immediate fader access;
-- fast Send selection;
-- reliable Mute state;
-- clear feedback;
-- responsive automation;
-- predictable banking.
+- predictable fader response;
+- useful fader-touch behaviour;
+- clear channel feedback;
+- fast Send access;
+- sensible V-Pot sensitivity;
+- stable track banking;
+- immediate effect control.
 
-The workflow might move rapidly between:
+When mixing performatively, predictability matters enormously.
 
-```text
-Faders
-   ↓
-Mutes
-   ↓
-Send 1 — Reverb
-   ↓
-Send 2 — Delay
-   ↓
-Faders
-```
+You do not want to wonder:
 
-Here, predictability matters more than novelty.
+> **What will happen if I touch this?**
 
-When performing a mix, you do not want to stop and wonder what the surface is going to do.
+The configuration should make the answer obvious.
 
 ---
 
-# The DrivenByMoss Settings Are Not a Test
+# Change One Thing at a Time
 
-There is a temptation with sophisticated software to assume that there must be one expert configuration.
-
-There isn't.
-
-A setting is not more advanced merely because it is more complicated.
-
-The best configuration is the one that makes the controller behave predictably for **your work**.
-
-That may be surprisingly simple.
-
----
-
-## Change One Thing at a Time
-
-When experimenting with configuration, avoid changing many settings simultaneously.
+When experimenting with preferences, avoid changing many settings simultaneously.
 
 Use:
 
 ```text
-Change one setting
-      ↓
+Change One Setting
+       ↓
 Test
-      ↓
-Understand the effect
-      ↓
-Keep or revert
+       ↓
+Understand Result
+       ↓
+Keep or Revert
 ```
 
 rather than:
 
 ```text
-Change six settings
-      ↓
-Something is different
-      ↓
-Which setting did that?
+Change Six Settings
+       ↓
+Controller Feels Different
+       ↓
+Which Setting Did It?
 ```
 
-This is particularly important with a contextual controller where one configuration choice may affect several workflows.
+This is particularly important with a contextual controller.
+
+One preference may affect several different workflows.
 
 ---
 
-## Test Changes Musically
+# Test Configuration Musically
 
-A setting can look sensible in a preferences panel and still feel awkward in practice.
+A preference can look sensible in a settings panel but still feel awkward in practice.
 
-After changing something, use the controller for a real task.
+If you change:
 
-If you change track navigation, navigate a real project.
+```text
+Track Navigation
+```
 
-If you change clip behaviour, create some clips.
+navigate a real project.
 
-If you change an encoder-related option, adjust real parameters.
+If you change:
 
-The question is not:
+```text
+Knob Sensitivity
+```
 
-> **Does the setting work?**
+adjust real parameters.
+
+If you change:
+
+```text
+Fader Touch
+```
+
+mix something.
+
+If you change:
+
+```text
+New Clip Length
+```
+
+create some clips.
+
+The real question is not:
+
+> **Does this setting technically work?**
 
 It is:
 
-> **Does the setting improve the workflow?**
+> **Does this make the workflow better?**
 
 ---
 
-## Keep a Known-Good Configuration
+# Keep a Known-Good Setup
 
-Once the X-Touch is behaving reliably, it is worth knowing what that working configuration looks like.
+Once the controller behaves reliably, it is useful to know what that setup consists of.
 
-If a future update changes behaviour, a known-good setup gives you something to compare against.
-
-Useful things to record include:
+Record important information such as:
 
 ```text
-Bitwig version
+Bitwig Version
 
-DrivenByMoss version
+DrivenByMoss Version
 
-X-Touch firmware version
+X-Touch Firmware
 
-X-Touch operating mode
+X-Touch Mode
 
-MIDI port assignments
+Track Navigation
 
-important DrivenByMoss options
+Fader-Touch Preferences
+
+New Clip Length
+
+Important Sensitivity Values
+
+Custom Assignments
 ```
 
-This turns:
-
-> Something has changed.
-
-into the much more useful:
-
-> **What changed between these two known configurations?**
+If something changes after an update, you now have a known reference.
 
 ---
 
-## Version Matters
+# Version Matters
 
 DrivenByMoss continues to develop.
 
 Bitwig continues to develop.
 
-Behaviour may therefore change after this guide is published.
+The mapping may therefore change over time.
 
-Project XTC should always state the versions against which its instructions were verified.
+Project XTC should state the versions against which its behaviour has been verified.
 
-That does not mean the guide instantly becomes useless when a new version appears.
+That does not mean the guide instantly becomes obsolete after an update.
 
-It means the reader knows the reference point.
+It means the reader knows:
+
+> **This is the configuration against which these instructions were tested.**
+
+A newer version can then be compared against something concrete.
+
+---
+
+# Perform a Sanity Check After Updates
+
+After updating Bitwig or DrivenByMoss, test a few fundamentals.
 
 For example:
 
 ```text
-Verified with:
+Transport       ✓
 
-Bitwig Studio 6.1 beta 4
-DrivenByMoss 26.3.3
-X-Touch firmware 1.22
+Faders          ✓
+
+SELECT          ✓
+
+BANK / CHANNEL  ✓
+
+Displays        ✓
+
+V-Pots          ✓
+
+Device Mode     ✓
+
+Sends           ✓
 ```
 
-A later version can then be compared with something concrete.
+Then test any specialised workflows you depend on.
+
+This takes little time and can prevent a great deal of confusion.
 
 ---
 
-## Updates Can Add Functionality
+# Troubleshooting by Layer
 
-This guide itself grew because we discovered functionality that had not yet been represented adequately.
-
-Features such as:
-
-```text
-OPTION + MARKER
-```
-
-were easy to miss if we looked only at the most obvious controls.
-
-DrivenByMoss development may introduce further capabilities.
-
-So configuration and documentation should both be treated as living things.
-
-The controller you know today may be able to do more tomorrow.
-
----
-
-## After an Update
-
-After updating Bitwig or DrivenByMoss, do not immediately assume that every existing workflow remains identical.
-
-Perform a quick sanity check.
-
-For example:
-
-```text
-Transport
-   ✓
-
-Faders
-   ✓
-
-SELECT
-   ✓
-
-Banking
-   ✓
-
-Displays
-   ✓
-
-Device Mode
-   ✓
-
-Sends
-   ✓
-```
-
-If those fundamentals behave normally, continue to the more specialised functions you use.
-
-This takes very little time and can prevent considerable confusion later.
-
----
-
-## Troubleshooting by Layer
-
-Remember the complete system:
+Remember the system:
 
 ```text
 X-Touch Hardware
        │
        ▼
-MC Protocol
+MC Mode
        │
        ▼
-MIDI Connection
+MIDI Communication
        │
        ▼
 DrivenByMoss
@@ -899,167 +1516,205 @@ DrivenByMoss
 Bitwig
 ```
 
-When something fails, work through those layers.
-
-### Is the X-Touch in MC mode?
-
-If not, fix that first.
-
-### Are the MIDI ports correct?
-
-If not, DrivenByMoss cannot communicate properly.
-
-### Does basic transport work?
-
-If not, the problem is probably more fundamental than Device Mode.
-
-### Does feedback return to the X-Touch?
-
-If commands work but displays or motors do not, investigate the return path.
-
-### Does only one advanced feature fail?
-
-Now look at the relevant mode or configuration.
-
-Troubleshooting from the bottom upwards is much more efficient than randomly changing settings.
+If something fails, work from the bottom upwards.
 
 ---
 
-## Don't Forget the Obvious Things
+## Is the X-Touch in MC Mode?
 
-Control-surface problems can sometimes have wonderfully uninteresting causes.
+If not, fix that first.
 
-Before investigating obscure protocol behaviour, check:
+---
 
-- the X-Touch is powered on;
-- the correct mode is selected;
-- the correct MIDI ports are assigned;
-- the controller entry is active;
-- the expected track or mode is selected;
-- the current project actually contains the object you are trying to control.
+## Does Basic Transport Work?
 
-The more sophisticated the system becomes, the easier it is to overlook something simple.
+If PLAY and STOP do not work, the problem is probably more fundamental than Browser Mode or Layers.
+
+---
+
+## Do Faders Send and Receive?
+
+If moving a fader changes Bitwig but the motor never moves in response, investigate the return communication.
+
+---
+
+## Do Displays Update?
+
+If control works but assignments are unclear or stale, investigate the feedback path and hardware/display setup.
+
+---
+
+## Does Only One Advanced Feature Fail?
+
+Now inspect:
+
+- the relevant mode;
+- the relevant preference;
+- the selected track/device;
+- the current project structure.
+
+Troubleshooting becomes much easier when approached in layers.
+
+---
+
+# Don't Forget the Obvious Things
+
+Sophisticated control-surface problems can have wonderfully uninteresting causes.
+
+Check:
+
+```text
+Power
+
+MC Mode
+
+Controller Extension Active
+
+Correct Communication
+
+Expected Track Selected
+
+Expected Mode Selected
+
+Expected Device Exists
+
+Expected Project Object Exists
+```
+
+Do not begin by assuming an obscure MCU protocol failure.
 
 ---
 
 # A Sensible Starting Configuration
 
-Project XTC is not going to prescribe one mandatory configuration.
+Project XTC should not prescribe one universal configuration.
 
 But for someone following the workflows in this guide, a sensible starting point is:
 
 ```text
-X-Touch Mode
-   → MC
+X-Touch
+   → MC Mode
 
-MIDI
-   → X-Touch internal ports
+Hardware
+   → X-Touch Profile
+
+Firmware
+   → Current supported X-Touch firmware
 
 Track Navigation
-   → choose deliberately:
-      flat or hierarchical
+   → Choose Flat or Hierarchical deliberately
 
 New Clip Length
-   → set to your most common loop length
+   → Set to common working length
 
-Feedback
-   → verify displays, LEDs,
-      V-Pots and motor faders
+Fader Touch
+   → Configure deliberately rather than accidentally
 
-Advanced options
-   → leave at known defaults
-      until you have a reason
-      to change them
+Knob Sensitivity
+   → Adjust only if physical response feels wrong
+
+Startup Mode
+   → Choose normal starting workflow
+
+Advanced Preferences
+   → Leave alone until they solve a real problem
 ```
 
 Then use the controller.
 
-Let actual workflow problems tell you which configuration deserves attention.
+Let actual workflow friction tell you which setting deserves attention.
 
 ---
 
-## Configuration Should Eventually Disappear
+# Configuration Should Eventually Disappear
 
-This may sound strange in a chapter about configuration, but the goal of good configuration is to stop thinking about configuration.
+This may sound odd in a chapter about configuration.
 
-When the system is set up well:
+But the goal of good configuration is to stop thinking about configuration.
+
+Eventually:
 
 ```text
-Turn on X-Touch
+Turn On X-Touch
       ↓
 Open Bitwig
       ↓
 Work
 ```
 
-You should not need to reconsider the controller architecture every session.
+The controller should not require a ritual of preference checking at the start of every session.
 
-The configuration has done its job when it becomes invisible.
+The setup has succeeded when it becomes invisible.
 
 ---
 
-## The Important Idea
+# The Important Idea
 
-DrivenByMoss configuration determines the environment in which all the controls described in this guide operate.
+DrivenByMoss configuration determines the environment in which all the controls described in Project XTC operate.
 
-The aim is not to discover the most complicated setup.
-
-It is to create a **predictable one**.
-
-Configure:
-
-- the correct MCU mode;
-- the correct MIDI ports;
-- the navigation style that suits your projects;
-- useful defaults such as New Clip Length;
-- the behaviour required by your normal workflow.
-
-Then verify the two-way conversation:
+Important preferences include:
 
 ```text
-You
-  ↓
-X-Touch
-  ↓
-DrivenByMoss
-  ↓
-Bitwig
+Hardware Profile
 
-and
+Display Setup
 
-Bitwig
-  ↓
-DrivenByMoss
-  ↓
-X-Touch
-  ↓
-You
+Track Navigation
+
+FX / Master Track Banking
+
+Startup Mode
+
+New Clip Length
+
+Fader-Touch Behaviour
+
+Knob Sensitivity
+
+Transport Behaviour
+
+Arranger / Launcher Priority
+
+Browser Filtering
 ```
 
-When that loop works reliably, the technology begins to recede.
+The aim is not to create the most sophisticated possible setup.
 
-And the controller becomes what we wanted from the beginning:
+It is to create the most **predictable** one.
 
-**a predictable physical route into the project.**
+A good configuration reduces repeated decisions.
+
+It makes the physical behaviour match the way you think about the project.
+
+And then it gets out of the way.
+
+The ideal result is:
+
+```text
+Intention
+    ↓
+Physical Action
+    ↓
+Musical Result
+```
+
+with the configuration quietly supporting that connection in the background.
 
 ---
 
 ## Coming Next
 
-We now have a working controller, a mental model for understanding it, and a configuration that supports the way we want to work.
+DrivenByMoss configuration determines how the standard X-Touch workflow behaves.
 
-But DrivenByMoss goes further.
+But the system can go further.
 
-There are specialised options and expansion possibilities that not every user will need immediately.
+Function buttons and footswitches can be assigned.
 
-The final chapter looks beyond the core workflow at:
+Bitwig Actions can be attached to physical controls.
 
-- customisation;
-- specialised options;
-- Clip Based Looper;
-- expansion;
-- extending the surface;
-- adapting the system as DrivenByMoss evolves.
+Clip Based Looper provides a specialised performance workflow.
+
+And additional MCU-compatible surfaces can expand the number of physical channel strips.
 
 Next:
 
