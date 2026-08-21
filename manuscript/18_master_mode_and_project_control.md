@@ -18,9 +18,9 @@ We control their devices and parameters.
 
 But Bitwig also has a level **above** the individual tracks.
 
-The Master channel belongs to the project as a whole.
+The Master track belongs to the project as a whole.
 
-DrivenByMoss gives the X-Touch a specialised Master Edit Mode for working at that level.
+DrivenByMoss gives the X-Touch a specialised **Master Edit Mode** for working at that level.
 
 ---
 
@@ -30,13 +30,13 @@ The obvious job of the Master fader is to control the project's overall output l
 
 That is already useful.
 
-But with DrivenByMoss, touching the Master fader also establishes a different context:
+But with DrivenByMoss, touching the Master fader also changes the controller's context:
 
 ```text
 Touch Master Fader
         │
         ▼
-Select Master
+Select Master Track
         │
         ▼
 Enter Master Edit Mode
@@ -45,11 +45,11 @@ Enter Master Edit Mode
 So the Master fader performs two related jobs:
 
 - it controls the Master level;
-- it gives access to project-level controls.
+- touching it establishes the Master context.
 
 This is another example of a familiar Project XTC principle:
 
-> **An action can both change a value and establish focus.**
+> **An action can both control a value and establish focus.**
 
 ---
 
@@ -57,25 +57,25 @@ This is another example of a familiar Project XTC principle:
 
 Earlier chapters concentrated on questions such as:
 
-> Which track am I controlling?
+> **Which track am I controlling?**
 
 Master Mode asks a different question:
 
-> What if the thing I want to control belongs to the whole project?
+> **What if the thing I want to control belongs to the whole project?**
 
 Conceptually:
 
 ```text
-Track Mode
-   │
-   ▼
+Track Context
+     │
+     ▼
 Track-specific controls
 
 
-Master Mode
-   │
-   ▼
-Project-level controls
+Master Context
+     │
+     ▼
+Master and project-level controls
 ```
 
 The physical V-Pots are the same.
@@ -90,19 +90,24 @@ Touch the Master fader.
 
 DrivenByMoss selects the Master track and enters Master Edit Mode.
 
-The V-Pots then acquire Master/project-related assignments.
-
-At a high level:
+The V-Pots then acquire these assignments:
 
 ```text
 Master Edit Mode
 
-V-Pot 1   → Master Volume
-V-Pot 2   → Master Panorama
-V-Pots 3–5 → Project / audio-engine controls
-V-Pot 7   → Previous Project
-V-Pot 8   → Next Project
+V-Pot 1      → Master Volume
+
+V-Pot 2      → Master Panorama
+
+V-Pots 3–5   → Press to toggle
+                the project's audio engine
+
+V-Pot 7      → Press for Previous Project
+
+V-Pot 8      → Press for Next Project
 ```
+
+V-Pot 6 has no Master Mode function documented in the current DrivenByMoss MCU reference.
 
 The important point is not merely the list.
 
@@ -115,7 +120,7 @@ one track in the project
 to:
 
 ```text
-the project itself
+the project-level Master context
 ```
 
 ---
@@ -124,27 +129,33 @@ the project itself
 
 V-Pot 1 controls the Master volume.
 
-The Master fader already provides a large physical control for the same parameter, so this may seem redundant.
+The Master fader already provides a large physical control for the same parameter, so this may initially seem redundant.
 
 But redundancy is not necessarily wasteful on a control surface.
 
-It gives the same parameter another form of access within the current mode.
+It means the current mode remains internally consistent: the V-Pots themselves expose the parameters belonging to the Master context.
 
-Pressing V-Pot 1 resets the Master volume to its default value.
-
-Conceptually:
+Turn V-Pot 1:
 
 ```text
-Turn V-Pot 1
-      ↓
+V-Pot 1
+   │
+   ▼
 Master Volume
+```
 
-Press V-Pot 1
-      ↓
+Press V-Pot 1:
+
+```text
+V-Pot 1 Press
+      │
+      ▼
 Reset Master Volume
 ```
 
-This follows the V-Pot press behaviour introduced earlier in the guide.
+The press behaviour follows the general V-Pot principle we met earlier:
+
+> **Pressing a parameter knob resets it to its default value.**
 
 ---
 
@@ -152,96 +163,142 @@ This follows the V-Pot press behaviour introduced earlier in the guide.
 
 V-Pot 2 controls the Master panorama.
 
-Pressing it resets the panorama to its default position.
-
-So:
+Turn it:
 
 ```text
-Turn V-Pot 2
-      ↓
+V-Pot 2
+   │
+   ▼
 Master Panorama
-
-Press V-Pot 2
-      ↓
-Reset Panorama
 ```
 
-This gives the Master channel the same sort of direct physical access we have already used on ordinary tracks.
+Press it:
+
+```text
+V-Pot 2 Press
+      │
+      ▼
+Reset Master Panorama
+```
+
+So the first two V-Pots form a straightforward pair:
+
+```text
+V-Pot 1   Master Volume
+
+V-Pot 2   Master Panorama
+```
+
+Both can be pressed to reset their parameter.
 
 ---
 
-## Master Control and Caution
+## V-Pots 3–5 — Audio Engine Control
 
-Master controls deserve a little more care than ordinary track controls.
+V-Pots 3, 4 and 5 have a different kind of assignment.
 
-Changing a single track affects one element of the mix.
+They are not continuous parameter controls.
 
-Changing the Master affects **everything downstream of it**.
+Pressing any of them toggles the audio engine on or off for the current project.
 
-That means accidental adjustments can have much wider consequences.
+Conceptually:
 
-A good habit is therefore:
+```text
+Press V-Pot 3, 4 or 5
+          │
+          ▼
+Toggle Project Audio Engine
+```
 
-> **Know that you are in Master Mode before turning controls.**
+This is an important distinction.
 
-The displays and current feedback should make that clear.
+With V-Pots 1 and 2:
 
-Again:
+```text
+TURN
+   → change a value
+```
+
+With V-Pots 3–5:
+
+```text
+PRESS
+   → perform an action
+```
+
+The same physical row therefore contains both parameter controls and project-level commands.
+
+---
+
+## Why Three Knobs?
+
+The current DrivenByMoss documentation assigns the same audio-engine toggle behaviour to V-Pots 3, 4 and 5.
+
+Project XTC should describe that behaviour exactly as documented rather than inventing separate meanings for the three controls.
+
+So the useful fact to remember is simply:
+
+```text
+V-Pots 3–5
+   │
+   ▼
+Press
+   │
+   ▼
+Toggle Audio Engine
+```
+
+There is no need to assign a different conceptual role to each one.
+
+---
+
+## What Does Toggling the Audio Engine Mean?
+
+This is a project-level action.
+
+It affects Bitwig's audio engine for the current project rather than a single track, device or parameter.
+
+That makes it qualitatively different from most of the controls we have used so far.
+
+The hierarchy is roughly:
+
+```text
+Parameter
+   ↓
+Device
+   ↓
+Track
+   ↓
+Group
+   ↓
+Project
+   ↓
+Audio Engine
+```
+
+Master Edit Mode is one of the places where the X-Touch reaches that upper level.
+
+---
+
+## Use Project-Level Actions Deliberately
+
+Because the audio-engine control affects the project as a whole, it deserves more care than changing one track parameter.
+
+A good habit is:
+
+> **Check that you are in Master Mode before pressing project-level controls.**
+
+The displays and current context should confirm what the V-Pots represent.
+
+As throughout this guide:
 
 > **Observe before you adjust.**
 
 ---
 
-## V-Pots 3–5 — Project-Level Controls
-
-DrivenByMoss assigns V-Pots 3–5 to project-level audio-engine control functions.
-
-These are operated by pressing the V-Pots rather than turning them.
-
-The important conceptual point is that these controls affect the **state of the project/audio engine**, not an individual channel parameter.
-
-So the surface now contains several different kinds of control at once:
-
-```text
-V-Pot 1
-   → continuous Master parameter
-
-V-Pot 2
-   → continuous Master parameter
-
-V-Pots 3–5
-   → project/audio-engine actions
-```
-
-This is another example of the controller being organised around context rather than around one fixed type of control.
-
----
-
-## Why Project-Level Controls Matter
-
-At first glance, project-level operations may seem less important than faders or device parameters.
-
-But they become useful precisely because they save another trip to the computer interface.
-
-Instead of thinking:
-
-```text
-find project control on screen
-       ↓
-move mouse
-       ↓
-click
-```
-
-the X-Touch can expose the relevant action directly when Master Mode is active.
-
-That is a small but useful step towards a Mouse-Lite workflow.
-
----
-
 ## V-Pot 7 — Previous Project
 
-Press V-Pot 7 to move to the previous project.
+Press V-Pot 7 to switch to the previous project.
 
 Conceptually:
 
@@ -255,13 +312,13 @@ Previous Project
 
 This is a surprisingly powerful operation to have on the control surface.
 
-It means project navigation itself can become part of the hardware workflow.
+Project navigation itself becomes part of the hardware workflow.
 
 ---
 
 ## V-Pot 8 — Next Project
 
-Press V-Pot 8 to move to the next project.
+Press V-Pot 8 to switch to the next project.
 
 So V-Pots 7 and 8 form a natural pair:
 
@@ -269,19 +326,20 @@ So V-Pots 7 and 8 form a natural pair:
 V-Pot 7
    ← Previous Project
 
+
 V-Pot 8
    Next Project →
 ```
 
-This is easy to remember because the spatial relationship mirrors the navigation.
+The spatial relationship is easy to remember.
 
-Left control: previous.
+Left means previous.
 
-Right control: next.
+Right means next.
 
 ---
 
-## Project Switching from the Surface
+## Moving Between Projects from the Surface
 
 Imagine working through several related Bitwig projects.
 
@@ -292,7 +350,7 @@ Perhaps they are:
 - works in progress;
 - test projects.
 
-Instead of opening project-selection controls with the mouse, Master Mode can provide direct navigation.
+Instead of returning to project-selection controls with the mouse, Master Mode can provide direct navigation.
 
 The workflow becomes:
 
@@ -312,33 +370,40 @@ Press V-Pot 8
 Project B
 ```
 
-That is a good example of a command that is not musically glamorous but can make the overall workflow feel much more continuous.
+This is not a glamorous function.
+
+But it can make the overall workflow feel much more continuous.
 
 ---
 
 ## The Master Fader and Metronome Volume
 
-We have already encountered another useful Master-fader modifier:
+The Master fader also participates in another useful command:
 
 ```text
 SHIFT + Master Fader
 ```
 
-controls metronome volume.
+changes the Metronome volume.
 
-That is not part of Master Edit Mode itself, but it is worth remembering because it demonstrates how many roles the Master area can acquire:
+This is **not** part of Master Edit Mode itself.
+
+It is a modifier operation on the Master fader.
+
+So the Master area now illustrates three different kinds of context:
 
 ```text
 Master Fader
      │
-     ├── normal
-     │      Master volume
+     ├── move normally
+     │      → Master Volume
      │
      ├── touch
-     │      Master focus / Master Mode
+     │      → Select Master
+     │        and enter Master Edit Mode
      │
-     └── SHIFT
-            Metronome volume
+     └── SHIFT + move
+            → Metronome Volume
 ```
 
 One physical fader participates in several related workflows.
@@ -353,7 +418,7 @@ The V-Pots represented device parameters.
 
 Then you touch the Master fader.
 
-Now those same V-Pots represent project-level functions.
+Now those same V-Pots represent Master and project-level functions.
 
 Conceptually:
 
@@ -368,7 +433,7 @@ Touch Master Fader
    │
    ▼
 
-Master Mode
+Master Edit Mode
    │
    ▼
 V-Pots = Master / Project Controls
@@ -382,7 +447,7 @@ This is precisely the mental model Project XTC has been building throughout the 
 
 ---
 
-## The Master Channel Is a Different Scale
+## The Master Track Is a Different Scale
 
 There is a useful way to think about this.
 
@@ -390,22 +455,22 @@ Ordinary track control is local:
 
 ```text
 Track
-   ↓
-its level
-its pan
-its sends
-its devices
+   │
+   ├── Volume
+   ├── Panorama
+   ├── Sends
+   └── Devices
 ```
 
 Master control is global:
 
 ```text
 Project
-   ↓
-overall output
-overall panorama
-project state
-project navigation
+   │
+   ├── Master Volume
+   ├── Master Panorama
+   ├── Audio Engine
+   └── Project Navigation
 ```
 
 The X-Touch lets you change scale.
@@ -431,40 +496,48 @@ one Group
 then:
 
 ```text
-the entire project
+the project as a whole
 ```
 
 without changing control surfaces.
 
 ---
 
-## Working from the Top Down
+## Moving Up and Down the Project
 
-Master Mode is particularly useful when you want to start from the project level and then descend.
-
-For example:
+Chapter 17 showed how the controller can descend:
 
 ```text
-Master level
-     ↓
-Group balance
-     ↓
-Track balance
-     ↓
-Device parameter
+Project
+   ↓
+Group
+   ↓
+Track
+   ↓
+Layer / Drum Pad
 ```
 
-Earlier chapters showed how the X-Touch can move deeper into a project.
+Master Mode reminds us that the controller can also move in the other direction.
 
-Master Mode reminds us that we can also move **upwards**.
+From a detailed track or device context:
 
-The controller's point of view can operate at several levels.
+```text
+Parameter
+   ↑
+Device
+   ↑
+Track
+   ↑
+Project
+```
+
+Touching the Master fader gives us a direct route to that project-level view.
 
 ---
 
 ## The Hierarchy Keeps Expanding
 
-At this point, our project hierarchy looks something like:
+At this point, our conceptual model looks something like:
 
 ```text
 Project
@@ -484,7 +557,7 @@ Project
 
 The X-Touch does not expose all of this at once.
 
-Instead, it exposes the level that is currently useful.
+It exposes the level that is currently useful.
 
 That is what keeps the surface manageable.
 
@@ -496,9 +569,9 @@ Master Mode is another context where displays matter.
 
 When the V-Pots no longer represent ordinary mixer or device parameters, the feedback tells you what they now mean.
 
-That is especially important for project-level actions.
+That is especially important when some V-Pots are controlling values while others perform project-level actions.
 
-Do not assume that a V-Pot is still doing what it did moments ago.
+Do not assume that a V-Pot still does what it did moments ago.
 
 Read the controller.
 
@@ -518,7 +591,7 @@ A simple Master Mode workflow might look like this.
 
 ### 1. Touch the Master fader
 
-This establishes Master focus and enters Master Edit Mode.
+This selects the Master track and enters Master Edit Mode.
 
 ### 2. Check the displays
 
@@ -526,21 +599,29 @@ Confirm that the controller is showing the Master/project context.
 
 ### 3. Adjust Master level if required
 
-Use the Master fader or the appropriate V-Pot.
+Use the Master fader or V-Pot 1.
 
 ### 4. Adjust Master panorama if required
 
 Use V-Pot 2.
 
-### 5. Use project-level actions only deliberately
+### 5. Toggle the audio engine only deliberately
 
-Treat V-Pots 3–5 as actions rather than ordinary continuous controls.
+Press V-Pot 3, 4 or 5 when you actually intend to change the project's audio-engine state.
 
 ### 6. Navigate projects if required
 
-Use V-Pots 7 and 8.
+Use:
 
-### 7. Return to normal track work
+```text
+V-Pot 7
+   → Previous Project
+
+V-Pot 8
+   → Next Project
+```
+
+### 7. Return to ordinary work
 
 Select the required track or mode and continue.
 
@@ -556,11 +637,11 @@ Project switching is another good example of Mouse-Lite philosophy.
 
 The goal is not:
 
-> Never use Bitwig's project interface.
+> **Never use Bitwig's project interface.**
 
 The goal is:
 
-> If you already know you want the previous or next project, why should that necessarily require the mouse?
+> **If you already know you want the previous or next project, why should that necessarily require the mouse?**
 
 The X-Touch gives you a direct physical route.
 
@@ -570,17 +651,31 @@ That is the recurring theme of this guide:
 
 ---
 
-## A Note on Verification
+## One Surface, Several Scales
 
-Some project-level assignments are less obvious than ordinary mixer functions.
+By this point, the same X-Touch may have represented:
 
-For that reason, Project XTC should verify the exact current DrivenByMoss behaviour of the Master Mode action controls before final publication.
+```text
+Project Tracks
 
-In particular, the functions assigned to V-Pots 3–5 should be confirmed against the current DrivenByMoss version rather than inferred from the labels alone.
+Group Contents
 
-The general Master Mode structure is clear.
+Instrument Layers
 
-The final reference tables should contain only verified current behaviour.
+Drum Pads
+
+Device Parameters
+
+Mixer Dimensions
+
+Master / Project Controls
+```
+
+The hardware has not become larger.
+
+The conceptual surface has.
+
+That is the power of context.
 
 ---
 
@@ -592,17 +687,38 @@ Master Mode changes the X-Touch's point of view from:
 
 to:
 
-> **the project as a whole.**
+> **the project-level Master context.**
 
-Touching the Master fader establishes that context.
+Touching the Master fader enters that mode.
 
-The surface can then provide access to:
+The verified Master Edit Mode assignments are:
 
-- Master volume;
-- Master panorama;
-- project/audio-engine controls;
-- previous project;
-- next project.
+```text
+V-Pot 1
+   → Master Volume
+   → Press to reset
+
+V-Pot 2
+   → Master Panorama
+   → Press to reset
+
+V-Pots 3–5
+   → Press to toggle
+     the project's audio engine
+
+V-Pot 7
+   → Previous Project
+
+V-Pot 8
+   → Next Project
+```
+
+And independently:
+
+```text
+SHIFT + Master Fader
+   → Metronome Volume
+```
 
 So our mental model expands once more:
 
@@ -612,6 +728,8 @@ Physical Control
 Current Focus
       +
 Current Mode
+      +
+Modifier, if any
       =
 Current Function
 ```
@@ -622,7 +740,7 @@ At Device level, it is a device.
 
 Inside a Group, it may be a child track.
 
-In Master Mode, it is the project-level Master context.
+In Master Edit Mode, it is the Master and project context.
 
 The same surface moves between all of them.
 
@@ -636,13 +754,13 @@ The next chapter turns to another fundamental workflow:
 
 **recording.**
 
-DrivenByMoss gives the X-Touch several ways to work with:
+DrivenByMoss gives the X-Touch explicit operations for:
 
-- Arranger recording;
+- normal recording;
 - Launcher overdub;
+- Arranger overdub;
 - clip creation;
-- New Clip Length;
-- overdub controls.
+- New Clip Length.
 
 Next:
 
