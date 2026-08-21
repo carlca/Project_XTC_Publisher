@@ -1,328 +1,755 @@
 ---
 chapter: 8
 title: "Modifiers: SHIFT, OPTION, CONTROL and ALT"
+status: draft
 ---
 
 # Modifiers: SHIFT, OPTION, CONTROL and ALT
 
-So far, most of the controls in this guide have been considered one at a time.
+By now, an important pattern should be becoming familiar.
 
-Press a button.
+The X-Touch does not have enough physical controls for every possible function to exist as a dedicated button.
 
-Turn a V-Pot.
+Instead, DrivenByMoss reuses controls according to context.
 
-Move a fader.
-
-But the X-Touch has far more functions than it has physical controls.
-
-One of the ways DrivenByMoss solves this is through **modifier buttons**.
-
-The four important modifiers are:
-
-- SHIFT
-- OPTION
-- CONTROL
-- ALT
-
-Hold one of these while operating another control, and the second control may perform a different function.
-
-If you are familiar with keyboard shortcuts, the principle is already familiar:
-
-```text
-control
-   +
-modifier
-   =
-another function
-```
-
-The important thing is not to memorise every possible combination immediately.
-
-It is to understand the pattern.
-
----
-
-## One Surface, More Functions
-
-Consider a control we already know: the Jog Wheel.
-
-Turn it normally and it changes the transport position.
-
-But DrivenByMoss can reinterpret that same physical movement when a modifier is held:
-
-```text
-Jog Wheel
-    │
-    ├── normally       → transport position
-    │
-    ├── OPTION         → tempo
-    │
-    ├── CONTROL        → loop start
-    │
-    └── ALT            → loop length
-```
-
-The Jog Wheel has not physically changed.
-
-Its **context** has.
-
-This is the same principle introduced earlier in this guide when we looked at modes.
-
-A modifier creates a temporary context.
-
----
-
-## Modifiers Are Temporary Modes
-
-There is a useful way to think about the four modifier buttons:
-
-> **Holding a modifier temporarily changes the meaning of another control.**
-
-A normal mode may remain active until you leave it.
-
-A modifier usually lasts only while you hold its button.
-
-Conceptually:
-
-```text
-Normal context
-      │
-      │ hold OPTION
-      ▼
-OPTION context
-      │
-      │ release OPTION
-      ▼
-Normal context
-```
-
-This makes modifiers particularly useful for secondary operations.
-
-The main function remains immediately available, while the less frequently needed function sits behind a modifier.
-
----
-
-## SHIFT
-
-SHIFT is probably the modifier you will encounter most often.
-
-It frequently provides:
-
-- a secondary version of an operation;
-- finer control;
-- reverse movement through a sequence.
-
-For example, when adjusting some continuous parameters, SHIFT gives finer resolution.
-
-With the Jog Wheel:
-
-```text
-Jog Wheel
-    → move transport position
-
-SHIFT + Jog Wheel
-    → move transport position more finely
-```
-
-In other contexts SHIFT selects a related secondary operation.
-
-You will see examples throughout the following chapters.
-
-Do not assume that SHIFT *always* means "fine adjustment", however.
-
-Its exact meaning depends on the control and the current mode.
-
----
-
-## OPTION
-
-OPTION often changes **what the operation acts upon** or exposes a related operation.
-
-For example, BANK and CHANNEL normally move the controller's view through the project.
-
-With OPTION held, DrivenByMoss can instead use those controls to move objects within the project.
-
-Conceptually:
-
-```text
-BANK / CHANNEL
-      │
-      ├── normally
-      │      move the VIEW
-      │
-      └── OPTION
-             move an OBJECT
-```
-
-OPTION is also important in several workflows we will meet later.
-
-For example:
-
-```text
-OPTION + MARKER
-```
-
-creates a marker.
-
-And:
-
-```text
-OPTION + REWIND
-OPTION + FORWARD
-```
-
-navigate between markers.
-
-OPTION therefore does not have one universal definition.
-
-Think of it as:
-
-> **Give this control its alternative operation.**
-
----
-
-## CONTROL
-
-CONTROL frequently exposes a structural operation or another dimension of control.
-
-One particularly useful example appears in Device Mode.
-
-Holding CONTROL allows the V-Pots to expose devices so that a particular device can be selected directly.
-
-CONTROL also changes the Jog Wheel:
-
-```text
-CONTROL + Jog Wheel
-```
-
-adjusts the loop start.
-
-With SHIFT added:
-
-```text
-CONTROL + SHIFT + Jog Wheel
-```
-
-provides finer adjustment.
-
-Again, CONTROL does not have one fixed meaning.
-
-The current mode still matters.
-
----
-
-## ALT
-
-ALT is another modifier used to expose alternative parameter operations.
-
-With the Jog Wheel:
-
-```text
-ALT + Jog Wheel
-```
-
-adjusts loop length.
-
-Adding SHIFT gives finer control:
-
-```text
-ALT + SHIFT + Jog Wheel
-```
-
-adjusts loop length more precisely.
-
-ALT also appears in other specialised workflows, including operations concerned with clip length.
-
-These will make more sense when we reach the relevant chapters.
-
----
-
-## Modifiers Can Be Combined
-
-Modifiers are not necessarily used alone.
-
-SHIFT can be combined with another modifier.
-
-The Jog Wheel gives us an excellent example:
-
-| Control | Function |
-|---|---|
-| Jog Wheel | Transport position |
-| SHIFT + Jog Wheel | Fine transport position |
-| OPTION + Jog Wheel | Tempo |
-| OPTION + SHIFT + Jog Wheel | Fine tempo |
-| CONTROL + Jog Wheel | Loop start |
-| CONTROL + SHIFT + Jog Wheel | Fine loop start |
-| ALT + Jog Wheel | Loop length |
-| ALT + SHIFT + Jog Wheel | Fine loop length |
-
-There is a pattern here.
-
-SHIFT does not change *what* OPTION, CONTROL or ALT selects.
-
-Instead, it changes the **precision** with which that parameter is adjusted.
-
-So:
-
-```text
-OPTION
-   ↓
-Tempo
-
-OPTION + SHIFT
-   ↓
-Tempo, but finer
-```
-
-This is exactly the sort of relationship worth learning.
-
-It reduces the number of apparently unrelated commands you need to remember.
-
----
-
-## Modifier Patterns, Not Modifier Rules
-
-You may already have noticed some tendencies:
+One of the main ways it does this is through four modifier buttons:
 
 ```text
 SHIFT
-   → secondary / finer / reverse
 
 OPTION
-   → alternative operation
 
 CONTROL
-   → structural or additional control
 
 ALT
-   → another specialised parameter
 ```
 
-These are useful mental shortcuts.
+Hold one of these while pressing, turning or moving another control, and the meaning of that control may change.
 
-But they are **not rules**.
+The underlying idea is simple:
 
-DrivenByMoss assigns modifier combinations according to what is useful in a particular context.
+> **A modifier temporarily changes the context of another control.**
+
+---
+
+# A Modifier Is a Temporary Context
+
+Suppose a control normally does this:
+
+```text
+Control
+   │
+   ▼
+Primary Function
+```
+
+Hold a modifier:
+
+```text
+Modifier + Control
+       │
+       ▼
+Alternative Function
+```
+
+Release the modifier:
+
+```text
+Control
+   │
+   ▼
+Primary Function again
+```
+
+So modifiers behave rather like temporary modes.
+
+They extend the controller without requiring more hardware.
+
+---
+
+# Why Modifiers Matter
+
+Imagine the X-Touch without modifiers.
+
+Every secondary function would require:
+
+- another physical button;
+- another mode;
+- another menu;
+- or another trip to the mouse.
+
+Modifiers allow one control to support several related operations.
 
 For example:
 
 ```text
-OPTION + MARKER
+MARKER
+   → enter Marker Mode
 ```
 
-creates a marker.
+while:
 
-There is no useful way to derive "create marker" from a universal definition of OPTION.
+```text
+OPTION + MARKER
+   → create a marker
+```
 
-You simply learn that command as part of the Marker workflow.
+The same physical button participates in two related tasks.
 
-The purpose of recognising modifier patterns is therefore not to predict every command.
-
-It is to make the controller easier to understand when you encounter one.
+That is exactly what modifiers are for.
 
 ---
 
-## Order Matters Less Than the Combination
+# SHIFT
+
+SHIFT is one of the most frequently used modifiers.
+
+It often provides:
+
+- finer adjustment;
+- a related secondary function;
+- reverse movement;
+- access to a Launcher-oriented variant;
+- or another function closely related to the unmodified control.
+
+For example:
+
+```text
+Jog Wheel
+   → move play position
+```
+
+while:
+
+```text
+SHIFT + Jog Wheel
+   → finer movement
+```
+
+Likewise:
+
+```text
+SEND
+   → next Send
+```
+
+while:
+
+```text
+SHIFT + SEND
+   → previous Send
+```
+
+So SHIFT often means:
+
+> **Do the same kind of thing, but differently.**
+
+---
+
+# SHIFT and Precision
+
+One recurring SHIFT pattern is fine adjustment.
+
+For example:
+
+```text
+Turn parameter control
+      │
+      ▼
+Normal movement
+```
+
+with SHIFT:
+
+```text
+SHIFT + Turn
+      │
+      ▼
+Finer movement
+```
+
+The exact control depends on the mode.
+
+But once you recognise the pattern, SHIFT becomes easier to remember.
+
+---
+
+# SHIFT and Transport
+
+SHIFT also modifies several transport controls.
+
+Verified DrivenByMoss examples include:
+
+```text
+SHIFT + PLAY
+   → Toggle Repeat
+```
+
+and:
+
+```text
+SHIFT + RECORD
+   → Toggle Launcher overdub
+```
+
+and:
+
+```text
+SHIFT + OVR
+   → Toggle Launcher overdub
+```
+
+So SHIFT does not always mean precision.
+
+Its actual meaning remains contextual.
+
+---
+
+# SHIFT and REDO
+
+The UNDO button also follows a familiar modifier pattern:
+
+```text
+UNDO
+   → Undo
+```
+
+while:
+
+```text
+SHIFT + UNDO
+   → Redo
+```
+
+This is a particularly easy combination to remember because the two actions form an obvious pair.
+
+---
+
+# SHIFT and the Metronome
+
+DrivenByMoss also provides:
+
+```text
+SHIFT + METRONOME
+   → Toggle metronome ticks
+```
+
+and:
+
+```text
+SHIFT + Master Fader
+   → Metronome volume
+```
+
+These two controls belong to the same general recording and timing workflow.
+
+---
+
+# OPTION
+
+OPTION frequently gives a control an **alternative action**.
+
+Examples include:
+
+```text
+OPTION + MARKER
+   → Create marker
+```
+
+```text
+OPTION + REWIND
+   → Previous marker
+```
+
+```text
+OPTION + FORWARD
+   → Next marker
+```
+
+```text
+OPTION + TRACK
+   → Pin cursor track
+```
+
+```text
+OPTION + DEVICE
+   → Pin cursor device
+```
+
+OPTION often changes not merely the degree of an operation, but **what the operation does**.
+
+A useful shorthand is:
+
+> **OPTION often means: give me the alternative operation.**
+
+---
+
+# OPTION + BANK and CHANNEL
+
+Chapter 4 introduced an especially important distinction.
+
+Normally:
+
+```text
+BANK
+   → move through track bank by 8
+
+CHANNEL
+   → move through track bank by 1
+```
+
+With OPTION:
+
+```text
+OPTION + BANK
+   → move selected device left / right
+```
+
+and:
+
+```text
+OPTION + CHANNEL
+   → move selected track left / right
+```
+
+This is a major change in meaning.
+
+Without OPTION:
+
+```text
+I move my view
+```
+
+With OPTION:
+
+```text
+I move an object in the project
+```
+
+That is exactly the kind of difference worth recognising before pressing the modifier casually.
+
+---
+
+# OPTION and the Jog Wheel
+
+DrivenByMoss also gives OPTION a clear Jog Wheel role:
+
+```text
+OPTION + Jog Wheel
+   → Change Tempo
+```
+
+Add SHIFT:
+
+```text
+OPTION + SHIFT + Jog Wheel
+   → Fine Tempo adjustment
+```
+
+This illustrates how modifiers can combine.
+
+OPTION determines **what** is being controlled.
+
+SHIFT modifies **how precisely** it is being controlled.
+
+---
+
+# CONTROL
+
+CONTROL often exposes another structural or specialised function.
+
+For example:
+
+```text
+CONTROL + Jog Wheel
+   → Change Loop Start
+```
+
+and:
+
+```text
+CONTROL + SHIFT + Jog Wheel
+   → Fine Loop Start adjustment
+```
+
+Again:
+
+```text
+CONTROL
+   → choose the parameter
+
+SHIFT
+   → refine the movement
+```
+
+---
+
+# CONTROL and Devices
+
+In Device Mode, CONTROL becomes especially useful.
+
+Hold CONTROL and DrivenByMoss exposes the devices on the selected track.
+
+Conceptually:
+
+```text
+Hold CONTROL
+      │
+      ▼
+Devices shown on V-Pots
+      │
+      ▼
+Press V-Pot
+      │
+      ▼
+Select Device
+```
+
+So CONTROL can act as a temporary direct-selection context.
+
+This is much faster than stepping device-by-device when you already know which one you want.
+
+---
+
+# CONTROL + SELECT
+
+CONTROL also modifies the channel SELECT buttons.
+
+DrivenByMoss documents:
+
+```text
+CONTROL + SELECT
+   → Open / Close Group folder
+```
+
+This is distinct from hierarchical Group navigation.
+
+Hierarchical navigation uses:
+
+```text
+SELECT again
+   → enter Group
+```
+
+whereas:
+
+```text
+CONTROL + SELECT
+   → open / close Group folder
+```
+
+changes the Group's expanded state.
+
+---
+
+# ALT
+
+ALT is another modifier used for specialised parameter operations.
+
+A clear example is the Jog Wheel:
+
+```text
+ALT + Jog Wheel
+   → Change Loop Length
+```
+
+and:
+
+```text
+ALT + SHIFT + Jog Wheel
+   → Fine Loop Length adjustment
+```
+
+So the Jog Wheel now has several modifier layers:
+
+```text
+Jog Wheel
+   → Position
+
+SHIFT + Jog Wheel
+   → Fine Position
+
+OPTION + Jog Wheel
+   → Tempo
+
+OPTION + SHIFT + Jog Wheel
+   → Fine Tempo
+
+CONTROL + Jog Wheel
+   → Loop Start
+
+CONTROL + SHIFT + Jog Wheel
+   → Fine Loop Start
+
+ALT + Jog Wheel
+   → Loop Length
+
+ALT + SHIFT + Jog Wheel
+   → Fine Loop Length
+```
+
+This is one of the clearest examples of the modifier system.
+
+---
+
+# One Control, Several Parameters
+
+Without modifiers:
+
+```text
+Jog Wheel
+   → Position
+```
+
+With modifiers:
+
+```text
+OPTION
+   → Tempo
+
+CONTROL
+   → Loop Start
+
+ALT
+   → Loop Length
+```
+
+and then:
+
+```text
+SHIFT
+   → finer movement
+```
+
+The Jog Wheel has not changed.
+
+Its context has.
+
+---
+
+# V-Pot Press Modifiers
+
+The V-Pots provide another excellent modifier pattern.
+
+DrivenByMoss documents these general press behaviours:
+
+```text
+Press V-Pot
+   → Reset parameter to default
+```
+
+```text
+SHIFT + Press V-Pot
+   → Centre value
+```
+
+```text
+CONTROL + Press V-Pot
+   → Minimum value
+```
+
+```text
+ALT + Press V-Pot
+   → Maximum value
+```
+
+And when the V-Pot controls a Send:
+
+```text
+OPTION + Press V-Pot
+   → Toggle Send on / off
+```
+
+This gives the V-Pot press a compact family of related functions.
+
+---
+
+# A Useful V-Pot Mental Model
+
+Think:
+
+```text
+PRESS
+   → default
+```
+
+then:
+
+```text
+SHIFT
+   → centre
+```
+
+```text
+CONTROL
+   → minimum
+```
+
+```text
+ALT
+   → maximum
+```
+
+```text
+OPTION
+   → context-specific alternate action
+```
+
+This pattern is especially useful because it gives physical access to values that might otherwise require precise mouse work.
+
+---
+
+# OPTION + V-Pot Is Contextual
+
+OPTION + V-Pot press is particularly important because its meaning depends on the current assignment.
+
+For a Send:
+
+```text
+OPTION + Press
+   → toggle Send on / off
+```
+
+In other contexts, OPTION can provide another context-specific action.
+
+So do not learn OPTION as:
+
+> **OPTION always means X.**
+
+Instead:
+
+> **OPTION asks for the alternative action appropriate to the current context.**
+
+---
+
+# SELECT Modifiers
+
+The SELECT row is one of the most heavily modified parts of the X-Touch.
+
+Verified DrivenByMoss uses include:
+
+```text
+SHIFT + SELECT
+   → Multi-select tracks
+```
+
+```text
+OPTION + SELECT
+   → Stop playing clip on that track
+```
+
+```text
+CONTROL + SELECT
+   → Open / Close Group folder
+```
+
+```text
+ALT + SELECT
+   → Set New Clip Length
+```
+
+and:
+
+```text
+SEND + SELECT
+   → Select Send 1–8
+```
+
+We looked at these in Chapter 6.
+
+The important point here is that the modifiers do not merely change a button's label.
+
+They change the **question the button answers**.
+
+---
+
+# The Same SELECT Button, Different Questions
+
+Normal:
+
+```text
+SELECT
+   → Which track do I want?
+```
+
+OPTION:
+
+```text
+OPTION + SELECT
+   → Which track's playing clip
+     do I want to stop?
+```
+
+CONTROL:
+
+```text
+CONTROL + SELECT
+   → Which Group do I want
+     to open or close?
+```
+
+ALT:
+
+```text
+ALT + SELECT
+   → Which New Clip Length
+     do I want?
+```
+
+SEND:
+
+```text
+SEND + SELECT
+   → Which Send do I want?
+```
+
+The physical row remains the same.
+
+The context changes the meaning.
+
+---
+
+# Modifiers Can Be Combined
+
+Modifiers do not necessarily operate one at a time.
+
+For example:
+
+```text
+OPTION + SHIFT + PLAY
+   → Toggle Punch Out
+```
+
+while:
+
+```text
+OPTION + PLAY
+   → Toggle Punch In
+```
+
+Likewise:
+
+```text
+OPTION + SHIFT + Jog Wheel
+```
+
+combines OPTION's Tempo context with SHIFT's fine-adjustment behaviour.
+
+So the pattern can be:
+
+```text
+Modifier 1
+   → choose alternate function
+
+Modifier 2
+   → refine that function
+```
+
+This is one reason the X-Touch can expose so much functionality without becoming physically enormous.
+
+---
+
+# Order of Pressing
 
 When this guide writes:
 
@@ -349,77 +776,497 @@ means:
 3. turn the Jog Wheel;
 4. release the modifiers.
 
-The `+` notation means **use these controls together**.
+The `+` symbol means:
 
-It does not mean that you should press them as a rapid sequence.
+> **Use these controls together.**
+
+It does not mean you should perform them as a rapid sequential shortcut.
 
 ---
 
-## Modifier Buttons and Modes Work Together
+# Modifier Buttons and Modes Work Together
 
 Modifiers do not replace modes.
 
-They work **inside** them.
+They operate **inside** them.
 
-This distinction is important.
+For example, Device Mode already changes what the V-Pots mean.
 
-Suppose the controller is in Device Mode.
-
-The V-Pots already have meanings determined by Device Mode.
-
-Now hold OPTION.
-
-The V-Pots can acquire another set of meanings appropriate to that mode.
-
-So the complete context may be thought of as:
+Then CONTROL can temporarily change that Device Mode context again:
 
 ```text
-Physical control
+DEVICE Mode
+     │
+     ▼
+V-Pots = Device Parameters
+```
+
+then:
+
+```text
+Hold CONTROL
+     │
+     ▼
+V-Pots = Device Choices
+```
+
+Similarly:
+
+```text
+Hold OPTION
+     │
+     ▼
+V-Pots = Parameter Page Choices
+```
+
+So the complete meaning of a control can depend on:
+
+```text
+Physical Control
       +
-Current mode
+Current Mode
       +
-Held modifier
+Current Focus
+      +
+Held Modifier
       =
-Current function
+Current Function
 ```
 
-This extends the mental model from Chapter 3.
-
-The function of a physical control is not necessarily inherent in the control itself.
-
-It emerges from context.
+This is the core architecture of the X-Touch + DrivenByMoss workflow.
 
 ---
 
-## The Display Is Your Ally
+# Modifiers Often Change Scale
 
-Modifier combinations can make the surface seem complicated if you try to remember everything from button labels alone.
+Another useful pattern is that modifiers can change the **scale** of an operation.
 
-Don't.
-
-As discussed in Chapter 7, the displays are part of the control system.
-
-When a modifier or mode changes what controls mean, look at the feedback the X-Touch and Bitwig provide.
-
-The controller should be treated as a conversation:
+For example:
 
 ```text
-You change context
-      ↓
-DrivenByMoss changes assignments
-      ↓
-The displays provide feedback
-      ↓
-You make the next decision
+ARM
+   → this track
 ```
 
-This becomes especially important in Device Mode, Browser Mode and the advanced edit modes.
+while:
+
+```text
+SHIFT + ARM
+   → record-arm across the active bank
+```
+
+Likewise:
+
+```text
+CHANNEL
+   → move the view
+```
+
+while:
+
+```text
+OPTION + CHANNEL
+   → move the track itself
+```
+
+The modifier can therefore make an operation broader, deeper or more consequential.
 
 ---
 
-## Don't Learn the Modifier Table
+# Some Modified Commands Are Consequential
 
-It is tempting at this point to make a huge table containing every possible combination of:
+Not every modifier command is harmless.
+
+For example:
+
+```text
+OPTION + CHANNEL
+   → move selected track
+```
+
+and:
+
+```text
+OPTION + BANK
+   → move selected device
+```
+
+actually change the Bitwig project structure.
+
+Likewise:
+
+```text
+OPTION + RECORD
+```
+
+creates a clip and enables overdub.
+
+So one good habit is:
+
+> **Know whether a modified command changes the view, changes a value, or changes the project itself.**
+
+That distinction helps prevent surprises.
+
+---
+
+# Modifiers Are Easier to Learn in Context
+
+It would be possible to create an enormous table containing:
+
+```text
+SHIFT + every control
+
+OPTION + every control
+
+CONTROL + every control
+
+ALT + every control
+```
+
+That would be complete.
+
+It would also be difficult to learn.
+
+A better approach is:
+
+> **Learn each modified command with the job it performs.**
+
+So:
+
+```text
+OPTION + MARKER
+```
+
+belongs with markers.
+
+```text
+OPTION + RECORD
+```
+
+belongs with recording.
+
+```text
+CONTROL + V-Pot
+```
+
+belongs with device selection.
+
+```text
+ALT + Jog Wheel
+```
+
+belongs with loop manipulation.
+
+This reduces the feeling that the controller contains hundreds of unrelated shortcuts.
+
+---
+
+# Modifier Patterns Are Tendencies, Not Rules
+
+There are some useful patterns:
+
+```text
+SHIFT
+   → fine / secondary / reverse
+```
+
+```text
+OPTION
+   → alternate operation
+```
+
+```text
+CONTROL
+   → structural / direct-selection operation
+```
+
+```text
+ALT
+   → specialised parameter or maximum-type operation
+```
+
+But these are **not universal rules**.
+
+For example:
+
+```text
+OPTION + MARKER
+   → create marker
+```
+
+cannot be derived mechanically from a universal definition of OPTION.
+
+You simply learn it as part of the Marker workflow.
+
+Patterns reduce memory load.
+
+They do not replace actual mappings.
+
+---
+
+# The Displays Are Part of the Modifier System
+
+Because modifiers can change what controls mean, feedback becomes especially important.
+
+Suppose a V-Pot normally controls:
+
+```text
+Pan
+```
+
+but after changing mode and holding a modifier it now represents:
+
+```text
+Device 4
+```
+
+The hardware did not physically move.
+
+Without feedback, that would be confusing.
+
+So when using modifiers:
+
+> **Look at what the controller tells you.**
+
+A useful cycle is:
+
+```text
+Hold Modifier
+      ↓
+Assignments change
+      ↓
+Displays / LEDs update
+      ↓
+Confirm context
+      ↓
+Act
+```
+
+The X-Touch is meant to be read as well as touched.
+
+---
+
+# SHIFT and Launcher-Oriented Work
+
+DrivenByMoss contains a preference called:
+
+```text
+Flip arranger and clip record / automation
+```
+
+This can reverse the normal-versus-SHIFT relationship for certain Arranger and Clip recording/automation functions.
+
+That means commands such as:
+
+```text
+RECORD
+```
+
+and:
+
+```text
+SHIFT + RECORD
+```
+
+may behave differently for users who have deliberately enabled that preference.
+
+This is an important reminder:
+
+> **A modifier mapping can be affected by configuration.**
+
+Project XTC describes the normal mapping unless otherwise stated.
+
+Chapter 21 discusses the configuration option itself.
+
+---
+
+# Don't Memorise Everything at Once
+
+This chapter contains a lot of examples.
+
+You do not need to learn all of them now.
+
+Start with a small core:
+
+```text
+SHIFT + control
+   → related / fine function
+```
+
+```text
+OPTION + control
+   → alternative function
+```
+
+Then add practical combinations as you encounter them.
+
+For example:
+
+```text
+SHIFT + UNDO
+   → Redo
+```
+
+```text
+OPTION + MARKER
+   → Create marker
+```
+
+```text
+OPTION + REWIND / FORWARD
+   → Marker navigation
+```
+
+```text
+OPTION + DEVICE
+   → Pin device
+```
+
+The repeated use will turn them into muscle memory.
+
+---
+
+# A Practical Jog Wheel Exercise
+
+The Jog Wheel is an excellent way to experience the modifier system.
+
+Start with:
+
+```text
+Jog Wheel
+   → change position
+```
+
+Then try:
+
+```text
+SHIFT + Jog Wheel
+   → fine position
+```
+
+Then:
+
+```text
+OPTION + Jog Wheel
+   → tempo
+```
+
+Then:
+
+```text
+CONTROL + Jog Wheel
+   → loop start
+```
+
+Then:
+
+```text
+ALT + Jog Wheel
+   → loop length
+```
+
+Finally add SHIFT to those modifier combinations for finer adjustment.
+
+The point of the exercise is not merely to manipulate the transport.
+
+It is to feel one physical control becoming several different controls through context.
+
+---
+
+# A Practical V-Pot Exercise
+
+Choose a parameter controlled by a V-Pot.
+
+Try:
+
+```text
+Press
+```
+
+to reset it to default.
+
+Then:
+
+```text
+SHIFT + Press
+```
+
+for centre.
+
+Then:
+
+```text
+CONTROL + Press
+```
+
+for minimum.
+
+Then:
+
+```text
+ALT + Press
+```
+
+for maximum.
+
+If the current V-Pot is controlling a Send, try:
+
+```text
+OPTION + Press
+```
+
+to toggle the Send.
+
+Again, the aim is to feel the pattern physically rather than memorise a table.
+
+---
+
+# A Useful Mental Model
+
+Earlier we had:
+
+```text
+Physical Control
+      │
+      ▼
+Current Function
+```
+
+Then modes added:
+
+```text
+Physical Control
+      +
+Current Mode
+      =
+Current Function
+```
+
+Now modifiers extend the model:
+
+```text
+Physical Control
+      +
+Current Focus
+      +
+Current Mode
+      +
+Modifier, if held
+      =
+Current Function
+```
+
+This explains how one V-Pot, button or wheel can participate in so many workflows without the surface becoming physically enormous.
+
+---
+
+# The Important Idea
+
+Modifiers do not create a second controller hidden underneath the first.
+
+They temporarily reshape the controller you already know.
+
+The four main modifiers are:
 
 ```text
 SHIFT
@@ -428,106 +1275,78 @@ CONTROL
 ALT
 ```
 
-with every button on the X-Touch.
+Some useful recurring patterns are:
 
-That would turn this guide into exactly the kind of manual we are trying to avoid.
+```text
+SHIFT
+   → finer / related / reverse
+```
 
-Instead, learn modifier combinations **with the task they perform**.
+```text
+OPTION
+   → alternate operation
+```
 
-When we study markers, we will learn:
+```text
+CONTROL
+   → structural or direct-selection operation
+```
+
+```text
+ALT
+   → specialised parameter operation
+```
+
+But always remember:
+
+> **The exact meaning depends on context.**
+
+The most useful approach is not to memorise every possible combination.
+
+Learn the modifier vocabulary.
+
+Then learn individual combinations as part of real tasks.
+
+That way:
 
 ```text
 OPTION + MARKER
 ```
 
-because it is part of the marker workflow.
+is not an arbitrary shortcut.
 
-When we study Device Mode, we will learn CONTROL and OPTION combinations because they help navigate devices and parameter pages.
-
-When we study recording, we will learn the RECORD modifiers because they make sense in the context of recording.
-
-The modifier is not the subject.
-
-**The job you are trying to do is the subject.**
-
----
-
-## A Useful Mental Model
-
-At this point we can expand our model of the X-Touch considerably.
-
-Earlier we had:
+It belongs to the Marker workflow.
 
 ```text
-physical control
-      ↓
-current mode
-      ↓
-current function
+OPTION + RECORD
 ```
 
-Now we can add modifiers:
+belongs to recording.
 
 ```text
-                ┌──────────────┐
-                │ Current Mode │
-                └──────┬───────┘
-                       │
-                       ▼
-┌────────────────┐   context   ┌─────────────────┐
-│ Physical       │─────────────│ Current         │
-│ Control        │             │ Function        │
-└────────────────┘             └─────────────────┘
-                       ▲
-                       │
-                ┌──────┴───────┐
-                │ Modifier     │
-                │ if held      │
-                └──────────────┘
+CONTROL + Jog Wheel
 ```
 
-You do not need to consciously think through this diagram every time you touch the controller.
+belongs to loop editing.
 
-Its purpose is to explain why the same V-Pot, button or wheel can perform so many different jobs without the surface becoming physically enormous.
+```text
+ALT + Press V-Pot
+```
 
----
+belongs to parameter control.
 
-## What Comes Next
-
-Now that we understand modifiers, the next chapters can use them without stopping repeatedly to explain what SHIFT, OPTION, CONTROL and ALT are.
-
-We will see them applied to:
-
-- V-Pots;
-- motor faders;
-- transport;
-- the Jog Wheel;
-- devices;
-- Browser navigation;
-- mixer modes;
-- markers;
-- automation;
-- groups;
-- recording.
-
-The individual combinations will be introduced when they become useful.
+The job gives the shortcut meaning.
 
 ---
 
-## The Important Idea
+## Coming Next
 
-If there is one thing to take away from this chapter, it is this:
+Now that we understand the modifier vocabulary, we can apply it to one of the most important physical controls on the X-Touch:
 
-> **A modifier temporarily changes the context of another control.**
+**the V-Pots.**
 
-You do not need to memorise every modifier combination.
+Their rotary movement, push action, LED rings and modifier behaviours make them far more capable than a simple row of knobs.
 
-Learn the basic controls first.
+Next:
 
-Then learn the modified versions as part of real workflows.
-
-Once that pattern becomes familiar, SHIFT, OPTION, CONTROL and ALT stop looking like four more sets of commands to memorise.
-
-They become something much more useful:
-
-**four ways of asking the X-Touch to do a little more.**
+**V-Pots (Rotary Encoders).**
