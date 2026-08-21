@@ -1,335 +1,1603 @@
 ---
 chapter: 11
-title: Transport Controls
-revision: "1.0"
+title: "Transport Controls"
 status: draft
 ---
 
-After learning about modes, selection, V-Pots and motor faders, the Transport section of the X-Touch may come as something of a relief.
+# Transport Controls
 
-Most of it does exactly what you expect.
+The Transport section of the X-Touch is one of the most immediately familiar parts of the surface.
 
-The familiar **REWIND**, **FAST FORWARD**, **STOP**, **PLAY** and **RECORD** buttons provide immediate control over Bitwig's transport.
-
-But the Transport section is more than a convenient replacement for clicking Play on the computer screen.
-
-Combined with the jog wheel and navigation controls, it allows you to move around a project, locate a position and control playback without repeatedly reaching for the mouse.
-
-## The Five Transport Buttons
-
-At the bottom-right of the X-Touch are five large transport buttons:
-
-- REWIND
-- FAST FORWARD
-- STOP
-- PLAY
-- RECORD
-
-Their layout deliberately resembles the transport controls found on tape machines, hardware recorders and traditional mixing systems.
-
-If you have used almost any audio equipment before, they should feel immediately familiar.
-
-## PLAY
-
-Press **PLAY** to start playback from the current position.
-
-Pressing PLAY is one of the simplest examples of the two-way relationship between the X-Touch and Bitwig.
-
-The controller sends the command.
-
-Bitwig begins playback.
-
-The X-Touch then reflects the resulting transport state through its illuminated controls and displays.
-
-Even here, the controller is both issuing a command and providing feedback.
-
-## STOP
-
-Press **STOP** to stop playback.
-
-Simple as this sounds, having a large physical STOP button becomes surprisingly valuable.
-
-There is no need to locate a small transport control on the computer screen.
-
-Your hand quickly learns where STOP is, and after a while you may find yourself using it without looking at the controller at all.
-
-::: field-note
-
-Transport controls are particularly good candidates for developing muscle memory.
-
-Unlike context-sensitive controls, their basic purpose remains predictable.
-
-Once your hand knows where PLAY and STOP are, controlling playback becomes almost unconscious.
-
-:::
-
-## RECORD
-
-The **RECORD** button controls Bitwig's recording transport.
-
-Recording involves more than simply pressing one button — tracks must be armed correctly and Bitwig must be ready to record — but once those conditions are satisfied, RECORD gives you direct physical control over the process.
-
-This becomes especially useful when recording instruments or automation.
-
-Instead of preparing everything and then reaching for the mouse, you can remain focused on the performance.
-
-::: reality-check
-
-Pressing RECORD does not automatically make every track record.
-
-Track arming and the transport's recording state are separate concepts.
-
-Always check that the intended track is correctly armed before beginning a take.
-
-:::
-
-## REWIND and FAST FORWARD
-
-The **REWIND** and **FAST FORWARD** buttons allow you to move backwards and forwards through the project.
-
-Their exact behaviour is governed by the integration between the X-Touch, DrivenByMoss and Bitwig, but their purpose is straightforward:
-
-> **Move the current playback position.**
-
-For coarse navigation they provide a quick way of moving through the project without touching the mouse.
-
-For more deliberate positioning, however, another control becomes particularly useful.
-
-## The Jog Wheel
-
-The large wheel above the transport buttons is the **jog wheel**.
-
-It provides a physical way of moving through the project timeline.
-
-Turn it one way to move backwards.
-
-Turn it the other way to move forwards.
-
-Unlike clicking somewhere on a graphical timeline, the jog wheel encourages you to think in terms of movement from the current position.
-
-This can feel much more natural when searching for the beginning of a phrase, a transition or a particular point in a recording.
-
-## Coarse and Fine Navigation
-
-The transport buttons and jog wheel complement each other.
-
-Think of them broadly as two approaches to navigation:
+It contains controls for:
 
 ```text
-REWIND / FAST FORWARD
-          │
-          ▼
-     Move quickly
+REWIND
 
-       Jog Wheel
-          │
-          ▼
-   Position precisely
+FORWARD
+
+STOP
+
+PLAY
+
+RECORD
 ```
 
-You do not need to choose one method exclusively.
-
-A typical workflow might involve moving rapidly towards the required part of the project and then using the jog wheel to refine the position.
-
-::: field-note
-
-The most useful navigation method is usually the one that requires the least thought.
-
-Use the transport buttons when you want to move.
-
-Use the jog wheel when you want to arrive somewhere specific.
-
-:::
-
-## The Time Display
-
-Navigation becomes much more useful when you can see where you are.
-
-The X-Touch's main display provides positional information that helps you keep track of the current location within the project.
-
-As you move through the timeline, the display updates accordingly.
-
-Once again, input and feedback work together:
+along with:
 
 ```text
-Turn jog wheel
-      │
-      ▼
-Bitwig position changes
-      │
-      ▼
-Display updates
+Jog Wheel
+
+Arrow Keys
+
+ZOOM
+
+SCRUB
+
+NUDGE
 ```
 
-You move.
+At first, these look like ordinary tape-machine controls.
 
-The controller tells you where you have arrived.
+DrivenByMoss makes them considerably more capable.
 
-## Transport and the Computer Screen
+The basic transport remains simple.
 
-It is worth noticing how many routine mouse movements disappear once the transport controls become familiar.
+But modifiers and repeated presses add access to:
 
-Without a control surface, a typical editing or recording session may involve repeatedly moving the pointer between:
+- Repeat;
+- Punch In;
+- Punch Out;
+- marker navigation;
+- tempo;
+- loop start;
+- loop length;
+- fine adjustment;
+- editing modes;
+- zoom;
+- Tap Tempo.
 
-- the arrangement
-- the mixer
-- device controls
-- the transport
-- the timeline
+So the Transport area is not merely:
 
-With the X-Touch, many transport operations remain permanently beneath your hand.
+> **Play, Stop and Record.**
 
-You can keep the computer screen focused on the information that actually needs a graphical display.
+It is one of the X-Touch's principal navigation and timing surfaces.
 
-## Transport While Mixing
+---
 
-Physical transport controls are especially useful while mixing.
+# PLAY
 
-Imagine adjusting several faders during playback.
+Press PLAY to start playback.
 
-You hear something you want to investigate.
+DrivenByMoss documents the button as:
 
-Instead of moving your hand away from the controller and locating Bitwig's transport:
+```text
+PLAY
+   → Start / Stop Playback
+```
 
-1. Press STOP.
-2. Navigate backwards.
-3. Press PLAY.
-4. Listen again.
-5. Continue adjusting the mix.
+So PLAY behaves as a playback toggle.
 
-Your attention remains on the sound and the controller rather than shifting repeatedly between hardware and screen.
+If the project is stopped:
 
-This may seem like a small improvement.
+```text
+PLAY
+  ↓
+Playback Starts
+```
 
-Repeated hundreds of times during a session, it becomes a substantial one.
+If it is already playing:
 
-## Transport While Recording
+```text
+PLAY
+  ↓
+Playback Stops
+```
 
-The same principle applies when recording.
+This makes PLAY useful even when your hand is already sitting over the transport area and you do not want to move to STOP.
 
-A typical sequence might be:
+---
 
-1. Select the required track.
-2. Arm it for recording.
-3. Navigate to the starting position.
-4. Press RECORD.
-5. Perform the part.
-6. Press STOP.
-7. Return to the beginning of the take.
-8. Press PLAY to review it.
+# Double-Press PLAY
 
-The computer is still doing all the recording.
+DrivenByMoss also documents:
 
-The X-Touch simply allows the routine operations surrounding that recording to happen physically.
+```text
+Double-press PLAY
+   → Move Play Cursor to Start of Song
+```
 
-That keeps your attention where it belongs: on the performance.
+So PLAY contains two related operations:
 
-## Visual Feedback
+```text
+Single Press
+   → Playback
+```
 
-The transport section also reinforces the principle introduced in Chapter 7:
+```text
+Double Press
+   → Start of Song
+```
 
-> **Observe before you adjust.**
+This is useful when beginning another run-through from the very start.
 
-Illuminated transport buttons tell you about the current state.
+---
 
-The position display tells you where you are.
+# SHIFT + PLAY — Repeat
 
-Bitwig's own interface provides further confirmation.
+Hold SHIFT and press PLAY:
 
-Do not treat the physical controls and the software interface as two independent systems.
+```text
+SHIFT + PLAY
+   → Toggle Repeat
+```
 
-They are two views of the same transport state.
+This controls Bitwig's repeat state.
 
-## Developing Muscle Memory
+Conceptually:
 
-Transport is one of the best places to begin operating the X-Touch without constantly looking at it.
+```text
+Repeat Off
+    │
+    │ SHIFT + PLAY
+    ▼
+Repeat On
+```
 
-The five transport buttons are large, consistently positioned and easy to distinguish by location.
+and the same command toggles it back off.
 
-With practice, your hand begins to find them automatically.
+This is one of the simpler modifier combinations because PLAY and Repeat are both closely related to playback.
 
-The jog wheel is equally unmistakable.
+---
 
-This is an important step towards a more tactile workflow.
+# OPTION + PLAY — Punch In
 
-You stop thinking:
+DrivenByMoss documents:
 
-> **"Where is the Play button?"**
+```text
+OPTION + PLAY
+   → Toggle Punch In
+```
 
-and simply press it.
+Punch In determines whether recording begins automatically when playback reaches the configured punch-in boundary.
 
-That small change is one of the reasons a control surface can make a DAW feel more like an instrument and less like a computer application.
+Conceptually:
 
-## A Step Towards Mouse-Lite
+```text
+Playback
+   │
+   ▼
+Punch-In Point
+   │
+   ▼
+Recording Begins
+```
 
-The Transport section gives us an early glimpse of the workflow we shall explore more fully in Chapter 13.
+OPTION + PLAY toggles that behaviour.
 
-The aim is not necessarily to eliminate the mouse.
+---
 
-There are many tasks for which a mouse remains an excellent tool.
+# OPTION + SHIFT + PLAY — Punch Out
 
-The aim is to stop reaching for it when a physical control is faster, clearer or more natural.
+Add SHIFT:
 
-Starting playback is a perfect example.
+```text
+OPTION + SHIFT + PLAY
+   → Toggle Punch Out
+```
 
-You *could* move the pointer to Bitwig's PLAY button and click it.
+Punch Out determines whether recording ends automatically at the configured punch-out boundary.
 
-But when a large physical PLAY button is already beneath your hand, why would you?
+So the pair is:
 
-::: field-note
+```text
+OPTION + PLAY
+   → Punch In
 
-A Mouse-Lite workflow is not about refusing to use the mouse.
+OPTION + SHIFT + PLAY
+   → Punch Out
+```
 
-It is about using the most appropriate tool for each job.
+This is a useful example of modifiers building a family of related transport operations.
 
-For transport operations, that tool is very often the X-Touch.
+---
 
-:::
+# Punching as a Recording Workflow
 
-## The Bigger Picture
+Suppose only one phrase needs replacing.
 
-The Transport section may be one of the least mysterious parts of the X-Touch, but it plays an important role in the overall workflow.
+Rather than manually pressing RECORD at exactly the right instant:
 
-The faders allow you to mix.
+```text
+Set Punch In
+      ↓
+Set Punch Out
+      ↓
+Begin Playback
+      ↓
+Bitwig Records Only
+Inside the Punch Region
+```
 
-The V-Pots allow you to adjust parameters.
+The X-Touch therefore participates not only in starting recording but in defining how recording interacts with playback.
 
-SELECT establishes focus.
+Chapter 19 deals with recording in more detail.
 
-The displays tell you what is happening.
+---
 
-And the Transport section lets you control **when** it happens.
+# STOP
 
-Together, these controls begin to form a complete working environment.
+Press STOP:
 
-You are no longer simply controlling individual Bitwig parameters.
+```text
+STOP
+  ↓
+Stop Playback
+```
 
-You are operating the session.
+That is the obvious behaviour.
 
-::: exercise
+But repeated STOP presses add useful navigation.
 
-Open an existing Bitwig project.
+DrivenByMoss documents:
 
-For the duration of this exercise, avoid using the mouse for transport operations.
+```text
+STOP
+   → Stop Playback
+```
 
-Using only the X-Touch:
+then:
 
-1. Start playback.
-2. Stop playback.
-3. Move backwards through the project.
-4. Move forwards through the project.
-5. Use the jog wheel to locate a particular section.
-6. Start playback from that position.
-7. Stop again.
+```text
+Press STOP again
+   → Move Play Cursor to Start of Song
+```
 
-Now choose a short section of the project and practise repeatedly navigating to it and playing it.
+So after stopping, another press gives you a quick return to the beginning.
 
-Do not concentrate on speed.
+---
 
-Instead, concentrate on allowing your hand to learn where the transport controls are.
+# Double-Press STOP
 
-The goal is to reach the point where PLAY, STOP and basic navigation no longer require conscious thought.
+There is another STOP gesture:
 
-That is one more step towards a **Mouse-Free — or Mouse-Lite — workflow**.
+```text
+Double-press STOP
+   → Move Play Cursor to End of Song
+```
 
-:::
+So STOP has three useful roles:
+
+```text
+STOP
+   → Stop
+```
+
+```text
+STOP again
+   → Start of Song
+```
+
+```text
+Double STOP
+   → End of Song
+```
+
+That gives surprisingly rich navigation from one familiar transport button.
+
+---
+
+# REWIND and FORWARD
+
+The ordinary functions are straightforward.
+
+```text
+REWIND
+   → Move Play Cursor Left
+```
+
+```text
+FORWARD
+   → Move Play Cursor Right
+```
+
+These controls move through the Arranger timeline.
+
+Think:
+
+```text
+REWIND
+   ← time
+
+FORWARD
+   time →
+```
+
+They provide coarse transport navigation without needing the mouse.
+
+---
+
+# OPTION + REWIND / FORWARD — Marker Navigation
+
+Markers give REWIND and FORWARD another role.
+
+DrivenByMoss documents:
+
+```text
+OPTION + REWIND
+   → Move to closest marker
+     before current position
+```
+
+and:
+
+```text
+OPTION + FORWARD
+   → Move to closest marker
+     after current position
+```
+
+So the same physical controls provide two kinds of navigation.
+
+Without OPTION:
+
+```text
+REWIND / FORWARD
+   → Move through Time
+```
+
+With OPTION:
+
+```text
+OPTION + REWIND / FORWARD
+   → Move through Structure
+```
+
+That distinction becomes especially useful in large arrangements.
+
+---
+
+# Time Versus Structure
+
+Imagine the timeline contains:
+
+```text
+Intro      Verse      Chorus      Breakdown      Outro
+  │          │           │            │            │
+  ▼          ▼           ▼            ▼            ▼
+──●──────────●───────────●────────────●────────────●──
+```
+
+Ordinary REWIND and FORWARD ask:
+
+> **How far through time should I move?**
+
+OPTION + REWIND / FORWARD ask:
+
+> **Which musical landmark should I move to?**
+
+That is a very different way of navigating a song.
+
+Chapter 15 explores Marker Mode in detail.
+
+---
+
+# RECORD
+
+Press RECORD:
+
+```text
+RECORD
+   → Start / Stop Recording
+```
+
+This is the main recording command.
+
+But RECORD also has modifier functions:
+
+```text
+SHIFT + RECORD
+   → Toggle Launcher Overdub
+```
+
+and:
+
+```text
+OPTION + RECORD
+   → Create a new clip
+     on selected track and slot,
+     start playback,
+     enable overdub
+```
+
+These are important commands, but Chapter 19 is their proper teaching home.
+
+For now, remember that RECORD is another transport control whose modifiers change the recording context.
+
+---
+
+# The Jog Wheel
+
+The large Jog Wheel is one of the most flexible controls in the Transport section.
+
+Normally:
+
+```text
+Jog Wheel
+   → Move Play Cursor
+```
+
+Turn left:
+
+```text
+← earlier
+```
+
+Turn right:
+
+```text
+later →
+```
+
+This is particularly useful for positioning the cursor without dragging the timeline with a mouse.
+
+---
+
+# SHIFT + Jog Wheel — Fine Position
+
+Hold SHIFT:
+
+```text
+SHIFT + Jog Wheel
+   → Fine Play-Cursor Adjustment
+```
+
+So:
+
+```text
+Jog Wheel
+   → normal movement
+```
+
+while:
+
+```text
+SHIFT + Jog Wheel
+   → finer movement
+```
+
+This follows the modifier pattern introduced in Chapter 8.
+
+SHIFT often refines an existing continuous operation.
+
+---
+
+# OPTION + Jog Wheel — Tempo
+
+Hold OPTION:
+
+```text
+OPTION + Jog Wheel
+   → Change Tempo
+```
+
+Now the same wheel no longer moves through the song.
+
+It changes the project's tempo.
+
+Conceptually:
+
+```text
+Jog Wheel
+   → Time Position
+```
+
+becomes:
+
+```text
+OPTION + Jog Wheel
+   → Tempo
+```
+
+The physical gesture remains identical.
+
+The modifier changes what is being controlled.
+
+---
+
+# Fine Tempo Adjustment
+
+Add SHIFT:
+
+```text
+OPTION + SHIFT + Jog Wheel
+   → Fine Tempo Adjustment
+```
+
+So:
+
+```text
+OPTION
+   → choose Tempo
+```
+
+and:
+
+```text
+SHIFT
+   → make the adjustment finer
+```
+
+This is a particularly clean example of two modifiers working together.
+
+---
+
+# CONTROL + Jog Wheel — Loop Start
+
+Hold CONTROL:
+
+```text
+CONTROL + Jog Wheel
+   → Change Loop Start
+```
+
+The wheel now moves the beginning of Bitwig's loop region.
+
+Conceptually:
+
+```text
+Loop
+┌──────────────────────────┐
+│                          │
+└──────────────────────────┘
+▲
+│
+Loop Start
+```
+
+CONTROL + Jog Wheel moves that left boundary.
+
+---
+
+# Fine Loop-Start Adjustment
+
+Add SHIFT:
+
+```text
+CONTROL + SHIFT + Jog Wheel
+   → Fine Loop-Start Adjustment
+```
+
+Again:
+
+```text
+CONTROL
+   → choose Loop Start
+
+SHIFT
+   → finer adjustment
+```
+
+---
+
+# ALT + Jog Wheel — Loop Length
+
+Hold ALT:
+
+```text
+ALT + Jog Wheel
+   → Change Loop Length
+```
+
+Now the wheel changes the size of the loop.
+
+Conceptually:
+
+```text
+Short Loop
+
+┌──────┐
+│      │
+└──────┘
+```
+
+versus:
+
+```text
+Longer Loop
+
+┌──────────────────────┐
+│                      │
+└──────────────────────┘
+```
+
+The Jog Wheel directly changes that length.
+
+---
+
+# Fine Loop-Length Adjustment
+
+Add SHIFT:
+
+```text
+ALT + SHIFT + Jog Wheel
+   → Fine Loop-Length Adjustment
+```
+
+So the full Jog Wheel map becomes:
+
+```text
+Jog Wheel
+   → Play Position
+
+SHIFT + Jog Wheel
+   → Fine Play Position
+
+OPTION + Jog Wheel
+   → Tempo
+
+OPTION + SHIFT + Jog Wheel
+   → Fine Tempo
+
+CONTROL + Jog Wheel
+   → Loop Start
+
+CONTROL + SHIFT + Jog Wheel
+   → Fine Loop Start
+
+ALT + Jog Wheel
+   → Loop Length
+
+ALT + SHIFT + Jog Wheel
+   → Fine Loop Length
+```
+
+That is a great deal of control from one wheel.
+
+---
+
+# One Wheel, Four Dimensions
+
+The Jog Wheel can therefore manipulate four distinct things:
+
+```text
+Position
+
+Tempo
+
+Loop Start
+
+Loop Length
+```
+
+The modifiers choose the dimension.
+
+SHIFT chooses precision.
+
+Conceptually:
+
+```text
+             Jog Wheel
+                 │
+     ┌───────────┼───────────┐
+     │           │           │
+  OPTION      CONTROL       ALT
+     │           │           │
+   Tempo      Loop Start   Loop Length
+
+No Modifier
+     │
+     ▼
+  Position
+```
+
+This is one of the clearest demonstrations of DrivenByMoss's modifier design.
+
+---
+
+# The Arrow Keys
+
+The X-Touch includes four directional arrow buttons.
+
+DrivenByMoss documents them as behaving like the arrow keys on the computer keyboard:
+
+```text
+←   →   ↑   ↓
+```
+
+So they provide direct keyboard-style navigation from the surface.
+
+Their exact effect depends on what currently has focus in Bitwig.
+
+That is important.
+
+The arrows do not necessarily represent one fixed DAW function.
+
+They pass the familiar directional command into the current context.
+
+---
+
+# Why Keyboard-Style Arrows Are Useful
+
+The arrow keys can help with tasks where Bitwig already has keyboard-navigation behaviour.
+
+Conceptually:
+
+```text
+Current Bitwig Focus
+        │
+        ▼
+Arrow Press
+        │
+        ▼
+Move / Navigate
+according to that focus
+```
+
+This is another example of the X-Touch complementing rather than replacing Bitwig's own interaction model.
+
+---
+
+# ZOOM
+
+Press ZOOM to change the meaning of the arrow keys.
+
+When ZOOM is active:
+
+```text
+← / →
+   → Zoom Arranger Horizontally
+```
+
+The horizontal arrows control the timeline scale.
+
+So:
+
+```text
+←
+   → one horizontal zoom direction
+```
+
+```text
+→
+   → the opposite horizontal zoom direction
+```
+
+The precise visual result is shown immediately in Bitwig.
+
+---
+
+# ZOOM and Track Height
+
+DrivenByMoss also documents:
+
+```text
+ZOOM active
+   +
+↑ / ↓
+   → Toggle Track Height
+```
+
+Both vertical arrows toggle the track height.
+
+So ZOOM changes the arrow-key context from ordinary navigation to display manipulation.
+
+Conceptually:
+
+```text
+Arrow Keys
+    │
+    ├── normal
+    │     → keyboard-style navigation
+    │
+    └── ZOOM active
+          ├── left/right
+          │     → horizontal zoom
+          │
+          └── up/down
+                → track height
+```
+
+---
+
+# Why This Matters
+
+Zooming is a good example of a task that often sends your hand back to the mouse.
+
+DrivenByMoss gives the X-Touch a physical alternative.
+
+If you need to see a broader section of the arrangement:
+
+```text
+ZOOM
+   ↓
+Arrow
+```
+
+may be faster than finding and dragging a graphical zoom control.
+
+As always, use whichever interface is more natural for the task.
+
+---
+
+# SCRUB
+
+The X-Touch also has a SCRUB button.
+
+DrivenByMoss documents:
+
+```text
+SCRUB
+   → Toggle Between Editing Modes
+```
+
+This wording is important.
+
+SCRUB is not documented here as simply enabling a traditional tape-style audio scrub mode.
+
+Instead, DrivenByMoss uses the MCU SCRUB button to toggle Bitwig editing modes.
+
+So once again:
+
+> **Trust the DrivenByMoss mapping, not assumptions based only on the printed hardware label.**
+
+---
+
+# Hardware Labels Versus Bitwig Functions
+
+The X-Touch inherits its labels from the Mackie Control design.
+
+That means a button may be labelled:
+
+```text
+SCRUB
+```
+
+because that is the MCU control being transmitted.
+
+DrivenByMoss is free to map that control to the most useful Bitwig function.
+
+The same principle appears elsewhere with controls such as:
+
+```text
+TRIM
+
+DROP
+
+USER
+```
+
+So:
+
+```text
+Printed Label
+      ≠
+Guaranteed Literal Bitwig Function
+```
+
+The actual DrivenByMoss mapping is what matters.
+
+---
+
+# NUDGE — Tap Tempo
+
+DrivenByMoss maps:
+
+```text
+NUDGE
+   → Tap Tempo
+```
+
+This means repeated presses can establish the project tempo by tapping the beat.
+
+Conceptually:
+
+```text
+Tap
+Tap
+Tap
+Tap
+```
+
+gives Bitwig timing information from which it can derive tempo.
+
+This can be particularly convenient when trying to match a project to something you are hearing or playing.
+
+---
+
+# Tap Tempo as a Musical Gesture
+
+Instead of thinking:
+
+> **What BPM number should this be?**
+
+you can think:
+
+> **This fast.**
+
+Then tap:
+
+```text
+1     2     3     4
+●     ●     ●     ●
+```
+
+NUDGE turns physical timing into tempo information.
+
+That makes the control rather more musically intuitive than its printed name might suggest.
+
+---
+
+# The REPEAT Button
+
+The dedicated MCU REPEAT control also toggles Repeat.
+
+So DrivenByMoss provides:
+
+```text
+REPEAT
+   → Toggle Repeat
+```
+
+and:
+
+```text
+SHIFT + PLAY
+   → Toggle Repeat
+```
+
+These are two physical routes to the same state.
+
+This kind of redundancy is not necessarily wasteful.
+
+One route may make more sense depending on where your hand currently is.
+
+---
+
+# Multiple Routes Can Be Useful
+
+Suppose your fingers are already around PLAY.
+
+Then:
+
+```text
+SHIFT + PLAY
+```
+
+may be natural.
+
+If your hand is near REPEAT:
+
+```text
+REPEAT
+```
+
+may be easier.
+
+A control surface does not need to force every function through one unique route.
+
+Sometimes a second route improves fluency.
+
+---
+
+# Transport Is More Than Playback
+
+At this point, the Transport section can manipulate:
+
+```text
+Playback
+
+Recording
+
+Timeline Position
+
+Markers
+
+Repeat
+
+Punch In
+
+Punch Out
+
+Tempo
+
+Loop Start
+
+Loop Length
+
+Zoom
+
+Track Height
+
+Editing Mode
+
+Tap Tempo
+```
+
+That is much broader than the word "Transport" initially suggests.
+
+---
+
+# A Navigation Workflow
+
+Suppose you want to move to a chorus marked later in the project.
+
+You could:
+
+```text
+OPTION + FORWARD
+       ↓
+Next Marker
+```
+
+If that is the Chorus marker:
+
+```text
+PLAY
+```
+
+and playback starts from there.
+
+If the cursor needs a small correction:
+
+```text
+SHIFT + Jog Wheel
+```
+
+gives fine positioning.
+
+The workflow becomes:
+
+```text
+Structural Navigation
+       ↓
+Fine Position
+       ↓
+Playback
+```
+
+all from the Transport area.
+
+---
+
+# A Loop-Editing Workflow
+
+Suppose you want to work repeatedly on one section.
+
+You can:
+
+```text
+CONTROL + Jog Wheel
+       ↓
+Set Loop Start
+```
+
+then:
+
+```text
+ALT + Jog Wheel
+       ↓
+Set Loop Length
+```
+
+then:
+
+```text
+SHIFT + PLAY
+       ↓
+Enable Repeat
+```
+
+Now the section loops.
+
+If either boundary needs fine adjustment:
+
+```text
+SHIFT
+```
+
+can be added to the corresponding Jog Wheel modifier.
+
+This gives the X-Touch a surprisingly complete loop-positioning workflow.
+
+---
+
+# A Punch-Recording Workflow
+
+Suppose a short section needs rerecording.
+
+Configure the punch region in Bitwig.
+
+Then:
+
+```text
+OPTION + PLAY
+   → Punch In
+```
+
+```text
+OPTION + SHIFT + PLAY
+   → Punch Out
+```
+
+Start playback before the region.
+
+Bitwig can then enter and leave recording according to those boundaries.
+
+This can reduce the need to manually time the RECORD button.
+
+---
+
+# A Tempo Workflow
+
+Suppose you know roughly how fast the song should feel but do not know the BPM.
+
+Start with:
+
+```text
+NUDGE
+   → Tap Tempo
+```
+
+Tap the pulse.
+
+Then use:
+
+```text
+OPTION + Jog Wheel
+```
+
+to refine the tempo.
+
+If you need very small changes:
+
+```text
+OPTION + SHIFT + Jog Wheel
+```
+
+gives finer control.
+
+So:
+
+```text
+Tap
+   ↓
+Approximate Tempo
+   ↓
+Jog
+   ↓
+Refine
+```
+
+is possible entirely from the X-Touch.
+
+---
+
+# Transport and Mouse-Lite Working
+
+Transport is one of the easiest places to reduce dependence on the mouse.
+
+Compare:
+
+```text
+Find play cursor
+      ↓
+Click timeline
+      ↓
+Find Play button
+      ↓
+Click
+```
+
+with:
+
+```text
+Jog Wheel
+    ↓
+PLAY
+```
+
+Or:
+
+```text
+Find marker visually
+      ↓
+Click marker
+```
+
+with:
+
+```text
+OPTION + FORWARD
+```
+
+The hardware route often maps more directly to the intention.
+
+---
+
+# The Transport Area Rewards Muscle Memory
+
+Transport controls are particularly suitable for muscle memory because their physical positions do not change.
+
+After enough use:
+
+```text
+PLAY
+STOP
+RECORD
+REWIND
+FORWARD
+```
+
+become locations rather than commands you have to search for.
+
+The same can gradually become true of:
+
+```text
+SHIFT + PLAY
+
+OPTION + PLAY
+
+NUDGE
+
+ZOOM
+```
+
+This is where a hardware transport can feel much faster than an on-screen equivalent.
+
+---
+
+# Do Not Learn Every Modifier Immediately
+
+There is a lot in this chapter.
+
+Start with the core:
+
+```text
+PLAY
+STOP
+REWIND
+FORWARD
+Jog Wheel
+```
+
+Then add:
+
+```text
+SHIFT + PLAY
+   → Repeat
+```
+
+Then perhaps:
+
+```text
+OPTION + REWIND / FORWARD
+   → Markers
+```
+
+Then:
+
+```text
+OPTION / CONTROL / ALT + Jog Wheel
+```
+
+Once the basic Transport area is automatic, the advanced functions have somewhere sensible to attach in memory.
+
+---
+
+# A Practical Transport Exercise
+
+Open a project containing several minutes of material.
+
+### 1. Use PLAY and STOP
+
+Become comfortable starting and stopping without looking at the computer controls.
+
+### 2. Press STOP again
+
+Observe the play cursor return to the beginning.
+
+### 3. Double-press STOP
+
+Observe the play cursor move to the end.
+
+### 4. Use REWIND and FORWARD
+
+Move through the timeline.
+
+### 5. Use the Jog Wheel
+
+Position the cursor.
+
+### 6. Add SHIFT
+
+Make a finer movement.
+
+The goal is to make the transport mechanics physically familiar.
+
+---
+
+# A Practical Jog Wheel Exercise
+
+Now try the four Jog Wheel contexts:
+
+```text
+Normal
+   → Position
+
+OPTION
+   → Tempo
+
+CONTROL
+   → Loop Start
+
+ALT
+   → Loop Length
+```
+
+For each one, add SHIFT and observe the finer adjustment.
+
+This single exercise teaches one of the most reusable modifier patterns on the entire X-Touch.
+
+---
+
+# A Practical Marker Exercise
+
+Add several markers to the project.
+
+Then use:
+
+```text
+OPTION + REWIND
+```
+
+and:
+
+```text
+OPTION + FORWARD
+```
+
+to navigate between them.
+
+Compare the experience with manually moving the cursor.
+
+The aim is to feel the difference between:
+
+```text
+navigate by time
+```
+
+and:
+
+```text
+navigate by structure
+```
+
+---
+
+# If Transport Behaviour Seems Unexpected
+
+Check the current modifiers and modes.
+
+For example:
+
+```text
+Jog Wheel moving tempo?
+```
+
+Perhaps OPTION is held.
+
+```text
+Arrow keys zooming?
+```
+
+Perhaps ZOOM is active.
+
+```text
+REWIND jumping to markers?
+```
+
+Perhaps OPTION is held.
+
+The hardware is contextual.
+
+Unexpected behaviour often means:
+
+```text
+different context
+```
+
+rather than:
+
+```text
+something is broken
+```
+
+---
+
+# A Useful Mental Model
+
+The Transport section can be understood in layers.
+
+## Layer 1 — Basic Transport
+
+```text
+PLAY
+
+STOP
+
+REWIND
+
+FORWARD
+
+RECORD
+```
+
+## Layer 2 — Navigation
+
+```text
+Jog Wheel
+
+Markers
+
+Arrow Keys
+```
+
+## Layer 3 — Timing
+
+```text
+Repeat
+
+Tempo
+
+Loop Start
+
+Loop Length
+
+Tap Tempo
+```
+
+## Layer 4 — Recording Support
+
+```text
+Punch In
+
+Punch Out
+
+Overdub
+```
+
+## Layer 5 — View / Edit Control
+
+```text
+ZOOM
+
+SCRUB
+```
+
+The hardware is easier to understand when these operations are grouped by purpose rather than memorised as one long button table.
+
+---
+
+# The Important Idea
+
+The X-Touch Transport section begins with familiar controls:
+
+```text
+PLAY
+
+STOP
+
+REWIND
+
+FORWARD
+
+RECORD
+```
+
+But DrivenByMoss extends them considerably.
+
+The verified mappings include:
+
+```text
+PLAY
+   → Start / Stop Playback
+
+Double PLAY
+   → Start of Song
+
+SHIFT + PLAY
+   → Toggle Repeat
+
+OPTION + PLAY
+   → Toggle Punch In
+
+OPTION + SHIFT + PLAY
+   → Toggle Punch Out
+```
+
+```text
+STOP
+   → Stop
+
+STOP again
+   → Start of Song
+
+Double STOP
+   → End of Song
+```
+
+```text
+REWIND / FORWARD
+   → Move through timeline
+
+OPTION + REWIND / FORWARD
+   → Previous / Next Marker
+```
+
+The Jog Wheel provides:
+
+```text
+Normal
+   → Position
+
+OPTION
+   → Tempo
+
+CONTROL
+   → Loop Start
+
+ALT
+   → Loop Length
+
+SHIFT
+   → Fine adjustment
+```
+
+And the remaining controls add:
+
+```text
+NUDGE
+   → Tap Tempo
+
+SCRUB
+   → Toggle Editing Modes
+
+ZOOM + ← / →
+   → Horizontal Arranger Zoom
+
+ZOOM + ↑ / ↓
+   → Toggle Track Height
+
+Arrow Keys
+   → Keyboard-style directional navigation
+```
+
+So perhaps the most useful way to think about this area is:
+
+> **Transport controls move not only through playback, but through time, structure and timing.**
+
+Once these controls become familiar, a surprising amount of basic navigation can happen without the mouse.
+
+---
+
+## Coming Next
+
+Transport lets us move around the project and control playback.
+
+The next chapter moves from:
+
+```text
+Where are we?
+```
+
+to:
+
+```text
+What device are we controlling?
+```
+
+DrivenByMoss gives the X-Touch a particularly rich Device Mode, including device navigation, parameter pages, direct selection and pinning.
+
+Next:
+
+**Device Mode.**
