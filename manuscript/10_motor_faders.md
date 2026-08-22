@@ -6,1149 +6,1222 @@ status: draft
 
 # Motor Faders
 
-The X-Touch has nine motorised faders:
+The eight channel faders are probably the most immediately impressive part of the X-Touch.
 
-```text
-8 Channel Faders
-       +
-1 Master Fader
-```
+They are:
 
-At first glance, they look like the faders on any conventional mixing console.
+- touch-sensitive;
+- motorised;
+- capable of receiving position information from Bitwig;
+- able to represent different tracks as the controller changes bank.
 
-But the word **motorised** changes everything.
+The Master fader provides the same physical style of control for the master channel.
 
-A normal fader tells the software:
+But the motorisation is not merely a visual effect.
 
-> **This is where I want the level to be.**
-
-A motor fader can also let the software tell the hardware:
-
-> **This is where the level already is.**
-
-That two-way relationship is one of the most important features of the X-Touch.
+It solves one of the fundamental problems of a controller whose physical controls can represent many different things.
 
 ---
 
-# The Fader Is Both Input and Feedback
+# A Fader Has Two Jobs
 
-Move a fader:
+A normal MIDI fader sends information in one direction:
 
 ```text
-Your Hand
+Move Fader
     │
     ▼
-X-Touch Fader
-    │
-    ▼
-Bitwig
+Software Changes
 ```
 
-But Bitwig can also move the fader:
+A motor fader adds the return journey:
 
 ```text
-Bitwig
-   │
-   ▼
-X-Touch Motor
-   │
-   ▼
+Software Changes
+      │
+      ▼
+Fader Moves
+```
+
+So the complete relationship becomes:
+
+```text
 Physical Fader
+      ⇅
+Bitwig Parameter
 ```
 
-So the fader is simultaneously:
+The fader is both:
 
 ```text
-Control
-   +
-Display
+Input
 ```
 
-That is fundamentally different from using an ordinary MIDI controller.
+and:
+
+```text
+Feedback
+```
+
+This is one of the defining features of the X-Touch.
 
 ---
 
 # Why Motorisation Matters
 
-Imagine Track 1 is at:
+Suppose Track 1 is at:
 
 ```text
--18 dB
+-3 dB
 ```
 
-and Track 2 is at:
+and Track 9 is at:
 
 ```text
--4 dB
+-14 dB
 ```
 
-If the same ordinary physical fader were reassigned from Track 1 to Track 2, its position could not represent both values.
+The first physical fader may represent Track 1.
 
-You would have a mismatch:
-
-```text
-Physical Fader
-     │
-     ▼
-   -18 dB
-
-Software Value
-     │
-     ▼
-    -4 dB
-```
-
-With a motor fader, reassignment can physically move the control:
-
-```text
-Track changes
-     │
-     ▼
-New value received
-     │
-     ▼
-Motor moves fader
-     │
-     ▼
-Hardware matches software
-```
-
-This is what allows the X-Touch's eight channel strips to act as a movable window onto a much larger project.
-
----
-
-# Banking Demonstrates the Motors
-
-Suppose the current bank contains:
-
-```text
-Kick    Snare   Hats    Bass    Pad     Lead    Vox     FX
-```
-
-with different volume levels.
-
-The eight faders physically show those values.
-
-Now press:
+Press:
 
 ```text
 BANK >
 ```
 
-and the controller moves to another group:
+and that same physical fader may now represent Track 9.
+
+Without motorisation, its physical position would still show Track 1's old value.
+
+With motorisation:
 
 ```text
-Perc    Room    Piano   Gtr 1   Gtr 2   BVox    Verb    Delay
-```
-
-The faders move automatically to the volume values of the new tracks.
-
-That movement is not decoration.
-
-It is feedback.
-
-The surface is telling you:
-
-> **These are the values for the tracks you are now controlling.**
-
----
-
-# Never Fight a Moving Fader
-
-When changing banks, modes or tracks, the faders may move.
-
-Let them.
-
-Do not hold a fader in place while its motor is trying to reposition it.
-
-A good habit is:
-
-```text
-Change Context
-      ↓
-Let Faders Settle
-      ↓
-Read Surface
-      ↓
-Touch Fader
-      ↓
-Adjust
-```
-
-The movement is part of the controller's communication with you.
-
----
-
-# Touch Sensitivity
-
-The X-Touch faders are touch-sensitive.
-
-The controller can therefore distinguish between:
-
-```text
-Fader is merely sitting here
-```
-
-and:
-
-```text
-A person is touching the fader
-```
-
-That distinction is particularly important for automation.
-
-Conceptually:
-
-```text
-Touch
-  ↓
-"I have taken control."
-
-Release
-  ↓
-"I have finished."
-```
-
-The exact result depends on Bitwig's current automation mode, but touch detection gives the DAW information that an ordinary MIDI fader cannot provide.
-
----
-
-# Fader Touch Can Select the Track
-
-DrivenByMoss provides a preference allowing a touched fader to select its corresponding track.
-
-With that option enabled:
-
-```text
-Touch Channel Fader
-        │
-        ▼
-Select that Track
-```
-
-This creates a very natural workflow.
-
-Instead of:
-
-```text
-SELECT Track
-      ↓
-Move Fader
-```
-
-you can simply:
-
-```text
-Touch Fader
-      ↓
-Track Selected
-      ↓
-Adjust Level
-```
-
-The physical act of reaching for the channel establishes focus.
-
----
-
-# Why Touch-to-Select Can Be Useful
-
-Suppose you are mixing and decide the Vocal needs attention.
-
-With touch selection enabled:
-
-```text
-Touch Vocal Fader
-       │
-       ▼
-Vocal becomes selected
-```
-
-You can then move into another context:
-
-```text
-DEVICE
-```
-
-or:
-
-```text
-SEND
-```
-
-knowing that Vocal is already the selected track.
-
-The workflow becomes:
-
-```text
-Touch
-  ↓
-Focus
-  ↓
-Choose Context
-  ↓
-Edit
-```
-
-This can significantly reduce explicit SELECT-button presses during mixing.
-
----
-
-# Touch-to-Select Is a Preference
-
-Not everyone wants touching a fader to change track selection.
-
-For some workflows, you may want to adjust levels while leaving another track selected.
-
-DrivenByMoss therefore makes this behaviour configurable.
-
-The important point is:
-
-> **If touching a fader unexpectedly changes the selected track, that may be a DrivenByMoss preference rather than a fault.**
-
-We will look at configuration in Chapter 21.
-
----
-
-# The Normal Channel-Fader Role
-
-In the standard mixer context, the eight channel faders control the volume of the eight tracks currently represented by the surface.
-
-Conceptually:
-
-```text
-Track       1     2     3     4     5     6     7     8
-            │     │     │     │     │     │     │     │
-            ▼     ▼     ▼     ▼     ▼     ▼     ▼     ▼
-Fader       1     2     3     4     5     6     7     8
-```
-
-Move Fader 4:
-
-```text
-Fader 4
+BANK >
    │
    ▼
-Volume of current Track 4
+Track Assignment Changes
+   │
+   ▼
+Bitwig Sends New Value
+   │
+   ▼
+Fader Moves to -14 dB
 ```
 
-Remember that "Track 4" here means:
-
-> **the fourth track in the current controller bank**
-
-not necessarily Bitwig Track 4.
+The hardware immediately reflects the new context.
 
 ---
 
-# The Faders Follow the Current Bank
+# The Faders Follow the Track Bank
 
-This follows directly from the movable-window model introduced in Chapter 4.
-
-Bank 1:
+In normal mixer operation:
 
 ```text
-Fader     1   2   3   4   5   6   7   8
-
-Track     1   2   3   4   5   6   7   8
+Fader 1  → Track 1
+Fader 2  → Track 2
+Fader 3  → Track 3
+...
+Fader 8  → Track 8
 ```
 
-After BANK >:
+Change bank:
 
 ```text
-Fader     1   2   3   4   5   6   7   8
-
-Track     9  10  11  12  13  14  15  16
+BANK >
 ```
 
-The hardware does not belong permanently to particular tracks.
+and the mapping becomes:
 
-The motors make that reassignment practical because each fader can immediately move to the correct value.
+```text
+Fader 1  → Track 9
+Fader 2  → Track 10
+Fader 3  → Track 11
+...
+Fader 8  → Track 16
+```
+
+The faders move automatically to the values of those newly represented tracks.
+
+This is why eight physical faders can control a much larger project without losing positional feedback.
 
 ---
 
-# FLIP Changes the Fader Assignment
+# CHANNEL Movement Also Updates the Faders
 
-One of the most important advanced fader functions is:
-
-```text
-FLIP
-```
-
-FLIP exchanges the assignments of the V-Pots and the faders.
-
-Conceptually, before FLIP:
-
-```text
-V-Pot
-   → Parameter A
-
-Fader
-   → Parameter B
-```
-
-After FLIP:
-
-```text
-V-Pot
-   → Parameter B
-
-Fader
-   → Parameter A
-```
-
-This allows a parameter normally controlled by a rotary encoder to be placed on a long-throw motor fader.
-
----
-
-# Why FLIP Is Useful
-
-Suppose the V-Pots currently control Send levels.
-
-Normally:
-
-```text
-V-Pots
-   → Send Levels
-
-Faders
-   → Track Volumes
-```
-
-Press FLIP:
-
-```text
-V-Pots
-   → Track Volumes
-
-Faders
-   → Send Levels
-```
-
-Now you can ride Send levels using the motor faders.
-
-This can be extremely useful when you want more physical precision or a more performance-oriented gesture.
-
----
-
-# FLIP Is More Than a Convenience
-
-A V-Pot and a fader feel very different.
-
-A V-Pot is excellent for:
-
-```text
-quick rotary adjustment
-```
-
-A fader is excellent for:
-
-```text
-long, visible movement
-```
-
-So FLIP lets you choose not only:
-
-> **Which parameter do I want to control?**
-
-but also:
-
-> **Which physical control would I prefer to use for it?**
-
-That can have a surprisingly large effect on workflow.
-
----
-
-# Send Levels on Faders
-
-Send Mode provides a particularly useful example.
-
-Normally:
-
-```text
-V-Pots
-   → Send Levels
-
-Faders
-   → Track Volumes
-```
-
-After FLIP:
-
-```text
-Faders
-   → Send Levels
-```
-
-Imagine Send 1 feeds a delay.
-
-The eight faders can now become:
-
-```text
-Kick Delay
-Snare Delay
-Hat Delay
-Bass Delay
-Keys Delay
-Lead Delay
-Vocal Delay
-FX Delay
-```
-
-This turns the X-Touch into a very different kind of performance surface.
-
----
-
-# Riding Effects
-
-With Send levels on the faders, you can perform effects dynamically.
+CHANNEL movement shifts the eight-track window by one track.
 
 For example:
 
 ```text
-Vocal phrase
-     │
-     ▼
-Raise Delay Send
-     │
-     ▼
-Phrase enters delay
-     │
-     ▼
-Lower Send
-```
-
-The long fader throw makes this feel more like conventional console mixing than turning a small encoder.
-
-For dub-oriented work, FLIP can therefore be particularly interesting.
-
----
-
-# Device Parameters on Faders
-
-FLIP is not limited to Sends.
-
-In contexts where the V-Pots are controlling device parameters, FLIP can place those parameters on the faders.
-
-Conceptually:
-
-```text
-Device Mode
-
-V-Pots
-   → Parameters 1–8
+Tracks 1–8
 ```
 
 then:
 
 ```text
-FLIP
-
-Faders
-   → Parameters 1–8
+CHANNEL >
 ```
 
-The motor faders now physically represent the current device parameter values.
+gives:
+
+```text
+Tracks 2–9
+```
+
+Each physical fader may therefore acquire a new track assignment.
+
+Again, the motors move to reflect the new values.
+
+The sequence is:
+
+```text
+Change Controller Window
+        ↓
+Assignments Change
+        ↓
+Faders Reposition
+```
+
+This should become so normal that you barely notice it happening.
 
 ---
 
-# Why Motorisation Becomes Especially Valuable Here
+# Do Not Fight the Motors
 
-Suppose a device parameter is at:
+When changing banks or modes, the faders may move by themselves.
 
-```text
-23%
-```
+That is expected.
 
-and another is at:
+Do not hold them in place while they are repositioning.
 
-```text
-81%
-```
-
-When those parameters are assigned to motor faders, the hardware physically shows their relative values.
-
-Change device or parameter page:
-
-```text
-New Parameters
-      ↓
-New Values
-      ↓
-Faders Move
-```
-
-So FLIP does not merely make a parameter controllable by a fader.
-
-It makes that parameter **physically visible**.
-
----
-
-# FLIP Is Contextual
-
-The meaning of FLIP depends on what the V-Pots currently control.
-
-If the V-Pots control:
-
-```text
-Pan
-```
-
-FLIP places that assignment on the faders.
-
-If they control:
-
-```text
-Sends
-```
-
-FLIP places Sends on the faders.
-
-If they control:
-
-```text
-Device Parameters
-```
-
-FLIP places those parameters on the faders.
-
-So:
-
-```text
-FLIP
-   │
-   ▼
-Exchange current
-V-Pot / Fader assignments
-```
-
-The context determines what is actually exchanged.
-
----
-
-# Returning to Normal
-
-Press FLIP again to return the assignments.
-
-Conceptually:
-
-```text
-Normal
-   │
-   │ FLIP
-   ▼
-Flipped
-   │
-   │ FLIP
-   ▼
-Normal
-```
-
-If the faders appear to be controlling something unexpected, check whether FLIP is active.
-
-This is another example of the general rule:
-
-> **When hardware behaviour surprises you, check the current context before assuming something is wrong.**
-
----
-
-# Automation and Motor Faders
-
-Motor faders become particularly valuable when automation is involved.
-
-Suppose Bitwig contains volume automation:
-
-```text
-Volume
-  │
-  │       ╭──────
-  │   ╭───╯
-  │───╯
-  └──────────────── Time
-```
-
-During playback, the software value changes.
-
-The X-Touch fader can follow it:
-
-```text
-Automation
-    │
-    ▼
-Bitwig Volume
-    │
-    ▼
-Motor Fader Moves
-```
-
-You can therefore watch the automation physically happen.
-
----
-
-# Automation Becomes Tangible
-
-On screen, automation is a line.
-
-On the X-Touch, automation can become:
-
-```text
-a fader moving under your fingers
-```
-
-This provides a strong physical connection to the mix.
-
-Instead of merely seeing:
-
-```text
-volume increasing
-```
-
-you can see and feel the control itself move.
-
-That is one of the major reasons motorised surfaces remain useful even in a software-based studio.
-
----
-
-# Touch and Automation
-
-Touch sensitivity allows Bitwig to know when you intervene.
-
-Conceptually:
-
-```text
-Automation playing
-      │
-      ▼
-Fader moving
-      │
-      ▼
-You touch fader
-      │
-      ▼
-DAW knows:
-"User has taken control"
-```
-
-What happens next depends on the active automation mode.
-
-The important point for this chapter is that the X-Touch can communicate both:
-
-```text
-fader position
-```
-
-and:
-
-```text
-fader touch state
-```
-
-to the DAW.
-
-Chapter 16 covers the automation workflow itself.
-
----
-
-# Do Not Chase an Automated Fader
-
-If a fader is moving because automation is playing, you do not need to follow it with your hand.
-
-Let the motor reproduce the existing automation.
-
-Touch it only when you actually intend to intervene.
+Let the surface update.
 
 Think:
 
 ```text
-Motor movement
-   → information
-
-My movement
-   → intention
+Motor Movement
+   → Feedback
 ```
 
-That distinction makes automated mixing much easier to understand.
+not:
+
+```text
+Motor Movement
+   → Something has gone wrong
+```
+
+The movement is the controller telling you:
+
+> **These are the current values for the things I now represent.**
+
+---
+
+# Touch Sensitivity
+
+The faders know when you touch them.
+
+This is different from merely detecting movement.
+
+Conceptually:
+
+```text
+Finger Touches Fader
+        ↓
+Touch State
+        ↓
+DrivenByMoss / Bitwig
+```
+
+That touch information can be useful for:
+
+- track-selection behaviour;
+- automation;
+- temporary controller-mode behaviour.
+
+Exactly what happens on fader touch can depend on the DrivenByMoss preferences.
+
+We will examine those options in Chapter 21.
+
+---
+
+# Fader Touch Can Select the Track
+
+DrivenByMoss can be configured so that touching a fader selects its corresponding track.
+
+With that preference enabled:
+
+```text
+Touch Fader
+     ↓
+Track Selected
+```
+
+This can make mixing very fluid.
+
+Instead of:
+
+```text
+SELECT
+   ↓
+Move Fader
+```
+
+you may simply:
+
+```text
+Touch Fader
+     ↓
+Adjust
+```
+
+But this behaviour is configurable.
+
+Do not assume that touching a fader must always change the selected track.
+
+---
+
+# Why Touch-to-Select Can Be Useful
+
+Suppose you hear that the Vocal is too loud.
+
+Your hand goes naturally to the Vocal fader.
+
+With touch selection enabled:
+
+```text
+Touch Vocal Fader
+        ↓
+Vocal Selected
+        ↓
+Move Fader
+```
+
+The physical action of reaching for the channel also establishes controller focus.
+
+That can be very efficient.
+
+---
+
+# Why Touch-to-Select Can Be Unwanted
+
+Suppose the Synth track is selected because you are editing one of its devices.
+
+At the same time, you want to reduce the Vocal level.
+
+If touching the Vocal fader automatically selects Vocal:
+
+```text
+Synth Device Context
+        ↓
+Touch Vocal Fader
+        ↓
+Selection Changes
+```
+
+that may interrupt the workflow.
+
+So DrivenByMoss makes this behaviour optional.
+
+The important lesson is:
+
+> **Fader touch is information. What DrivenByMoss does with that information can be configured.**
 
 ---
 
 # The Master Fader
 
-The ninth fader is physically separated from the eight channel strips.
+The Master fader is separate from the eight channel-strip faders.
 
-This is the Master fader.
-
-In normal use it represents the Master track.
-
-Unlike the eight channel faders, it does not participate in the ordinary eight-track banking system.
+In normal operation it provides direct access to the master level.
 
 Conceptually:
 
 ```text
 Channel Faders
-      │
-      ▼
-Current Bank
+   → Track Levels
 
 Master Fader
-      │
-      ▼
-Master Track
+   → Master Level
 ```
 
-This gives the project output a permanent physical control.
+Unlike the eight channel faders, the Master fader does not normally move through the track bank.
+
+It remains a stable physical destination for the overall output level.
+
+That consistency makes it especially useful.
 
 ---
 
-# Touching the Master Fader
+# SHIFT + Master Fader — Metronome Volume
 
-DrivenByMoss gives the Master fader another important role.
+DrivenByMoss also gives the Master fader a modified function.
 
-Touching it selects the Master track and enters the Master editing context.
-
-Conceptually:
+Hold:
 
 ```text
-Touch Master Fader
-        │
-        ▼
-Select Master Track
-        │
-        ▼
-Master Edit Context
+SHIFT
 ```
 
-The V-Pots can then expose Master and project-level functions.
+while moving the Master fader.
 
-We saw some of those functions in Chapter 9.
-
----
-
-# SHIFT + Master Fader
-
-DrivenByMoss also gives the Master fader a modified function:
+The fader controls:
 
 ```text
-SHIFT + Master Fader
-        │
-        ▼
 Metronome Volume
 ```
 
-This is a useful example of a fader being temporarily repurposed.
-
-Normally:
+So:
 
 ```text
 Master Fader
    → Master Volume
 ```
 
-with SHIFT:
+while:
 
 ```text
 SHIFT + Master Fader
    → Metronome Volume
 ```
 
-Release SHIFT and the normal Master assignment returns.
+This is a useful example of a modifier temporarily changing the meaning of an otherwise stable physical control.
 
 ---
 
-# A Physical Metronome Level
+# Why Metronome Volume Belongs on a Fader
 
-This can be particularly convenient while recording.
+Metronome level is the sort of value you may want to change quickly while recording.
 
-Instead of opening a software control to change click level:
-
-```text
-Hold SHIFT
-     ↓
-Move Master Fader
-     ↓
-Adjust Metronome Volume
-```
-
-The same large physical control is temporarily borrowed for another level-setting task.
-
-Again, the modifier changes the context.
-
----
-
-# Faders and Layer / Drum Pad Modes
-
-When the controller enters Layer or Drum Pad contexts, the channel strips can represent those objects rather than ordinary project tracks.
-
-The faders follow that context.
-
-So the eight physical faders may represent:
+You might think:
 
 ```text
-8 Tracks
+I need the click louder.
 ```
 
 or:
 
 ```text
-8 Layers
+The click is distracting me.
 ```
 
-or:
+Instead of opening a software control:
 
 ```text
-8 Drum Pads
+SHIFT
+   +
+Master Fader
 ```
 
-depending on the current mode.
+provides an immediate physical adjustment.
 
-The principle remains the same:
-
-> **The fader controls the level of whatever the current channel strip represents.**
-
-This is more useful than memorising a separate rule for every context.
+Release SHIFT and the Master fader returns to its normal role.
 
 ---
 
-# The Fader Belongs to the Channel Strip
+# Faders and Automation
 
-A useful way to think about the surface is:
+Touch sensitivity becomes especially important during automation.
 
-```text
-Channel Strip
-     │
-     ├── Scribble Strip
-     ├── V-Pot
-     ├── REC
-     ├── SOLO
-     ├── MUTE
-     ├── SELECT
-     └── Fader
-```
-
-When the identity of the channel strip changes, all of these controls follow it.
-
-If Channel Strip 3 represents:
+Imagine writing a volume movement.
 
 ```text
-Bass
+Touch Fader
+     ↓
+Move Fader
+     ↓
+Automation Written
+     ↓
+Release Fader
 ```
 
-then Fader 3 controls Bass.
+The system knows not merely that the value changed, but also when your hand took control and when it released control.
 
-If the context changes and Channel Strip 3 now represents:
+This allows automation modes such as Touch and Latch to behave in musically useful ways.
 
-```text
-Snare Layer
-```
-
-then Fader 3 controls that Layer.
-
-The fader does not need a separate mental identity.
-
-It belongs to the current channel strip.
+We will explore those modes properly in Chapter 16.
 
 ---
 
-# Motor Movement Is Feedback
+# Motorised Automation Playback
 
-It is worth returning to this idea because it changes how the surface should be used.
+Motorisation makes automation visible and physical.
 
-When a fader moves by itself, it is not merely performing a mechanical trick.
+Suppose a track contains volume automation.
 
-It is telling you something.
+During playback:
+
+```text
+Automation Data
+      ↓
+Bitwig Volume
+      ↓
+X-Touch Motor
+      ↓
+Fader Moves
+```
+
+You can literally watch the mix being performed.
+
+This is not merely entertaining.
+
+It tells you:
+
+```text
+where the automated value currently is
+```
+
+before you decide whether to touch the fader and intervene.
+
+---
+
+# The Fader Is a Moving Value Display
+
+This leads to an important idea.
+
+A motor fader is effectively a physical meter for a parameter.
 
 For example:
 
 ```text
-BANK >
-   ↓
-Faders move
-   ↓
-"These are the new track levels."
+Low Position
+   → Lower Value
+
+High Position
+   → Higher Value
+```
+
+When Bitwig changes the value, the display moves.
+
+When you change the display, Bitwig changes the value.
+
+So the distinction between:
+
+```text
+control
+```
+
+and:
+
+```text
+display
+```
+
+almost disappears.
+
+---
+
+# FLIP
+
+The X-Touch includes a:
+
+```text
+FLIP
+```
+
+button.
+
+FLIP exchanges or redirects assignments between the V-Pots and faders according to the current mode.
+
+Conceptually:
+
+```text
+Before FLIP
+
+V-Pots
+   → Current Rotary Assignment
+
+Faders
+   → Track Volume
+```
+
+then:
+
+```text
+FLIP
+```
+
+and the current rotary assignment can move to the faders.
+
+The exact result depends on the active controller context.
+
+---
+
+# Why FLIP Is Powerful
+
+Some parameters are naturally comfortable on a rotary encoder.
+
+Others benefit from the long physical travel of a fader.
+
+Suppose a V-Pot currently controls:
+
+```text
+Send Level
+```
+
+FLIP can put that assignment onto the fader.
+
+Instead of:
+
+```text
+Turn Encoder
+```
+
+you can use:
+
+```text
+Move Long-Throw Fader
+```
+
+This gives you:
+
+- more physical travel;
+- a visible position;
+- touch sensitivity;
+- motorised feedback.
+
+---
+
+# FLIP Does Not Mean One Fixed Assignment
+
+It is important not to memorise FLIP as:
+
+> **Faders become Sends.**
+
+That may be what happens in one context.
+
+In another context, the V-Pots may represent:
+
+```text
+Pan
 ```
 
 or:
 
 ```text
-Select another device
-   ↓
-FLIP active
-   ↓
-Faders move
-   ↓
-"These are the new parameter values."
+Device Parameters
 ```
 
-or:
+or another assignment.
+
+The more useful rule is:
+
+> **FLIP moves the current rotary-control relationship onto the faders.**
+
+So always ask:
 
 ```text
-Playback
-   ↓
-Automation runs
-   ↓
-Fader moves
-   ↓
-"This value is changing over time."
+What are the V-Pots controlling now?
 ```
+
+before asking:
+
+```text
+What will FLIP do?
+```
+
+---
+
+# FLIP in Send Mode
+
+Suppose the V-Pots are controlling Send levels.
+
+Normally:
+
+```text
+V-Pots
+   → Sends
+
+Faders
+   → Track Volumes
+```
+
+Press:
+
+```text
+FLIP
+```
+
+and the Send assignments can be brought onto the faders.
+
+Conceptually:
+
+```text
+Send 1
+Send 2
+Send 3
+...
+```
+
+become physically performable with the motor faders.
+
+This can be especially useful for effects-heavy mixing.
+
+---
+
+# FLIP in Device Mode
+
+FLIP becomes even more interesting in Device Mode.
+
+Suppose the eight V-Pots currently control:
+
+```text
+Cutoff
+Resonance
+Drive
+Mix
+Attack
+Release
+Feedback
+Tone
+```
+
+Press:
+
+```text
+FLIP
+```
+
+and those assignments can be moved onto the faders.
+
+A parameter such as:
+
+```text
+Filter Cutoff
+```
+
+can now be performed with a long physical gesture.
+
+For some parameters this feels much more expressive than turning an encoder.
+
+---
+
+# FLIP Changes the Physical Character of a Parameter
+
+This is worth emphasising.
+
+FLIP does not merely move a parameter from one control to another.
+
+It changes how that parameter feels.
+
+Compare:
+
+```text
+Encoder
+   → compact rotary gesture
+```
+
+with:
+
+```text
+Fader
+   → long linear gesture
+```
+
+The software parameter may be identical.
+
+The physical interaction is not.
+
+That can matter when the controller is being used performatively.
+
+---
+
+# SHIFT + FLIP — Normal Tracks and Effect Tracks
+
+FLIP itself changes the relationship between the V-Pots and faders.
+
+DrivenByMoss also gives the FLIP button a second function when used with SHIFT.
+
+Press:
+
+```text
+SHIFT + FLIP
+```
+
+to toggle the track bank between:
+
+```text
+Instrument / Audio / Hybrid Tracks
+```
+
+and:
+
+```text
+Effect Tracks
+```
+
+Conceptually:
+
+```text
+Instrument / Audio / Hybrid Tracks
+              │
+              │ SHIFT + FLIP
+              ▼
+         Effect Tracks
+              │
+              │ SHIFT + FLIP
+              ▼
+Instrument / Audio / Hybrid Tracks
+```
+
+This is not the same operation as FLIP by itself.
+
+---
+
+# FLIP and SHIFT + FLIP Do Different Jobs
+
+The distinction is important.
+
+Press:
+
+```text
+FLIP
+```
+
+and you change **which physical controls operate the current assignments**.
+
+For example:
+
+```text
+V-Pot Assignment
+       │
+       ▼
+     Fader
+```
+
+But press:
+
+```text
+SHIFT + FLIP
+```
+
+and you change **which kind of tracks appear in the track bank**.
 
 So:
 
-> **Motor movement is part of the X-Touch's display system.**
+```text
+FLIP
+   → Change Control Assignment
+```
+
+while:
+
+```text
+SHIFT + FLIP
+   → Change Track-Bank Type
+```
+
+The two operations share a button, but they work at completely different levels.
 
 ---
 
-# Faders Are Visual Displays
+# Why Effect-Track Access Is Useful
 
-This gives us an unusual but useful idea.
+Effect tracks often sit slightly outside the main flow of ordinary track navigation.
 
-A fader is not merely something you manipulate.
+But when mixing, they can be extremely important.
 
-Its physical position is also something you **read**.
-
-```text
-Low
- │
- ▼
-
-│
-│
-●
-│
-│
-│
-│
-```
-
-versus:
+A project might contain ordinary tracks such as:
 
 ```text
-High
- │
- ▼
-
-│
-│
-│
-│
-│
-●
-│
+Kick
+Snare
+Bass
+Keys
+Vocal
+Guitar
 ```
 
-At a glance, eight faders provide a physical picture of the current mix.
+and separate Effect tracks such as:
 
-That picture changes automatically when the controller context changes.
+```text
+Room
+Plate
+Dub Delay
+Long Reverb
+```
+
+Press:
+
+```text
+SHIFT + FLIP
+```
+
+and the X-Touch can move its attention from the Instrument / Audio / Hybrid track bank to the Effect tracks.
+
+That gives you direct physical access to the returns that shape the mix.
 
 ---
 
-# Read Before You Move
+# A Particularly Useful Mixing Workflow
 
-Chapter 9 gave us:
-
-> **Read before you turn.**
-
-For the faders, the equivalent is:
-
-> **Look before you move.**
-
-When changing bank or context:
+Suppose the eight channel strips currently represent:
 
 ```text
-Let Motors Move
-      ↓
-Observe Positions
-      ↓
-Understand Current State
-      ↓
-Make Adjustment
+Kick   Snare   Hats   Bass   Keys   Gtr   Vox   Perc
 ```
 
-The existing fader position is useful information.
+You are happy with their levels, but now want to adjust the Effect tracks themselves.
 
-Do not discard it mentally just because you are about to change it.
+Press:
+
+```text
+SHIFT + FLIP
+```
+
+The track bank changes to the Effect tracks.
+
+You can now work directly with controls such as:
+
+```text
+Room
+
+Plate
+
+Delay
+
+Reverb
+```
+
+When finished:
+
+```text
+SHIFT + FLIP
+```
+
+returns to the Instrument / Audio / Hybrid track bank.
+
+So the workflow becomes:
+
+```text
+Mix Source Tracks
+       ↓
+SHIFT + FLIP
+       ↓
+Mix Effect Tracks
+       ↓
+SHIFT + FLIP
+       ↓
+Return to Source Tracks
+```
+
+This can be considerably faster than navigating through a large project to find the Effect tracks manually.
 
 ---
 
-# Faders and the Scribble Strips Work Together
+# Don't Confuse This with Send Mode
 
-A fader position alone tells you:
-
-```text
-how much
-```
-
-The scribble strip tells you:
+There is an important distinction between:
 
 ```text
-what
+SEND
 ```
 
-Together:
+and:
 
 ```text
-Scribble Strip
-      │
-      ▼
-   "Vocal"
-
-Fader Position
-      │
-      ▼
-    -6 dB
+SHIFT + FLIP
 ```
 
-This combination is much more informative than either element alone.
+SEND lets you control:
 
-It is another reason the X-Touch should be treated as a complete surface rather than a collection of independent controls.
+> **How much of a source track is being sent to an effect.**
+
+SHIFT + FLIP lets you reach:
+
+> **The Effect track receiving those sends.**
+
+Conceptually:
+
+```text
+Source Track
+     │
+     │ SEND
+     ▼
+Send Amount
+     │
+     ▼
+Effect Track
+     │
+     │ SHIFT + FLIP
+     ▼
+Effect Track Controls
+```
+
+These are two sides of the same signal-flow relationship.
 
 ---
 
-# A Practical Banking Exercise
+# Source and Destination
 
-Open a project with at least twelve tracks and give the tracks noticeably different volume levels.
+Suppose a Vocal is feeding a Delay Effect track.
 
-Start with Tracks 1–8 visible.
-
-Look at the fader positions.
-
-Then press:
+To change how much Vocal reaches the delay:
 
 ```text
-BANK >
-```
-
-Do not touch anything immediately.
-
-Watch the faders move.
-
-Now press:
-
-```text
-BANK <
-```
-
-and watch them return.
-
-Repeat several times.
-
-The aim is to establish the instinct:
-
-```text
-Bank changes
+Select Vocal
      ↓
-Faders show new state
+SEND
+     ↓
+Adjust Send Level
 ```
 
-rather than:
+To change the level or other track-level properties of the Delay Effect track itself:
 
 ```text
-Why are the faders moving?
+SHIFT + FLIP
+      ↓
+Find Delay Effect Track
+      ↓
+Adjust
+```
+
+Think:
+
+```text
+SEND
+   → source side
+```
+
+```text
+SHIFT + FLIP
+   → destination side
+```
+
+That mental model makes the two workflows much easier to distinguish.
+
+---
+
+# Returning from FLIP
+
+Press FLIP again to return the controls to their normal relationship.
+
+Conceptually:
+
+```text
+Normal
+   ↓
+FLIP
+   ↓
+Flipped
+   ↓
+FLIP
+   ↓
+Normal
+```
+
+The faders then return to the values appropriate to their normal assignment.
+
+Again, let the motors move.
+
+Their movement is feedback.
+
+---
+
+# FLIP and Motor Recall
+
+Motorisation is particularly important when using FLIP.
+
+Suppose a fader normally represents:
+
+```text
+Track Volume = -8 dB
+```
+
+You press FLIP and it now represents:
+
+```text
+Send Level = -20 dB
+```
+
+The motor moves.
+
+Press FLIP again.
+
+The fader returns to:
+
+```text
+Track Volume = -8 dB
+```
+
+Without motorisation, the physical position would become meaningless every time the assignment changed.
+
+With motorisation, the hardware follows the context.
+
+---
+
+# Do Not Assume the Fader Still Means Volume
+
+This is one of the most important safety habits around FLIP.
+
+After pressing FLIP:
+
+> **Do not assume that moving a fader changes track volume.**
+
+Read the display.
+
+Check the active mode.
+
+Then move the control.
+
+The sequence should be:
+
+```text
+Change Context
+      ↓
+Read Feedback
+      ↓
+Understand Assignment
+      ↓
+Move Fader
+```
+
+This is the same principle we introduced in Chapter 7.
+
+---
+
+# Faders as Performance Controls
+
+Motor faders become especially interesting when the X-Touch is treated as an instrument rather than merely a mixer.
+
+Imagine several effect parameters assigned to the faders:
+
+```text
+Delay Send
+
+Reverb Send
+
+Filter Cutoff
+
+Feedback
+
+Effect Mix
+```
+
+Now several parameters can be moved simultaneously with multiple fingers.
+
+That is difficult to reproduce with a mouse.
+
+The controller becomes a performance surface.
+
+---
+
+# Multiple Faders at Once
+
+One of the great advantages of physical controls is simultaneity.
+
+A mouse generally manipulates one parameter at a time.
+
+With faders you can:
+
+```text
+Raise Track 1
+Lower Track 2
+Increase Track 3
+```
+
+simultaneously.
+
+Or, after FLIP:
+
+```text
+Increase Delay
+Reduce Reverb
+Open Filter
+```
+
+with several fingers.
+
+This is one of the places where hardware control is not merely an alternative to the mouse.
+
+It can enable a different style of interaction.
+
+---
+
+# Motor Faders and Muscle Memory
+
+Because the faders always occupy the same physical positions, your hands begin to learn the surface.
+
+For example:
+
+```text
+Channel 1
+Channel 2
+Channel 3
+...
+Channel 8
+```
+
+remain physically stable even though their track assignments change.
+
+The scribble strips tell you what the channels represent.
+
+The motors tell you their values.
+
+Your hand learns where the controls are.
+
+This combination of:
+
+```text
+Fixed Physical Position
+        +
+Dynamic Assignment
+        +
+Motor Feedback
+```
+
+is one of the X-Touch's strongest design ideas.
+
+---
+
+# A Practical Motor-Fader Exercise
+
+Open a project containing more than eight tracks with noticeably different volume settings.
+
+### 1. Observe the Faders
+
+Do not touch anything.
+
+Look at the eight physical positions.
+
+### 2. Press BANK >
+
+Watch all eight faders move to the values of the next bank.
+
+### 3. Press BANK <
+
+Watch the original positions return.
+
+### 4. Move a Fader in Bitwig
+
+Use the mouse to change one track's volume.
+
+Watch the corresponding physical fader follow.
+
+### 5. Move the Physical Fader
+
+Confirm that Bitwig follows the hardware.
+
+The purpose is to establish this relationship:
+
+```text
+Hardware
+   ⇄
+Software
 ```
 
 ---
 
 # A Practical FLIP Exercise
 
-Enter Panorama or Send Mode.
+Choose a mode in which the V-Pots have a clear assignment.
 
-Observe what the V-Pots currently control.
+For example:
+
+```text
+SEND
+```
+
+Observe the V-Pot assignments.
 
 Now press:
 
@@ -1156,230 +1229,205 @@ Now press:
 FLIP
 ```
 
-Move one of the faders and watch the corresponding parameter in Bitwig.
+Watch the faders reposition.
 
-Press FLIP again.
+Move one carefully and observe what changes in Bitwig.
 
-The exercise should make this relationship obvious:
-
-```text
-Before FLIP
-
-V-Pots = A
-Faders = B
-```
+Press:
 
 ```text
-After FLIP
-
-V-Pots = B
-Faders = A
+FLIP
 ```
 
-Try it in more than one edit mode.
+again.
 
-The point is to understand FLIP as a general mechanism rather than memorising separate FLIP behaviours.
+Watch the faders return.
+
+The aim is to make this principle instinctive:
+
+```text
+FLIP
+   → current rotary assignment
+     moves to faders
+```
 
 ---
 
-# A Send Performance Exercise
+# A Practical SHIFT + FLIP Exercise
 
-Create two effect tracks:
+Open a project containing both ordinary tracks and Effect tracks.
 
-```text
-Delay
+Begin with the normal Instrument / Audio / Hybrid track bank visible.
 
-Reverb
-```
-
-Enter Send Mode and select the Delay Send.
-
-Press FLIP.
-
-The faders should now give you physical control over Delay Send levels across the current tracks.
-
-Play the project.
-
-Try raising a Send briefly for a particular musical event and then lowering it again.
-
-For example:
+Press:
 
 ```text
-Snare Hit
-    │
-    ▼
-Raise Delay Send
-    │
-    ▼
-Delay catches hit
-    │
-    ▼
-Lower Send
+SHIFT + FLIP
 ```
 
-This demonstrates why putting Send levels on faders can be musically useful rather than merely technically interesting.
+Observe the track names on the scribble strips.
 
----
+The surface should now represent the Effect tracks.
 
-# An Automation Observation Exercise
+Adjust an Effect-track level if appropriate.
 
-Use a project containing existing volume automation.
-
-Play the automated section without touching the fader.
-
-Watch the motor follow the automation.
-
-Then stop playback.
-
-The important observation is simply:
+Then press:
 
 ```text
-Software automation
-       │
-       ▼
-Physical movement
+SHIFT + FLIP
 ```
 
-Chapter 16 will deal with writing and editing automation.
+again.
 
-For now, become comfortable with the idea that a moving fader can be **output from Bitwig**, not input from you.
+Observe the normal track bank return.
 
----
-
-# If a Fader Seems Wrong
-
-If a fader appears to control the wrong thing, check the current context.
-
-Ask:
+The aim is to distinguish clearly between:
 
 ```text
-Which bank am I in?
-
-Which mode am I in?
-
-Is FLIP active?
-
-Am I inside a Group?
-
-Am I editing Layers or Drum Pads?
-
-Is automation currently playing?
-
-Am I holding SHIFT?
-
-What does the scribble strip say?
+FLIP
 ```
 
-A surprising fader assignment is usually a context issue.
+and:
 
-The controller is contextual by design.
+```text
+SHIFT + FLIP
+```
+
+They share a physical button.
+
+They do **not** perform variations of the same operation.
 
 ---
 
 # A Useful Mental Model
 
-The motor fader can be understood as:
+Think of the motor faders as:
 
 ```text
-            Bitwig
-              ▲
-              │
-              │ value feedback
-              │
-              ▼
-        ┌───────────┐
-        │   Fader   │
-        └───────────┘
-              ▲
-              │
-              │ your movement
-              │
-              ▼
-             You
+Eight Physical Value Displays
+          +
+Eight Touch-Sensitive Controls
 ```
 
-Information flows in both directions.
+Their meaning comes from the current context.
 
-That is the essential difference between a motor fader and a simple MIDI slider.
+Normally:
+
+```text
+Faders
+   → Track Volume
+```
+
+With another assignment flipped:
+
+```text
+Faders
+   → Current V-Pot Function
+```
+
+And independently:
+
+```text
+SHIFT + FLIP
+   → Normal Track Bank
+     ↔ Effect Track Bank
+```
+
+So there are two distinct ideas:
+
+```text
+FLIP
+   → What do the faders control?
+```
+
+and:
+
+```text
+SHIFT + FLIP
+   → Which class of tracks
+     does the bank contain?
+```
 
 ---
 
 # The Important Idea
 
-The X-Touch's motor faders are not merely volume controls.
+The motor faders are one of the clearest examples of the X-Touch's two-way relationship with Bitwig.
 
-They are:
+They do not merely send values.
 
-```text
-Physical Controls
-       +
-Touch Sensors
-       +
-Motorised Displays
-```
-
-Normally, the eight channel faders control the current channel-strip levels.
-
-But their assignments can change with context.
-
-FLIP can exchange the current V-Pot and fader assignments:
+They receive them.
 
 ```text
-V-Pot Parameter
-      ↕
-    FLIP
-      ↕
-Fader Parameter
+You Move Fader
+      ↓
+Bitwig Changes
 ```
 
-Touch sensitivity allows the controller to know when you take hold of a fader.
-
-With the appropriate DrivenByMoss preference:
+and:
 
 ```text
-Touch Fader
-   → Select Track
+Bitwig Changes
+      ↓
+Fader Moves
 ```
 
-The Master fader provides permanent access to the Master track and can also be repurposed:
+That feedback allows the same eight physical controls to represent many different tracks and parameters without losing their current values.
+
+FLIP extends this flexibility:
 
 ```text
-SHIFT + Master Fader
-   → Metronome Volume
+FLIP
+   → Move Current Rotary Assignment
+     onto the Faders
 ```
 
-And when Bitwig changes a controlled value:
+while DrivenByMoss gives the same button a separate modified function:
 
 ```text
-Bitwig
-   ↓
-Motor
-   ↓
-Fader moves
+SHIFT + FLIP
+   → Toggle
+     Instrument / Audio / Hybrid Tracks
+     ↔ Effect Tracks
 ```
 
-So perhaps the most important idea in this chapter is:
+This gives us an especially useful signal-flow relationship:
 
-> **A motor fader is something you both operate and observe.**
+```text
+SEND
+   → Control how much signal
+     goes to an Effect track
 
-It lets your hand change Bitwig.
+SHIFT + FLIP
+   → Reach the Effect track itself
+```
 
-And it lets Bitwig physically show its state back to you.
+And throughout all of these context changes, the motors provide the same reassurance:
+
+> **The physical position shows the current value of whatever the fader represents now.**
 
 ---
 
 ## Coming Next
 
-We now understand the X-Touch's two principal continuous-control systems:
+The faders give us long-throw, touch-sensitive physical control.
+
+The next part of the surface handles something different:
 
 ```text
-V-Pots
-   → flexible contextual rotary control
+Play
 
-Motor Faders
-   → physical control plus motorised feedback
+Stop
+
+Record
+
+Navigate
+
+Loop
+
+Scrub
 ```
 
-Next we move to another part of the surface that looks familiar but becomes considerably more capable through DrivenByMoss modifiers:
+Next:
 
-**the Transport Controls.**
+**Transport Controls.**
