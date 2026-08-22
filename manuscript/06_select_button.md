@@ -28,7 +28,6 @@ It can:
 - leave a Group;
 - enter Layers or Drum Pads;
 - expand or collapse a Group;
-- participate in multi-selection;
 - stop a playing clip;
 - open or close a Group folder;
 - choose a new clip length;
@@ -489,83 +488,26 @@ The context determines what the action means.
 
 ---
 
-# SHIFT + SELECT — Multi-Selection
+# SHIFT + SELECT
 
-SELECT also participates in modifier combinations.
+The DrivenByMoss MCU documentation describes SHIFT + SELECT as a track multi-selection command where multi-selection is supported by the DAW.
 
-DrivenByMoss documents:
+With Bitwig Studio and DrivenByMoss 26.6.3, however, SHIFT + SELECT does not multi-select tracks.
+
+It also does not select the New Clip Length.
+
+For the X-Touch and Bitwig workflow covered by this guide:
 
 ```text
 SHIFT + SELECT
       │
       ▼
-Multi-select Tracks
+No assigned operation
 ```
 
-where multi-selection is supported by the DAW.
+New Clip Length is selected with ALT + SELECT instead.
 
-So normal SELECT says:
-
-> **Work with this track.**
-
-SHIFT + SELECT says:
-
-> **Add this track to, or otherwise participate in, a multiple-track selection.**
-
-Conceptually:
-
-```text
-SELECT Track 2
-
-Track 2
-   │
-   ▼
-selected
-```
-
-then:
-
-```text
-SHIFT + SELECT Track 4
-```
-
-allows a multi-track selection rather than simply replacing the original selection.
-
----
-
-# SHIFT + SELECT Has Another Important Context
-
-There is another documented use of SHIFT + the Track SELECT buttons:
-
-> **Selecting the New Clip Length.**
-
-The eight SELECT buttons correspond to:
-
-```text
-SHIFT + SELECT 1   → 16 bars
-
-SHIFT + SELECT 2   → 8 bars
-
-SHIFT + SELECT 3   → 4 bars
-
-SHIFT + SELECT 4   → 2 bars
-
-SHIFT + SELECT 5   → 1 bar
-
-SHIFT + SELECT 6   → 2 beats
-
-SHIFT + SELECT 7   → 1 beat
-
-SHIFT + SELECT 8   → 32 bars
-```
-
-This means SHIFT + SELECT is another contextual combination.
-
-In an appropriate selection context it participates in track multi-selection.
-
-It is also used by DrivenByMoss to choose the length used when creating new clips.
-
-We will return to New Clip Length in the recording chapters.
+We will return to that combination later in this chapter and in the recording chapters.
 
 ---
 
@@ -704,25 +646,27 @@ Set the length of a new clip
 
 This associates the eight SELECT buttons with clip-length choices.
 
-The exact clip-length choices documented for the Track SELECT row are:
+With Bitwig Studio and DrivenByMoss 26.6.3, the choices are arranged from shortest to longest:
 
 ```text
-1   → 16 bars
+1   → 1 beat
 
-2   → 8 bars
+2   → 2 beats
 
-3   → 4 bars
+3   → 1 bar
 
 4   → 2 bars
 
-5   → 1 bar
+5   → 4 bars
 
-6   → 2 beats
+6   → 8 bars
 
-7   → 1 beat
+7   → 16 bars
 
 8   → 32 bars
 ```
+
+The selected length appears momentarily on the Track 1 scribble strip.
 
 This is particularly useful for Launcher-oriented recording.
 
@@ -1152,7 +1096,7 @@ And with modifiers:
 
 ```text
 SHIFT + SELECT
-   → additional selection / clip-length function
+   → no assigned operation in Bitwig
 
 OPTION + SELECT
    → stop playing clip on track
@@ -1342,8 +1286,7 @@ Its modifier functions include:
 
 ```text
 SHIFT + SELECT
-   → multi-selection
-     / New Clip Length context
+   → no assigned operation in Bitwig
 
 OPTION + SELECT
    → stop playing clip on track
