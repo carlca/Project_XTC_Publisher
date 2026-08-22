@@ -620,6 +620,52 @@ The important point is that the X-Touch can navigate the Browser without requiri
 
 ---
 
+# Arrow Buttons, ZOOM and the Jog Wheel
+
+Browser Mode also gives the transport-area navigation controls Browser-specific functions.
+
+DrivenByMoss documents:
+
+```text
+ARROW UP
+   → Previous Browser Tab
+
+ARROW DOWN
+   → Next Browser Tab
+
+ARROW LEFT
+   → Insert Before
+
+ARROW RIGHT
+   → Insert After
+
+ZOOM
+   → Replace the Current Device
+
+JOG WHEEL
+   → Scroll the Results
+```
+
+These operations apply while Browser Mode is active.
+
+The Arrow buttons therefore do more than move through a list. UP and DOWN move between Browser tabs, while LEFT and RIGHT change where the selected device will be inserted.
+
+ZOOM changes the operation to replacement:
+
+```text
+Current Device
+      ↓
+     ZOOM
+      ↓
+Replace Current Device
+```
+
+The Jog Wheel provides a quick way to move through the current results without changing the role of the V-Pots.
+
+As with USER, context comes first. Outside Browser Mode, these controls retain the navigation and editing roles described in Chapter 11. Inside Browser Mode, they operate the Browser.
+
+---
+
 # Browser Navigation Is Hierarchical
 
 Bitwig's Browser contains different levels of choice.
@@ -1489,6 +1535,22 @@ ENTER
 ```text
 CANCEL
    → Discard and Close
+```
+
+The Browser also gives these controls contextual roles:
+
+```text
+ARROW UP / DOWN
+   → Previous / Next Browser Tab
+
+ARROW LEFT / RIGHT
+   → Insert Before / After
+
+ZOOM
+   → Replace Current Device
+
+JOG WHEEL
+   → Scroll Results
 ```
 
 So the key lesson is not merely a list of shortcuts.
