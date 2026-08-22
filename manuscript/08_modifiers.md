@@ -626,11 +626,11 @@ Instead:
 
 The SELECT row is one of the most heavily modified parts of the X-Touch.
 
-Verified DrivenByMoss uses include:
+With Bitwig Studio and DrivenByMoss 26.6.3, the verified behaviour includes:
 
 ```text
 SHIFT + SELECT
-   → Multi-select tracks
+   → No assigned operation
 ```
 
 ```text
@@ -648,7 +648,9 @@ ALT + SELECT
    → Set New Clip Length
 ```
 
-and:
+The eight ALT + SELECT choices run from 1 beat to 32 bars, with the selected length shown momentarily on the Track 1 scribble strip.
+
+Also:
 
 ```text
 SEND + SELECT
