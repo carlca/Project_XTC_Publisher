@@ -33,7 +33,7 @@ status: draft
 
 ## Part IV — Building the Workflow
 
-20. Towards a Mouse-Free (or Mouse-Lite) Workflow
+20. Towards a Mouse-Free — or Mouse-Lite — Workflow
 
 ## Part V — Configuration and Reference
 
