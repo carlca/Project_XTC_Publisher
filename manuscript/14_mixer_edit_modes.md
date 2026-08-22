@@ -6,234 +6,525 @@ status: draft
 
 # Mixer Edit Modes
 
-By now, we have become used to an important characteristic of the X-Touch:
+The X-Touch has eight V-Pots.
 
-> **The physical controls stay in the same place, but what they control can change.**
+In some contexts, each V-Pot controls the same kind of parameter across eight tracks.
 
-The eight channel strips normally give us a familiar view of the mixer.
+For example:
 
-We have faders for track levels, V-Pots for parameters, and buttons for operations such as SELECT, MUTE, SOLO and ARM.
+```text
+Pan Mode
 
-DrivenByMoss can take this idea further.
+V-Pot 1  → Pan Track 1
+V-Pot 2  → Pan Track 2
+V-Pot 3  → Pan Track 3
+...
+V-Pot 8  → Pan Track 8
+```
 
-Instead of thinking only in terms of eight complete channel strips, we can temporarily ask the X-Touch to concentrate on **one particular aspect of the mixer**.
+But DrivenByMoss also provides another way of using the same eight controls.
 
-That is the idea behind the mixer edit modes.
+Instead of:
+
+```text
+one parameter
+across eight tracks
+```
+
+the V-Pots can become:
+
+```text
+eight different parameters
+for one selected track
+```
+
+This is the idea behind the Mixer Edit Modes.
 
 ---
 
-## Looking Across the Mixer
+# Two Ways to Look at the Mixer
 
-Imagine eight tracks:
+The X-Touch can organise its eight V-Pots in two broad ways.
+
+## Across Tracks
 
 ```text
-Track 1   Track 2   Track 3   Track 4   Track 5   Track 6   Track 7   Track 8
+Track 1   Track 2   Track 3   Track 4   ...
+   │         │         │         │
+   ▼         ▼         ▼         ▼
+Same Parameter
 ```
 
-There are several different ways we might want to look across them.
-
-We could ask:
+For example:
 
 ```text
-What are their volumes?
+Pan
 ```
 
 or:
 
 ```text
-What are their panorama positions?
+Send 1
 ```
 
-or:
+across several tracks.
+
+## Across Parameters
 
 ```text
-How much of each track is being sent to Send 1?
+Selected Track
+      │
+      ├── Volume
+      ├── Panorama
+      ├── Crossfader
+      ├── Send 1
+      ├── Send 2
+      ├── Send 3
+      ├── Send 4
+      └── Send 5
 ```
 
-The tracks have not changed.
+The eight V-Pots now represent different aspects of one track.
 
-What changes is the **dimension of the mixer that we are looking at**.
-
-Conceptually:
-
-```text
-                    Tracks 1–8
-                        │
-          ┌─────────────┼─────────────┐
-          │             │             │
-          ▼             ▼             ▼
-       Volume       Panorama        Sends
-```
-
-This is a useful way to understand the mixer edit modes.
+These two viewpoints are both useful.
 
 ---
 
-## Track Edit Mode
+# TRACK — Track Edit Mode
 
-Press **TRACK** to enter Track Edit Mode.
+Press:
 
-Rather than treating each V-Pot simply as the normal control for its channel strip, Track Edit Mode exposes parameters associated with the selected track.
+```text
+TRACK
+```
 
-This gives the V-Pots another role:
+to enter Track Edit Mode.
+
+The V-Pots now control parameters belonging to the currently selected track.
+
+The normal DrivenByMoss layout is:
+
+```text
+V-Pot 1  → Volume
+
+V-Pot 2  → Panorama
+
+V-Pot 3  → Crossfader
+
+V-Pot 4  → Send 1
+
+V-Pot 5  → Send 2
+
+V-Pot 6  → Send 3
+
+V-Pot 7  → Send 4
+
+V-Pot 8  → Send 5
+```
+
+So the entire row becomes a compact mixer strip for one selected track.
+
+---
+
+# One Track, Eight Mixer Controls
+
+Suppose Vocal is selected.
+
+Track Edit Mode gives you something conceptually like:
+
+```text
+Vocal
+
+Volume
+Pan
+Crossfader
+Send 1
+Send 2
+Send 3
+Send 4
+Send 5
+```
+
+across the eight V-Pots.
+
+Instead of moving sideways through the project, you are moving **deeper into one track**.
+
+This is the opposite perspective from ordinary Pan or Send Mode.
+
+---
+
+# Why Track Edit Mode Is Useful
+
+Suppose you want to adjust several related properties of the Vocal track.
+
+Without Track Edit Mode, you might move through several controller contexts:
+
+```text
+Volume
+   ↓
+Pan
+   ↓
+Send 1
+   ↓
+Send 2
+```
+
+Track Edit Mode brings them together:
 
 ```text
 Selected Track
       │
       ▼
-Track Edit Mode
-      │
-      ▼
-V-Pots → Track Parameters
+Eight Mixer Parameters
 ```
 
-The precise parameters available can depend on the current DrivenByMoss configuration.
-
-The important point is the change in perspective.
-
-We are no longer primarily looking **across eight tracks**.
-
-We are looking more deeply at **one selected track**.
+This can be much faster when the work is centred on one particular track.
 
 ---
 
-## Volume Edit Mode
+# The Crossfader Control
 
-Press **TRACK** again and DrivenByMoss switches to Volume Edit Mode.
+By default, V-Pot 3 controls the selected track's Crossfader assignment or position.
 
-Now the V-Pots provide another way of controlling the volumes of the eight tracks in the current bank.
-
-Conceptually:
+That gives the normal Track Edit layout:
 
 ```text
-V-Pot 1  → Track 1 Volume
-V-Pot 2  → Track 2 Volume
-V-Pot 3  → Track 3 Volume
-...
-V-Pot 8  → Track 8 Volume
+Volume
+
+Panorama
+
+Crossfader
+
+Send 1
+
+Send 2
+
+Send 3
+
+Send 4
+
+Send 5
 ```
 
-Of course, the X-Touch already has eight motor faders.
+The important point is that the Crossfader occupies one of the eight available V-Pot positions.
 
-So why would we want volume on the V-Pots as well?
-
-One answer is **FLIP**, which we met earlier.
-
-The ability to exchange the roles of faders and rotary controls becomes much more useful when the controller can present parameters in different ways.
-
-The important lesson is not that one control is the "correct" way to adjust volume.
-
-It is that DrivenByMoss allows the surface to be reorganised around the task.
+That leaves room for five Sends.
 
 ---
 
-## Panorama Edit Mode
+# Crossfader Versus Send 6
 
-Press **PAN** to enter Panorama Edit Mode.
+DrivenByMoss provides a preference that can hide the Crossfader control from Track Edit Mode.
 
-The eight V-Pots now control the panorama positions of the eight tracks in the current bank:
+When that preference is enabled, the freed V-Pot is used for:
 
 ```text
-V-Pot 1  → Track 1 Pan
-V-Pot 2  → Track 2 Pan
-V-Pot 3  → Track 3 Pan
-...
-V-Pot 8  → Track 8 Pan
+Send 6
 ```
 
-This is perhaps the clearest example of an edit mode.
-
-Instead of thinking:
+So the layout changes from:
 
 ```text
-Channel 1
-   ├── Volume
-   ├── Pan
-   ├── Mute
-   └── Solo
+V-Pot 1  → Volume
+
+V-Pot 2  → Panorama
+
+V-Pot 3  → Crossfader
+
+V-Pot 4  → Send 1
+
+V-Pot 5  → Send 2
+
+V-Pot 6  → Send 3
+
+V-Pot 7  → Send 4
+
+V-Pot 8  → Send 5
 ```
 
-we temporarily rotate our view through ninety degrees and think:
+to:
 
 ```text
+V-Pot 1  → Volume
+
+V-Pot 2  → Panorama
+
+V-Pot 3  → Send 1
+
+V-Pot 4  → Send 2
+
+V-Pot 5  → Send 3
+
+V-Pot 6  → Send 4
+
+V-Pot 7  → Send 5
+
+V-Pot 8  → Send 6
+```
+
+The trade-off is therefore very simple:
+
+```text
+Crossfader
+    versus
+Sixth Send
+```
+
+---
+
+# Which Layout Is Better?
+
+Neither is universally better.
+
+If you use Bitwig's Crossfader regularly:
+
+```text
+keep Crossfader
+```
+
+If you rarely use it but frequently work with many Sends:
+
+```text
+hide Crossfader
+      ↓
+gain Send 6
+```
+
+This is a good example of a preference that should follow the actual workflow.
+
+The question is not:
+
+> **Which configuration exposes more features?**
+
+It is:
+
+> **Which eight controls are most useful to me on this track?**
+
+---
+
+# A Send-Heavy Workflow
+
+Suppose a project uses:
+
+```text
+Send 1  → Short Reverb
+
+Send 2  → Long Reverb
+
+Send 3  → Delay
+
+Send 4  → Dub Echo
+
+Send 5  → Chorus
+
+Send 6  → Special FX
+```
+
+For that project, the six-Send Track Edit layout can be extremely useful.
+
+Select a track:
+
+```text
+SELECT Vocal
+```
+
+then:
+
+```text
+TRACK
+```
+
+and you immediately have:
+
+```text
+Volume
 Pan
-   ├── Track 1
-   ├── Track 2
-   ├── Track 3
-   ├── ...
-   └── Track 8
+Send 1
+Send 2
+Send 3
+Send 4
+Send 5
+Send 6
 ```
 
-The information is the same.
+on one row.
 
-The **view onto it** has changed.
+That is a very compact mixing environment.
 
 ---
 
-## Fine Adjustment with SHIFT
+# A Crossfader-Oriented Workflow
 
-As we saw in Chapter 8, SHIFT frequently provides finer adjustment of continuous parameters.
+In another project, the Crossfader may be central to the performance.
 
-That pattern applies here too.
-
-Hold **SHIFT** while turning a V-Pot when you need more precise control.
-
-Conceptually:
+Perhaps tracks are being assigned between:
 
 ```text
-Turn V-Pot
-     ↓
-Normal adjustment
-
-SHIFT + Turn V-Pot
-     ↓
-Finer adjustment
+A
 ```
 
-This is a good example of why we introduced modifiers before exploring the advanced modes.
-
-The modifier itself is no longer something new to learn.
-
-We simply apply an existing idea to a new task.
-
----
-
-## Send Edit Modes
-
-The SEND control opens another particularly useful family of mixer views.
-
-Press **SEND** and the V-Pots control a Send across the eight tracks.
-
-For example, in the first Send mode:
+and:
 
 ```text
-             SEND 1
-
-Track 1  ─────────────► Send 1
-Track 2  ─────────────► Send 1
-Track 3  ─────────────► Send 1
-Track 4  ─────────────► Send 1
-Track 5  ─────────────► Send 1
-Track 6  ─────────────► Send 1
-Track 7  ─────────────► Send 1
-Track 8  ─────────────► Send 1
+B
 ```
 
-The eight V-Pots now answer one question:
+for live transitions or performance mixing.
 
-> **How much of each track is being sent to this destination?**
+Then the normal Track Edit layout makes more sense:
 
-This is an especially natural way to work with effects sends.
+```text
+Volume
+Pan
+Crossfader
+Send 1
+Send 2
+Send 3
+Send 4
+Send 5
+```
 
-If Send 1 feeds a reverb, for example, you can adjust the amount of reverb for eight tracks without changing the basic mixer bank.
+The preference lets the controller reflect the way the project is actually being used.
 
 ---
 
-## Moving Through the Sends
+# TRACK Pressed Again — Volume Edit Mode
 
-A project may contain more than one Send.
+DrivenByMoss also uses repeated presses of some assignment buttons to reach related modes.
 
-Repeated presses of **SEND** move through the available Send modes.
+Press TRACK again:
+
+```text
+TRACK
+   ↓
+Track Edit Mode
+
+TRACK again
+   ↓
+Volume Edit Mode
+```
+
+In Volume Edit Mode:
+
+```text
+V-Pot 1  → Volume Track 1
+
+V-Pot 2  → Volume Track 2
+
+...
+
+V-Pot 8  → Volume Track 8
+```
+
+The viewpoint changes from:
+
+```text
+many parameters
+on one track
+```
+
+to:
+
+```text
+one parameter
+across many tracks
+```
+
+---
+
+# Track Edit Mode Versus Volume Edit Mode
+
+Compare:
+
+```text
+TRACK
+
+Selected Track
+   │
+   ├── Volume
+   ├── Panorama
+   ├── Crossfader / Send 1
+   ├── Sends
+   └── ...
+```
+
+with:
+
+```text
+TRACK again
+
+Track 1  → Volume
+Track 2  → Volume
+Track 3  → Volume
+...
+Track 8  → Volume
+```
+
+The same physical button therefore provides two related mixer perspectives.
+
+---
+
+# PAN — Panorama Edit Mode
+
+Press:
+
+```text
+PAN
+```
+
+and the V-Pots control Panorama across the current bank.
+
+```text
+V-Pot 1  → Pan Track 1
+
+V-Pot 2  → Pan Track 2
+
+...
+
+V-Pot 8  → Pan Track 8
+```
+
+This is the classic mixer-style rotary layout.
+
+All eight controls perform the same kind of operation.
+
+Their targets differ.
+
+---
+
+# SEND — Send Edit Mode
+
+Press:
+
+```text
+SEND
+```
+
+to enter Send Edit Mode.
+
+Now the V-Pots control one selected Send across the current bank of tracks.
+
+For example:
+
+```text
+Send 1 Selected
+
+Track 1  → V-Pot 1
+Track 2  → V-Pot 2
+Track 3  → V-Pot 3
+...
+Track 8  → V-Pot 8
+```
+
+All eight V-Pots now answer:
+
+> **How much of this track goes to this Send?**
+
+---
+
+# SEND Pressed Again
+
+Repeated presses of SEND move forward through the available Sends.
 
 Conceptually:
 
@@ -241,388 +532,614 @@ Conceptually:
 SEND
   ↓
 Send 1
-  ↓
+
 SEND
   ↓
 Send 2
-  ↓
+
 SEND
   ↓
 Send 3
-  ↓
-...
 ```
 
-DrivenByMoss supports Send modes 1–8.
+and so on.
 
-Hold **SHIFT** while pressing SEND to move through the Sends in the opposite direction.
+SHIFT + SEND moves backwards.
 
 So:
 
 ```text
 SEND
-   → next Send
+   → Next Send
 
 SHIFT + SEND
-   → previous Send
+   → Previous Send
 ```
 
-This is another modifier pattern we have already encountered:
-
-SHIFT can provide the related or reverse operation.
+This allows the same eight V-Pots to move through multiple Send destinations.
 
 ---
 
-## Jumping Directly to a Send
+# Direct Send Selection
 
-Cycling is useful when moving between neighbouring Sends.
+DrivenByMoss also provides:
 
-But if you already know which Send you want, DrivenByMoss provides a quicker route.
+```text
+SEND + SELECT 1–8
+```
 
-Hold **SEND** and use the channel SELECT buttons to choose the Send directly.
+to choose a Send directly.
 
 Conceptually:
 
 ```text
-SEND + SELECT 1  → Send 1
-SEND + SELECT 2  → Send 2
-SEND + SELECT 3  → Send 3
+SEND + SELECT 1
+   → Send 1
+
+SEND + SELECT 2
+   → Send 2
+
 ...
-SEND + SELECT 8  → Send 8
+
+SEND + SELECT 8
+   → Send 8
 ```
 
-This is an important example of a control acquiring a new meaning from context.
-
-Normally:
-
-```text
-SELECT 3
-```
-
-means:
-
-> Select Track 3.
-
-But while SEND is being used as the context:
-
-```text
-SEND + SELECT 3
-```
-
-means:
-
-> Select Send 3.
-
-The physical SELECT button has not changed.
-
-The context has.
+This avoids stepping through several Sends when you already know which one you want.
 
 ---
 
-## Switching a Send On or Off
+# Across Tracks Versus One Track
 
-Send level and Send state are two different things.
+Mixer Edit Modes become much easier to understand when grouped into two families.
 
-Turning a V-Pot adjusts the amount being sent.
-
-DrivenByMoss also allows the Send itself to be switched on or off.
-
-In Send Mode:
+## One Parameter Across Many Tracks
 
 ```text
-OPTION + V-Pot press
+Volume Mode
+
+Panorama Mode
+
+Send Mode
 ```
 
-toggles the corresponding Send.
-
-So one rotary control can provide both:
+Conceptually:
 
 ```text
-Turn
-   ↓
-Send level
-
-OPTION + Press
-   ↓
-Send on/off
+Track 1   Track 2   Track 3   Track 4   ...
+   │         │         │         │
+   ▼         ▼         ▼         ▼
+Same Parameter
 ```
 
-This is exactly the kind of compact interaction for which modifiers are useful.
+## Many Parameters on One Track
 
-The common operation remains immediately available.
+```text
+Track Edit Mode
+```
 
-The related secondary operation is one modifier away.
+Conceptually:
+
+```text
+Selected Track
+      │
+      ├── Volume
+      ├── Panorama
+      ├── Crossfader / Send
+      ├── Send
+      ├── Send
+      └── ...
+```
+
+Once you recognise which of those two viewpoints is active, the V-Pot row becomes much easier to understand.
 
 ---
 
-## Send Mode as a Mixing Tool
+# Mixer Edit Mode Is About Perspective
 
-Send Mode is worth thinking about as more than a shortcut.
+The difference is not merely which button you pressed.
 
-Suppose Send 1 contains a reverb and Send 2 contains a delay.
+It is the question you are asking.
 
-You can move between two complete views of your mix:
+Track Edit Mode asks:
+
+> **What can I change about this one track?**
+
+Panorama Mode asks:
+
+> **How are these eight tracks positioned across the stereo field?**
+
+Send Mode asks:
+
+> **How much are these eight tracks feeding this one destination?**
+
+Volume Mode asks:
+
+> **How loud are these eight tracks?**
+
+The mode changes the perspective.
+
+---
+
+# Track Edit Mode and the Selected Track
+
+Track Edit Mode depends on track selection.
+
+If the selected track changes:
 
 ```text
-Send 1 — Reverb
-────────────────────
-Track 1 amount
-Track 2 amount
-Track 3 amount
-...
-Track 8 amount
+Track Edit Parameters
+        ↓
+Change Target
+```
+
+The same eight V-Pots now represent the corresponding parameters of the newly selected track.
+
+For example:
+
+```text
+SELECT Vocal
+     ↓
+TRACK
+     ↓
+Vocal Parameters
 ```
 
 then:
 
 ```text
-Send 2 — Delay
-────────────────────
-Track 1 amount
-Track 2 amount
-Track 3 amount
-...
-Track 8 amount
+SELECT Guitar
+     ↓
+Guitar Parameters
 ```
 
-Rather than visiting each track and adjusting one Send at a time, you can work across the mix according to the effect you are shaping.
+The V-Pot layout remains conceptually stable.
 
-For dub-style mixing in particular, this way of thinking can be extremely useful.
-
----
-
-## ARM, MUTE and SOLO
-
-The channel-strip buttons continue to provide immediate control over the tracks.
-
-### ARM
-
-Press **ARM** on a channel strip to arm that track for recording.
-
-The bank of ARM buttons allows record state to be managed directly from the surface.
-
-### MUTE
-
-Press **MUTE** to mute the corresponding track.
-
-### SOLO
-
-Press **SOLO** to solo the corresponding track.
-
-These are familiar mixer operations, but DrivenByMoss also provides modified versions for useful bank-wide or related operations.
+The target track changes.
 
 ---
 
-## Clearing Mutes
+# Fader Touch and Track Edit Mode
 
-When several tracks have been muted, clearing them individually can be tedious.
-
-DrivenByMoss provides a global operation for clearing active mutes.
-
-This is particularly useful after using mute creatively during playback.
-
-Rather than searching the surface for every illuminated MUTE button, the controller can return the mixer to an unmuted state in one operation.
-
-The exact global-control combination will be included in the Quick Reference once the final command set has been verified against the current DrivenByMoss version.
-
----
-
-## Clearing Solos
-
-The same problem occurs with Solo.
-
-During mixing it is easy to accumulate a state in which one or more tracks are soloed.
-
-DrivenByMoss provides a global operation for clearing active solos.
-
-Again, the important workflow idea is:
+If:
 
 ```text
-Experiment
-    ↓
-Mute / Solo tracks
-    ↓
-Return the mixer to a known state
+Select Channel on Fader Touch
 ```
 
-The controller is not merely a way to activate states.
+is enabled in DrivenByMoss, touching a fader can change the selected track.
 
-It also provides efficient ways to **recover from them**.
-
----
-
-## Monitoring
-
-SHIFT-modified channel buttons provide access to monitoring-related functions.
-
-These are useful when recording and will become more meaningful when we look at advanced recording workflows later in the guide.
-
-For now, the important distinction is that ARM, MUTE and SOLO buttons are not necessarily limited to the words printed on their caps.
-
-Like the rest of the X-Touch, they participate in the modifier system.
-
----
-
-## FLIP
-
-FLIP changes the relationship between rotary and fader control.
-
-This becomes especially useful in the mixer edit modes.
-
-A parameter that would normally be controlled from a V-Pot can be placed onto the motor faders.
-
-Why might we want that?
-
-Because a fader gives us:
-
-- a long physical travel;
-- touch sensitivity;
-- motorised feedback;
-- a very different physical feel from a rotary encoder.
-
-For some adjustments, the V-Pot is ideal.
-
-For others, the fader is more expressive.
-
-FLIP lets the controller adapt.
+That means Track Edit Mode can follow your physical attention.
 
 Conceptually:
 
 ```text
-Before FLIP
-
-V-Pots   → parameter
-Faders   → volume
-
-
-After FLIP
-
-V-Pots   → volume
-Faders   → parameter
+Track Edit Mode
+      ↓
+Touch Vocal Fader
+      ↓
+Vocal Selected
+      ↓
+V-Pots = Vocal Parameters
 ```
 
-The exact result depends on the current mode, but the principle remains the same:
+then:
 
-> **FLIP exchanges control roles.**
+```text
+Touch Guitar Fader
+      ↓
+Guitar Selected
+      ↓
+V-Pots = Guitar Parameters
+```
+
+This can create a very fluid workflow.
+
+But remember that fader-touch selection is configurable.
 
 ---
 
-## Mixing by Dimension
+# V-Pot Press Modifiers Still Apply
 
-The most useful way to think about this chapter is not as a collection of modes.
+The general V-Pot behaviours from Chapter 9 remain useful in Mixer Edit Modes.
 
-Think of it as several different ways to **slice through the same mixer**.
-
-### By channel
+For a parameter control:
 
 ```text
-Track 1
-   ├── Volume
-   ├── Pan
-   ├── Sends
-   ├── Mute
-   └── Solo
+Press
+   → Default
 ```
 
-### By parameter
+```text
+SHIFT + Press
+   → Centre
+```
 
 ```text
+CONTROL + Press
+   → Minimum
+```
+
+```text
+ALT + Press
+   → Maximum
+```
+
+And when controlling a Send:
+
+```text
+OPTION + Press
+   → Toggle Send On / Off
+```
+
+So Mixer Edit Modes determine:
+
+```text
+what parameter
+```
+
+the V-Pot represents.
+
+The gestures determine:
+
+```text
+what you do to that parameter
+```
+
+---
+
+# FLIP and Mixer Edit Modes
+
+FLIP can exchange the current V-Pot assignment with the faders.
+
+For example, in Send Mode:
+
+```text
+V-Pots
+   → Send Levels
+```
+
+Press:
+
+```text
+FLIP
+```
+
+and those Send levels can be controlled from the motor faders.
+
+This can be useful for more expressive or precise physical control.
+
+Chapter 10 explains FLIP itself in detail.
+
+Here the important point is simply:
+
+> **Mixer Edit Modes define the current rotary assignment; FLIP can move that assignment onto the faders.**
+
+---
+
+# Track Edit Mode and Mouse-Lite Mixing
+
+Suppose the Vocal needs several adjustments:
+
+```text
+slightly quieter
+
+a little left
+
+more delay
+
+less long reverb
+```
+
+A screen-oriented workflow may involve moving between several mixer controls.
+
+Track Edit Mode can gather those operations around one physical row.
+
+```text
+SELECT Vocal
+      ↓
+TRACK
+      ↓
+Volume
 Pan
-   ├── Track 1
-   ├── Track 2
-   ├── Track 3
-   └── ...
+Sends
 ```
 
-### By Send
-
-```text
-Reverb Send
-   ├── Track 1
-   ├── Track 2
-   ├── Track 3
-   └── ...
-```
-
-None of these is more correct than another.
-
-They are different views of the same project.
+The work becomes centred on the selected track rather than scattered across the screen.
 
 ---
 
-## Choosing the Useful View
+# Send Mode and Mix-Wide Thinking
 
-A good control surface should reduce the distance between an intention and an action.
+Suppose Send 3 feeds a dub delay.
 
-If your intention is:
+Select Send 3.
 
-> Turn Track 4 down.
+The V-Pots now show:
 
-the motor fader is probably already exactly what you want.
+```text
+Kick Delay
+Snare Delay
+Hat Delay
+Bass Delay
+Keys Delay
+Lead Delay
+Vocal Delay
+Perc Delay
+```
 
-If your intention is:
+This changes the musical question.
 
-> Spread these eight tracks across the stereo field.
+Instead of:
 
-Panorama Mode gives you eight related controls together.
+> **How much delay does the Vocal have?**
 
-If your intention is:
+you can think:
 
-> Decide which tracks should feed the delay.
+> **How is delay distributed across the whole mix?**
 
-Send Mode gives you a complete view of that Send across the bank.
-
-The important skill is therefore not memorising modes.
-
-It is recognising **which view best matches the job you are doing**.
+That is one of the strongest reasons for using edit modes that organise the surface by task.
 
 ---
 
-## The Important Idea
+# A Practical Track Edit Exercise
 
-Mixer Edit Modes let you reorganise the X-Touch around a particular mixing task.
+Select a track.
 
-Instead of always seeing:
-
-```text
-eight tracks
-×
-many different controls
-```
-
-you can temporarily see:
+Press:
 
 ```text
-one kind of control
-×
-eight tracks
+TRACK
 ```
 
-That change of perspective is what makes these modes useful.
+Observe the eight V-Pot assignments.
 
-The X-Touch is still an eight-channel control surface.
+With the normal Crossfader configuration, identify:
 
-But DrivenByMoss lets those eight channels become eight simultaneous views of:
+```text
+Volume
 
-- volume;
-- panorama;
-- Sends;
-- track parameters;
+Panorama
 
-depending on what you need at that moment.
+Crossfader
 
-Once this way of thinking becomes natural, the controller begins to feel less like a fixed bank of knobs and faders and more like a surface that **reorganises itself around the mix**.
+Send 1
+
+Send 2
+
+Send 3
+
+Send 4
+
+Send 5
+```
+
+Turn the controls carefully and watch Bitwig.
+
+Then select another track.
+
+Observe the same physical layout follow the newly selected track.
+
+The aim is to understand:
+
+```text
+same parameters
+      ↓
+different selected track
+```
+
+---
+
+# A Practical Six-Send Exercise
+
+If you do not use Bitwig's Crossfader regularly, enable the DrivenByMoss preference that hides the Crossfader from Track Edit Mode.
+
+Return to:
+
+```text
+TRACK
+```
+
+Observe the changed layout.
+
+You should now have access to:
+
+```text
+Volume
+
+Panorama
+
+Send 1
+
+Send 2
+
+Send 3
+
+Send 4
+
+Send 5
+
+Send 6
+```
+
+Compare this with the normal layout.
+
+The point is not to decide that one is objectively better.
+
+It is to decide which arrangement better matches your actual projects.
+
+---
+
+# A Practical Send Exercise
+
+Choose a project containing at least one Effect track.
+
+Press:
+
+```text
+SEND
+```
+
+Use repeated SEND presses or:
+
+```text
+SEND + SELECT
+```
+
+to choose the desired Send.
+
+Now adjust the Send across several tracks.
+
+Try:
+
+```text
+OPTION + Press V-Pot
+```
+
+on one of the Send controls.
+
+Observe the Send toggle.
+
+This demonstrates how the edit mode and the V-Pot modifier system work together.
+
+---
+
+# A Practical Perspective Exercise
+
+Try these three modes in sequence:
+
+```text
+TRACK
+
+PAN
+
+SEND
+```
+
+Ask yourself what question each one makes the surface answer.
+
+For TRACK:
+
+```text
+What can I change
+about this track?
+```
+
+For PAN:
+
+```text
+Where are these tracks
+in the stereo field?
+```
+
+For SEND:
+
+```text
+How much are these tracks
+feeding this effect?
+```
+
+Learning the **question** behind the mode is more useful than memorising the button sequence alone.
+
+---
+
+# The Important Idea
+
+Mixer Edit Modes reorganise the eight V-Pots around different mixing questions.
+
+Track Edit Mode provides multiple controls for one selected track:
+
+```text
+Volume
+
+Panorama
+
+Crossfader
+
+Send 1
+
+Send 2
+
+Send 3
+
+Send 4
+
+Send 5
+```
+
+DrivenByMoss can optionally hide the Crossfader, changing that layout to:
+
+```text
+Volume
+
+Panorama
+
+Send 1
+
+Send 2
+
+Send 3
+
+Send 4
+
+Send 5
+
+Send 6
+```
+
+So the configuration choice is:
+
+```text
+Crossfader
+    versus
+Sixth Send
+```
+
+The other major mixer perspectives are:
+
+```text
+Volume Mode
+   → Volume across tracks
+
+Panorama Mode
+   → Panorama across tracks
+
+Send Mode
+   → One Send across tracks
+```
+
+The deeper idea is:
+
+```text
+Same Eight V-Pots
+       │
+       ▼
+Different View
+of the Mixer
+```
+
+Track Edit Mode asks:
+
+> **What can I change about this one track?**
+
+The other edit modes ask:
+
+> **How does one parameter vary across these tracks?**
+
+Once that distinction becomes clear, the mode buttons stop feeling like unrelated mappings.
+
+They become different ways of organising the same physical surface around the task at hand.
 
 ---
 
 ## Coming Next
 
-Mixer Edit Modes help us change **what** we are controlling.
+Mixer Edit Modes give us different views of track and mixer parameters.
 
-The next chapter deals with another question:
+The next chapter moves from mixer state to musical structure.
 
-> **Where are we in the project?**
+DrivenByMoss lets the X-Touch work with markers as named destinations in the Arranger, including direct creation and navigation.
 
-Markers give us named positions in the timeline, and DrivenByMoss gives the X-Touch several ways to create, display and navigate them.
+Next:
 
-In the next chapter we will look at **Markers and Advanced Navigation**.
+**Markers and Advanced Navigation.**
