@@ -263,10 +263,10 @@ So:
 
 ```text
 BANK
-   → horizontal movement through device chain
+   → movement through device chain
 
 CHANNEL
-   → horizontal movement through parameter pages
+   → movement through parameter pages
 ```
 
 The physical layout stays the same.
@@ -564,11 +564,11 @@ Suppose you are repeatedly adjusting the same delay device while selecting or ma
 Without pinning:
 
 ```text
-Bitwig focus changes
+Bitwig Focus Changes
       ↓
-Cursor Device may change
+Cursor Device May Change
       ↓
-X-Touch follows
+X-Touch Follows
 ```
 
 With the device pinned:
@@ -576,7 +576,7 @@ With the device pinned:
 ```text
 OPTION + DEVICE
       ↓
-Device remains target
+Device Remains Target
 ```
 
 The controller can remain focused on the thing you actually care about.
@@ -604,6 +604,245 @@ OPTION + DEVICE
 ```
 
 This is another way in which DrivenByMoss helps reduce repeated navigation.
+
+---
+
+# Project / Track Parameter Mode
+
+DEVICE has another documented function.
+
+If Device Mode is already active, press:
+
+```text
+DEVICE
+```
+
+again.
+
+DrivenByMoss switches to:
+
+```text
+Project / Track Parameter Mode
+```
+
+Conceptually:
+
+```text
+DEVICE
+   ↓
+Device Mode
+   ↓
+DEVICE again
+   ↓
+Project / Track Parameters
+```
+
+This gives the same eight V-Pots access to the currently selected set of eight Project or Track parameters.
+
+---
+
+# Eight Project / Track Parameters
+
+In this mode:
+
+```text
+V-Pot 1  → Parameter 1
+V-Pot 2  → Parameter 2
+V-Pot 3  → Parameter 3
+V-Pot 4  → Parameter 4
+V-Pot 5  → Parameter 5
+V-Pot 6  → Parameter 6
+V-Pot 7  → Parameter 7
+V-Pot 8  → Parameter 8
+```
+
+The important distinction is what those parameters belong to.
+
+Ordinary Device Mode asks:
+
+> **Which parameters belong to this device?**
+
+Project / Track Parameter Mode asks:
+
+> **Which Project or Track parameters are currently selected for control?**
+
+The physical editing method remains familiar:
+
+```text
+Eight V-Pots
+     ↓
+Eight Parameters
+```
+
+Only the parameter context has changed.
+
+---
+
+# DEVICE Is Therefore Contextual Even Within Device Editing
+
+It is tempting to think:
+
+```text
+DEVICE
+   → Device Mode
+```
+
+and stop there.
+
+But the fuller model is:
+
+```text
+Press DEVICE
+      ↓
+Device Edit Mode
+
+Press DEVICE again
+      ↓
+Project / Track Parameter Mode
+```
+
+So the DEVICE button can move between two related parameter-editing contexts.
+
+As always, watch the displays.
+
+The scribble strips tell you what the V-Pots currently represent.
+
+---
+
+# Instrument Device Edit Mode
+
+DrivenByMoss also maps:
+
+```text
+INSTRUMENT
+```
+
+to:
+
+```text
+Instrument Device Edit Mode
+```
+
+This provides a specialised route to the instrument device on the selected track.
+
+Conceptually:
+
+```text
+Selected Track
+      │
+      ▼
+INSTRUMENT
+      │
+      ▼
+Instrument Device
+      │
+      ▼
+V-Pot Parameter Editing
+```
+
+This is useful when the thing you want to edit is specifically the track's instrument rather than another device elsewhere in its chain.
+
+---
+
+# Why Instrument Mode Is Useful
+
+Consider a track containing:
+
+```text
+Note Effect
+    ↓
+Instrument
+    ↓
+EQ
+    ↓
+Compressor
+    ↓
+Delay
+```
+
+General Device Mode lets you navigate through the device chain.
+
+But if your intention is simply:
+
+> **I want to edit the instrument.**
+
+then:
+
+```text
+INSTRUMENT
+```
+
+provides a more direct conceptual route.
+
+Instead of thinking:
+
+```text
+Enter Device Mode
+      ↓
+Find Instrument
+```
+
+you can think:
+
+```text
+INSTRUMENT
+      ↓
+Edit Instrument
+```
+
+This is the same reason specialised modes such as EQ Mode are useful.
+
+They reduce navigation when your destination is already known.
+
+---
+
+# General and Specialised Device Access
+
+We can now distinguish several related routes.
+
+```text
+DEVICE
+   → General Device Editing
+```
+
+```text
+DEVICE again
+   → Project / Track Parameters
+```
+
+```text
+INSTRUMENT
+   → Instrument Device Editing
+```
+
+```text
+EQ
+   → EQ+ Editing
+```
+
+These are not four unrelated features.
+
+They are different routes into parameter control.
+
+Conceptually:
+
+```text
+                  Parameter Editing
+                         │
+          ┌──────────────┼──────────────┐
+          │              │              │
+       DEVICE       INSTRUMENT          EQ
+          │              │              │
+          ▼              ▼              ▼
+    Device Chain     Instrument        EQ+
+          │
+          │ DEVICE again
+          ▼
+ Project / Track
+    Parameters
+```
+
+The X-Touch uses the same physical controls while DrivenByMoss changes the target.
 
 ---
 
@@ -660,6 +899,12 @@ then after a device change:
 Delay Feedback
 ```
 
+then after changing parameter context:
+
+```text
+Track Parameter
+```
+
 The physical knob did not move.
 
 Its assignment did.
@@ -702,7 +947,9 @@ Familiarity makes these abbreviations much easier to read.
 
 # FLIP in Device Mode
 
-FLIP becomes particularly interesting in Device Mode.
+Chapter 10 introduced FLIP as a way of moving the current V-Pot assignments onto the motor faders.
+
+That becomes particularly useful in Device Mode.
 
 Normally:
 
@@ -714,22 +961,13 @@ Faders
    → Track Volumes
 ```
 
-Press FLIP:
+Press:
 
 ```text
-Faders
-   → Device Parameters
+FLIP
 ```
 
-The exact exchanged assignment follows the current context.
-
-This can turn a rotary parameter into a long-throw, touch-sensitive, motorised fader control.
-
----
-
-# Why Put Device Parameters on Faders?
-
-Some parameters are easier to perform physically with a fader.
+and the current device-parameter assignments can be controlled from the faders.
 
 For example:
 
@@ -743,17 +981,13 @@ Feedback
 Macro Amount
 ```
 
-may benefit from a longer gesture.
+may benefit from the longer physical travel of a fader.
 
-A fader also provides:
+This does not introduce a different kind of FLIP.
 
-- visible physical position;
-- motorised recall;
-- touch sensitivity.
+It is the same FLIP behaviour described in Chapter 10, applied to the current Device Mode assignments.
 
-So FLIP changes not merely the control location.
-
-It changes the **physical character of the interaction**.
+For the full explanation of FLIP, motorised recall and `SHIFT + FLIP`, see Chapter 10.
 
 ---
 
@@ -783,7 +1017,7 @@ The important point here is that Device Mode provides the parameter access requi
 
 # DEVICE Is a Mode, Not a One-Shot Command
 
-When you press DEVICE, you are not merely selecting one device operation.
+When you press DEVICE, you are not merely performing one device operation.
 
 You are changing the controller's working context.
 
@@ -806,7 +1040,13 @@ OPTION
    → Direct Page Selection
 ```
 
-So DEVICE creates an entire temporary control environment.
+And another press of DEVICE gives access to:
+
+```text
+Project / Track Parameters
+```
+
+So DEVICE creates a family of related parameter-editing contexts.
 
 ---
 
@@ -872,7 +1112,17 @@ Choose Page
 Turn V-Pot
 ```
 
-Once the controller workflow is familiar, this can become much faster.
+Or, for an instrument:
+
+```text
+SELECT Track
+    ↓
+INSTRUMENT
+    ↓
+Adjust Parameter
+```
+
+Once the controller workflow is familiar, these routes can become much faster.
 
 ---
 
@@ -1035,6 +1285,68 @@ OPTION
 
 ---
 
+# A Practical Project / Track Parameter Exercise
+
+Enter Device Mode:
+
+```text
+DEVICE
+```
+
+Then press:
+
+```text
+DEVICE
+```
+
+again.
+
+Observe the scribble strips and V-Pot assignments.
+
+The surface should now represent the currently selected Project / Track parameters rather than the ordinary device-page context.
+
+Turn a V-Pot carefully and observe the corresponding parameter in Bitwig.
+
+The aim is to recognise:
+
+```text
+DEVICE
+   → Device Parameters
+
+DEVICE again
+   → Project / Track Parameters
+```
+
+as two related but distinct contexts.
+
+---
+
+# A Practical Instrument Exercise
+
+Select an instrument track containing an instrument and several additional devices.
+
+Press:
+
+```text
+INSTRUMENT
+```
+
+Observe which device becomes the editing target.
+
+Compare this with entering general Device Mode and navigating the chain manually.
+
+The point of the exercise is to understand INSTRUMENT as a **direct destination**:
+
+```text
+Known Destination
+      ↓
+INSTRUMENT
+      ↓
+Instrument Editing
+```
+
+---
+
 # A Practical Pinning Exercise
 
 Select a device you want to keep under X-Touch control.
@@ -1086,9 +1398,9 @@ SELECT Track
      ↓
 EQ
      ↓
-EQ+ available
+EQ+ Available
      ↓
-V-Pots control EQ parameters
+V-Pots Control EQ Parameters
 ```
 
 This is a powerful workflow shortcut.
@@ -1112,14 +1424,14 @@ EQ
 can mean either:
 
 ```text
-Control existing EQ+
+Control Existing EQ+
 ```
 
 or:
 
 ```text
 Insert EQ+
-and then control it
+and then Control It
 ```
 
 depending on the selected track.
@@ -1185,13 +1497,19 @@ It is a specialised application of the same device-control model.
 
 ---
 
-# Device Mode and EQ Mode Compared
+# Device, Instrument and EQ Modes Compared
+
+We now have three useful routes into device-oriented editing.
 
 Device Mode asks:
 
 > **Which device on this track do I want to control?**
 
-EQ Mode asks:
+Instrument Mode says:
+
+> **Take me directly to the track's instrument.**
+
+EQ Mode says:
 
 > **Take me directly to the track's equalizer.**
 
@@ -1199,17 +1517,31 @@ So:
 
 ```text
 DEVICE
-   → general device navigation
+   → General Device Navigation
+
+INSTRUMENT
+   → Direct Instrument Editing
+
+EQ
+   → Specialised EQ Workflow
 ```
 
-while:
+And within the DEVICE family:
 
 ```text
-EQ
-   → specialised EQ workflow
+DEVICE again
+   → Project / Track Parameters
 ```
 
-Both use the same underlying V-Pot and page-navigation ideas.
+All use the same underlying idea:
+
+```text
+Choose Context
+      ↓
+Expose Parameters
+      ↓
+Use Physical Controls
+```
 
 ---
 
@@ -1335,10 +1667,21 @@ V-Pots 1–8
    → choose which parameter
 ```
 
+And DEVICE itself can change the parameter context:
+
+```text
+Device Parameters
+      ↕
+Project / Track Parameters
+```
+
 So the complete model is:
 
 ```text
 Track
+  │
+  ▼
+Parameter Context
   │
   ▼
 Device
@@ -1350,15 +1693,15 @@ Parameter Page
 Parameter
 ```
 
-The X-Touch can navigate each level physically.
+Not every context uses every level, but the X-Touch can navigate remarkably deeply into the project using the same small collection of physical controls.
 
 ---
 
 # The Important Idea
 
-Device Mode turns the X-Touch into a contextual device editor.
+Device Mode turns the X-Touch into a contextual parameter editor.
 
-The verified normal mapping is:
+The normal mapping begins:
 
 ```text
 DEVICE
@@ -1405,24 +1748,48 @@ OPTION + DEVICE
    → Pin Cursor Device
 ```
 
-EQ Mode provides a specialised route:
+DEVICE itself has another parameter context:
+
+```text
+DEVICE again
+   → Project / Track Parameter Mode
+```
+
+while specialised device routes include:
+
+```text
+INSTRUMENT
+   → Instrument Device Edit Mode
+```
+
+and:
 
 ```text
 EQ
    → Control EQ+
-   → Insert EQ+ automatically if required
+   → Insert EQ+ Automatically
+     if Required
 ```
+
+FLIP can still be applied to the current device parameters:
+
+```text
+FLIP
+   → Device Parameters on Faders
+```
+
+but this is simply the general FLIP behaviour already explained in Chapter 10.
 
 So the most useful mental model is:
 
 ```text
 SELECT Track
      ↓
-DEVICE
+Choose Editing Context
      ↓
-Choose Device
+Choose Device if Required
      ↓
-Choose Page
+Choose Page if Required
      ↓
 Adjust Parameter
 ```
@@ -1433,7 +1800,7 @@ Once that sequence becomes familiar, the X-Touch can reach deeply into a Bitwig 
 
 ## Coming Next
 
-Device Mode gives us direct access to devices that already exist.
+Device Mode gives us direct access to devices and parameters that already exist.
 
 But sometimes the thing we want is not in the project yet.
 
