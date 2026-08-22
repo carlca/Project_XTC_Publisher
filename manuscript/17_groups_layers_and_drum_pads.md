@@ -1110,14 +1110,13 @@ That is a remarkable amount of navigation built around one consistent row of but
 
 ## Other Useful SELECT Modifiers
 
-DrivenByMoss also provides several other operations on the channel SELECT buttons.
+The channel SELECT buttons also have several other modifier combinations.
 
 These are worth recognising even though they are not all specifically about hierarchy.
 
 ```text
 SHIFT + SELECT
-   → Multi-select tracks,
-     where supported by the DAW
+   → No assigned operation in Bitwig
 
 OPTION + SELECT
    → Stop the playing clip
@@ -1132,6 +1131,8 @@ ALT + SELECT
 SEND + SELECT
    → Select Send 1–8
 ```
+
+With Bitwig Studio and DrivenByMoss 26.6.3, ALT + SELECT 1–8 chooses lengths from 1 beat to 32 bars. The selected length appears momentarily on the Track 1 scribble strip.
 
 So SELECT is not merely a row of eight identical track-selection switches.
 
