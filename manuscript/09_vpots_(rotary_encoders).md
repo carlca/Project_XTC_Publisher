@@ -1126,9 +1126,11 @@ V-Pot 2
 
 Pressing either resets its parameter.
 
-The remaining V-Pots include project-level actions.
+The published DrivenByMoss MCU documentation describes presses on V-Pots 3–5 as toggling the project's audio engine.
 
-DrivenByMoss documents presses on V-Pots 3–5 for toggling the project's audio engine, while:
+With Bitwig Studio and DrivenByMoss 26.6.3, pressing or turning V-Pots 3–5 in Master Mode produces no observable response. They should therefore be treated as unassigned in the setup covered by this guide.
+
+V-Pots 7 and 8 provide project-level actions:
 
 ```text
 Press V-Pot 7
