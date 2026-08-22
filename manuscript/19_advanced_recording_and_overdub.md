@@ -535,25 +535,27 @@ The exact choice depends on the music.
 
 DrivenByMoss also lets the X-Touch choose a new clip length using the track SELECT buttons with a modifier.
 
-The eight choices are:
+With Bitwig Studio and DrivenByMoss 26.6.3, the eight choices are:
 
 ```text id="evz8fm"
-SHIFT + SELECT 1   → 16 bars
+ALT + SELECT 1   → 1 beat
 
-SHIFT + SELECT 2   → 8 bars
+ALT + SELECT 2   → 2 beats
 
-SHIFT + SELECT 3   → 4 bars
+ALT + SELECT 3   → 1 bar
 
-SHIFT + SELECT 4   → 2 bars
+ALT + SELECT 4   → 2 bars
 
-SHIFT + SELECT 5   → 1 bar
+ALT + SELECT 5   → 4 bars
 
-SHIFT + SELECT 6   → 2 beats
+ALT + SELECT 6   → 8 bars
 
-SHIFT + SELECT 7   → 1 beat
+ALT + SELECT 7   → 16 bars
 
-SHIFT + SELECT 8   → 32 bars
+ALT + SELECT 8   → 32 bars
 ```
+
+The selected length appears momentarily on the Track 1 scribble strip.
 
 So New Clip Length does not necessarily require a trip to the DrivenByMoss preferences.
 
@@ -563,35 +565,28 @@ It can be changed directly from the surface.
 
 ## The Order Is Worth Learning
 
-The sequence is not simply shortest-to-longest or longest-to-shortest.
+The sequence runs from shortest to longest.
 
 It is:
 
 ```text id="m6ukdq"
-SELECT 1     16 bars
-SELECT 2      8 bars
-SELECT 3      4 bars
+SELECT 1      1 beat
+SELECT 2      2 beats
+SELECT 3      1 bar
 SELECT 4      2 bars
-SELECT 5      1 bar
-SELECT 6      2 beats
-SELECT 7      1 beat
+SELECT 5      4 bars
+SELECT 6      8 bars
+SELECT 7     16 bars
 SELECT 8     32 bars
 ```
 
-That final 32-bar assignment means it is worth learning the mapping rather than assuming the buttons form a perfectly linear progression.
+This ascending order makes the row easy to scan once the first three beat-and-bar choices are familiar.
 
 This is exactly the sort of detail that will belong in the Quick Reference later.
 
 ---
 
-# ALT + SELECT and New Clip Length
-
-DrivenByMoss's common edit-mode functions also document:
-
-```text id="ryj64m"
-ALT + Track SELECT
-   → Set the length of a new clip
-```
+# The SELECT Row as a Command Surface
 
 The important conceptual point is that the channel SELECT row can participate in clip-length selection as well as track selection.
 
@@ -612,7 +607,7 @@ A controller-oriented workflow could be:
 Use the appropriate New Clip Length selection:
 
 ```text id="b7id1q"
-SHIFT + SELECT 3
+ALT + SELECT 5
 ```
 
 ### 2. Select the destination track and slot
@@ -1149,7 +1144,7 @@ Load an instrument.
 Use:
 
 ```text id="rqj6o4"
-SHIFT + SELECT 3
+ALT + SELECT 5
 ```
 
 ### 3. Select an empty Launcher slot
