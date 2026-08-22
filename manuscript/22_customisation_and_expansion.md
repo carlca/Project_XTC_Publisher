@@ -193,31 +193,33 @@ Then let experience tell you whether more are needed.
 
 ---
 
-## A Documentation Detail to Verify
+## All Eight Function Buttons Are Assignable
 
-There is currently a small discrepancy in the DrivenByMoss MCU documentation.
+The DrivenByMoss MCU documentation contains a small discrepancy.
 
-The general Functions section describes:
+Its general Functions section describes F1–F8 as assignable, while its Preferences section refers only to F1–F5.
 
-```text
-F1–F8
-```
-
-as assignable function buttons.
-
-The Preferences section specifically lists configurable assignments for:
+The configuration interface in DrivenByMoss 26.6.3 resolves this discrepancy: all eight function buttons have independent assignment fields.
 
 ```text
-F1–F5
+F1  → Assignable
+F2  → Assignable
+F3  → Assignable
+F4  → Assignable
+F5  → Assignable
+F6  → Assignable
+F7  → Assignable
+F8  → Assignable
 ```
 
-Project XTC should therefore not claim that all eight buttons are independently assignable in the current configuration interface until this has been verified against the exact DrivenByMoss version covered by the final guide.
+In the default state verified for this guide, each button is configured as:
 
-This is a useful example of an important documentation principle:
+```text
+Category  → Editing
+Action    → Undo
+```
 
-> **When two sources inside the same reference disagree, test rather than guess.**
-
-The Quick Reference should contain only the verified behaviour.
+So the reference to F1–F5 in the published Preferences section is outdated. For the current version covered here, the full F1–F8 row is available for independent assignment.
 
 ---
 
