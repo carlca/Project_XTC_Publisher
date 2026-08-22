@@ -1087,6 +1087,30 @@ So throughout Project XTC we describe the **normal mapping** unless a configurat
 
 ---
 
+# Quantize Amount
+
+The Play and Sequence preferences include:
+
+```text
+Quantize Amount
+```
+
+This determines how strongly the Quantize operation moves notes towards the timing grid.
+
+At:
+
+```text
+100%
+```
+
+the affected notes are aligned fully to the grid.
+
+Lower values retain more of the original timing while still moving the notes towards the grid.
+
+This setting does not quantize anything by itself. It defines the amount used when the Quantize operation is executed.
+
+---
+
 # Browser Preferences
 
 DrivenByMoss also lets you hide Browser filter columns that you do not use.
@@ -1674,6 +1698,8 @@ Knob Sensitivity
 Transport Behaviour
 
 Arranger / Launcher Priority
+
+Quantize Amount
 
 Browser Filtering
 ```
