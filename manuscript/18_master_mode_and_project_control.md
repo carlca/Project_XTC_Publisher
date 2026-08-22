@@ -33,8 +33,6 @@ Bitwig's mixer
 
 the metronome
 
-the audio engine
-
 the current project
 ```
 
@@ -52,22 +50,20 @@ and more about:
 
 # Master Mode
 
-The X-Touch provides a dedicated:
+The X-Touch provides a dedicated motorised:
 
 ```text
-MASTER
+MASTER FADER
 ```
 
-button.
-
-DrivenByMoss uses this to enter Master Mode.
+Touching the Master fader selects the Master track and enters Master Mode.
 
 Conceptually:
 
 ```text
 Track-Oriented Control
         │
-        │ MASTER
+        │ Touch Master Fader
         ▼
     Master Mode
 ```
@@ -78,7 +74,7 @@ The eight V-Pots now provide a small collection of project-level controls rather
 
 # The Master Mode V-Pots
 
-DrivenByMoss documents the Master Mode V-Pots as follows:
+For Bitwig Studio and DrivenByMoss 26.6.3, the verified Master Mode mapping is:
 
 ```text
 V-Pot 1
@@ -88,9 +84,7 @@ V-Pot 2
    → Master Panorama
 
 V-Pots 3–5
-   → Press to Toggle
-     Audio Engine On / Off
-     for this Project
+   → Unassigned
 
 V-Pot 7
    → Previous Project
@@ -109,30 +103,18 @@ Instead they provide several different kinds of project-level operation.
 
 # An Important Note About V-Pots 3–5
 
-The DrivenByMoss MCU documentation explicitly describes:
+The published DrivenByMoss MCU documentation describes presses on V-Pots 3–5 as toggling the project's audio engine.
+
+Hardware verification with Bitwig Studio and DrivenByMoss 26.6.3 found no observable response from pressing or turning any of these three V-Pots in Master Mode. Their display labels did not change either.
+
+For the setup covered by this guide:
 
 ```text
-Knobs 3–5
-   → Press to toggle audio engine
-     on/off for this project
+V-Pots 3–5
+   → Unassigned
 ```
 
-That wording is unusual because it assigns the same documented function to three adjacent knobs.
-
-Project XTC deliberately preserves that description rather than trying to reinterpret it.
-
-So the documented mapping is:
-
-```text
-V-Pot 3 press
-V-Pot 4 press
-V-Pot 5 press
-       ↓
-Toggle Audio Engine
-for this Project
-```
-
-If actual X-Touch behaviour differs with a particular DrivenByMoss version, the hardware behaviour should take precedence over an assumption based on the documentation.
+This is a case where verified current behaviour takes precedence over an outdated documented mapping.
 
 ---
 
@@ -188,70 +170,6 @@ V-Pot 2  → Panorama
 ```
 
 for the Master channel.
-
----
-
-# Audio Engine Control
-
-Pressing the documented V-Pots 3–5 toggles the audio engine for the current project.
-
-Conceptually:
-
-```text
-Audio Engine On
-       │
-       │ Press
-       ▼
-Audio Engine Off
-```
-
-and:
-
-```text
-Audio Engine Off
-       │
-       │ Press
-       ▼
-Audio Engine On
-```
-
-This is a much more consequential operation than changing a mixer parameter.
-
-When the audio engine is disabled, the project is no longer processing audio in the normal way.
-
-So this is a control to use deliberately.
-
----
-
-# Why Toggle the Audio Engine?
-
-There are several situations in which temporarily disabling a project's audio engine may be useful.
-
-For example:
-
-```text
-freeing processing resources
-
-temporarily silencing project processing
-
-managing more than one open project
-```
-
-The important distinction is:
-
-```text
-Mute
-   → silence a signal path
-```
-
-versus:
-
-```text
-Audio Engine Off
-   → stop the project's audio engine
-```
-
-These are not equivalent operations.
 
 ---
 
@@ -335,7 +253,7 @@ The motor faders and displays will update to reflect the newly focused project.
 
 # Master Mode Is Not Just a Bigger Mixer Channel
 
-It would be easy to assume that MASTER simply turns the eight V-Pots into controls for the Master track.
+It would be easy to assume that touching the Master fader simply turns the eight V-Pots into controls for the Master track.
 
 But the documented mapping is broader than that.
 
@@ -345,8 +263,6 @@ It combines:
 Master Volume
 
 Master Panorama
-
-Audio Engine
 
 Project Navigation
 ```
@@ -1239,10 +1155,10 @@ That makes them disproportionately valuable in everyday use.
 
 Open a Bitwig project.
 
-Press:
+Touch:
 
 ```text
-MASTER
+MASTER FADER
 ```
 
 Observe the scribble strips.
@@ -1287,20 +1203,9 @@ V-Pot 8
 
 Observe the project focus change.
 
-### 4. Audio Engine
+V-Pots 3–5 are unassigned in the verified setup, so they require no exercise.
 
-Treat V-Pots 3–5 with more care.
-
-The DrivenByMoss MCU documentation describes their press action as:
-
-```text
-Toggle Audio Engine
-for this Project
-```
-
-Only test this when temporarily stopping the project's audio engine is safe.
-
-The purpose of the exercise is to recognise that Master Mode contains **project operations**, not simply eight Master-channel parameters.
+The purpose of the exercise is to recognise that Master Mode combines **Master-channel parameters** with project navigation rather than presenting eight matching parameters.
 
 ---
 
@@ -1509,8 +1414,6 @@ Master Volume
 
 Master Panorama
 
-Audio Engine
-
 Project Navigation
 ```
 
@@ -1548,7 +1451,7 @@ a project-control surface
 
 Master Mode expands the X-Touch's focus beyond ordinary tracks.
 
-The documented Master Mode mapping is:
+The verified Master Mode mapping is:
 
 ```text
 V-Pot 1
@@ -1558,8 +1461,7 @@ V-Pot 2
    → Master Panorama
 
 V-Pots 3–5
-   → Press to Toggle Audio Engine
-     for this Project
+   → Unassigned
 
 V-Pot 7
    → Previous Project
